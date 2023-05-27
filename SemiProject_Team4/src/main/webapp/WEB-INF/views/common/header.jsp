@@ -102,8 +102,8 @@
 									커뮤니티</div>
 							</a>
 							<ul class="dropdown-menu" aria-labelledby="pagesMenu">
-								<li> <a class="dropdown-item" href="${path}/community-free.html">자유게시판</a></li>
-								<li> <a class="dropdown-item" href="${path}/community-info.html">정보공유</a></li>
+								<li> <a class="dropdown-item" href="${path}/freeBoard">자유게시판</a></li>
+								<li> <a class="dropdown-item" href="${path}/info">정보공유</a></li>
 								<li> <a class="dropdown-item" href="${path}/community-review-camp.html">후기</a></li>
 							</ul>
 						</li>

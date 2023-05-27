@@ -31,4 +31,41 @@ public class HomeController {
 		return "index-camping";
 	}
 	
+	@RequestMapping(value = "/freeBoard", method = RequestMethod.GET)
+	public String communityFree(Locale locale, Model model) {
+		
+		
+		return "/board/community-free";
+	}
+	
+	@RequestMapping(value = "/info", method = RequestMethod.GET)
+	public String Info(Locale locale, Model model) {
+		
+		
+		return "/board/community-info";
+	}
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
