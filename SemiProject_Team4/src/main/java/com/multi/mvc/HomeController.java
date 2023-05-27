@@ -8,7 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.multi.mvc.member.model.service.MemberService;
+import com.multi.mvc.camp.model.service.CampService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -16,18 +16,19 @@ import lombok.extern.slf4j.Slf4j;
  * Handles requests for the application home page.
  */
 @Controller
-@Slf4j // log를 자동으로 생성시켜주는 어노테인션 = static 문장 생략 가능
+@Slf4j 
 public class HomeController {
 	
 	@Autowired
-	private MemberService memberService;
+	private CampService service;
 	
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
-		log.info("@@@@@@@@@@@ selectAll : " + memberService.findAll());
 		
-		return "home";
+		model.addAttribute("list" ,service.selectCampAll());
+		
+		return "index-camping";
 	}
 	
 }
