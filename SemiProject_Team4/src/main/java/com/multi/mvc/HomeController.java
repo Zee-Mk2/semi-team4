@@ -24,9 +24,15 @@ public class HomeController {
 	
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
+	public String welcome(Locale locale, Model model) {
 		
 		model.addAttribute("list" ,service.selectCampAll());
+		
+		return "index-camping";
+	}
+	
+	@RequestMapping(value = "/home", method = RequestMethod.GET)
+	public String home(Locale locale, Model model) {
 		
 		return "index-camping";
 	}
@@ -44,6 +50,38 @@ public class HomeController {
 		
 		return "/board/community-info";
 	}
+	
+	@RequestMapping(value = "/camp-booking", method = RequestMethod.GET)
+	public String campBooking(Locale locale, Model model) {
+		
+		return "/camping/camping-booking";
+	}
+	
+	@RequestMapping(value = "/permit", method = RequestMethod.GET)
+	public String permit(Locale locale, Model model) {
+		
+		return "/common/permit";
+	}
+	
+	@RequestMapping(value = "/camp-detail", method = RequestMethod.GET)
+	public String campDetail(Locale locale, Model model) {
+		
+		return "/camping/camping-detail";
+	}
+	
+	@RequestMapping(value = "/sign-in", method = RequestMethod.GET)
+	public String signIn(Locale locale, Model model) {
+		
+		return "/common/sign-in";
+	}
+	
+	@RequestMapping(value = "/sign-up", method = RequestMethod.GET)
+	public String signUp(Locale locale, Model model) {
+		
+		return "/common/sign-up";
+	}
+	
+	
 	
 }
 

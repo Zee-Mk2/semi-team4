@@ -14,7 +14,7 @@ Footer START -->
 				<!-- Widget 1 START -->
 				<div class="col-7">
 					<!-- logo -->
-					<a class="me-0" href="${path}/index.html">
+					<a class="me-0" href="home">
 						<img class="h-40px" src="${path}/resources/assets/images/logo-1.png" alt="logo">
 					</a>
 
@@ -115,12 +115,6 @@ Footer END -->
 
 <!-- Bootstrap JS -->
 <script src="${path}/resources/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-
-<!-- Vendors -->
-<script src="${path}/resources/assets/vendor/tiny-slider/tiny-slider.js"></script>
-<script src="${path}/resources/assets/vendor/glightbox/js/glightbox.js"></script>
-<script src="${path}/resources/assets/vendor/choices/js/choices.min.js"></script>
-<script src="${path}/resources/assets/vendor/flatpickr/js/flatpickr.min.js"></script>
 
 <!-- ThemeFunctions -->
 <script src="${path}/resources/assets/js/functions.js"></script>

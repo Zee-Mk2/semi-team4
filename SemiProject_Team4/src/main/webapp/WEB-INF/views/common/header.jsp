@@ -30,14 +30,6 @@
 	<link rel="shortcut icon" href="${path}/resources/assets/images/favicon.ico">
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-	<!-- Plugins CSS -->
-	<link rel="stylesheet" type="text/css" href="${path}/resources/assets/vendor/font-awesome/css/all.min.css">
-	<link rel="stylesheet" type="text/css" href="${path}/resources/assets/vendor/bootstrap-icons/bootstrap-icons.css">
-	<link rel="stylesheet" type="text/css" href="${path}/resources/assets/vendor/tiny-slider/tiny-slider.css">
-	<link rel="stylesheet" type="text/css" href="${path}/resources/assets/vendor/glightbox/css/glightbox.css">
-	<link rel="stylesheet" type="text/css" href="${path}/resources/assets/vendor/choices/css/choices.min.css">
-	<link rel="stylesheet" type="text/css" href="${path}/resources/assets/vendor/flatpickr/css/flatpickr.min.css">
-
 	<!-- Theme CSS -->
 	<link rel="stylesheet" type="text/css" href="${path}/resources/assets/css/style.css">
 
@@ -59,7 +51,7 @@
 		<nav class="navbar navbar-expand-xl">
 			<div class="container-fluid">
 				<!-- Logo START -->
-				<a class="navbar-brand py-0" href="${path}/index-camping.html">
+				<a class="navbar-brand py-0" href="home">
 					<img src="${path}/resources/assets/images/logo-1.png" style="height: auto; width: 9rem;" class="py-1">
 				</a>
 				<!-- Logo END -->
