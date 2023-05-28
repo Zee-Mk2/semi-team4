@@ -6,6 +6,21 @@
 
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 
+
+<!-- Plugins CSS -->
+<link rel="stylesheet" type="text/css" href="${path}/resources/assets/vendor/font-awesome/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="${path}/resources/assets/vendor/bootstrap-icons/bootstrap-icons.css">
+<link rel="stylesheet" type="text/css" href="${path}/resources/assets/vendor/tiny-slider/tiny-slider.css">
+<link rel="stylesheet" type="text/css" href="${path}/resources/assets/vendor/glightbox/css/glightbox.css">
+<link rel="stylesheet" type="text/css" href="${path}/resources/assets/vendor/choices/css/choices.min.css">
+<link rel="stylesheet" type="text/css" href="${path}/resources/assets/vendor/flatpickr/css/flatpickr.min.css">
+
+<!-- Vendors -->
+<script src="${path}/resources/assets/vendor/tiny-slider/tiny-slider.js"></script>
+<script src="${path}/resources/assets/vendor/glightbox/js/glightbox.js"></script>
+<script src="${path}/resources/assets/vendor/choices/js/choices.min.js"></script>
+<script src="${path}/resources/assets/vendor/flatpickr/js/flatpickr.min.js"></script>
+
 <!-- **************** MAIN CONTENT START **************** -->
 <main>
 
@@ -122,7 +137,7 @@
 									</div>
 								</a>
 							</div>
-							<img class="card-img" src="assets/images/blog/1by1/07.jpg" alt="Card image">
+							<img class="card-img" src="${path}/resources/assets/images/blog/1by1/07.jpg" alt="Card image">
 							<div class="card-img-overlay-bottom">
 								<div class="d-flex justify-content-between">
 									<span class="badge text-bg-info" style="height: 1.5rem">캠핑</span>
@@ -165,7 +180,7 @@
 									</div>
 								</a>
 							</div>
-							<img class="card-img" src="assets/images/blog/16by9/small/03.jpg" alt="Card image">
+							<img class="card-img" src="${path}/resources/assets/images/blog/16by9/small/03.jpg" alt="Card image">
 							<div class="card-img-overlay-bottom">
 								<div class="d-flex justify-content-between">
 									<span class="badge text-bg-warning" style="height: 1.5rem">공연</span>
@@ -208,7 +223,7 @@
 									</div>
 								</a>
 							</div>
-							<img class="card-img" src="assets/images/blog/12.jpg" alt="Card image">
+							<img class="card-img" src="${path}/resources/assets/images/blog/12.jpg" alt="Card image">
 							<div class="card-img-overlay-bottom">
 								<div class="d-flex justify-content-between">
 									<span class="badge text-bg-warning" style="height: 1.5rem">공연</span>
@@ -252,7 +267,7 @@
 									</div>
 								</a>
 							</div>
-							<img class="card-img" src="assets/images/blog/1by1/05.jpg" alt="Card image">
+							<img class="card-img" src="${path}/resources/assets/images/blog/1by1/05.jpg" alt="Card image">
 							<div class="card-img-overlay-bottom">
 								<div class="d-flex justify-content-between">
 									<span class="badge text-bg-warning" style="height: 1.5rem">공연</span>
@@ -296,7 +311,7 @@
 									</div>
 								</a>
 							</div>
-							<img class="card-img" src="assets/images/blog/3by2/07.jpg" alt="Card image">
+							<img class="card-img" src="${path}/resources/assets/images/blog/3by2/07.jpg" alt="Card image">
 							<div class="card-img-overlay-bottom">
 								<div class="d-flex justify-content-between">
 									<span class="badge text-bg-warning" style="height: 1.5rem">공연</span>
@@ -340,7 +355,7 @@
 									</div>
 								</a>
 							</div>
-							<img class="card-img" src="assets/images/blog/4by3/06.jpg" alt="Card image">
+							<img class="card-img" src="${path}/resources/assets/images/blog/4by3/06.jpg" alt="Card image">
 							<div class="card-img-overlay-bottom">
 								<div class="d-flex justify-content-between">
 									<span class="badge text-bg-warning" style="height: 1.5rem">공연</span>
@@ -384,7 +399,7 @@
 									</div>
 								</a>
 							</div>
-							<img class="card-img" src="assets/images/blog/3by4/05.jpg" alt="Card image">
+							<img class="card-img" src="${path}/resources/assets/images/blog/3by4/05.jpg" alt="Card image">
 							<div class="card-img-overlay-bottom">
 								<div class="d-flex justify-content-between">
 									<span class="badge text-bg-warning" style="height: 1.5rem">공연</span>
@@ -428,7 +443,7 @@
 									</div>
 								</a>
 							</div>
-							<img class="card-img" src="assets/images/blog/3by4/02.jpg" alt="Card image">
+							<img class="card-img" src="${path}/resources/assets/images/blog/3by4/02.jpg" alt="Card image">
 							<div class="card-img-overlay-bottom">
 								<div class="d-flex justify-content-between">
 									<span class="badge text-bg-warning" style="height: 1.5rem">공연</span>
@@ -472,7 +487,7 @@
 									</div>
 								</a>
 							</div>
-							<img class="card-img" src="assets/images/blog/4by3/15.jpg" alt="Card image">
+							<img class="card-img" src="${path}/resources/assets/images/blog/4by3/15.jpg" alt="Card image">
 							<div class="card-img-overlay-bottom">
 								<div class="d-flex justify-content-between">
 									<span class="badge text-bg-info" style="height: 1.5rem">캠핑</span>
