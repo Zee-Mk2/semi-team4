@@ -40,7 +40,7 @@
 					<h1 class="text-white title">정보공유</h1>
 					<nav class="d-flex justify-content-center" aria-label="breadcrumb">
 						<ol class="breadcrumb breadcrumb-dark m-0">
-							<li class="breadcrumb-item fs-6"><a href="${path}/index-camping.html"><i class="bi bi-house me-1 text-white"></i>홈</a></li>
+							<li class="breadcrumb-item fs-6"><a href="${path}/home"><i class="bi bi-house me-1 text-white"></i> <span style="color: white"></span>홈</a> </li>
 							<li class="breadcrumb-item fs-6"><a href="${path}/communityMain" class="text-white">커뮤니티</a></li>
 							<li class="breadcrumb-item fs-6 active text-white">정보공유</li>
 						</ol>

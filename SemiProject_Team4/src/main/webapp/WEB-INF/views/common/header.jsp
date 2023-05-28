@@ -99,7 +99,7 @@
 									class="fa-solid fa-ghost me-2"></i>공연</a> </li>
 
 						<!-- Nav item 캠핑 -->
-						<li class="nav-item"> <a class="nav-link fw-bold active" href="${path}/index-camping.html"><i
+						<li class="nav-item"> <a class="nav-link fw-bold active" href="${path}/home"><i
 									class="fa-solid fa-campground me-2"></i>캠핑</a> </li>
 					</ul>
 				</div>

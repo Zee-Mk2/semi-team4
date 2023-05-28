@@ -50,7 +50,7 @@
 	<section class="position-relative pt-0">
 		<div class="container">
 			<div class="row align-items-center mx-auto mb-4">
-				<a href="community-post.html" class="btn btn-info col-1"><i class="fas fa-pen"></i> ê¸ì°ê¸°</a>
+				<a href="community-post.html" class="btn btn-info col-1"><i class="fas fa-pen"></i> <span style="font-size: 80%">ê¸ì°ê¸°</span></a>
 				
 				<div class="col-9">
 					<!-- Search START -->
