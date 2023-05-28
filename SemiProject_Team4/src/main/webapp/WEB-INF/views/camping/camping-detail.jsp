@@ -6,8 +6,22 @@
 
 
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="${path}/resources/assets/vendor/splide-master/dist/css/splide.min.css">
+
+<!-- Plugins CSS -->
+<link rel="stylesheet" type="text/css" href="${path}/resources/assets/vendor/font-awesome/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="${path}/resources/assets/vendor/bootstrap-icons/bootstrap-icons.css">
+<link rel="stylesheet" type="text/css" href="${path}/resources/assets/vendor/glightbox/css/glightbox.css">
+
+
+<link rel="stylesheet" type="text/css" href="${path}/resources/assets/css/style2.css">
+
+<!-- Vendors -->
+<script src="${path}/resources/assets/vendor/splide-master/dist/js/splide.min.js"></script>
+<script src="${path}/resources/assets/vendor/glightbox/js/glightbox.js"></script>
+
+<!-- 카카오맵 -->
+<script charset="UTF-8" class="daum_roughmap_loader_script" src="https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js"></script>
 
 <main>
 	<!-- =======================

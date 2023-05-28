@@ -69,7 +69,7 @@ Main Banner START -->
 					</div>
 				</div>
 			</div>
-			<div class="carousel-item active">
+			<div class="carousel-item">
 				<div class="p-4" style="background-position: center center; background-repeat: no-repeat; background-size: cover; height: 600px">
 					<div class="container">
 						<div class="row">
@@ -117,7 +117,7 @@ Main Banner START -->
 								<!-- Location -->
 								<div class="col-md-6 col-lg-3">
 									<!-- Input field -->
-									<div class="form-border-bottom form-control-transparent form-fs-lg mt-1">
+									<div class="form-border-bottom form-control-transparent form-fs-lg" style="height: 85%;">
 										<select class="form-select js-choice" data-search-enabled="true">
 											<option value="">지역</option>
 											<option>서울/인천/경기</option>
@@ -139,7 +139,7 @@ Main Banner START -->
 											<input type="text" class="form-control flatpickr" data-mode="range" placeholder="Select date"
 												value="19 Sep to 28 Sep">
 										</div> -->
-										<div class="form-border-bottom form-control-transparent form-fs-lg mt-1">
+										<div class="form-border-bottom form-control-transparent form-fs-lg">
 											<input type="text" class="form-control flatpickr py-2" data-mode="range" data-date-format="m-d" placeholder="예매 일정">
 										</div>
 								</div>
@@ -147,7 +147,7 @@ Main Banner START -->
 								<!-- Guest -->
 								<div class="col-md-6 col-lg-6">
 									<!-- Input field -->
-									<div class="form-border-bottom form-control-transparent form-fs-lg mt-1">
+									<div class="form-border-bottom form-control-transparent form-fs-lg">
 										<input class="form-control border-0 shadow-0" type="text" name="search" placeholder="키워드">
 									</div>
 								</div>
@@ -546,7 +546,7 @@ Packages START -->
 Packages END -->
 
 <!-- 내 주변 공연장 시작 -->
-<section class="pt-0 pt-md-5 bg-light" style="background-image: url(assets/images/bg/bg01.png); height: 550px;">
+<section class="pt-0 pt-md-5 bg-light" style="background-image: url(${path}/resources/assets/images/bg/bg01.png); height: 550px;">
 	
 	<div class="container position-relative">
 		<a href="test.html">
@@ -659,7 +659,7 @@ Packages END -->
 									</div>
 								</a>
 							</div>
-							<img class="img-fluid" src="assets/images/review/01.jpg"/>
+							<img class="img-fluid" src="${path}/resources/assets/images/review/01.jpg"/>
 						</div>
 						<div class="card-body d-flex align-items-center">
 							<div class="w-100">
@@ -671,7 +671,7 @@ Packages END -->
 									<span class="d-flex align-items-center mt-2 col-7" href="profile.html">
 										<!-- Avatar -->
 										<div class="avatar me-3" style="width: 2rem; height: 2rem;">
-											<img class="avatar-img rounded-circle shadow" src="assets/images/avatar/01.jpg" alt="avatar">
+											<img class="avatar-img rounded-circle shadow" src="${path}/resources/assets/images/avatar/01.jpg" alt="avatar">
 										</div>
 										<div class="fw-bold text-black">
 										지석환
@@ -704,7 +704,7 @@ Packages END -->
 									</div>
 								</a>
 							</div>
-							<img class="img-fluid" src="assets/images/review/02.jpg"/>
+							<img class="img-fluid" src="${path}/resources/assets/images/review/02.jpg"/>
 						</div>
 						<div class="card-body d-flex align-items-center">
 							<div class="w-100">
@@ -716,7 +716,7 @@ Packages END -->
 									<span class="d-flex align-items-center mt-2 col-7" href="profile.html">
 										<!-- Avatar -->
 										<div class="avatar me-3" style="width: 2rem; height: 2rem;">
-											<img class="avatar-img rounded-circle shadow" src="assets/images/avatar/01.jpg" alt="avatar">
+											<img class="avatar-img rounded-circle shadow" src="${path}/resources/assets/images/avatar/01.jpg" alt="avatar">
 										</div>
 										<div class="fw-bold text-black">
 										지석환
@@ -749,7 +749,7 @@ Packages END -->
 									</div>
 								</a>
 							</div>
-							<img class="img-fluid" src="assets/images/review/03.jpg"/>
+							<img class="img-fluid" src="${path}/resources/assets/images/review/03.jpg"/>
 						</div>
 						<div class="card-body d-flex align-items-center">
 							<div class="w-100">
@@ -761,7 +761,7 @@ Packages END -->
 									<span class="d-flex align-items-center mt-2 col-7" href="profile.html">
 										<!-- Avatar -->
 										<div class="avatar me-3" style="width: 2rem; height: 2rem;">
-											<img class="avatar-img rounded-circle shadow" src="assets/images/avatar/01.jpg" alt="avatar">
+											<img class="avatar-img rounded-circle shadow" src="${path}/resources/assets/images/avatar/01.jpg" alt="avatar">
 										</div>
 										<div class="fw-bold text-black">
 										지석환
@@ -863,5 +863,11 @@ Packages END -->
 
 </main>
 <!-- **************** MAIN CONTENT END **************** -->
+
+<!-- Vendors -->
+<script src="${path}/resources/assets/vendor/tiny-slider/tiny-slider.js"></script>
+<script src="${path}/resources/assets/vendor/glightbox/js/glightbox.js"></script>
+<script src="${path}/resources/assets/vendor/choices/js/choices.min.js"></script>
+<script src="${path}/resources/assets/vendor/flatpickr/js/flatpickr.min.js"></script>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>

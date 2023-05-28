@@ -6,20 +6,22 @@
 
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 
-<!-- Plugins CSS -->
-<link rel="stylesheet" type="text/css" href="${path}/resources/assets/vendor/font-awesome/css/all.min.css">
-<link rel="stylesheet" type="text/css" href="${path}/resources/assets/vendor/bootstrap-icons/bootstrap-icons.css">
-<link rel="stylesheet" type="text/css" href="${path}/resources/assets/vendor/tiny-slider/tiny-slider.css">
-<link rel="stylesheet" type="text/css" href="${path}/resources/assets/vendor/glightbox/css/glightbox.css">
-<link rel="stylesheet" type="text/css" href="${path}/resources/assets/vendor/choices/css/choices.min.css">
-<link rel="stylesheet" type="text/css" href="${path}/resources/assets/vendor/flatpickr/css/flatpickr.min.css">
+ <!-- Plugins CSS -->
+ <link rel="stylesheet" type="text/css" href="${path}/resources/assets/vendor/font-awesome/css/all.min.css" />
+ <link rel="stylesheet" type="text/css" href="${path}/resources/assets/vendor/bootstrap-icons/bootstrap-icons.css" />
+ <link rel="stylesheet" type="text/css" href="${path}/resources/assets/vendor/tiny-slider/tiny-slider.css" />
+ <link rel="stylesheet" type="text/css" href="${path}/resources/assets/vendor/glightbox/css/glightbox.css" />
+ <link rel="stylesheet" type="text/css" href="${path}/resources/assets/vendor/choices/css/choices.min.css" />
+ <link rel="stylesheet" type="text/css" href="${path}/resources/assets/vendor/flatpickr/css/flatpickr.min.css" />
+ <link rel="stylesheet" type="text/css" href="${path}/resources/assets/vendor/nouislider/nouislider.css" />
 
-<!-- Vendors -->
-<script src="${path}/resources/assets/vendor/tiny-slider/tiny-slider.js"></script>
-<script src="${path}/resources/assets/vendor/glightbox/js/glightbox.js"></script>
-<script src="${path}/resources/assets/vendor/choices/js/choices.min.js"></script>
-<script src="${path}/resources/assets/vendor/flatpickr/js/flatpickr.min.js"></script>
 
+ <!-- Vendors -->
+ <script src="${path}/resources/assets/vendor/tiny-slider/tiny-slider.js"></script>
+ <script src="${path}/resources/assets/vendor/glightbox/js/glightbox.js"></script>
+ <script src="${path}/resources/assets/vendor/choices/js/choices.min.js"></script>
+ <script src="${path}/resources/assets/vendor/flatpickr/js/flatpickr.min.js"></script>
+ <script src="${path}/resources/assets/vendor/nouislider/nouislider.min.js"></script>
 
   <!-- **************** MAIN CONTENT START **************** -->
   <main>
@@ -30,7 +32,7 @@
         <div class="carousel-inner">
           <div class="carousel-item active">
             <div class="p-4 p-sm-5"
-              style="background-image: url(assets/images/campsite/01.png); background-position: center center; background-repeat: no-repeat; background-size: cover; height: 600px">
+              style="background-image: url(${path}/resources/assets/images/campsite/01.png); background-position: center center; background-repeat: no-repeat; background-size: cover; height: 600px">
               <div class="container">
                 <div class="justify-content-between">
                   <div class="pt-9 text-start ps-5">
@@ -61,7 +63,7 @@
                       <!-- Location -->
                       <div class="col-md-6 col-lg-4">
                         <!-- Input field -->
-                        <div class="form-border-bottom form-control-transparent form-fs-lg">
+                        <div class="form-border-bottom form-control-transparent form-fs-lg" style="height: 85%;">
                           <select class="form-select js-choice" data-search-enabled="true">
                             <option value="">지역 선택</option>
                             <option>서울/인천/경기</option>
@@ -135,7 +137,7 @@
 
                   <!-- Star rating -->
                   <div class="col-md-6 col-lg-5">
-                    <label class="form-label">별점순</label>
+                    <label class="form-label">별점 필터</label>
                     <ul class="list-inline mb-0 g-3">
                       <!-- 1 -->
                       <li class="list-inline-item">
@@ -257,12 +259,12 @@
             <div class="w-100 h-100 hover-animate">
               <div class="card card-img-scale h-100 border-0 shadow">
                 <div class="card-img-top overflow-hidden">
-                  <img class="img-fluid" src="assets/images/campsite/02.jpg" />
+                  <img class="img-fluid" src="${path}/resources/assets/images/campsite/02.jpg" />
                   <div class="card-img-overlay-top">
                     <div class="d-flex justify-content-between">
                       <span class="badge text-bg-dark mt-2" style="height: 1.5rem">해변</span>
                       <span class="mt-n2">
-                        <img src="assets/images/amcharts_weather_icons_1.0.0/animated/cloudy-day-1.svg">
+                        <img src="${path}/resources/assets/images/amcharts_weather_icons_1.0.0/animated/cloudy-day-1.svg">
                       </span>
                     </div>
                     <!-- 하트 -->
@@ -303,12 +305,12 @@
             <div class="w-100 h-100 hover-animate">
               <div class="card card-img-scale h-100 border-0 shadow">
                 <div class="card-img-top overflow-hidden">
-                  <img class="img-fluid" src="assets/images/campsite/03.jpg" />
+                  <img class="img-fluid" src="${path}/resources/assets/images/campsite/03.jpg" />
                   <div class="card-img-overlay-top">
                     <div class="d-flex justify-content-between">
                       <span class="badge text-bg-dark mt-2" style="height: 1.5rem">강</span>
                       <span class="mt-n2">
-                        <img src="assets/images/amcharts_weather_icons_1.0.0/animated/cloudy.svg">
+                        <img src="${path}/resources/assets/images/amcharts_weather_icons_1.0.0/animated/cloudy.svg">
                       </span>
                     </div>
                     <!-- 하트 -->
@@ -349,12 +351,12 @@
             <div class="w-100 h-100 hover-animate">
               <div class="card card-img-scale h-100 border-0 shadow">
                 <div class="card-img-top overflow-hidden">
-                  <img class="img-fluid" src="assets/images/campsite/05.jpg" />
+                  <img class="img-fluid" src="${path}/resources/assets/images/campsite/05.jpg" />
                   <div class="card-img-overlay-top">
                     <div class="d-flex justify-content-between">
                       <span class="badge text-bg-dark mt-2" style="height: 1.5rem">섬</span>
                       <span class="mt-n2">
-                        <img src="assets/images/amcharts_weather_icons_1.0.0/animated/day.svg">
+                        <img src="${path}/resources/assets/images/amcharts_weather_icons_1.0.0/animated/day.svg">
                       </span>
                     </div>
                     <!-- 하트 -->
@@ -394,12 +396,12 @@
           <div class="col-md-6 col-xl-4">
             <div class="card card-img-scale h-100 border-0 shadow">
               <div class="card-img-top overflow-hidden">
-                <img class="img-fluid" src="assets/images/campsite/06.jpg" />
+                <img class="img-fluid" src="${path}/resources/assets/images/campsite/06.jpg" />
                 <div class="card-img-overlay-top">
                   <div class="d-flex justify-content-between">
                     <span class="badge text-bg-dark mt-2" style="height: 1.5rem">산</span>
                     <span class="mt-n2">
-                      <img src="assets/images/amcharts_weather_icons_1.0.0/animated/cloudy-day-1.svg">
+                      <img src="${path}/resources/assets/images/amcharts_weather_icons_1.0.0/animated/cloudy-day-1.svg">
                     </span>
                   </div>
                   <!-- 하트 -->
@@ -438,12 +440,12 @@
           <div class="col-md-6 col-xl-4">
             <div class="card card-img-scale h-100 border-0 shadow">
               <div class="card-img-top overflow-hidden">
-                <img class="img-fluid" src="assets/images/campsite/07.jpg" />
+                <img class="img-fluid" src="${path}/resources/assets/images/campsite/07.jpg" />
                 <div class="card-img-overlay-top">
                   <div class="d-flex justify-content-between">
                     <span class="badge text-bg-dark mt-2" style="height: 1.5rem">숲</span>
                     <span class="mt-n2">
-                      <img src="assets/images/amcharts_weather_icons_1.0.0/animated/cloudy.svg">
+                      <img src="${path}/resources/assets/images/amcharts_weather_icons_1.0.0/animated/cloudy.svg">
                     </span>
                   </div>
                   <!-- 하트 -->
@@ -482,12 +484,12 @@
           <div class="col-md-6 col-xl-4">
             <div class="card card-img-scale h-100 border-0 shadow">
               <div class="card-img-top overflow-hidden">
-                <img class="img-fluid" src="assets/images/campsite/08.jpg" />
+                <img class="img-fluid" src="${path}/resources/assets/images/campsite/08.jpg" />
                 <div class="card-img-overlay-top">
                   <div class="d-flex justify-content-between">
                     <span class="badge text-bg-dark mt-2" style="height: 1.5rem">도심</span>
                     <span class="mt-n2">
-                      <img src="assets/images/amcharts_weather_icons_1.0.0/animated/rainy-6.svg">
+                      <img src="${path}/resources/assets/images/amcharts_weather_icons_1.0.0/animated/rainy-6.svg">
                     </span>
                   </div>
                   <!-- 하트 -->

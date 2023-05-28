@@ -6,7 +6,23 @@
 
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 
+
+<!-- Plugins CSS -->
+<link rel="stylesheet" type="text/css" href="${path}/resources/assets/vendor/font-awesome/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="${path}/resources/assets/vendor/bootstrap-icons/bootstrap-icons.css">
+<link rel="stylesheet" type="text/css" href="${path}/resources/assets/vendor/tiny-slider/tiny-slider.css">
+<link rel="stylesheet" type="text/css" href="${path}/resources/assets/vendor/glightbox/css/glightbox.css">
+<link rel="stylesheet" type="text/css" href="${path}/resources/assets/vendor/choices/css/choices.min.css">
+<link rel="stylesheet" type="text/css" href="${path}/resources/assets/vendor/flatpickr/css/flatpickr.min.css">
 <link rel="stylesheet" type="text/css" href="${path}/resources/assets/vendor/stepper/css/bs-stepper.min.css">
+
+<!-- Vendors -->
+<script src="${path}/resources/assets/vendor/tiny-slider/tiny-slider.js"></script>
+<script src="${path}/resources/assets/vendor/glightbox/js/glightbox.js"></script>
+<script src="${path}/resources/assets/vendor/choices/js/choices.min.js"></script>
+<script src="${path}/resources/assets/vendor/flatpickr/js/flatpickr.min.js"></script>
+<script src="${path}/resources/assets/vendor/stepper/js/bs-stepper.min.js"></script>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
 
 <main>
 	<!-- =======================

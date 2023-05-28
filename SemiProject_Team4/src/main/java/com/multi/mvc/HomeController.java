@@ -81,6 +81,36 @@ public class HomeController {
 		return "/common/sign-up";
 	}
 	
+	@RequestMapping(value = "/conc-home", method = RequestMethod.GET)
+	public String concertHome(Locale locale, Model model) {
+		
+		return "/index-concert";
+	}
+	
+	@RequestMapping(value = "/camp-search", method = RequestMethod.GET)
+	public String campSearch(Locale locale, Model model) {
+		
+		return "/camping/camping-search";
+	}
+	
+	@RequestMapping(value = "/board-detail", method = RequestMethod.GET)
+	public String boardDetail(Locale locale, Model model) {
+		
+		return "/board/community-detail";
+	}
+	
+	@RequestMapping(value = "/board-review", method = RequestMethod.GET)
+	public String boardInfo(Locale locale, Model model) {
+		
+		return "/board/community-review";
+	}
+	
+	@RequestMapping(value = "/conc-detail", method = RequestMethod.GET)
+	public String home2(Locale locale, Model model) {
+		
+		return "/concert/concert-detail";
+	}
+	
 	
 	
 }

@@ -103,7 +103,7 @@ Main Banner START -->
 								<!-- Location -->
 								<div class="col-md-6 col-lg-3">
 									<!-- Input field -->
-									<div class="form-border-bottom form-control-transparent form-fs-lg mt-1">
+									<div class="form-border-bottom form-control-transparent form-fs-lg" style="height: 85%;">
 										<select class="form-select js-choice" data-search-enabled="true">
 											<option value="">지역 선택</option>
 											<option>서울/인천/경기</option>
@@ -125,7 +125,7 @@ Main Banner START -->
 										<input type="text" class="form-control flatpickr" data-mode="range" placeholder="Select date"
 											value="19 Sep to 28 Sep">
 									</div> -->
-									<div class="form-border-bottom form-control-transparent form-fs-lg mt-1">
+									<div class="form-border-bottom form-control-transparent form-fs-lg">
 										<input type="text" class="form-control flatpickr py-2" data-mode="range" data-date-format="m-d" placeholder="일정 선택">
 									</div>
 								</div>
@@ -133,7 +133,7 @@ Main Banner START -->
 								<!-- Guest -->
 								<div class="col-md-6 col-lg-6">
 									<!-- Input field -->
-									<div class="form-border-bottom form-control-transparent form-fs-lg mt-1">
+									<div class="form-border-bottom form-control-transparent form-fs-lg">
 										<input class="form-control border-0 shadow-0" type="text" name="search" placeholder="캠핑장 이름으로 검색">
 									</div>
 								</div>

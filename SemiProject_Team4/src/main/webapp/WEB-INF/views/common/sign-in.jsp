@@ -59,7 +59,7 @@ Main Content START -->
 						<!-- Vector Image -->
 						<div class="col-lg-6 d-flex align-items-center order-2 order-lg-1">
 							<div class="p-3 p-lg-5">
-								<img src="${path}/resources/assets/images/element/signin.svg" alt="">
+								<img src="${path}/resources/assets/images/bg/bg-login.png" alt="">
 							</div>
 							<!-- Divider -->
 							<div class="vr opacity-1 d-none d-lg-block"></div>

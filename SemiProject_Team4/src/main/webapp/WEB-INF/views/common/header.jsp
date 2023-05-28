@@ -15,20 +15,8 @@
 	<meta name="author" content="Webestica.com">
 	<meta name="description" content="Booking - Multipurpose Online Booking Theme">
 
-	<!-- Dark mode -->
-	<script type="text/javascript">
-		var theme = localStorage.getItem('data-theme');
-		var root = document.documentElement;
-		if (theme === 'dark' && theme !== undefined) {
-			root.classList.add('dark-mode');
-		} else {
-			root.classList.remove('dark-mode');
-		}
-	</script>
-
 	<!-- Favicon -->
 	<link rel="shortcut icon" href="${path}/resources/assets/images/favicon.ico">
-	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 	<!-- Theme CSS -->
 	<link rel="stylesheet" type="text/css" href="${path}/resources/assets/css/style.css">
@@ -158,20 +146,6 @@
 							</li>
 							<li><a class="dropdown-item bg-danger-soft-hover" href="sign-in.html"><i
 										class="fas fa-sign-out-alt fa-fw me-2"></i>로그아웃</a></li>
-							<li>
-								<hr class="dropdown-divider">
-							</li>
-
-							<!-- Dark mode switch START -->
-							<li>
-								<div class="modeswitch-wrap" id="darkModeSwitch">
-									<div class="modeswitch-item">
-										<div class="modeswitch-icon"></div>
-									</div>
-									<span>Dark mode</span>
-								</div>
-							</li>
-							<!-- Dark mode switch END -->
 						</ul>
 					</li>
 					<!-- Profile dropdown END -->

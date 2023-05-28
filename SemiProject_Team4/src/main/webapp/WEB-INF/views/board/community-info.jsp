@@ -4,6 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 
+<link rel="stylesheet" type="text/css" href="${path}/resources/assets/css/style-blog.css">
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 
 <!-- Plugins CSS -->
@@ -15,10 +16,15 @@
 <link rel="stylesheet" type="text/css" href="${path}/resources/assets/vendor/flatpickr/css/flatpickr.min.css">
 
 <!-- Vendors -->
+<script src="${path}/resources/assets/vendor/isotope/isotope.pkgd.min.js"></script>
+<script src="${path}/resources/assets/vendor/imagesLoaded/imagesloaded.js"></script>
 <script src="${path}/resources/assets/vendor/tiny-slider/tiny-slider.js"></script>
 <script src="${path}/resources/assets/vendor/glightbox/js/glightbox.js"></script>
 <script src="${path}/resources/assets/vendor/choices/js/choices.min.js"></script>
 <script src="${path}/resources/assets/vendor/flatpickr/js/flatpickr.min.js"></script>
+
+<!-- Blogzine -->
+<script src="${path}/resources/assets/js/functions-blog.js"></script>
 
 
 <!-- **************** MAIN CONTENT START **************** -->
@@ -31,12 +37,12 @@
 			<div class="row">
 		  <div class="col-12">
 				<div class="bg-success p-4 text-center rounded-3">
-					<h1 class="text-white title">캠핑정보 공유</h1>
+					<h1 class="text-white title">정보공유</h1>
 					<nav class="d-flex justify-content-center" aria-label="breadcrumb">
 						<ol class="breadcrumb breadcrumb-dark m-0">
 							<li class="breadcrumb-item fs-6"><a href="${path}/index-camping.html"><i class="bi bi-house me-1 text-white"></i>홈</a></li>
 							<li class="breadcrumb-item fs-6"><a href="${path}/communityMain" class="text-white">커뮤니티</a></li>
-							<li class="breadcrumb-item fs-6 active text-white">캠핑정보 공유</li>
+							<li class="breadcrumb-item fs-6 active text-white">정보공유</li>
 						</ol>
 					</nav>
 				</div>
