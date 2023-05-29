@@ -6,6 +6,20 @@
 
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 
+<!-- Plugins CSS -->
+<link rel="stylesheet" type="text/css" href="${path}/resources/assets/vendor/font-awesome/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="${path}/resources/assets/vendor/bootstrap-icons/bootstrap-icons.css">
+<link rel="stylesheet" type="text/css" href="${path}/resources/assets/vendor/tiny-slider/tiny-slider.css">
+<link rel="stylesheet" type="text/css" href="${path}/resources/assets/vendor/glightbox/css/glightbox.css">
+<link rel="stylesheet" type="text/css" href="${path}/resources/assets/vendor/choices/css/choices.min.css">
+<link rel="stylesheet" type="text/css" href="${path}/resources/assets/vendor/flatpickr/css/flatpickr.min.css">
+
+<!-- Vendors -->
+<script src="${path}/resources/assets/vendor/tiny-slider/tiny-slider.js"></script>
+<script src="${path}/resources/assets/vendor/glightbox/js/glightbox.js"></script>
+<script src="${path}/resources/assets/vendor/choices/js/choices.min.js"></script>
+<script src="${path}/resources/assets/vendor/flatpickr/js/flatpickr.min.js"></script>
+
 
 	<!-- **************** MAIN CONTENT START **************** -->
 	<main>
@@ -32,7 +46,7 @@ Content START -->
 
 									<!-- Edit profile button -->
 									<div class="position-absolute top-0 end-0 p-3">
-										<a href="#" class="text-primary-hover" data-bs-toggle="tooltip"
+										<a href="${path}/MyProfile" class="text-primary-hover" data-bs-toggle="tooltip"
 											data-bs-title="Edit profile">
 											<i class="bi bi-pencil-square"></i>
 										</a>
@@ -45,37 +59,37 @@ Content START -->
 											<!-- Avatar -->
 											<div class="avatar avatar-xl mb-2">
 												<img class="avatar-img rounded-circle border border-2 border-white"
-													src="assets/images/avatar/01.jpg" alt="">
+													src="${path}/resources/assets/images/avatar/01.jpg" alt="">
 											</div>
 											<h6 class="mb-0">테스트계정</h6>
-											<a href="#" class="text-reset text-primary-hover small">test@email.com</a>
+											<a href="${path}/MyProfile" class="text-reset text-primary-hover small">test@email.com</a>
 											<hr>
 										</div>
 
 										<!-- Sidebar menu item START -->
 										<ul class="nav nav-pills-primary-soft flex-column">
 											<li class="nav-item">
-												<a class="nav-link" href="account-profile.html"><i
+												<a class="nav-link" href="${path}/MyProfile"><i
 														class="bi bi-person fa-fw me-2"></i>회원정보</a>
 											</li>
 											<li class="nav-item">
-												<a class="nav-link" href="account-bookings.html"><i
+												<a class="nav-link" href="${path}/booking-info"><i
 														class="bi bi-ticket-perforated fa-fw me-2"></i>나의 예약정보</a>
 											</li>
 											<li class="nav-item">
-												<a class="nav-link active" href="account-wishlist.html"><i
+												<a class="nav-link active" href="${path}/MyWishList"><i
 														class="bi bi-heart fa-fw me-2"></i>북마크</a>
 											</li>
 											<li class="nav-item">
-												<a class="nav-link" href="account-review.html"><i
+												<a class="nav-link" href="${path}/myReview"><i
 														class="bi bi-pencil-square fa-fw me-2"></i>내 리뷰</a>
 											</li>
 											<li class="nav-item">
-												<a class="nav-link" href="account-settings.html"><i
+												<a class="nav-link" href="${path}/pro-setting"><i
 														class="bi bi-gear fa-fw me-2"></i>설정</a>
 											</li>
 											<li class="nav-item">
-												<a class="nav-link text-danger bg-danger-soft-hover" href="#"><i
+												<a class="nav-link text-danger bg-danger-soft-hover" href="${path}/sign-in"><i
 														class="fas fa-sign-out-alt fa-fw me-2"></i>로그아웃</a>
 											</li>
 										</ul>
@@ -155,13 +169,13 @@ Content START -->
 													<ul class="list-inline mb-0">
 														<!-- Heart icon -->
 														<li class="list-inline-item">
-															<a href="#" class="btn btn-sm btn-round btn-danger mb-0"><i
+															<a href="${path}/#" class="btn btn-sm btn-round btn-danger mb-0"><i
 																	class="fa-solid fa-fw fa-heart"></i></a>
 														</li>
 														<!-- Share icon -->
 														<li class="list-inline-item dropdown">
 															<!-- Share button -->
-															<a href="#" class="btn btn-sm btn-round btn-light mb-0"
+															<a href="${path}/#" class="btn btn-sm btn-round btn-light mb-0"
 																role="button" id="dropdownShare2"
 																data-bs-toggle="dropdown" aria-expanded="false">
 																<i class="fa-solid fa-fw fa-share-alt"></i>
@@ -169,13 +183,13 @@ Content START -->
 															<!-- dropdown button -->
 															<ul class="dropdown-menu dropdown-menu-end min-w-auto shadow rounded"
 																aria-labelledby="dropdownShare2">
-																<li><a class="dropdown-item" href="#"><i
+																<li><a class="dropdown-item" href="${path}/#"><i
 																			class="fab fa-twitter-square me-2"></i>트위터</a>
 																</li>
-																<li><a class="dropdown-item" href="#"><i
+																<li><a class="dropdown-item" href="${path}/#"><i
 																			class="fab fa-facebook-square me-2"></i>페이스북</a>
 																</li>
-																<li><a class="dropdown-item" href="#"><i
+																<li><a class="dropdown-item" href="${path}/#"><i
 																			class="fa-solid fa-copy me-2"></i>링크복사</a>
 																</li>
 															</ul>
@@ -184,7 +198,7 @@ Content START -->
 												</div>
 
 												<!-- Title -->
-												<h5 class="card-title mb-1"><a href="hotel-detail.html">정읍시 내장산
+												<h5 class="card-title mb-1"><a href="${path}/camp-detail">정읍시 내장산
 														국민여가캠프장</a></h5>
 												<small><i class="bi bi-geo-alt me-2"></i>전라북도 정읍시 내장산로 390</small>
 
@@ -198,8 +212,8 @@ Content START -->
 													</div>
 													<!-- Price -->
 													<div class="mt-3 mt-sm-0">
-														<a href="#" class="btn btn-sm btn-dark w-80 mb-0">상세 정보</a>
-														<a href="#" class="btn btn-sm btn-danger w-60 mb-0">삭제</a>
+														<a href="${path}/camp-detail" class="btn btn-sm btn-dark w-80 mb-0">상세 정보</a>
+														<a href="${path}/#" class="btn btn-sm btn-danger w-60 mb-0">삭제</a>
 													</div>
 												</div>
 											</div>
@@ -239,12 +253,12 @@ Content START -->
 													<ul class="list-inline mb-0">
 														<!-- Heart icon -->
 														<li class="list-inline-item">
-															<a href="#" class="btn btn-sm btn-round btn-danger mb-0"><i
+															<a href="${path}/#" class="btn btn-sm btn-round btn-danger mb-0"><i
 																	class="fa-solid fa-fw fa-heart"></i></a>
 														</li>
 														<!-- Share icon -->
 														<li class="list-inline-item dropdown">
-															<a href="#" class="btn btn-sm btn-round btn-light mb-0"
+															<a href="${path}/#" class="btn btn-sm btn-round btn-light mb-0"
 																role="button" id="dropdownShare3"
 																data-bs-toggle="dropdown" aria-expanded="false">
 																<i class="fa-solid fa-fw fa-share-alt"></i>
@@ -252,13 +266,13 @@ Content START -->
 															<!-- dropdown button -->
 															<ul class="dropdown-menu dropdown-menu-end min-w-auto shadow rounded"
 																aria-labelledby="dropdownShare2">
-																<li><a class="dropdown-item" href="#"><i
+																<li><a class="dropdown-item" href="${path}/#"><i
 																			class="fab fa-twitter-square me-2"></i>트위터</a>
 																</li>
-																<li><a class="dropdown-item" href="#"><i
+																<li><a class="dropdown-item" href="${path}/#"><i
 																			class="fab fa-facebook-square me-2"></i>페이스북</a>
 																</li>
-																<li><a class="dropdown-item" href="#"><i
+																<li><a class="dropdown-item" href="${path}/#"><i
 																			class="fa-solid fa-copy me-2"></i>링크복사</a>
 																</li>
 															</ul>
@@ -267,7 +281,7 @@ Content START -->
 												</div>
 
 												<!-- Title -->
-												<h5 class="card-title mb-1"><a href="hotel-detail.html">안산 화랑 오토캠핑장</a>
+												<h5 class="card-title mb-1"><a href="${path}/camp-detail">안산 화랑 오토캠핑장</a>
 												</h5>
 												<small><i class="bi bi-geo-alt me-2"></i>경기도 안산시 단원구 동산로 268</small>
 
@@ -281,8 +295,8 @@ Content START -->
 													</div>
 													<!-- Price -->
 													<div class="mt-3 mt-sm-0">
-														<a href="#" class="btn btn-sm btn-dark w-80 mb-0">상세 정보</a>
-														<a href="#" class="btn btn-sm btn-danger w-60 mb-0">삭제</a>
+														<a href="${path}/camp-detail" class="btn btn-sm btn-dark w-80 mb-0">상세 정보</a>
+														<a href="${path}/#" class="btn btn-sm btn-danger w-60 mb-0">삭제</a>
 													</div>
 												</div>
 											</div>

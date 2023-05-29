@@ -40,8 +40,8 @@
 					<h1 class="text-white title">후기</h1>
 					<nav class="d-flex justify-content-center" aria-label="breadcrumb">
 						<ol class="breadcrumb breadcrumb-dark m-0">
-							<li class="breadcrumb-item fs-6"><a href="${path}/index-camping.html"><i class="bi bi-house me-1 text-white"></i>홈</a></li>
-							<li class="breadcrumb-item fs-6"><a href="${path}/communityMain" class="text-white">커뮤니티</a></li>
+							<li class="breadcrumb-item fs-6"><a href="${path}/home"><i class="bi bi-house me-1 text-white"></i> <span class="text-white">홈</span> </a></li>
+							<li class="breadcrumb-item fs-6"><a href="${path}/board-main" class="text-white">커뮤니티</a></li>
 							<li class="breadcrumb-item fs-6 active text-white">후기</li>
 						</ol>
 					</nav>
@@ -58,7 +58,7 @@
 	<section class="position-relative pt-0">
 		<div class="container">
 			<div class="row align-items-center mx-auto mb-1">
-				<a href="${path}/post" class="btn btn-info col-1"><i class="fas fa-pen"></i> 글쓰기</a>
+				<a href="${path}/board-post" class="btn btn-info col-1"><i class="fas fa-pen"></i> 글쓰기</a>
 				
 				<div class="col-9">
 					<!-- Search START -->
@@ -116,7 +116,6 @@
 					</form>
 				</div>
 			</div>
-
 			<hr>
 
 			<div class="row filter-container overflow-hidden" data-isotope='{"layoutMode": "masonry"}'>
@@ -126,7 +125,7 @@
 						<!-- Card img -->
 						<div class="position-relative">
 							<div class="overlay overflow-hidden p-4 card">
-								<a href="${path}/community-detail.html" class="stretched-link">
+								<a href="${path}/board-detail" class="stretched-link">
 									<div class="overlay-content text-white">
 										<div class="h4 text-white title">엉클캠핑장</div>
 										<div>경기도 포천시</div>
@@ -137,7 +136,7 @@
 						</div>
 						<div class="card-body px-0 pt-3">
 							<h4 class="card-title">
-								<a href="${path}/community-detail.html" class="btn-link text-reset stretched-link title">사장님이 친절해요!</a>
+								<a href="${path}/board-detail" class="btn-link text-reset stretched-link title">사장님이 친절해요!</a>
 								<a class="btn position-relative z-index-99 fw-normal">
 									<i class="far fa-thumbs-up pe-1"></i>123
 								</a>
@@ -160,7 +159,7 @@
 						<!-- Card img -->
 						<div class="position-relative">
 							<div class="overlay overflow-hidden p-4 card">
-								<a href="${path}/community-detail.html" class="stretched-link">
+								<a href="${path}/board-detail" class="stretched-link">
 									<div class="overlay-content text-white">
 										<div class="h4 text-white title">엉클캠핑장</div>
 										<div>경기도 포천시</div>
@@ -171,7 +170,7 @@
 						</div>
 						<div class="card-body px-0 pt-3">
 							<h4 class="card-title">
-								<a href="${path}/community-detail.html" class="btn-link text-reset stretched-link title">Pride and prejudice</a>
+								<a href="${path}/board-detail" class="btn-link text-reset stretched-link title">Pride and prejudice</a>
 								<a class="btn position-relative z-index-99 fw-normal">
 									<i class="far fa-thumbs-up pe-1"></i>123
 								</a>
@@ -194,7 +193,7 @@
 						<!-- Card img -->
 						<div class="position-relative">
 							<div class="overlay overflow-hidden p-4 card">
-								<a href="${path}/community-detail.html" class="stretched-link">
+								<a href="${path}/board-detail" class="stretched-link">
 									<div class="overlay-content text-white">
 										<div class="h4 text-white title">엉클캠핑장</div>
 										<div>경기도 포천시</div>
@@ -205,7 +204,7 @@
 						</div>
 						<div class="card-body px-0 pt-3">
 							<h4 class="card-title">
-								<a href="${path}/community-detail.html" class="btn-link text-reset stretched-link title">아름다운 풍경과 함께</a>
+								<a href="${path}/board-detail" class="btn-link text-reset stretched-link title">아름다운 풍경과 함께</a>
 								<a class="btn position-relative z-index-99 fw-normal">
 									<i class="far fa-thumbs-up pe-1"></i>123
 								</a>
@@ -228,7 +227,7 @@
 						<!-- Card img -->
 						<div class="position-relative">
 							<div class="overlay overflow-hidden p-4 card">
-								<a href="${path}/community-detail.html" class="stretched-link">
+								<a href="${path}/board-detail" class="stretched-link">
 									<div class="overlay-content text-white">
 										<div class="h4 text-white title">엉클캠핑장</div>
 										<div>경기도 포천시</div>
@@ -238,7 +237,7 @@
 							<img class="card-img" src="${path}/resources/assets/images/blog/1by1/05.jpg" alt="Card image">
 						</div>
 						<div class="card-body px-0 pt-3">
-							<h4 class="card-title"><a href="${path}/community-detail.html" class="btn-link text-reset stretched-link title">자연에 녹아든 캠핑장</a></h4>
+							<h4 class="card-title"><a href="${path}/board-detail" class="btn-link text-reset stretched-link title">자연에 녹아든 캠핑장</a></h4>
 							<div class="pb-2">
 								<i class="fa fa-star text-warning"></i>
 								<i class="fa fa-star text-warning"></i>
@@ -267,7 +266,7 @@
 						<!-- Card img -->
 						<div class="position-relative">
 							<div class="overlay overflow-hidden p-4 card">
-								<a href="${path}/community-detail.html" class="stretched-link">
+								<a href="${path}/board-detail" class="stretched-link">
 									<div class="overlay-content text-white">
 										<div class="h4 text-white title">엉클캠핑장</div>
 										<div>경기도 포천시</div>
@@ -277,7 +276,7 @@
 							<img class="card-img" src="${path}/resources/assets/images/blog/3by2/07.jpg" alt="Card image">
 						</div>
 						<div class="card-body px-0 pt-3">
-							<h4 class="card-title"><a href="${path}/community-detail.html" class="btn-link text-reset stretched-link title">야간비행</a></h4>
+							<h4 class="card-title"><a href="${path}/board-detail" class="btn-link text-reset stretched-link title">야간비행</a></h4>
 							<div class="pb-2">
 								<i class="fa fa-star text-warning"></i>
 								<i class="fa fa-star text-warning"></i>
@@ -306,7 +305,7 @@
 						<!-- Card img -->
 						<div class="position-relative">
 							<div class="overlay overflow-hidden p-4 card">
-								<a href="${path}/community-detail.html" class="stretched-link">
+								<a href="${path}/board-detail" class="stretched-link">
 									<div class="overlay-content text-white">
 										<div class="h4 text-white title">엉클캠핑장</div>
 										<div>경기도 포천시</div>
@@ -316,7 +315,7 @@
 							<img class="card-img" src="${path}/resources/assets/images/blog/4by3/06.jpg" alt="Card image">
 						</div>
 						<div class="card-body px-0 pt-3">
-							<h4 class="card-title"><a href="${path}/community-detail.html" class="btn-link text-reset stretched-link title">인간실격</a></h4>
+							<h4 class="card-title"><a href="${path}/board-detail" class="btn-link text-reset stretched-link title">인간실격</a></h4>
 							<div class="pb-2">
 								<i class="fa fa-star text-warning"></i>
 								<i class="fa fa-star text-warning"></i>
@@ -345,7 +344,7 @@
 						<!-- Card img -->
 						<div class="position-relative">
 							<div class="overlay overflow-hidden p-4 card">
-								<a href="${path}/community-detail.html" class="stretched-link">
+								<a href="${path}/board-detail" class="stretched-link">
 									<div class="overlay-content text-white">
 										<div class="h4 text-white title">엉클캠핑장</div>
 										<div>경기도 포천시</div>
@@ -355,7 +354,7 @@
 							<img class="card-img" src="${path}/resources/assets/images/blog/3by4/05.jpg" alt="Card image">
 						</div>
 						<div class="card-body px-0 pt-3">
-							<h4 class="card-title"><a href="${path}/community-detail.html" class="btn-link text-reset stretched-link title">1984</a></h4>
+							<h4 class="card-title"><a href="${path}/board-detail" class="btn-link text-reset stretched-link title">1984</a></h4>
 							<div class="pb-2">
 								<i class="fa fa-star text-warning"></i>
 								<i class="fa fa-star text-warning"></i>
@@ -384,7 +383,7 @@
 						<!-- Card img -->
 						<div class="position-relative">
 							<div class="overlay overflow-hidden p-4 card">
-								<a href="${path}/community-detail.html" class="stretched-link">
+								<a href="${path}/board-detail" class="stretched-link">
 									<div class="overlay-content text-white">
 										<div class="h4 text-white title">엉클캠핑장</div>
 										<div>경기도 포천시</div>
@@ -394,7 +393,7 @@
 							<img class="card-img" src="${path}/resources/assets/images/blog/3by4/02.jpg" alt="Card image">
 						</div>
 						<div class="card-body px-0 pt-3">
-							<h4 class="card-title"><a href="${path}/community-detail.html" class="btn-link text-reset stretched-link title">노인과 바다</a></h4>
+							<h4 class="card-title"><a href="${path}/board-detail" class="btn-link text-reset stretched-link title">노인과 바다</a></h4>
 							<div class="pb-2">
 								<i class="fa fa-star text-warning"></i>
 								<i class="fa fa-star text-warning"></i>
@@ -423,7 +422,7 @@
 						<!-- Card img -->
 						<div class="position-relative">
 							<div class="overlay overflow-hidden p-4 card">
-								<a href="${path}/community-detail.html" class="stretched-link">
+								<a href="${path}/board-detail" class="stretched-link">
 									<div class="overlay-content text-white">
 										<div class="h4 text-white title">엉클캠핑장</div>
 										<div>경기도 포천시</div>
@@ -433,7 +432,7 @@
 							<img class="card-img" src="${path}/resources/assets/images/blog/4by3/15.jpg" alt="Card image">
 						</div>
 						<div class="card-body px-0 pt-3">
-							<h4 class="card-title"><a href="${path}/community-detail.html" class="btn-link text-reset stretched-link title">무기여 잘 있거라</a></h4>
+							<h4 class="card-title"><a href="${path}/board-detail" class="btn-link text-reset stretched-link title">무기여 잘 있거라</a></h4>
 							<div class="pb-2">
 								<i class="fa fa-star text-warning"></i>
 								<i class="fa fa-star text-warning"></i>

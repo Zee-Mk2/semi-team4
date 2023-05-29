@@ -6,6 +6,19 @@
 
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 
+<!-- Plugins CSS -->
+<link rel="stylesheet" type="text/css" href="${path}/resources/assets/vendor/font-awesome/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="${path}/resources/assets/vendor/bootstrap-icons/bootstrap-icons.css">
+<link rel="stylesheet" type="text/css" href="${path}/resources/assets/vendor/tiny-slider/tiny-slider.css">
+<link rel="stylesheet" type="text/css" href="${path}/resources/assets/vendor/glightbox/css/glightbox.css">
+<link rel="stylesheet" type="text/css" href="${path}/resources/assets/vendor/choices/css/choices.min.css">
+<link rel="stylesheet" type="text/css" href="${path}/resources/assets/vendor/flatpickr/css/flatpickr.min.css">
+
+<!-- Vendors -->
+<script src="${path}/resources/assets/vendor/tiny-slider/tiny-slider.js"></script>
+<script src="${path}/resources/assets/vendor/glightbox/js/glightbox.js"></script>
+<script src="${path}/resources/assets/vendor/choices/js/choices.min.js"></script>
+<script src="${path}/resources/assets/vendor/flatpickr/js/flatpickr.min.js"></script>
 
 	<!-- **************** MAIN CONTENT START **************** -->
 	<main>
@@ -32,7 +45,7 @@ Content START -->
 
 									<!-- Edit profile button -->
 									<div class="position-absolute top-0 end-0 p-3">
-										<a href="#" class="text-primary-hover" data-bs-toggle="tooltip"
+										<a href="${path}/MyProfile" class="text-primary-hover" data-bs-toggle="tooltip"
 											data-bs-title="Edit profile">
 											<i class="bi bi-pencil-square"></i>
 										</a>
@@ -45,37 +58,37 @@ Content START -->
 											<!-- Avatar -->
 											<div class="avatar avatar-xl mb-2">
 												<img class="avatar-img rounded-circle border border-2 border-white"
-													src="assets/images/avatar/01.jpg" alt="">
+													src="${path}/resources/assets/images/avatar/01.jpg" alt="">
 											</div>
 											<h6 class="mb-0">테스트계정</h6>
-											<a href="#" class="text-reset text-primary-hover small">test@email.com</a>
+											<a href="${path}/MyProfile" class="text-reset text-primary-hover small">test@email.com</a>
 											<hr>
 										</div>
 
 										<!-- Sidebar menu item START -->
 										<ul class="nav nav-pills-primary-soft flex-column">
 											<li class="nav-item">
-												<a class="nav-link" href="account-profile.html"><i
+												<a class="nav-link" href="${path}/MyProfile"><i
 														class="bi bi-person fa-fw me-2"></i>회원정보</a>
 											</li>
 											<li class="nav-item">
-												<a class="nav-link" href="account-bookings.html"><i
+												<a class="nav-link" href="${path}/booking-info"><i
 														class="bi bi-ticket-perforated fa-fw me-2"></i>나의 예약정보</a>
 											</li>
 											<li class="nav-item">
-												<a class="nav-link" href="account-wishlist.html"><i
+												<a class="nav-link" href="${path}/MyWishList"><i
 														class="bi bi-heart fa-fw me-2"></i>북마크</a>
 											</li>
 											<li class="nav-item">
-												<a class="nav-link" href="account-review.html"><i
+												<a class="nav-link" href="${path}/myReview"><i
 														class="bi bi-pencil-square fa-fw me-2"></i>내 리뷰</a>
 											</li>
 											<li class="nav-item">
-												<a class="nav-link active" href="account-settings.html"><i
+												<a class="nav-link active" href="${path}/pro-setting"><i
 														class="bi bi-gear fa-fw me-2"></i>설정</a>
 											</li>
 											<li class="nav-item">
-												<a class="nav-link text-danger bg-danger-soft-hover" href="#"><i
+												<a class="nav-link text-danger bg-danger-soft-hover" href="${path}/sign-in"><i
 														class="fas fa-sign-out-alt fa-fw me-2"></i>로그아웃</a>
 											</li>
 										</ul>
@@ -168,7 +181,7 @@ Content START -->
 									<!-- Button -->
 									<div class="d-sm-flex justify-content-end">
 										<button type="button" class="btn btn-sm btn-custom me-2 mb-0">저장</button>
-										<a href="#" class="btn btn-sm btn-custom4 mb-0">취소</a>
+										<a href="${path}/#" class="btn btn-sm btn-custom4 mb-0">취소</a>
 									</div>
 								</form>
 								<!-- Form END -->

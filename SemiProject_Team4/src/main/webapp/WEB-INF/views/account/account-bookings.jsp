@@ -6,8 +6,22 @@
 
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 
-<!-- **************** MAIN CONTENT START **************** -->
-<main>
+<!-- Plugins CSS -->
+<link rel="stylesheet" type="text/css" href="${path}/resources/assets/vendor/font-awesome/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="${path}/resources/assets/vendor/bootstrap-icons/bootstrap-icons.css">
+<link rel="stylesheet" type="text/css" href="${path}/resources/assets/vendor/tiny-slider/tiny-slider.css">
+<link rel="stylesheet" type="text/css" href="${path}/resources/assets/vendor/glightbox/css/glightbox.css">
+<link rel="stylesheet" type="text/css" href="${path}/resources/assets/vendor/choices/css/choices.min.css">
+<link rel="stylesheet" type="text/css" href="${path}/resources/assets/vendor/flatpickr/css/flatpickr.min.css">
+
+<!-- Vendors -->
+<script src="${path}/resources/assets/vendor/tiny-slider/tiny-slider.js"></script>
+<script src="${path}/resources/assets/vendor/glightbox/js/glightbox.js"></script>
+<script src="${path}/resources/assets/vendor/choices/js/choices.min.js"></script>
+<script src="${path}/resources/assets/vendor/flatpickr/js/flatpickr.min.js"></script>
+
+	<!-- **************** MAIN CONTENT START **************** -->
+	<main>
 
 		<!-- =======================
 Content START -->
@@ -31,7 +45,7 @@ Content START -->
 
 									<!-- Edit profile button -->
 									<div class="position-absolute top-0 end-0 p-3">
-										<a href="#" class="text-primary-hover" data-bs-toggle="tooltip"
+										<a href="${path}/MyProfile" class="text-primary-hover" data-bs-toggle="tooltip"
 											data-bs-title="Edit profile">
 											<i class="bi bi-pencil-square"></i>
 										</a>
@@ -44,37 +58,37 @@ Content START -->
 											<!-- Avatar -->
 											<div class="avatar avatar-xl mb-2">
 												<img class="avatar-img rounded-circle border border-2 border-white"
-													src="assets/images/avatar/01.jpg" alt="">
+													src="${path}/resources/assets/images/avatar/01.jpg" alt="">
 											</div>
 											<h6 class="mb-0">테스트계정</h6>
-											<a href="#" class="text-reset text-primary-hover small">test@email.com</a>
+											<a href="${path}/#" class="text-reset text-primary-hover small">test@email.com</a>
 											<hr>
 										</div>
 
 										<!-- Sidebar menu item START -->
 										<ul class="nav nav-pills-primary-soft flex-column">
 											<li class="nav-item">
-												<a class="nav-link" href="account-profile.html"><i
+												<a class="nav-link" href="${path}/MyProfile"><i
 														class="bi bi-person fa-fw me-2"></i>회원정보</a>
 											</li>
 											<li class="nav-item">
-												<a class="nav-link active" href="account-bookings.html"><i
+												<a class="nav-link active" href="${path}/booking-info"><i
 														class="bi bi-ticket-perforated fa-fw me-2"></i>나의 예약정보</a>
 											</li>
 											<li class="nav-item">
-												<a class="nav-link" href="account-wishlist.html"><i
+												<a class="nav-link" href="${path}/MyWishList"><i
 														class="bi bi-heart fa-fw me-2"></i>북마크</a>
 											</li>
 											<li class="nav-item">
-												<a class="nav-link" href="account-review.html"><i
+												<a class="nav-link" href="${path}/myReview"><i
 														class="bi bi-pencil-square fa-fw me-2"></i>내 리뷰</a>
 											</li>
 											<li class="nav-item">
-												<a class="nav-link" href="account-settings.html"><i
+												<a class="nav-link" href="${path}/pro-setting"><i
 														class="bi bi-gear fa-fw me-2"></i>설정</a>
 											</li>
 											<li class="nav-item">
-												<a class="nav-link text-danger bg-danger-soft-hover" href="#"><i
+												<a class="nav-link text-danger bg-danger-soft-hover" href="${path}/sign-in"><i
 														class="fas fa-sign-out-alt fa-fw me-2"></i>로그아웃</a>
 											</li>
 										</ul>
@@ -89,7 +103,7 @@ Content START -->
 					<!-- Sidebar END -->
 
 					<!-- Main content START -->
-					<div class="col-lg-8 col-xl-9 title">
+					<div class="col-lg-8 col-xl-9">
 
 						<!-- Offcanvas menu button -->
 						<div class="d-grid mb-0 d-lg-none w-100">
@@ -155,7 +169,7 @@ Content START -->
 
 												<!-- Button -->
 												<div class="mt-2 mt-md-0">
-													<a href="#" class="btn btn-custom2 mb-0">예약 정보</a>
+													<a href="${path}/camp-detail" class="btn btn-custom2 mb-0">예약 정보</a>
 												</div>
 											</div>
 
@@ -205,7 +219,7 @@ Content START -->
 
 												<!-- Button -->
 												<div class="mt-2 mt-md-0">
-													<a href="#" class="btn btn-custom2 mb-0">예약 정보</a>
+													<a href="${path}/conc-detail" class="btn btn-custom2 mb-0">예약 정보</a>
 												</div>
 											</div>
 
@@ -260,7 +274,7 @@ Content START -->
 
 												<!-- Button -->
 												<div class="mt-2 mt-md-0">
-													<a href="#" class="btn btn-custom2 mb-0">예약 정보</a>
+													<a href="${path}/camp-detail" class="btn btn-custom2 mb-0">예약 정보</a>
 													<p class="text-danger text-sm-end mb-0">취소 됨</p>
 												</div>
 											</div>
@@ -297,11 +311,11 @@ Content START -->
 												<div class="col-md-9">
 													<h6 class="Orange">현재까지 예약한 적이 없습니다.</h6>
 													<h4 class="mb-2">예약을 하면 여기에 표시됩니다.</h4>
-													<a href="hotel-list.html" class="btn btn-custom mb-0">지금 예약 시작</a>
+													<a href="${path}/hotel-list.html" class="btn btn-custom mb-0">지금 예약 시작</a>
 												</div>
 												<!-- Image -->
 												<div class="col-md-3 text-end">
-													<img src="assets/images/element/17.svg" class="mb-n5" alt="">
+													<img src="${path}/resources/assets/images/element/17.svg" class="mb-n5" alt="">
 												</div>
 											</div>
 										</div>
@@ -324,8 +338,5 @@ Content END -->
 
 	</main>
 	<!-- **************** MAIN CONTENT END **************** -->
-
-<script src="${path}/resources/assets/vendor/stepper/js/bs-stepper.min.js"></script>
-<script src="http://code.jquery.com/jquery-latest.js"></script>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>

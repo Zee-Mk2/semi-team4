@@ -286,7 +286,7 @@
 	
 								<!-- Button -->
 								<div class="d-grid gap-2">
-									<a href="/camp-booking" class="btn btn-primary">예약하기</a>
+									<a href="${path}/camp-booking" class="btn btn-primary">예약하기</a>
 								</div>
 	
 							</div>
@@ -364,7 +364,7 @@
 
 				<div class="card">
 					<div class="card-header bg-transparent border-bottom p-0 pb-3">
-						<a href="community-review-camp.html">
+						<a href="${path}/board-review">
 							<h3 class="mb-0 title fs-2">후기</h3>
 						</a>
 					</div>
@@ -380,7 +380,7 @@
 									<!-- card body -->
 									<div class="card-body p-0">
 										<h5 class="card-title">
-											<a href="community-detail.html" class="stretched-link title fs-4">후기 제목</a>
+											<a href="${path}/board-detail" class="stretched-link title fs-4">후기 제목</a>
 										</h5>
 										<p class="flex-shrink-1 card-stars fs-6" style="font-size: 0.7rem;">
 											<i class="fa fa-star text-warning"></i>
@@ -420,7 +420,7 @@
 									<!-- card body -->
 									<div class="card-body p-0">
 										<h5 class="card-title">
-											<a href="community-detail.html" class="stretched-link title fs-4">후기 제목</a>
+											<a href="${path}/board-detail" class="stretched-link title fs-4">후기 제목</a>
 										</h5>
 										<p class="flex-shrink-1 card-stars fs-6" style="font-size: 0.7rem;">
 											<i class="fa fa-star text-warning"></i>
@@ -460,7 +460,7 @@
 									<!-- card body -->
 									<div class="card-body p-0">
 										<h5 class="card-title">
-											<a href="community-detail.html" class="stretched-link title fs-4">후기 제목</a>
+											<a href="${path}/board-detail" class="stretched-link title fs-4">후기 제목</a>
 										</h5>
 										<p class="flex-shrink-1 card-stars fs-6" style="font-size: 0.7rem;">
 											<i class="fa fa-star text-warning"></i>
@@ -489,7 +489,7 @@
 							</div>
 						</div>
 						<!-- 후기 아이템 끝 -->
-						<a href="community-post.html" class="btn btn-outline-primary mt-4 fs-4">후기 작성</a>
+						<a href="${path}/board-post" class="btn btn-outline-primary mt-4 fs-4">후기 작성</a>
 					</div>
 				</div>
 	

@@ -35,13 +35,13 @@
 					<div class="container">
 						<div class="row">
 						<div class="col-12">
-							<div class="bg-dark p-4 text-center rounded-3">
+							<div class="bg-success p-4 text-center rounded-3">
 								<h1 class="text-white title">커뮤니티</h1>
 								<nav class="d-flex justify-content-center" aria-label="breadcrumb">
 									<ol class="breadcrumb breadcrumb-dark m-0">
-										<li class="breadcrumb-item fs-6"><a href="index-camping.html"><i class="bi bi-house me-1"></i> 홈</a></li>
-										<li class="breadcrumb-item fs-6"><a href="commutiny.html">커뮤니티</a></li>
-										<li class="breadcrumb-item fs-6"><a href="community-info.html">캠핑정보 공유</a></li>
+										<li class="breadcrumb-item fs-6"><a href="${path}/home"><i class="bi bi-house me-1 text-white"></i> <span class="text-white">홈</span> </a></li>
+										<li class="breadcrumb-item fs-6"><a href="${path}/board-main" class="text-white">커뮤니티</a></li>
+										<li class="breadcrumb-item fs-6"><a href="${path}/info" class="text-white">캠핑정보 공유</a></li>
 									</ol>
 								</nav>
 							</div>

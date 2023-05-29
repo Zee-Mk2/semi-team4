@@ -55,7 +55,7 @@ Main Banner START -->
 								<div class="h1 text-white title">주말에 캠핑 어때요?</div>
 								<div class="h4 text-white mb-0 title">
 									동강전망휴양림오토캠핑장
-									<a href="${path}/camping-detail.html" class="btn btn-primary mx-3 text-white">상세보기</a>
+									<a href="${path}/camp-detail" class="btn btn-primary mx-3 text-white">상세보기</a>
 								</div>
 							</div>
 						</div>
@@ -72,7 +72,7 @@ Main Banner START -->
 									<div class="h1 text-white title">주말에 캠핑 어때요?</div>
 									<div class="h4 text-white mb-0 title">
 										사천비토솔섬오토캠핑장
-										<a href="${path}/camping-detail.html" class="btn btn-primary mx-3 text-white">상세보기</a>
+										<a href="${path}/camp-detail" class="btn btn-primary mx-3 text-white">상세보기</a>
 									</div>
 								</div>
 							</div>
@@ -164,7 +164,7 @@ Packages START -->
 	<div class="container">
 		<!-- Title -->
 		<div class="row mb-4">
-			<a href="#">
+			<a href="${path}/#">
 				<div class="title">
 					<span class="mb-0 text-secondary fs-2">테마별 BEST 캠핑장</span>
 					<span class="mb-0 px-3 text-info fs-4">해변, 섬, 산, 숲, 계곡... 당신이 원하는 곳 어디든!</span>
@@ -198,7 +198,7 @@ Packages START -->
 						<div class="card-body d-flex align-items-center">
 							<div class="w-100">
 								<h5 class="card-title text-decoration-none text-dark">
-									<a href="camping-detail.html" class="stretched-link title">
+									<a href="${path}/camp-detail" class="stretched-link title">
 										사천비토솔섬오토캠핑장
 									</a>
 								</h5>
@@ -244,7 +244,7 @@ Packages START -->
 						<div class="card-body d-flex align-items-center">
 							<div class="w-100">
 								<h5 class="card-title text-decoration-none text-dark">
-									<a href="camping-detail.html" class="stretched-link title">
+									<a href="${path}/camp-detail" class="stretched-link title">
 										사천비토솔섬오토캠핑장
 									</a>
 								</h5>
@@ -289,7 +289,7 @@ Packages START -->
 						<div class="card-body d-flex align-items-center">
 							<div class="w-100">
 								<h5 class="card-title text-decoration-none text-dark">
-									<a href="camping-detail.html" class="stretched-link title">
+									<a href="${path}/camp-detail" class="stretched-link title">
 										사천비토솔섬오토캠핑장
 									</a>
 								</h5>
@@ -334,7 +334,7 @@ Packages START -->
 						<div class="card-body d-flex align-items-center">
 							<div class="w-100">
 								<h5 class="card-title text-decoration-none text-dark">
-									<a href="camping-detail.html" class="stretched-link title">
+									<a href="${path}/camp-detail" class="stretched-link title">
 										사천비토솔섬오토캠핑장
 									</a>
 								</h5>
@@ -379,7 +379,7 @@ Packages START -->
 						<div class="card-body d-flex align-items-center">
 							<div class="w-100">
 								<h5 class="card-title text-decoration-none text-dark">
-									<a href="camping-detail.html" class="stretched-link title">
+									<a href="${path}/camp-detail" class="stretched-link title">
 										사천비토솔섬오토캠핑장
 									</a>
 								</h5>
@@ -424,7 +424,7 @@ Packages START -->
 						<div class="card-body d-flex align-items-center">
 							<div class="w-100">
 								<h5 class="card-title text-decoration-none text-dark">
-									<a href="camping-detail.html" class="stretched-link title">
+									<a href="${path}/camp-detail" class="stretched-link title">
 										사천비토솔섬오토캠핑장
 									</a>
 								</h5>
@@ -469,7 +469,7 @@ Packages START -->
 						<div class="card-body d-flex align-items-center">
 							<div class="w-100">
 								<h5 class="card-title text-decoration-none text-dark">
-									<a href="camping-detail.html" class="stretched-link title">
+									<a href="${path}/camp-detail" class="stretched-link title">
 										사천비토솔섬오토캠핑장
 									</a>
 								</h5>
@@ -514,7 +514,7 @@ Packages START -->
 						<div class="card-body d-flex align-items-center">
 							<div class="w-100">
 								<h5 class="card-title text-decoration-none text-dark">
-									<a href="camping-detail.html" class="stretched-link title">
+									<a href="${path}/camp-detail" class="stretched-link title">
 										사천비토솔섬오토캠핑장
 									</a>
 								</h5>
@@ -548,7 +548,7 @@ Packages END -->
 <section class="pt-0 pt-md-5 bg-light">
 	
 	<div class="container position-relative">
-		<a href="community-info.html">
+		<a href="${path}/community-info.html">
 			<div class="text-center pb-3 title h2">캠핑정보 이달의 Pick!</div>
 		</a>
 
@@ -564,12 +564,12 @@ Packages END -->
 						<div class="card-body d-flex align-items-center">
 							<div class="w-100">
 								<h5 class="card-title text-decoration-none text-dark">
-									<a href="community-detail.html" class="stretched-link title">
+									<a href="${path}/camp-detail" class="stretched-link title">
 										애견 캠퍼 분들 주목! 윈드스크린 추천
 									</a>
 								</h5>
 								애견 캠퍼의 내돈내산 캠핑템 찐 후기
-								<div class="d-flex align-items-center mt-2 mb-n2" href="profile.html">
+								<div class="d-flex align-items-center mt-2 mb-n2" href="${path}/profile.html">
 									<!-- Avatar -->
 									<div class="avatar me-3" style="width: 2rem; height: 2rem;">
 										<img class="avatar-img rounded-circle shadow" src="${path}/resources/assets/images/avatar/01.jpg" alt="avatar">
@@ -595,12 +595,12 @@ Packages END -->
 						<div class="card-body d-flex align-items-center">
 							<div class="w-100">
 								<h5 class="card-title text-decoration-none text-dark">
-									<a href="community-detail.html" class="stretched-link title">
+									<a href="${path}/board-detail" class="stretched-link title">
 										초보 캠퍼들의 오토캠핑 입문을 위한 가이드 2편
 									</a>
 								</h5>
 								캠핑을 시작하고 싶지만 방법을 몰라 망설이는 초보 캠퍼를 위한 노하우
-								<div class="d-flex align-items-center mt-2 mb-n2" href="profile.html">
+								<div class="d-flex align-items-center mt-2 mb-n2" href="${path}/profile.html">
 									<!-- Avatar -->
 									<div class="avatar me-3" style="width: 2rem; height: 2rem;">
 										<img class="avatar-img rounded-circle shadow" src="${path}/resources/assets/images/avatar/01.jpg" alt="avatar">
@@ -622,7 +622,7 @@ Packages END -->
 <section>
 	<div class="container">
 		<!-- Title -->
-		<a href="community-review-camp.html" style="z-index: 99; height: 5rem;">
+		<a href="${path}/board-review" style="z-index: 99; height: 5rem;">
 			<div class="title mb-4">
 				<span class="text-secondary fs-2">캠핑장 BEST 후기</span>
 				<span class="px-3 text-info fs-4">이 캠핑장 어땠어요? 생생하고 솔직한 후기만 모아서!</span>
@@ -637,7 +637,7 @@ Packages END -->
 					<div class="card card-img-scale h-100 border-0 shadow">
 						<div class="card-img-top overflow-hidden">
 							<div class="overlay overflow-hidden p-4 card">
-								<a href="community-detail.html" class="stretched-link">
+								<a href="${path}/board-detail" class="stretched-link">
 									<div class="overlay-content text-white">
 										<div class="h4 text-white title">엉클캠핑장</div>
 										<div>경기도 포천시</div>
@@ -653,7 +653,7 @@ Packages END -->
 								</h5>
 								공기가 정말 맑은 느낌이었어요. 서비스도 좋고 환경이 쾌적해 정말 만족스러운 여행이 ...
 								<div class="d-flex">
-									<span class="d-flex align-items-center mt-2 col-7" href="profile.html">
+									<span class="d-flex align-items-center mt-2 col-7" href="${path}/profile.html">
 										<!-- Avatar -->
 										<div class="avatar me-3" style="width: 2rem; height: 2rem;">
 											<img class="avatar-img rounded-circle shadow" src="${path}/resources/assets/images/avatar/01.jpg" alt="avatar">
@@ -682,7 +682,7 @@ Packages END -->
 					<div class="card card-img-scale h-100 border-0 shadow">
 						<div class="card-img-top overflow-hidden">
 							<div class="overlay overflow-hidden p-4 card">
-								<a href="community-detail.html" class="stretched-link">
+								<a href="${path}/board-detail" class="stretched-link">
 									<div class="overlay-content text-white">
 										<div class="h4 text-white title">엉클캠핑장</div>
 										<div>경기도 포천시</div>
@@ -698,7 +698,7 @@ Packages END -->
 								</h5>
 								공기가 정말 맑은 느낌이었어요. 서비스도 좋고 환경이 쾌적해 정말 만족스러운 여행이 ...
 								<div class="d-flex">
-									<span class="d-flex align-items-center mt-2 col-7" href="profile.html">
+									<span class="d-flex align-items-center mt-2 col-7" href="${path}/profile.html">
 										<!-- Avatar -->
 										<div class="avatar me-3" style="width: 2rem; height: 2rem;">
 											<img class="avatar-img rounded-circle shadow" src="${path}/resources/assets/images/avatar/01.jpg" alt="avatar">
@@ -727,7 +727,7 @@ Packages END -->
 					<div class="card card-img-scale h-100 border-0 shadow">
 						<div class="card-img-top overflow-hidden">
 							<div class="overlay overflow-hidden p-4 card">
-								<a href="community-detail.html" class="stretched-link">
+								<a href="${path}/board-detail" class="stretched-link">
 									<div class="overlay-content text-white">
 										<div class="h4 text-white title">엉클캠핑장</div>
 										<div>경기도 포천시</div>
@@ -743,7 +743,7 @@ Packages END -->
 								</h5>
 								공기가 정말 맑은 느낌이었어요. 서비스도 좋고 환경이 쾌적해 정말 만족스러운 여행이 ...
 								<div class="d-flex">
-									<span class="d-flex align-items-center mt-2 col-7" href="profile.html">
+									<span class="d-flex align-items-center mt-2 col-7" href="${path}/profile.html">
 										<!-- Avatar -->
 										<div class="avatar me-3" style="width: 2rem; height: 2rem;">
 											<img class="avatar-img rounded-circle shadow" src="${path}/resources/assets/images/avatar/01.jpg" alt="avatar">
@@ -779,7 +779,7 @@ Packages END -->
 			<!-- 자유게시판 시작 -->
 			<span class="col-6">
 				<!-- Title -->
-				<a href="community-free.html">
+				<a href="${path}/board-main">
 					<div class="title mb-3">
 						<span class="mb-0 text-secondary fs-2">자유게시판</span>
 					</div>
@@ -788,47 +788,47 @@ Packages END -->
 				<!-- 자유게시판 게시글 목록 -->
 				<ul class="nav flex-column text-info">
 					<li class="nav-item">
-						<a class="nav-link py-1" href="community-detail.html">애견 캠퍼 분들 주목! 윈드스크린 추천
+						<a class="nav-link py-1" href="${path}/board-detail">애견 캠퍼 분들 주목! 윈드스크린 추천
 							<span class="ps-2 text-black-50" style="font-size: 0.9rem;">1분 전</span>
 						</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link py-1" href="community-detail.html">초보 캠퍼들의 오토캠핑 입문을 위한 가이드 2편
+						<a class="nav-link py-1" href="${path}/board-detail">초보 캠퍼들의 오토캠핑 입문을 위한 가이드 2편
 							<span class="ps-2 text-black-50" style="font-size: 0.9rem;">1분 전</span>
 						</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link py-1" href="community-detail.html">애견 캠퍼 분들 주목! 윈드스크린 추천
+						<a class="nav-link py-1" href="${path}/board-detail">애견 캠퍼 분들 주목! 윈드스크린 추천
 							<span class="ps-2 text-black-50" style="font-size: 0.9rem;">1분 전</span>
 						</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link py-1" href="community-detail.html">초보 캠퍼들의 오토캠핑 입문을 위한 가이드 2편
+						<a class="nav-link py-1" href="${path}/board-detail">초보 캠퍼들의 오토캠핑 입문을 위한 가이드 2편
 							<span class="ps-2 text-black-50" style="font-size: 0.9rem;">1분 전</span>
 						</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link py-1" href="community-detail.html">애견 캠퍼 분들 주목! 윈드스크린 추천
+						<a class="nav-link py-1" href="${path}/board-detail">애견 캠퍼 분들 주목! 윈드스크린 추천
 							<span class="ps-2 text-black-50" style="font-size: 0.9rem;">1분 전</span>
 						</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link py-1" href="community-detail.html">초보 캠퍼들의 오토캠핑 입문을 위한 가이드 2편
+						<a class="nav-link py-1" href="${path}/board-detail">초보 캠퍼들의 오토캠핑 입문을 위한 가이드 2편
 							<span class="ps-2 text-black-50" style="font-size: 0.9rem;">1분 전</span>
 						</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link py-1" href="community-detail.html">애견 캠퍼 분들 주목! 윈드스크린 추천
+						<a class="nav-link py-1" href="${path}/board-detail">애견 캠퍼 분들 주목! 윈드스크린 추천
 							<span class="ps-2 text-black-50" style="font-size: 0.9rem;">1분 전</span>
 						</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link py-1" href="community-detail.html">초보 캠퍼들의 오토캠핑 입문을 위한 가이드 2편
+						<a class="nav-link py-1" href="${path}/board-detail">초보 캠퍼들의 오토캠핑 입문을 위한 가이드 2편
 							<span class="ps-2 text-black-50" style="font-size: 0.9rem;">1분 전</span>
 						</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link py-1" href="community-detail.html">애견 캠퍼 분들 주목! 윈드스크린 추천
+						<a class="nav-link py-1" href="${path}/board-detail">애견 캠퍼 분들 주목! 윈드스크린 추천
 							<span class="ps-2 text-black-50" style="font-size: 0.9rem;">1분 전</span>
 						</a>
 					</li>
@@ -839,7 +839,7 @@ Packages END -->
 			<!-- 캠핑몰 시작 -->
 			<span class="col-6">
 				<!-- Title -->
-				<a href="#">
+				<a href="${path}/#">
 					<div class="title mb-3">
 						<span class="mb-0 text-secondary fs-2">캠핑몰</span>
 					</div>
@@ -855,12 +855,12 @@ Packages END -->
 					<!-- The slideshow/carousel -->
 					<div class="carousel-inner">
 						<div class="carousel-item active">
-							<a href="#">
+							<a href="${path}/#">
 								<img src="${path}/resources/assets/images/ad_banner/banner1.jpg" class="d-block w-100 overflow-hidden">
 							</a>
 						</div>
 						<div class="carousel-item">
-							<a href="#">
+							<a href="${path}/#">
 								<img src="${path}/resources/assets/images/ad_banner/banner2.jpg" class="d-block w-100 overflow-hidden">
 							</a>
 						</div>

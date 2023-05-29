@@ -99,7 +99,7 @@
                   <!-- Button -->
                   <div class="col-xl-2 pt-2">
                     <div class="d-grid">
-                      <a href="#" class="btn btn-lg btn-dark"><i class="fa-solid fa-search fs-5"></i></a>
+                      <a href="${path}/#" class="btn btn-lg btn-dark"><i class="fa-solid fa-search fs-5"></i></a>
                     </div>
                   </div>
                 </div>
@@ -276,7 +276,7 @@
                 <div class="card-body d-flex align-items-center">
                   <div class="w-100">
                     <h5 class="card-title text-decoration-none text-dark">
-                      <a href="camping-detail.html" class="stretched-link title">
+                      <a href="${path}/camp-detail" class="stretched-link title">
                         사천비토솔섬오토캠핑장
                       </a>
                     </h5>
@@ -322,7 +322,7 @@
                 <div class="card-body d-flex align-items-center">
                   <div class="w-100">
                     <h5 class="card-title text-decoration-none text-dark">
-                      <a href="camping-detail.html" class="stretched-link title">
+                      <a href="${path}/camp-detail" class="stretched-link title">
                         사천비토솔섬오토캠핑장
                       </a>
                     </h5>
@@ -368,7 +368,7 @@
                 <div class="card-body d-flex align-items-center">
                   <div class="w-100">
                     <h5 class="card-title text-decoration-none text-dark">
-                      <a href="camping-detail.html" class="stretched-link title">
+                      <a href="${path}/camp-detail" class="stretched-link title">
                         사천비토솔섬오토캠핑장
                       </a>
                     </h5>
@@ -413,7 +413,7 @@
               <div class="card-body d-flex align-items-center">
                 <div class="w-100">
                   <h5 class="card-title text-decoration-none text-dark">
-                    <a href="camping-detail.html" class="stretched-link title">
+                    <a href="${path}/camp-detail" class="stretched-link title">
                       사천비토솔섬오토캠핑장
                     </a>
                   </h5>
@@ -457,7 +457,7 @@
               <div class="card-body d-flex align-items-center">
                 <div class="w-100">
                   <h5 class="card-title text-decoration-none text-dark">
-                    <a href="camping-detail.html" class="stretched-link title">
+                    <a href="${path}/camp-detail" class="stretched-link title">
                       사천비토솔섬오토캠핑장
                     </a>
                   </h5>
@@ -501,7 +501,7 @@
               <div class="card-body d-flex align-items-center">
                 <div class="w-100">
                   <h5 class="card-title text-decoration-none text-dark">
-                    <a href="camping-detail.html" class="stretched-link title">
+                    <a href="${path}/camp-detail" class="stretched-link title">
                       사천비토솔섬오토캠핑장
                     </a>
                   </h5>
@@ -532,22 +532,22 @@
             <nav class="mt-4 d-flex justify-content-center" aria-label="navigation">
               <ul class="pagination pagination-primary-soft d-inline-block d-md-flex rounded mb-0">
                 <li class="page-item mb-0">
-                  <a class="page-link" href="#" tabindex="-1"><i class="fa-solid fa-angle-left"></i></a>
+                  <a class="page-link" href="${path}/#" tabindex="-1"><i class="fa-solid fa-angle-left"></i></a>
                 </li>
                 <li class="page-item mb-0">
-                  <a class="page-link" href="#">1</a>
+                  <a class="page-link" href="${path}/#">1</a>
                 </li>
                 <li class="page-item mb-0 active">
-                  <a class="page-link" href="#">2</a>
+                  <a class="page-link" href="${path}/#">2</a>
                 </li>
                 <li class="page-item mb-0">
-                  <a class="page-link" href="#">..</a>
+                  <a class="page-link" href="${path}/#">..</a>
                 </li>
                 <li class="page-item mb-0">
-                  <a class="page-link" href="#">6</a>
+                  <a class="page-link" href="${path}/#">6</a>
                 </li>
                 <li class="page-item mb-0">
-                  <a class="page-link" href="#"><i class="fa-solid fa-angle-right"></i></a>
+                  <a class="page-link" href="${path}/#"><i class="fa-solid fa-angle-right"></i></a>
                 </li>
               </ul>
             </nav>
