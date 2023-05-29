@@ -111,6 +111,12 @@ public class HomeController {
 		return "/concert/concert-detail";
 	}
 	
+	@RequestMapping(value = "/conc-booking", method = RequestMethod.GET)
+	public String concBooking(Locale locale, Model model) {
+		
+		return "/concert/concert-booking";
+	}
+	
 	
 	
 }
