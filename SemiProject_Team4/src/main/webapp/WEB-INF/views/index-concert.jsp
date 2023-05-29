@@ -59,7 +59,7 @@ Main Banner START -->
 								<div class="h1 text-dark title">돈키호테</div>
 								<div class="h5 text-dark mb-0 title">
 								  부산시민회관 대극장
-								  <a href="concert-detail.html" class="btn btn-orange mx-3 text-white">예매하기</a>
+								  <a href="${path}/conc-detail" class="btn btn-orange mx-3 text-white">예매하기</a>
 								</div>
 								<div class="h5 text-dark mb-0 title">2023.09.16(토) ~ 2023.09.17(일)</div>
 							  </div>
@@ -83,7 +83,7 @@ Main Banner START -->
 								<div class="h1 text-dark title">돈키호테</div>
 								<div class="h5 text-dark mb-0 title">
 								  부산시민회관 대극장
-								  <a href="concert-detail.html" class="btn btn-orange mx-3 text-white">예매하기</a>
+								  <a href="${path}/conc-detail" class="btn btn-orange mx-3 text-white">예매하기</a>
 								</div>
 								<div class="h5 text-dark mb-0 title">2023.09.16(토) ~ 2023.09.17(일)</div>
 							  </div>
@@ -157,7 +157,7 @@ Main Banner START -->
 						<!-- Button -->
 						<div class="col-lg-1">
 							<div class="d-grid">
-								<a href="#" class="btn btn-lg mb-n1">
+								<a href="${path}/#" class="btn btn-lg mb-n1">
 									<i class="fa-solid fa-search fs-4"></i>
 								</a>
 							</div>
@@ -178,7 +178,7 @@ Packages START -->
 	<div class="container">
 		<!-- Title -->
 		<div class="row mb-4">
-			<a href="test.html">
+			<a href="${path}/test.html">
 				<div class="title">
 					<span class="mb-0 text-secondary fs-2">테마별 BEST 공연</span>
 					<span class="mb-0 px-3 text-info fs-4">이번 주 가장 핫한 공연은?</span>
@@ -207,7 +207,7 @@ Packages START -->
 						<div class="card-body d-flex align-items-center">
 							<div class="w-100">
 								<h5 class="card-title text-decoration-none text-dark">
-									<a href="concert-detail.html" class="stretched-link title">
+									<a href="${path}/conc-detail" class="stretched-link title">
 										장수상회
 									</a>
 								</h5>
@@ -242,7 +242,7 @@ Packages START -->
 						<div class="card-body d-flex align-items-center">
 							<div class="w-100">
 								<h5 class="card-title text-decoration-none text-dark">
-									<a href="concert-detail.html" class="stretched-link title">
+									<a href="${path}/conc-detail" class="stretched-link title">
 										장수상회
 									</a>
 								</h5>
@@ -277,7 +277,7 @@ Packages START -->
 						<div class="card-body d-flex align-items-center">
 							<div class="w-100">
 								<h5 class="card-title text-decoration-none text-dark">
-									<a href="concert-detail.html" class="stretched-link title">
+									<a href="${path}/conc-detail" class="stretched-link title">
 										장수상회
 									</a>
 								</h5>
@@ -312,7 +312,7 @@ Packages START -->
 						<div class="card-body d-flex align-items-center">
 							<div class="w-100">
 								<h5 class="card-title text-decoration-none text-dark">
-									<a href="concert-detail.html" class="stretched-link title">
+									<a href="${path}/conc-detail" class="stretched-link title">
 										장수상회
 									</a>
 								</h5>
@@ -347,7 +347,7 @@ Packages START -->
 						<div class="card-body d-flex align-items-center">
 							<div class="w-100">
 								<h5 class="card-title text-decoration-none text-dark">
-									<a href="concert-detail.html" class="stretched-link title">
+									<a href="${path}/conc-detail" class="stretched-link title">
 										장수상회
 									</a>
 								</h5>
@@ -382,7 +382,7 @@ Packages START -->
 						<div class="card-body d-flex align-items-center">
 							<div class="w-100">
 								<h5 class="card-title text-decoration-none text-dark">
-									<a href="concert-detail.html" class="stretched-link title">
+									<a href="${path}/conc-detail" class="stretched-link title">
 										장수상회
 									</a>
 								</h5>
@@ -417,7 +417,7 @@ Packages START -->
 						<div class="card-body d-flex align-items-center">
 							<div class="w-100">
 								<h5 class="card-title text-decoration-none text-dark">
-									<a href="concert-detail.html" class="stretched-link title">
+									<a href="${path}/conc-detail" class="stretched-link title">
 										장수상회
 									</a>
 								</h5>
@@ -452,7 +452,7 @@ Packages START -->
 						<div class="card-body d-flex align-items-center">
 							<div class="w-100">
 								<h5 class="card-title text-decoration-none text-dark">
-									<a href="concert-detail.html" class="stretched-link title">
+									<a href="${path}/conc-detail" class="stretched-link title">
 										장수상회
 									</a>
 								</h5>
@@ -487,7 +487,7 @@ Packages START -->
 						<div class="card-body d-flex align-items-center">
 							<div class="w-100">
 								<h5 class="card-title text-decoration-none text-dark">
-									<a href="concert-detail.html" class="stretched-link title">
+									<a href="${path}/conc-detail" class="stretched-link title">
 										장수상회
 									</a>
 								</h5>
@@ -522,7 +522,7 @@ Packages START -->
 						<div class="card-body d-flex align-items-center">
 							<div class="w-100">
 								<h5 class="card-title text-decoration-none text-dark">
-									<a href="concert-detail.html" class="stretched-link title">
+									<a href="${path}/conc-detail" class="stretched-link title">
 										장수상회
 									</a>
 								</h5>
@@ -549,7 +549,7 @@ Packages END -->
 <section class="pt-0 pt-md-5 bg-light" style="background-image: url(${path}/resources/assets/images/bg/bg01.png); height: 550px;">
 	
 	<div class="container position-relative">
-		<a href="test.html">
+		<a href="${path}/test.html">
 			<div class="text-center pb-3 title h2 text-white">내 주변 공연장</div>
 		</a>
 
@@ -565,13 +565,13 @@ Packages END -->
 						<div class="card-body d-flex align-items-center">
 							<div class="w-100">
 								<h5 class="card-title text-decoration-none text-dark">
-									<a href="test.html" class="stretched-link title">
+									<a href="${path}/test.html" class="stretched-link title">
 										LG아트센터 서울
 									</a>
 								</h5>
 								서울 강서구 / 2022년 개관
 								<div class="fw-bold text-black text-end">
-									<a href="test.html"><i class="fas fa-paper-plane"></i> 홈페이지 바로가기</a>
+									<a href="${path}/test.html"><i class="fas fa-paper-plane"></i> 홈페이지 바로가기</a>
 								</div>
 							</div>
 						</div>
@@ -590,13 +590,13 @@ Packages END -->
 						<div class="card-body d-flex align-items-center">
 							<div class="w-100">
 								<h5 class="card-title text-decoration-none text-dark">
-									<a href="test.html" class="stretched-link title">
+									<a href="${path}/test.html" class="stretched-link title">
 										SCC홀
 									</a>
 								</h5>
 								서울 서초구 / 2005년 개관
 								<div class="fw-bold text-black text-end">
-									<a href="test.html"><i class="fas fa-paper-plane"></i> 홈페이지 바로가기</a>
+									<a href="${path}/test.html"><i class="fas fa-paper-plane"></i> 홈페이지 바로가기</a>
 								</div>
 							</div>
 						</div>
@@ -615,13 +615,13 @@ Packages END -->
 						<div class="card-body d-flex align-items-center">
 							<div class="w-100">
 								<h5 class="card-title text-decoration-none text-dark">
-									<a href="test.html" class="stretched-link title">
+									<a href="${path}/test.html" class="stretched-link title">
 										세종문화회관
 									</a>
 								</h5>
 								서울 종로구 / 1978년 개관
 								<div class="fw-bold text-end">
-									<a href="test.html"><i class="fas fa-paper-plane"></i> 홈페이지 바로가기</a>
+									<a href="${path}/test.html"><i class="fas fa-paper-plane"></i> 홈페이지 바로가기</a>
 								</div>
 							</div>
 						</div>
@@ -637,7 +637,7 @@ Packages END -->
 <section>
 	<div class="container">
 		<!-- Title -->
-		<a href="test.html" style="z-index: 99; height: 5rem;">
+		<a href="${path}/test.html" style="z-index: 99; height: 5rem;">
 			<div class="title mb-4">
 				<span class="text-secondary fs-2">공연 BEST 후기</span>
 				<span class="px-3 text-info fs-4">이 공연 어땠어요? 생생하고 솔직한 후기만 모아서!</span>
@@ -652,7 +652,7 @@ Packages END -->
 					<div class="card card-img-scale h-100 border-0 shadow">
 						<div class="card-img-top overflow-hidden">
 							<div class="overlay overflow-hidden p-4 card">
-								<a href="community-detail.html" class="stretched-link">
+								<a href="${path}/board-detail" class="stretched-link">
 									<div class="overlay-content text-white">
 										<div class="h4 text-white title">공연제목</div>
 										<div>공연장 이름</div>
@@ -668,7 +668,7 @@ Packages END -->
 								</h5>
 								처음부터 끝까지 울다 웃다 했네요. 올해 상반기에 본 공연 중 가장 기억에 남는 공연이 될 것 같습니다. ...
 								<div class="d-flex">
-									<span class="d-flex align-items-center mt-2 col-7" href="profile.html">
+									<span class="d-flex align-items-center mt-2 col-7" href="${path}/profile.html">
 										<!-- Avatar -->
 										<div class="avatar me-3" style="width: 2rem; height: 2rem;">
 											<img class="avatar-img rounded-circle shadow" src="${path}/resources/assets/images/avatar/01.jpg" alt="avatar">
@@ -697,7 +697,7 @@ Packages END -->
 					<div class="card card-img-scale h-100 border-0 shadow">
 						<div class="card-img-top overflow-hidden">
 							<div class="overlay overflow-hidden p-4 card">
-								<a href="community-detail.html" class="stretched-link">
+								<a href="${path}/board-detail" class="stretched-link">
 									<div class="overlay-content text-white">
 										<div class="h4 text-white title">공연제목</div>
 										<div>공연장 이름</div>
@@ -713,7 +713,7 @@ Packages END -->
 								</h5>
 								말 그대로 피터팬! 아이들이 정말 좋아했어요. 아이들을 위해 보러간 공연이라 큰 기대는 없었는데 예상 ...
 								<div class="d-flex">
-									<span class="d-flex align-items-center mt-2 col-7" href="profile.html">
+									<span class="d-flex align-items-center mt-2 col-7" href="${path}/profile.html">
 										<!-- Avatar -->
 										<div class="avatar me-3" style="width: 2rem; height: 2rem;">
 											<img class="avatar-img rounded-circle shadow" src="${path}/resources/assets/images/avatar/01.jpg" alt="avatar">
@@ -742,7 +742,7 @@ Packages END -->
 					<div class="card card-img-scale h-100 border-0 shadow">
 						<div class="card-img-top overflow-hidden">
 							<div class="overlay overflow-hidden p-4 card">
-								<a href="community-detail.html" class="stretched-link">
+								<a href="${path}/board-detail" class="stretched-link">
 									<div class="overlay-content text-white">
 										<div class="h4 text-white title">공연제목</div>
 										<div>공연장 이름</div>
@@ -758,7 +758,7 @@ Packages END -->
 								</h5>
 								산책로가 잘 조성된 캠핑장이었습니다! 차량을 타고 올라가는 구조이고 차는 별도주차, 캠핑장에는 텐트만 ...
 								<div class="d-flex">
-									<span class="d-flex align-items-center mt-2 col-7" href="profile.html">
+									<span class="d-flex align-items-center mt-2 col-7" href="${path}/profile.html">
 										<!-- Avatar -->
 										<div class="avatar me-3" style="width: 2rem; height: 2rem;">
 											<img class="avatar-img rounded-circle shadow" src="${path}/resources/assets/images/avatar/01.jpg" alt="avatar">
@@ -794,7 +794,7 @@ Packages END -->
 			<!-- 자유게시판 시작 -->
 			<span class="col-5">
 				<!-- Title -->
-				<a href="community-free.html">
+				<a href="${path}/freeBoard">
 					<div class="title mb-1">
 						<span class="mb-0 text-secondary fs-2">공연자유게시판</span>
 					</div>
@@ -803,42 +803,42 @@ Packages END -->
 				<!-- 자유게시판 게시글 목록 -->
 				<ul class="nav flex-column text-info">
 					<li class="nav-item">
-						<a class="nav-link py-1" href="community-detail.html">요즘 서울에서 가장 핫한 공연장이 어디인가요?
+						<a class="nav-link py-1" href="${path}/board-detail">요즘 서울에서 가장 핫한 공연장이 어디인가요?
 							<span class="ps-2 text-black-50" style="font-size: 0.9rem;">1분 전</span>
 						</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link py-1" href="community-detail.html">장수상회 보고온 후기
+						<a class="nav-link py-1" href="${path}/board-detail">장수상회 보고온 후기
 							<span class="ps-2 text-black-50" style="font-size: 0.9rem;">1분 전</span>
 						</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link py-1" href="community-detail.html">LG아트센터 서울 휴무일이 언제인가요?
+						<a class="nav-link py-1" href="${path}/board-detail">LG아트센터 서울 휴무일이 언제인가요?
 							<span class="ps-2 text-black-50" style="font-size: 0.9rem;">1분 전</span>
 						</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link py-1" href="community-detail.html">뮤지컬 관람 시 관객들이 지켜줬으면 하는 에티켓
+						<a class="nav-link py-1" href="${path}/board-detail">뮤지컬 관람 시 관객들이 지켜줬으면 하는 에티켓
 							<span class="ps-2 text-black-50" style="font-size: 0.9rem;">1분 전</span>
 						</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link py-1" href="community-detail.html">이은결 마술쇼 정말 재밌게 봤습니다
+						<a class="nav-link py-1" href="${path}/board-detail">이은결 마술쇼 정말 재밌게 봤습니다
 							<span class="ps-2 text-black-50" style="font-size: 0.9rem;">1분 전</span>
 						</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link py-1" href="community-detail.html">개인적으로 올해 드콘은 강력 추천합니다
+						<a class="nav-link py-1" href="${path}/board-detail">개인적으로 올해 드콘은 강력 추천합니다
 							<span class="ps-2 text-black-50" style="font-size: 0.9rem;">1분 전</span>
 						</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link py-1" href="community-detail.html">이번 주에 부산에 가는데 공연 추천해주세요
+						<a class="nav-link py-1" href="${path}/board-detail">이번 주에 부산에 가는데 공연 추천해주세요
 							<span class="ps-2 text-black-50" style="font-size: 0.9rem;">1분 전</span>
 						</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link py-1" href="community-detail.html">뮤지컬 관람 시 관객들이 지켜줬으면 하는 에티켓
+						<a class="nav-link py-1" href="${path}/board-detail">뮤지컬 관람 시 관객들이 지켜줬으면 하는 에티켓
 							<span class="ps-2 text-black-50" style="font-size: 0.9rem;">1분 전</span>
 						</a>
 					</li>
@@ -848,10 +848,10 @@ Packages END -->
 
 			<!-- 광고 시작 -->
 			<span class="col-7">
-				<a href="#">
+				<a href="${path}/#">
 					<img src="http://ticketimage.interpark.com/TCMS4/Main/202304/MainVisual_f5681384-0bec-4a52-89a7-b87187341ca1.jpg" class="w-100 my-3 border-radius" style="border-radius: 0.5rem;"/>
 				</a>
-				<a href="#">
+				<a href="${path}/#">
 					<img src="http://ticketimage.interpark.com/TCMS4/Main/202305/MainVisual_6cdbe0db-d513-4a94-9101-2dc2c8c4fba3.jpg" class="w-100 my-3 border-radius" style="border-radius: 0.5rem;"/>
 				</a>
 			</span>

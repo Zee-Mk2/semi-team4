@@ -68,7 +68,7 @@
 				<div class="navbar-collapse collapse" id="navbarCollapse">
 					<ul class="navbar-nav navbar-nav-scroll me-auto">
 
-						<a class="nav-link fw-bold" href="${path}/camping-search.html" id="listingMenu" aria-haspopup="true"
+						<a class="nav-link fw-bold" href="${path}/camp-search" id="listingMenu" aria-haspopup="true"
 							aria-expanded="false">캠핑장 검색</a>
 						<a class="nav-link fw-bold" href="${path}/test.html" id="listingMenu" aria-haspopup="true"
 							aria-expanded="false">캠핑장 추천</a>
@@ -77,14 +77,14 @@
 
 						<!-- Nav item Pages -->
 						<li class="nav-item dropdown">
-							<a href="${path}/community.html">
-								<div class="nav-link fw-bold dropdown-toggle" href="${path}/community.html" id="pagesMenu">
+							<a href="${path}/board-main">
+								<div class="nav-link fw-bold dropdown-toggle" href="${path}/camp-search" id="pagesMenu">
 									커뮤니티</div>
 							</a>
 							<ul class="dropdown-menu" aria-labelledby="pagesMenu">
 								<li> <a class="dropdown-item" href="${path}/freeBoard">자유게시판</a></li>
 								<li> <a class="dropdown-item" href="${path}/info">정보공유</a></li>
-								<li> <a class="dropdown-item" href="${path}/community-review-camp.html">후기</a></li>
+								<li> <a class="dropdown-item" href="${path}/board-review">후기</a></li>
 							</ul>
 						</li>
 					</ul>
@@ -95,7 +95,7 @@
 				<div class="navbar-collapse collapse" id="navbarCategoryCollapse">
 					<ul class="navbar-nav navbar-nav-scroll nav-pills-primary-soft text-center ms-auto p-2 p-xl-0">
 						<!-- Nav item 공연 -->
-						<li class="nav-item"> <a class="nav-link fw-bold" href="${path}/index-concert.html"><i
+						<li class="nav-item"> <a class="nav-link fw-bold" href="${path}/conc-home"><i
 									class="fa-solid fa-ghost me-2"></i>공연</a> </li>
 
 						<!-- Nav item 캠핑 -->
@@ -111,7 +111,7 @@
 					<!-- Profile dropdown START -->
 					<li class="nav-item ms-3 dropdown">
 						<!-- Avatar -->
-						<a class="avatar avatar-sm p-0" href="${path}/#" id="profileDropdown" role="button"
+						<a class="avatar avatar-sm p-0" href="${path}/MyProfile" id="profileDropdown" role="button"
 							data-bs-auto-close="outside" data-bs-display="static" data-bs-toggle="dropdown"
 							aria-expanded="false">
 							<img class="avatar-img rounded-circle" src="${path}/resources/assets/images/avatar/01.jpg" alt="avatar">
@@ -128,7 +128,7 @@
 											src="${path}/resources/assets/images/avatar/01.jpg" alt="avatar">
 									</div>
 									<div>
-										<a class="h6 mt-2 mt-sm-0" href="#">지석환</a>
+										<a class="h6 mt-2 mt-sm-0" href="${path}/MyProfile">지석환</a>
 										<p class="small m-0">example@gmail.com</p>
 									</div>
 								</div>
@@ -138,13 +138,13 @@
 							<li>
 								<hr class="dropdown-divider">
 							</li>
-							<li><a class="dropdown-item" href="#"><i
+							<li><a class="dropdown-item"href="${path}/MyProfile"><i
 										class="fas fa-address-card fa-fw me-2"></i>회원정보</a></li>
-							<li><a class="dropdown-item" href="#"><i class="fas fa-ticket fa-fw me-2"></i>나의
+							<li><a class="dropdown-item" href="${path}/booking-info"><i class="fas fa-ticket fa-fw me-2"></i>나의
 									예약정보</a></li>
-							<li><a class="dropdown-item" href="#"><i class="fas fa-heart fa-fw me-2"></i>북마크</a>
+							<li><a class="dropdown-item" href="${path}/MyWishList"><i class="fas fa-heart fa-fw me-2"></i>북마크</a>
 							</li>
-							<li><a class="dropdown-item bg-danger-soft-hover" href="sign-in.html"><i
+							<li><a class="dropdown-item bg-danger-soft-hover" href="${path}/sign-in.html"><i
 										class="fas fa-sign-out-alt fa-fw me-2"></i>로그아웃</a></li>
 						</ul>
 					</li>

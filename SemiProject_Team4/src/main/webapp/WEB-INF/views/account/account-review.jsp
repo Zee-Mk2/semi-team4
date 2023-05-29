@@ -6,6 +6,20 @@
 
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 
+<!-- Plugins CSS -->
+<link rel="stylesheet" type="text/css" href="${path}/resources/assets/vendor/font-awesome/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="${path}/resources/assets/vendor/bootstrap-icons/bootstrap-icons.css">
+<link rel="stylesheet" type="text/css" href="${path}/resources/assets/vendor/tiny-slider/tiny-slider.css">
+<link rel="stylesheet" type="text/css" href="${path}/resources/assets/vendor/glightbox/css/glightbox.css">
+<link rel="stylesheet" type="text/css" href="${path}/resources/assets/vendor/choices/css/choices.min.css">
+<link rel="stylesheet" type="text/css" href="${path}/resources/assets/vendor/flatpickr/css/flatpickr.min.css">
+
+<!-- Vendors -->
+<script src="${path}/resources/assets/vendor/tiny-slider/tiny-slider.js"></script>
+<script src="${path}/resources/assets/vendor/glightbox/js/glightbox.js"></script>
+<script src="${path}/resources/assets/vendor/choices/js/choices.min.js"></script>
+<script src="${path}/resources/assets/vendor/flatpickr/js/flatpickr.min.js"></script>
+
 	<!-- **************** MAIN CONTENT START **************** -->
 	<main>
 
@@ -31,7 +45,7 @@ Content START -->
 
 									<!-- Edit profile button -->
 									<div class="position-absolute top-0 end-0 p-3">
-										<a href="#" class="text-primary-hover" data-bs-toggle="tooltip"
+										<a href="${path}/MyProfile" class="text-primary-hover" data-bs-toggle="tooltip"
 											data-bs-title="Edit profile">
 											<i class="bi bi-pencil-square"></i>
 										</a>
@@ -44,37 +58,37 @@ Content START -->
 											<!-- Avatar -->
 											<div class="avatar avatar-xl mb-2">
 												<img class="avatar-img rounded-circle border border-2 border-white"
-													src="assets/images/avatar/01.jpg" alt="">
+													src="${path}/resources/assets/images/avatar/01.jpg" alt="">
 											</div>
 											<h6 class="mb-0">테스트계정</h6>
-											<a href="#" class="text-reset text-primary-hover small">test@email.com</a>
+											<a href="${path}/MyProfile" class="text-reset text-primary-hover small">test@email.com</a>
 											<hr>
 										</div>
 
 										<!-- Sidebar menu item START -->
 										<ul class="nav nav-pills-primary-soft flex-column">
 											<li class="nav-item">
-												<a class="nav-link" href="account-profile.html"><i
+												<a class="nav-link" href="${path}/MyProfile"><i
 														class="bi bi-person fa-fw me-2"></i>회원정보</a>
 											</li>
 											<li class="nav-item">
-												<a class="nav-link" href="account-bookings.html"><i
+												<a class="nav-link" href="${path}/booking-info"><i
 														class="bi bi-ticket-perforated fa-fw me-2"></i>나의 예약정보</a>
 											</li>
 											<li class="nav-item">
-												<a class="nav-link" href="account-wishlist.html"><i
+												<a class="nav-link" href="${path}/MyWishList"><i
 														class="bi bi-heart fa-fw me-2"></i>북마크</a>
 											</li>
 											<li class="nav-item">
-												<a class="nav-link active" href="account-review.html"><i
+												<a class="nav-link active" href="${path}/myReview"><i
 														class="bi bi-pencil-square fa-fw me-2"></i>내 리뷰</a>
 											</li>
 											<li class="nav-item">
-												<a class="nav-link" href="account-settings.html"><i
+												<a class="nav-link" href="${path}/pro-setting"><i
 														class="bi bi-gear fa-fw me-2"></i>설정</a>
 											</li>
 											<li class="nav-item">
-												<a class="nav-link text-danger bg-danger-soft-hover" href="#"><i
+												<a class="nav-link text-danger bg-danger-soft-hover" href="${path}/sign-in"><i
 														class="fas fa-sign-out-alt fa-fw me-2"></i>로그아웃</a>
 											</li>
 										</ul>
@@ -151,13 +165,13 @@ Content START -->
 													<ul class="list-inline mb-0">
 														<!-- Heart icon -->
 														<li class="list-inline-item">
-															<a href="#" class="btn btn-sm btn-round btn-danger mb-0"><i
+															<a href="${path}/#" class="btn btn-sm btn-round btn-danger mb-0"><i
 																	class="fa-solid fa-fw fa-heart"></i></a>
 														</li>
 														<!-- Share icon -->
 														<li class="list-inline-item dropdown">
 															<!-- Share button -->
-															<a href="#" class="btn btn-sm btn-round btn-light mb-0"
+															<a href="${path}/#" class="btn btn-sm btn-round btn-light mb-0"
 																role="button" id="dropdownShare2"
 																data-bs-toggle="dropdown" aria-expanded="false">
 																<i class="fa-solid fa-fw fa-share-alt"></i>
@@ -165,13 +179,13 @@ Content START -->
 															<!-- dropdown button -->
 															<ul class="dropdown-menu dropdown-menu-end min-w-auto shadow rounded"
 																aria-labelledby="dropdownShare2">
-																<li><a class="dropdown-item" href="#"><i
+																<li><a class="dropdown-item" href="${path}/#"><i
 																			class="fab fa-twitter-square me-2"></i>트위터</a>
 																</li>
-																<li><a class="dropdown-item" href="#"><i
+																<li><a class="dropdown-item" href="${path}/#"><i
 																			class="fab fa-facebook-square me-2"></i>페이스북</a>
 																</li>
-																<li><a class="dropdown-item" href="#"><i
+																<li><a class="dropdown-item" href="${path}/#"><i
 																			class="fa-solid fa-copy me-2"></i>링크복사</a>
 																</li>
 															</ul>
@@ -180,7 +194,7 @@ Content START -->
 												</div>
 
 												<!-- Title -->
-												<h5 class="card-title mb-1"><a href="hotel-detail.html">정읍시 내장산
+												<h5 class="card-title mb-1"><a href="${path}/camp-detail">정읍시 내장산
 														국민여가캠프장</a></h5>
 												<small><i class=""></i>주변 시설도 좋고 주차도 깔끔합니다. 더위 시작될 때는 그냥 가지 마시고요. 대비하고
 													가셔야 합니다. 날씨가 꽤 덥습니다. 더위 대비만 잘하셔서 가시면 좋습니다.</small>
@@ -232,12 +246,12 @@ Content START -->
 													<ul class="list-inline mb-0">
 														<!-- Heart icon -->
 														<li class="list-inline-item">
-															<a href="#" class="btn btn-sm btn-round btn-danger mb-0"><i
+															<a href="${path}/#" class="btn btn-sm btn-round btn-danger mb-0"><i
 																	class="fa-solid fa-fw fa-heart"></i></a>
 														</li>
 														<!-- Share icon -->
 														<li class="list-inline-item dropdown">
-															<a href="#" class="btn btn-sm btn-round btn-light mb-0"
+															<a href="${path}/#" class="btn btn-sm btn-round btn-light mb-0"
 																role="button" id="dropdownShare3"
 																data-bs-toggle="dropdown" aria-expanded="false">
 																<i class="fa-solid fa-fw fa-share-alt"></i>
@@ -245,13 +259,13 @@ Content START -->
 															<!-- dropdown button -->
 															<ul class="dropdown-menu dropdown-menu-end min-w-auto shadow rounded"
 																aria-labelledby="dropdownShare2">
-																<li><a class="dropdown-item" href="#"><i
+																<li><a class="dropdown-item" href="${path}/#"><i
 																			class="fab fa-twitter-square me-2"></i>트위터</a>
 																</li>
-																<li><a class="dropdown-item" href="#"><i
+																<li><a class="dropdown-item" href="${path}/#"><i
 																			class="fab fa-facebook-square me-2"></i>페이스북</a>
 																</li>
-																<li><a class="dropdown-item" href="#"><i
+																<li><a class="dropdown-item" href="${path}/#"><i
 																			class="fa-solid fa-copy me-2"></i>링크복사</a>
 																</li>
 															</ul>
@@ -260,7 +274,7 @@ Content START -->
 												</div>
 
 												<!-- Title -->
-												<h5 class="card-title mb-1"><a href="hotel-detail.html">안산 화랑 오토캠핑장</a>
+												<h5 class="card-title mb-1"><a href="${path}/camp-detail">안산 화랑 오토캠핑장</a>
 												</h5>
 												<small><i class="bi bi-geo-alt me-2"></i>깔끔해요. 가격도 너무 착하고요! 코로나 때문에 샤워
 													안되는 게 아쉽지만, 다시방문할 것 같아요. 산책로도 너무 잘되어있고, 화장실 안에 따듯한 물이 빵빵! 짚라인은 아이들도
@@ -313,12 +327,12 @@ Content START -->
 													<ul class="list-inline mb-0">
 														<!-- Heart icon -->
 														<li class="list-inline-item">
-															<a href="#" class="btn btn-sm btn-round btn-danger mb-0"><i
+															<a href="${path}/#" class="btn btn-sm btn-round btn-danger mb-0"><i
 																	class="fa-solid fa-fw fa-heart"></i></a>
 														</li>
 														<!-- Share icon -->
 														<li class="list-inline-item dropdown">
-															<a href="#" class="btn btn-sm btn-round btn-light mb-0"
+															<a href="${path}/#" class="btn btn-sm btn-round btn-light mb-0"
 																role="button" id="dropdownShare3"
 																data-bs-toggle="dropdown" aria-expanded="false">
 																<i class="fa-solid fa-fw fa-share-alt"></i>
@@ -326,13 +340,13 @@ Content START -->
 															<!-- dropdown button -->
 															<ul class="dropdown-menu dropdown-menu-end min-w-auto shadow rounded"
 																aria-labelledby="dropdownShare2">
-																<li><a class="dropdown-item" href="#"><i
+																<li><a class="dropdown-item" href="${path}/#"><i
 																			class="fab fa-twitter-square me-2"></i>트위터</a>
 																</li>
-																<li><a class="dropdown-item" href="#"><i
+																<li><a class="dropdown-item" href="${path}/#"><i
 																			class="fab fa-facebook-square me-2"></i>페이스북</a>
 																</li>
-																<li><a class="dropdown-item" href="#"><i
+																<li><a class="dropdown-item" href="${path}/#"><i
 																			class="fa-solid fa-copy me-2"></i>링크복사</a>
 																</li>
 															</ul>
@@ -341,7 +355,7 @@ Content START -->
 												</div>
 
 												<!-- Title -->
-												<h5 class="card-title mb-1"><a href="hotel-detail.html">인삼골 오토캠핑장</a>
+												<h5 class="card-title mb-1"><a href="${path}/hotel-detail.html">인삼골 오토캠핑장</a>
 												</h5>
 												<small><i class="bi bi-geo-alt me-2"></i>좋아요! 캠핑 장소로 그만이에요 아름다운 금강을 끼고
 													있어 경치도 그만이고 화장실이나 샤워실 등도 잘 갖추어져 있네요 솔직히 이런 내용 올리기 싫습니다. 사람들이 너무 많이

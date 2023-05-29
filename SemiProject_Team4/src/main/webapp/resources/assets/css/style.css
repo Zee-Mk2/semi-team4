@@ -3661,7 +3661,7 @@ textarea.form-control-lg {
 }
 
 .btn-outline-warning {
-  --bs-btn-color: #f7c32e;
+  --bs-btn-color: #000;
   --bs-btn-border-color: #f7c32e;
   --bs-btn-hover-color: #000;
   --bs-btn-hover-bg: #f7c32e;
@@ -21034,4 +21034,33 @@ th, td {
 
 .card-label {
   cursor: pointer;
+}
+
+.seat-checkbox {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.select-seat {
+  border-radius: 0.2rem;
+  height: 2rem;
+  width: 2rem;
+  z-index: 99;
+}
+
+.selected-seat {
+  border: 3px solid #FB5C02 !important;
+}
+
+.r-class {
+  background-color: #7C68EE;
+}
+
+.s-class {
+  background-color: #1CA814;
+}
+
+.a-class {
+  background-color: #17B3FF;
 }
