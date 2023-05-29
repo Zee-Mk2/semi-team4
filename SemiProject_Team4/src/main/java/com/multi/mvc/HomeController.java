@@ -37,18 +37,16 @@ public class HomeController {
 		return "index-camping";
 	}
 	
-	@RequestMapping(value = "/freeBoard", method = RequestMethod.GET)
-	public String communityFree(Locale locale, Model model) {
+	@RequestMapping(value = "/camp-search", method = RequestMethod.GET)
+	public String campSearch(Locale locale, Model model) {
 		
-		
-		return "/board/community-free";
+		return "/camping/camping-search";
 	}
 	
-	@RequestMapping(value = "/info", method = RequestMethod.GET)
-	public String Info(Locale locale, Model model) {
+	@RequestMapping(value = "/camp-detail", method = RequestMethod.GET)
+	public String campDetail(Locale locale, Model model) {
 		
-		
-		return "/board/community-info";
+		return "/camping/camping-detail";
 	}
 	
 	@RequestMapping(value = "/camp-booking", method = RequestMethod.GET)
@@ -57,16 +55,16 @@ public class HomeController {
 		return "/camping/camping-booking";
 	}
 	
-	@RequestMapping(value = "/permit", method = RequestMethod.GET)
-	public String permit(Locale locale, Model model) {
+	@RequestMapping(value = "/conc-home", method = RequestMethod.GET)
+	public String concertHome(Locale locale, Model model) {
 		
-		return "/common/permit";
+		return "/index-concert";
 	}
-	
-	@RequestMapping(value = "/camp-detail", method = RequestMethod.GET)
-	public String campDetail(Locale locale, Model model) {
+
+	@RequestMapping(value = "/conc-detail", method = RequestMethod.GET)
+	public String concDetail(Locale locale, Model model) {
 		
-		return "/camping/camping-detail";
+		return "/concert/concert-detail";
 	}
 	
 	@RequestMapping(value = "/sign-in", method = RequestMethod.GET)
@@ -81,16 +79,67 @@ public class HomeController {
 		return "/common/sign-up";
 	}
 	
-	@RequestMapping(value = "/conc-home", method = RequestMethod.GET)
-	public String concertHome(Locale locale, Model model) {
+	@RequestMapping(value = "/MyProfile", method = RequestMethod.GET)
+	public String profile(Locale locale, Model model) {
 		
-		return "/index-concert";
+		return "/account/account-profile";
 	}
 	
-	@RequestMapping(value = "/camp-search", method = RequestMethod.GET)
-	public String campSearch(Locale locale, Model model) {
+	@RequestMapping(value = "/pro-setting", method = RequestMethod.GET)
+	public String setting(Locale locale, Model model) {
 		
-		return "/camping/camping-search";
+		return "/account/account-settings";
+	}
+	
+	@RequestMapping(value = "/MyWishList", method = RequestMethod.GET)
+	public String wishList(Locale locale, Model model) {
+		
+		return "/account/account-wishlist";
+	}
+	
+	@RequestMapping(value = "/booking-info", method = RequestMethod.GET)
+	public String booking(Locale locale, Model model) {
+		
+		return "/account/account-bookings";
+	}
+	
+	@RequestMapping(value = "/myReview", method = RequestMethod.GET)
+	public String myReview(Locale locale, Model model) {
+		
+		return "/account/account-review";
+	}
+	
+	@RequestMapping(value = "/board-main", method = RequestMethod.GET)
+	public String comMain(Locale locale, Model model) {
+		
+		return "/board/community";
+	}
+	
+	@RequestMapping(value = "/freeBoard", method = RequestMethod.GET)
+	public String communityFree(Locale locale, Model model) {
+		
+		
+		return "/board/community-free";
+	}
+	
+	@RequestMapping(value = "/info", method = RequestMethod.GET)
+	public String Info(Locale locale, Model model) {
+		
+		
+		return "/board/community-info";
+	}
+	
+	@RequestMapping(value = "/board-review", method = RequestMethod.GET)
+	public String boardReview(Locale locale, Model model) {
+		
+		return "/board/community-review";
+	}
+	
+	@RequestMapping(value = "/board-post", method = RequestMethod.GET)
+	public String comPost(Locale locale, Model model) {
+		
+		
+		return "/board/community-post";
 	}
 	
 	@RequestMapping(value = "/board-detail", method = RequestMethod.GET)
@@ -99,23 +148,12 @@ public class HomeController {
 		return "/board/community-detail";
 	}
 	
-	@RequestMapping(value = "/board-review", method = RequestMethod.GET)
-	public String boardInfo(Locale locale, Model model) {
+	@RequestMapping(value = "/permit", method = RequestMethod.GET)
+	public String permit(Locale locale, Model model) {
 		
-		return "/board/community-review";
+		return "/common/permit";
 	}
 	
-	@RequestMapping(value = "/conc-detail", method = RequestMethod.GET)
-	public String home2(Locale locale, Model model) {
-		
-		return "/concert/concert-detail";
-	}
-	
-	@RequestMapping(value = "/conc-booking", method = RequestMethod.GET)
-	public String concBooking(Locale locale, Model model) {
-		
-		return "/concert/concert-booking";
-	}
 	
 	
 	
