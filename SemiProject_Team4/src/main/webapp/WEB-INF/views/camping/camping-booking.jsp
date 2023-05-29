@@ -438,7 +438,7 @@ Steps START -->
 													<!-- Card body START -->
 													<div class="card-body row g-4">
 														<div class="col-4">
-															<label class="card-label card area-card">
+															<label class="card-label card area-card border">
 																<input class="form-check-input card-radio" type="radio" name="site-select">
 																<div class="h4 text-center">A1</div>
 																<div class="text-center">8m X 8m</div>
@@ -446,7 +446,7 @@ Steps START -->
 														</div>
 														
 														<div class="col-4">
-															<label class="card-label card area-card">
+															<label class="card-label card area-card border">
 																<input class="form-check-input card-radio" type="radio" name="site-select">
 																<div class="h4 text-center">A2</div>
 																<div class="text-center">8m X 8m</div>
@@ -454,7 +454,7 @@ Steps START -->
 														</div>
 
 														<div class="col-4">
-															<label class="card-label card area-card">
+															<label class="card-label card area-card border">
 																<input class="form-check-input card-radio" type="radio" name="site-select">
 																<div class="h4 text-center">A3</div>
 																<div class="text-center">8m X 8m</div>
@@ -462,7 +462,7 @@ Steps START -->
 														</div>
 
 														<div class="col-4">
-															<label class="card-label card area-card">
+															<label class="card-label card area-card border">
 																<input class="form-check-input card-radio" type="radio" name="site-select">
 																<div class="h4 text-center">A4</div>
 																<div class="text-center">8m X 8m</div>
@@ -470,7 +470,7 @@ Steps START -->
 														</div>
 
 														<div class="col-4">
-															<label class="card-label card area-card">
+															<label class="card-label card area-card border">
 																<input class="form-check-input card-radio" type="radio" name="site-select">
 																<div class="h4 text-center">A5</div>
 																<div class="text-center">8m X 8m</div>
@@ -480,6 +480,7 @@ Steps START -->
 													<!-- Card body END -->
 												</div>
 											</div>
+											
 
 											<div class="col-6">
 												<div class="card border">

@@ -1304,3 +1304,11 @@ $(document).ready(function() {
     $('.card-radio:not(:checked)').closest('.card').removeClass('card-selected');
   });
 });
+
+// 공연 좌석 선택 체크박스 이벤트 처리
+$(document).ready(function() {
+  $('.seat-checkbox').on('click', function() {
+    $('.seat-checkbox:checked').closest('.select-seat').addClass('selected-seat');
+    $('.seat-checkbox:not(:checked)').closest('.select-seat').removeClass('selected-seat');
+  });
+});
