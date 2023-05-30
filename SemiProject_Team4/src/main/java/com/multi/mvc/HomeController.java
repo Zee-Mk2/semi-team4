@@ -25,16 +25,14 @@ public class HomeController {
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String welcome(Locale locale, Model model) {
-		
-//		model.addAttribute("list", service.selectCampAll());
 		model.addAttribute("bestList", service.campThemeBest());
-		
 		
 		return "index-camping";
 	}
 	
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
+		model.addAttribute("bestList", service.campThemeBest());
 		
 		return "index-camping";
 	}

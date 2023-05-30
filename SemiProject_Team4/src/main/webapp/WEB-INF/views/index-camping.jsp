@@ -22,6 +22,7 @@
 <script src="${path}/resources/assets/vendor/choices/js/choices.min.js"></script>
 <script src="${path}/resources/assets/vendor/flatpickr/js/flatpickr.min.js"></script>
 
+
 <!-- **************** MAIN CONTENT START **************** -->
 <main>
 <!-- =======================
