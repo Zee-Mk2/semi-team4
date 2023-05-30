@@ -20,14 +20,6 @@
 <script src="${path}/resources/assets/vendor/choices/js/choices.min.js"></script>
 <script src="${path}/resources/assets/vendor/flatpickr/js/flatpickr.min.js"></script>
 
-<c:forEach var="item" items="${list}">
-
-	${item.rankNum },
-	${item.showNm }
-	<br>
-
-</c:forEach>
-
 <!-- **************** MAIN CONTENT START **************** -->
 <main>
 	
@@ -187,16 +179,16 @@ Packages START -->
 		</div>
 
 		<div class="row g-4 mb-5" id="packages">
-			
-			<div class="col-2" style="width: 20%;">
+		  <c:forEach var="item" items="${conBestList}">
+			<div style="width: 20%;">
 				<!-- place item-->
 				<div class="w-100 h-100">
 					<div class="card card-img-scale h-100 border-0 shadow">
-						<div class="card-img-top overflow-hidden">
-							<img class="img-fluid" src="https://www.kopis.or.kr/upload/pfmPoster/PF_PF218950_230523_112032.gif" />
+						<div class="card-img-top overflow-hidden" style="height: 17.5rem">
+							<img class="img-fluid" src="${item.posterImg}" />
 							<div class="card-img-overlay-top">
 								<div class="d-flex justify-content-between">
-									<span class="badge text-bg-orange mt-2" style="height: 1.5rem">연극</span>
+									<span class="badge text-bg-orange mt-2" style="height: 1.5rem">${item.genre}</span>
 								</div>
 							</div>
 						</div>
@@ -208,13 +200,13 @@ Packages START -->
 							<div class="w-100">
 								<h5 class="card-title text-decoration-none text-dark">
 									<a href="${path}/conc-detail" class="stretched-link title">
-										장수상회
+										${item.conNm}
 									</a>
 								</h5>
-								<div class="h6 text-body" style="font-size: 14px;">2023.04.21 ~ 2023.05.21</div>
+								<div class="h6 text-body" style="font-size: 14px;">${item.startDate} ~ ${item.endDate}</div>
 								<div class="d-flex card-subtitle mb-n1">
 									<p class="card-text">
-										<span class="h6 text-body">두산아트센터</span>
+										<span class="h6 text-body">${item.conHallNm}</span>
 									</p>
 								</div>
 							</div>
@@ -222,324 +214,7 @@ Packages START -->
 					</div>
 				</div>
 			</div>
-			
-			<div class="col-2" style="width: 20%;">
-				<!-- place item-->
-				<div class="w-100 h-100">
-					<div class="card card-img-scale h-100 border-0 shadow">
-						<div class="card-img-top overflow-hidden">
-							<img class="img-fluid" src="https://www.kopis.or.kr/upload/pfmPoster/PF_PF218950_230523_112032.gif" />
-							<div class="card-img-overlay-top">
-								<div class="d-flex justify-content-between">
-									<span class="badge text-bg-orange mt-2" style="height: 1.5rem">연극</span>
-								</div>
-							</div>
-						</div>
-						<!-- 하트 -->
-						<a class="btn heart-btn mx-2 mt-n5">
-							<i class="fas fa-heart fs-5 ms-n2 heart-icon" style="color: red;"></i>
-						</a>
-						<div class="card-body d-flex align-items-center">
-							<div class="w-100">
-								<h5 class="card-title text-decoration-none text-dark">
-									<a href="${path}/conc-detail" class="stretched-link title">
-										장수상회
-									</a>
-								</h5>
-								<div class="h6 text-body" style="font-size: 14px;">2023.04.21 ~ 2023.05.21</div>
-								<div class="d-flex card-subtitle mb-n1">
-									<p class="card-text">
-										<span class="h6 text-body">두산아트센터</span>
-									</p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			
-			<div class="col-2" style="width: 20%;">
-				<!-- place item-->
-				<div class="w-100 h-100">
-					<div class="card card-img-scale h-100 border-0 shadow">
-						<div class="card-img-top overflow-hidden">
-							<img class="img-fluid" src="https://www.kopis.or.kr/upload/pfmPoster/PF_PF218950_230523_112032.gif" />
-							<div class="card-img-overlay-top">
-								<div class="d-flex justify-content-between">
-									<span class="badge text-bg-orange mt-2" style="height: 1.5rem">연극</span>
-								</div>
-							</div>
-						</div>
-						<!-- 하트 -->
-						<a class="btn heart-btn mx-2 mt-n5">
-							<i class="fas fa-heart fs-5 ms-n2 heart-icon" style="color: red;"></i>
-						</a>
-						<div class="card-body d-flex align-items-center">
-							<div class="w-100">
-								<h5 class="card-title text-decoration-none text-dark">
-									<a href="${path}/conc-detail" class="stretched-link title">
-										장수상회
-									</a>
-								</h5>
-								<div class="h6 text-body" style="font-size: 14px;">2023.04.21 ~ 2023.05.21</div>
-								<div class="d-flex card-subtitle mb-n1">
-									<p class="card-text">
-										<span class="h6 text-body">두산아트센터</span>
-									</p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			
-			<div class="col-2" style="width: 20%;">
-				<!-- place item-->
-				<div class="w-100 h-100">
-					<div class="card card-img-scale h-100 border-0 shadow">
-						<div class="card-img-top overflow-hidden">
-							<img class="img-fluid" src="https://www.kopis.or.kr/upload/pfmPoster/PF_PF218950_230523_112032.gif" />
-							<div class="card-img-overlay-top">
-								<div class="d-flex justify-content-between">
-									<span class="badge text-bg-orange mt-2" style="height: 1.5rem">연극</span>
-								</div>
-							</div>
-						</div>
-						<!-- 하트 -->
-						<a class="btn heart-btn mx-2 mt-n5">
-							<i class="fas fa-heart fs-5 ms-n2 heart-icon" style="color: red;"></i>
-						</a>
-						<div class="card-body d-flex align-items-center">
-							<div class="w-100">
-								<h5 class="card-title text-decoration-none text-dark">
-									<a href="${path}/conc-detail" class="stretched-link title">
-										장수상회
-									</a>
-								</h5>
-								<div class="h6 text-body" style="font-size: 14px;">2023.04.21 ~ 2023.05.21</div>
-								<div class="d-flex card-subtitle mb-n1">
-									<p class="card-text">
-										<span class="h6 text-body">두산아트센터</span>
-									</p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			
-			<div class="col-2" style="width: 20%;">
-				<!-- place item-->
-				<div class="w-100 h-100">
-					<div class="card card-img-scale h-100 border-0 shadow">
-						<div class="card-img-top overflow-hidden">
-							<img class="img-fluid" src="https://www.kopis.or.kr/upload/pfmPoster/PF_PF218950_230523_112032.gif" />
-							<div class="card-img-overlay-top">
-								<div class="d-flex justify-content-between">
-									<span class="badge text-bg-orange mt-2" style="height: 1.5rem">연극</span>
-								</div>
-							</div>
-						</div>
-						<!-- 하트 -->
-						<a class="btn heart-btn mx-2 mt-n5">
-							<i class="fas fa-heart fs-5 ms-n2 heart-icon" style="color: red;"></i>
-						</a>
-						<div class="card-body d-flex align-items-center">
-							<div class="w-100">
-								<h5 class="card-title text-decoration-none text-dark">
-									<a href="${path}/conc-detail" class="stretched-link title">
-										장수상회
-									</a>
-								</h5>
-								<div class="h6 text-body" style="font-size: 14px;">2023.04.21 ~ 2023.05.21</div>
-								<div class="d-flex card-subtitle mb-n1">
-									<p class="card-text">
-										<span class="h6 text-body">두산아트센터</span>
-									</p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			
-			<div class="col-2" style="width: 20%;">
-				<!-- place item-->
-				<div class="w-100 h-100">
-					<div class="card card-img-scale h-100 border-0 shadow">
-						<div class="card-img-top overflow-hidden">
-							<img class="img-fluid" src="https://www.kopis.or.kr/upload/pfmPoster/PF_PF218950_230523_112032.gif" />
-							<div class="card-img-overlay-top">
-								<div class="d-flex justify-content-between">
-									<span class="badge text-bg-orange mt-2" style="height: 1.5rem">연극</span>
-								</div>
-							</div>
-						</div>
-						<!-- 하트 -->
-						<a class="btn heart-btn mx-2 mt-n5">
-							<i class="fas fa-heart fs-5 ms-n2 heart-icon" style="color: red;"></i>
-						</a>
-						<div class="card-body d-flex align-items-center">
-							<div class="w-100">
-								<h5 class="card-title text-decoration-none text-dark">
-									<a href="${path}/conc-detail" class="stretched-link title">
-										장수상회
-									</a>
-								</h5>
-								<div class="h6 text-body" style="font-size: 14px;">2023.04.21 ~ 2023.05.21</div>
-								<div class="d-flex card-subtitle mb-n1">
-									<p class="card-text">
-										<span class="h6 text-body">두산아트센터</span>
-									</p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			
-			<div class="col-2" style="width: 20%;">
-				<!-- place item-->
-				<div class="w-100 h-100">
-					<div class="card card-img-scale h-100 border-0 shadow">
-						<div class="card-img-top overflow-hidden">
-							<img class="img-fluid" src="https://www.kopis.or.kr/upload/pfmPoster/PF_PF218950_230523_112032.gif" />
-							<div class="card-img-overlay-top">
-								<div class="d-flex justify-content-between">
-									<span class="badge text-bg-orange mt-2" style="height: 1.5rem">연극</span>
-								</div>
-							</div>
-						</div>
-						<!-- 하트 -->
-						<a class="btn heart-btn mx-2 mt-n5">
-							<i class="fas fa-heart fs-5 ms-n2 heart-icon" style="color: red;"></i>
-						</a>
-						<div class="card-body d-flex align-items-center">
-							<div class="w-100">
-								<h5 class="card-title text-decoration-none text-dark">
-									<a href="${path}/conc-detail" class="stretched-link title">
-										장수상회
-									</a>
-								</h5>
-								<div class="h6 text-body" style="font-size: 14px;">2023.04.21 ~ 2023.05.21</div>
-								<div class="d-flex card-subtitle mb-n1">
-									<p class="card-text">
-										<span class="h6 text-body">두산아트센터</span>
-									</p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			
-			<div class="col-2" style="width: 20%;">
-				<!-- place item-->
-				<div class="w-100 h-100">
-					<div class="card card-img-scale h-100 border-0 shadow">
-						<div class="card-img-top overflow-hidden">
-							<img class="img-fluid" src="https://www.kopis.or.kr/upload/pfmPoster/PF_PF218950_230523_112032.gif" />
-							<div class="card-img-overlay-top">
-								<div class="d-flex justify-content-between">
-									<span class="badge text-bg-orange mt-2" style="height: 1.5rem">연극</span>
-								</div>
-							</div>
-						</div>
-						<!-- 하트 -->
-						<a class="btn heart-btn mx-2 mt-n5">
-							<i class="fas fa-heart fs-5 ms-n2 heart-icon" style="color: red;"></i>
-						</a>
-						<div class="card-body d-flex align-items-center">
-							<div class="w-100">
-								<h5 class="card-title text-decoration-none text-dark">
-									<a href="${path}/conc-detail" class="stretched-link title">
-										장수상회
-									</a>
-								</h5>
-								<div class="h6 text-body" style="font-size: 14px;">2023.04.21 ~ 2023.05.21</div>
-								<div class="d-flex card-subtitle mb-n1">
-									<p class="card-text">
-										<span class="h6 text-body">두산아트센터</span>
-									</p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			
-			<div class="col-2" style="width: 20%;">
-				<!-- place item-->
-				<div class="w-100 h-100">
-					<div class="card card-img-scale h-100 border-0 shadow">
-						<div class="card-img-top overflow-hidden">
-							<img class="img-fluid" src="https://www.kopis.or.kr/upload/pfmPoster/PF_PF218950_230523_112032.gif" />
-							<div class="card-img-overlay-top">
-								<div class="d-flex justify-content-between">
-									<span class="badge text-bg-orange mt-2" style="height: 1.5rem">연극</span>
-								</div>
-							</div>
-						</div>
-						<!-- 하트 -->
-						<a class="btn heart-btn mx-2 mt-n5">
-							<i class="fas fa-heart fs-5 ms-n2 heart-icon" style="color: red;"></i>
-						</a>
-						<div class="card-body d-flex align-items-center">
-							<div class="w-100">
-								<h5 class="card-title text-decoration-none text-dark">
-									<a href="${path}/conc-detail" class="stretched-link title">
-										장수상회
-									</a>
-								</h5>
-								<div class="h6 text-body" style="font-size: 14px;">2023.04.21 ~ 2023.05.21</div>
-								<div class="d-flex card-subtitle mb-n1">
-									<p class="card-text">
-										<span class="h6 text-body">두산아트센터</span>
-									</p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			
-			<div class="col-2" style="width: 20%;">
-				<!-- place item-->
-				<div class="w-100 h-100">
-					<div class="card card-img-scale h-100 border-0 shadow">
-						<div class="card-img-top overflow-hidden">
-							<img class="img-fluid" src="https://www.kopis.or.kr/upload/pfmPoster/PF_PF218950_230523_112032.gif" />
-							<div class="card-img-overlay-top">
-								<div class="d-flex justify-content-between">
-									<span class="badge text-bg-orange mt-2" style="height: 1.5rem">연극</span>
-								</div>
-							</div>
-						</div>
-						<!-- 하트 -->
-						<a class="btn heart-btn mx-2 mt-n5">
-							<i class="fas fa-heart fs-5 ms-n2 heart-icon" style="color: red;"></i>
-						</a>
-						<div class="card-body d-flex align-items-center">
-							<div class="w-100">
-								<h5 class="card-title text-decoration-none text-dark">
-									<a href="${path}/conc-detail" class="stretched-link title">
-										장수상회
-									</a>
-								</h5>
-								<div class="h6 text-body" style="font-size: 14px;">2023.04.21 ~ 2023.05.21</div>
-								<div class="d-flex card-subtitle mb-n1">
-									<p class="card-text">
-										<span class="h6 text-body">두산아트센터</span>
-									</p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			
-		</div>
-
+		</c:forEach>
 	</div>
 </section>
 <!-- =======================
@@ -863,11 +538,5 @@ Packages END -->
 
 </main>
 <!-- **************** MAIN CONTENT END **************** -->
-
-<!-- Vendors -->
-<script src="${path}/resources/assets/vendor/tiny-slider/tiny-slider.js"></script>
-<script src="${path}/resources/assets/vendor/glightbox/js/glightbox.js"></script>
-<script src="${path}/resources/assets/vendor/choices/js/choices.min.js"></script>
-<script src="${path}/resources/assets/vendor/flatpickr/js/flatpickr.min.js"></script>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>

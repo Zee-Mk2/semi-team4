@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+
+<!-- Dao를 Mapper Interface로 대체 할 예정, namespace=Class의 풀네임 선언 필요 -->
+<mapper namespace="com.multi.mvc.concert.model.mapper.ConcertMapper">
+
+
+	<select id="selectConcertAll" resultType="ConcertVO">
+		SELECT * FROM concert
+	</select>
+	
+	<select id="concertBest" resultType="ConcertVO">
+		(SELECT conNm, genre, startDate, endDate, conHallNm, posterImg FROM concert WHERE genre LIKE '%서양음악(클래식)%' ORDER BY views LIMIT 1)
+		UNION ALL
+		(SELECT conNm, genre, startDate, endDate, conHallNm, posterImg FROM concert WHERE genre LIKE '%대중음악%' ORDER BY views LIMIT 1)
+		UNION ALL
+		(SELECT conNm, genre, startDate, endDate, conHallNm, posterImg FROM concert WHERE genre LIKE '%뮤지컬%' ORDER BY views LIMIT 1)
+		UNION ALL
+		(SELECT conNm, genre, startDate, endDate, conHallNm, posterImg FROM concert WHERE genre LIKE '%연극%' ORDER BY views LIMIT 1)
+		UNION ALL
+		(SELECT conNm, genre, startDate, endDate, conHallNm, posterImg FROM concert WHERE genre LIKE '%서커스/마술%' ORDER BY views LIMIT 1)
+		UNION ALL
+		(SELECT conNm, genre, startDate, endDate, conHallNm, posterImg FROM concert WHERE genre LIKE '%복합%' ORDER BY views LIMIT 1)
+		UNION ALL
+		(SELECT conNm, genre, startDate, endDate, conHallNm, posterImg FROM concert WHERE genre LIKE '%한국음악(국악)%' ORDER BY views LIMIT 1)
+		UNION ALL
+		(SELECT conNm, genre, startDate, endDate, conHallNm, posterImg FROM concert WHERE genre LIKE '%무용%' ORDER BY views LIMIT 1)
+		UNION ALL
+		(SELECT conNm, genre, startDate, endDate, conHallNm, posterImg FROM concert WHERE genre LIKE '%뮤지컬%' ORDER BY views LIMIT 1)
+		UNION ALL
+		(SELECT conNm, genre, startDate, endDate, conHallNm, posterImg FROM concert WHERE genre LIKE '%서양음악(클래식)%' ORDER BY views LIMIT 1)
+	</select>
+
+</mapper>
+

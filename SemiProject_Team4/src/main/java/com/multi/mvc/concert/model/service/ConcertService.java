@@ -18,4 +18,38 @@ public class ConcertService {
 		return mapper.selectConcertAll();
 		
 	}
+	
+	public List<ConcertVO> concertBest(){
+		List<ConcertVO> list =  mapper.concertBest();
+//		Map<String, CampSiteVO> map = null;
+//		System.out.println(list.toString());
+//		while (true) {
+//			map.put("해변", )
+//		}
+		
+		for (ConcertVO obj : list) {
+			obj.setGenre(obj.getGenre().replace(",", "/"));
+		}
+		
+		System.out.println(list.toString() + "\n");
+		
+		return list;
+	}
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
