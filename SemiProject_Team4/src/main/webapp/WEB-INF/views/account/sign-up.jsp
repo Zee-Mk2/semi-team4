@@ -65,7 +65,7 @@
 				<div>
 
 					<div class="text-center">
-						<a href="/">
+						<a href="${pageContext.request.contextPath}">
 							<img src="${path}/resources/assets/images/logo-1.png" class="w-25 mb-7">
 						</a>
 					</div>
@@ -76,10 +76,10 @@
 							<!-- Card body START -->
 							<div class="card-body">
 								<!-- Form START -->
-								<form class="row g-3">
+								<form class="row g-3" action="${path}/sign-up" method="post">
 									<!-- Profile photo -->
 									<div class="col-12">
-										<label class="form-label">프로필 사진 업로드<span class="text-danger">*</span></label>
+										<label class="form-label">프로필 사진 업로드</label>
 										<div class="d-flex align-items-center">
 											<label class="position-relative me-4" for="uploadfile-1" title="Replace this pic">
 												<!-- Avatar place holder -->
@@ -96,44 +96,65 @@
 									<!-- 이메일 -->
 									<div class="col-md-6">
 										<label class="form-label">이메일<span class="text-danger">*</span></label>
-										<input type="text" class="form-control" value="" placeholder="example@gmail.com">
+										<input id="id" name="id" type="text" class="form-control" value="" placeholder="example@gmail.com" required>
 									</div>
 
 									<!-- 이름 -->
 									<div class="col-md-6">
 										<label class="form-label">이름<span class="text-danger">*</span></label>
-										<input type="text" class="form-control" value="" placeholder="이름을 입력해주세요">
+										<input id="name" name="name"  type="text" class="form-control" value="" placeholder="이름을 입력해주세요" required>
 									</div>
 	
 									<!-- 비밀번호 -->
 									<div class="col-md-6">
 										<label class="form-label">비밀번호<span class="text-danger">*</span></label>
-										<input type="password" class="form-control" value="" placeholder="">
+										<input id="password" name="password"  type="password" class="form-control" value="" placeholder="" required>
 									</div>
 	
 									<!-- 비밀번호 확인 -->
 									<div class="col-md-6">
 										<label class="form-label">비밀번호 확인<span class="text-danger">*</span></label>
-										<input type="password" class="form-control" value="" placeholder="">
+										<input id="passwordCheck" type="password" class="form-control" value="" placeholder="" required>
 									</div>
 	
 									<!-- 전화번호 -->
-									<div class="col-md-6">
-										<label class="form-label">휴대폰 번호<span class="text-danger">*</span></label>
-										<input type="email" class="form-control" value="" placeholder="- 없이 숫자만 입력해주세요 ex. 01012341234">
-									</div>
+<!-- 									<div class="col-md-6"> -->
+<!-- 										<label class="form-label">휴대폰 번호<span class="text-danger">*</span></label> -->
+<!-- 										<input id="" type="email" class="form-control" value="" placeholder="- 없이 숫자만 입력해주세요 ex. 01012341234" required> -->
+<!-- 									</div> -->
 	
 									<!-- 생년월일 -->
 									<div class="col-md-6">
 										<label class="form-label">생년월일<span class="text-danger">*</span></label>
-										<input type="text" class="form-control" value="" placeholder="주민번호 앞자리를 입력해주세요 ex. 990102">
+										<input id="birth" name="birth" type="text" class="form-control" value="" placeholder="주민번호 앞자리를 입력해주세요 ex. 990102" required>
+									</div>
+
+									<!-- Gender -->
+									<div class="col-md-6">
+										<label class="form-label">성별<span class="text-danger">*</span></label>
+										<div class="d-flex gap-4 mt-3">
+											<div class="form-check radio-bg-light">
+												<input class="form-check-input" type="radio" name="gender" id="male" checked="" required>
+												<label class="form-check-label" for="gender1">
+													남
+												</label>
+											</div>
+											<div class="form-check radio-bg-light">
+												<input class="form-check-input" type="radio" name="gender" id="female" required>
+												<label class="form-check-label" for="gender2">
+													여
+												</label>
+											</div>
+										</div>
 									</div>
 	
+									<div class="col-6"></div>
+	
 									<!-- 선호지역 -->
-									<div class="col-md-6">
+									<div class="col-md-12">
 										<label class="form-label">선호지역</label>
 										<div class="form-control">
-											<select class="form-select js-choice">
+											<select class="form-select js-choice" name="favDistrict">
 												<option value="">지역 선택</option>
 												<option>서울/인천/경기</option>
 												<option>부산/울산/경남</option>
@@ -147,51 +168,33 @@
 										</div>
 									</div>
 	
-									<!-- Gender -->
-									<div class="col-md-6">
-										<label class="form-label">성별<span class="text-danger">*</span></label>
-										<div class="d-flex gap-4 mt-3">
-											<div class="form-check radio-bg-light">
-												<input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked="">
-												<label class="form-check-label" for="flexRadioDefault1">
-													남
-												</label>
-											</div>
-											<div class="form-check radio-bg-light">
-												<input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
-												<label class="form-check-label" for="flexRadioDefault2">
-													여
-												</label>
-											</div>
-										</div>
-									</div>
 	
 									<!-- Address -->
 									<div class="col-12">
 										<label class="form-label">주소</label>
-										<textarea class="form-control" rows="3" spellcheck="false"></textarea>
+										<textarea class="form-control" rows="3" spellcheck="false" name="address"></textarea>
 									</div>
-
+									
+									
+									<!-- Button -->
+									<div class="row mt-4">
+										<div class="col-4">
+											<a href="sign-in" class="btn btn-danger mb-0">로그인 창으로</a>
+										</div>
+										<div class="col-4 text-center mt-2">
+											© 2023. 주말일기. All rights reserved.
+										</div>
+										<div class="col-4 text-end">
+											<input type="submit" id="enrollSubmit" value="회원가입" class="btn btn-secondary mb-0" >
+										</div>
+									</div>
 								</form>
 								<!-- Form END -->
 							</div>
 							<!-- Card body END -->
 						</div>
 						<!-- Personal info END -->
-
 						
-						<!-- Button -->
-						<div class="row">
-							<div class="col-4">
-								<a href="sign-in" class="btn btn-danger mb-0">로그인 창으로</a>
-							</div>
-							<div class="col-4 text-center mt-2">
-								© 2023. 주말일기. All rights reserved.
-							</div>
-							<div class="col-4 text-end">
-								<a href="#" class="btn btn-secondary mb-0">회원가입</a>
-							</div>
-						</div>
 					</div>
 				</div>
 				<!-- Main content END -->

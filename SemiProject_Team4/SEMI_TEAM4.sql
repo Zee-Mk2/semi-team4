@@ -153,9 +153,12 @@ CREATE TABLE member (
     gender		VARCHAR(1),
     address		VARCHAR(100),
     favDistrict	VARCHAR(100),
-    enrollDate	DATE,
-    role		VARCHAR(10),
-    status		VARCHAR(1)
+    enrollDate	DATETIME DEFAULT CURRENT_TIMESTAMP,
+    role		VARCHAR(10) DEFAULT 'USER',
+    status		VARCHAR(1) DEFAULT 'Y',
+    birth		DATETIME,
+    oriFileNm	VARCHAR(100),
+    reFileNm	VARCHAR(100)
 );
 
 SELECT * FROM member;
@@ -170,8 +173,8 @@ CREATE TABLE reserve (
     resvTel		VARCHAR(100),
     numOfPeople	INT,
     resvPrice	INT,
-    resvDate	DATE,
-    resvStatus	DATE,
+    resvDate	DATETIME,
+    resvStatus	DATETIME,
     FOREIGN KEY (mno) REFERENCES memberInfo(mno) ON DELETE CASCADE
 );
 
@@ -183,7 +186,7 @@ DROP TABLE campBookmark;
 CREATE TABLE campBookmark (
 	contentID			INT,
     mno					INT,
-    campBookmarkDate 	DATE,
+    campBookmarkDate 	DATETIME,
     FOREIGN KEY (contentID) REFERENCES campsiteInfo(contentID) ON DELETE CASCADE,
     FOREIGN KEY (mno) REFERENCES memberInfo(mno) ON DELETE CASCADE
 );
@@ -196,7 +199,7 @@ DROP TABLE concBookmark;
 CREATE TABLE concBookmark (
 	conId       		VARCHAR(100),
     mno					INT,
-    concBookmarkDate	DATE,
+    concBookmarkDate	DATETIME,
     FOREIGN KEY (conId) REFERENCES concert(conId) ON DELETE CASCADE,
     FOREIGN KEY (mno) REFERENCES memberInfo(mno) ON DELETE CASCADE
 );
@@ -214,7 +217,7 @@ CREATE TABLE board (
     boardContent	VARCHAR(3000),
     boardOriFileNm	VARCHAR(100),
     boardReFileNm	VARCHAR(100),
-    boardCreateDate	DATE,
+    boardCreateDate	DATETIME,
     boardViews		INT,
     boardStatus		VARCHAR(1),
     FOREIGN KEY (mno) REFERENCES member(mno) ON DELETE SET NULL
@@ -230,7 +233,7 @@ CREATE TABLE reply(
     bno				INT,
     mno				INT,
     replyContent	VARCHAR(1000),
-    replycreateDate	DATE,
+    replycreateDate	DATETIME,
     replyStatus		VARCHAR(1),
     FOREIGN KEY (bno) REFERENCES board(bno) ON DELETE SET NULL,
     FOREIGN KEY (mno) REFERENCES member(mno) ON DELETE SET NULL
@@ -258,3 +261,10 @@ UNION ALL
 (SELECT campNm, location, doNm, sigunguNm, img FROM campsiteInfo WHERE location LIKE '%호수%' ORDER BY views LIMIT 1)
 UNION ALL
 (SELECT campNm, location, doNm, sigunguNm, img FROM campsiteInfo WHERE location LIKE '%도심%' ORDER BY views LIMIT 1);
+
+-- 회원가입
+INSERT INTO member VALUES(DEFAULT, 'admin', '1234', '관리자', null, null, null, null, DEFAULT, 'ADMIN', 'Y', null, null, null);
+SELECT * FROM member;
+
+-- 로그인
+SELECT * FROM member WHERE id = 'admin' AND status = 'Y';

@@ -10,19 +10,20 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Member {
-	private int mno; // 소문자로 통일 권장
-    private String id; 
-    private String password; 
-    private String role;
-    private String name; 
-    private String phone; 
-    private String email; 
-    private String address; 
-    private String hobby;
-    private String kakaoToken;
-    private String status; 
-    private Date enrollDate; 
-    private Date modifyDate;
+	private String mno;
+	private String id;
+	private String password;
+	private String name;
+	private String email;
+	private String gender;
+	private String address;
+	private String favDistrict;
+	private Date enrollDate;
+	private String role;
+	private String status;
+	private Date birth;
+	private String oriFileNm;
+	private String reFileNm;
 }
 
 

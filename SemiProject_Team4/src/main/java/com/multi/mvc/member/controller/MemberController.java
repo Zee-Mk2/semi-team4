@@ -38,16 +38,42 @@ public class MemberController {
 
 
 	
-	@RequestMapping(value = "/sign-in", method = RequestMethod.GET)
-	public String signIn(Locale locale, Model model) {
+	@GetMapping(value = "/sign-in")
+	public String signInPage() {
+		log.info("로그인 페이지 호출");
 		
-		return "/common/sign-in";
+		return "account/sign-in";
+	}
+	
+	@PostMapping(value = "/sign-in")
+	public String signIn(Model model, String inputId, String inputPwd) {
+		log.info("@@@Login : " + inputId +", "+ inputPwd);
+		
+		Member loginMember = service.login(inputId, inputPwd);
+		
+		// 로그인이 성공한 케이스
+		if(loginMember != null) {
+			model.addAttribute("loginMember", loginMember); // 세션으로 저장되는 코드, @SessionAttributes 사용
+			return "redirect:/"; // home으로 보내는 방법
+		} else {
+			model.addAttribute("msg", "아이디와 패스워드를 확인해주세요.");
+			model.addAttribute("location", "/sign-in");
+			return "/common/msg";
+		}
+	}
+	
+	@RequestMapping("/logout")
+	public String logout(SessionStatus staus) { // staus: 세션의 상태확인 가능한 메소드
+		log.info("staus : " + staus.isComplete());
+		staus.setComplete(); // 세션을 종료 시키는 메소드
+		log.info("staus : " + staus.isComplete());
+		return "redirect:/";
 	}
 	
 	@RequestMapping(value = "/sign-up", method = RequestMethod.GET)
 	public String signUp(Locale locale, Model model) {
 		
-		return "/common/sign-up";
+		return "/account/sign-up";
 	}
 	
 	@RequestMapping(value = "/MyProfile", method = RequestMethod.GET)

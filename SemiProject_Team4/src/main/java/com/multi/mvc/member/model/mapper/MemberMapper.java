@@ -1,8 +1,5 @@
 package com.multi.mvc.member.model.mapper;
 
-import java.util.List;
-import java.util.Map;
-
 import org.apache.ibatis.annotations.Mapper;
 
 import com.multi.mvc.member.model.vo.Member;
@@ -12,18 +9,10 @@ import com.multi.mvc.member.model.vo.Member;
 
 @Mapper
 public interface MemberMapper {
-	int selectCount();
-	List<Member> selectAll();
-	Member selectMemberById(String id);
-	int insertMember(Member member);
-	int updateMember(Member member);
-	
 	/**
-	 * @param map = password, mno 필수!
-	 * @return 결과값
+	 * id를 입력하면 Member객체를 반환
+	 * @param id
+	 * @return Member
 	 */
-	int updatePwd(Map<String, Object> map);
-	int deleteMember(int mno);
-	Member selectMemberByKakaoToken(String kakaoToken);
-	
+	Member selectMemberById(String id);
 }

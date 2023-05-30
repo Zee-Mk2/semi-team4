@@ -70,20 +70,20 @@ Main Content START -->
 							<div class="p-4 p-sm-7">
 								<!-- Logo -->
 								<div class="text-center">
-									<a href="index-camping.html">
+									<a href="${pageContext.request.contextPath}">
 										<img class="h-50px mb-4" src="${path}/resources/assets/images/logo-1.png" alt="logo">
 									</a>
 								</div>
 		
 								<!-- Form START -->
-								<form class="mt-4 text-start">
+								<form class="mt-4 text-start" action="${path}/sign-in" method="post">
 									<!-- Email -->
 									<div class="mb-3">
-										<input type="email" class="form-control" placeholder="이메일을 입력해주세요">
+										<input type="text" id="id" name="inputId" class="form-control" placeholder="이메일을 입력해주세요" required>
 									</div>
 									<!-- Password -->
 									<div class="mb-3 position-relative">
-										<input class="form-control fakepassword" type="password" id="psw-input" placeholder="비밀번호를 입력해주세요">
+										<input class="form-control fakepassword" type="password" id="password" name="inputPwd" placeholder="비밀번호를 입력해주세요" required>
 										<span class="position-absolute top-50 end-0 translate-middle-y p-0">
 											<i class="fakepasswordicon fas fa-eye-slash cursor-pointer p-2"></i>
 										</span>
@@ -103,7 +103,7 @@ Main Content START -->
 										<hr>
 									</div>
 		
-									<!-- Google and facebook button -->
+									<!-- Social login -->
 									<div class="vstack gap-3 text-center">
 										<a href="#"><img src="${path}/resources/assets/images/social_login/kakao_login_medium_wide.png"></a>
 									</div>
