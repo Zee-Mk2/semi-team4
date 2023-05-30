@@ -10,4 +10,5 @@ import com.multi.mvc.camp.model.vo.CampSiteVO;
 @Mapper
 public interface CampMapper {
 	List<CampSiteVO> selectCampAll();
+	List<CampSiteVO> campThemeBest();
 }

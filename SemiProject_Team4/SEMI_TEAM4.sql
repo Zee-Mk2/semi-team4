@@ -240,3 +240,21 @@ SELECT * FROM reply;
 
 ------------------------------- 테이블 끝 -------------------------------
 
+------------------------------- 쿼리 검증 -------------------------------
+
+-- 캠핑메인 테마별 BEST 캠핑장 > 테마별로 조회수가 가장 많은 캠핑장 1개씩 뽑아오는 쿼리
+(SELECT campNm, location, doNm, sigunguNm, img FROM campsiteInfo WHERE location LIKE '%해변%' ORDER BY views LIMIT 1)
+UNION ALL
+(SELECT campNm, location, doNm, sigunguNm, img FROM campsiteInfo WHERE location LIKE '%섬%' ORDER BY views LIMIT 1)
+UNION ALL
+(SELECT campNm, location, doNm, sigunguNm, img FROM campsiteInfo WHERE location LIKE '%산%' ORDER BY views LIMIT 1)
+UNION ALL
+(SELECT campNm, location, doNm, sigunguNm, img FROM campsiteInfo WHERE location LIKE '%숲%' ORDER BY views LIMIT 1)
+UNION ALL
+(SELECT campNm, location, doNm, sigunguNm, img FROM campsiteInfo WHERE location LIKE '%계곡%' ORDER BY views LIMIT 1)
+UNION ALL
+(SELECT campNm, location, doNm, sigunguNm, img FROM campsiteInfo WHERE location LIKE '%강%' ORDER BY views LIMIT 1)
+UNION ALL
+(SELECT campNm, location, doNm, sigunguNm, img FROM campsiteInfo WHERE location LIKE '%호수%' ORDER BY views LIMIT 1)
+UNION ALL
+(SELECT campNm, location, doNm, sigunguNm, img FROM campsiteInfo WHERE location LIKE '%도심%' ORDER BY views LIMIT 1);
