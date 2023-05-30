@@ -67,48 +67,6 @@ public class HomeController {
 		return "/concert/concert-detail";
 	}
 	
-	@RequestMapping(value = "/sign-in", method = RequestMethod.GET)
-	public String signIn(Locale locale, Model model) {
-		
-		return "/common/sign-in";
-	}
-	
-	@RequestMapping(value = "/sign-up", method = RequestMethod.GET)
-	public String signUp(Locale locale, Model model) {
-		
-		return "/common/sign-up";
-	}
-	
-	@RequestMapping(value = "/MyProfile", method = RequestMethod.GET)
-	public String profile(Locale locale, Model model) {
-		
-		return "/account/account-profile";
-	}
-	
-	@RequestMapping(value = "/pro-setting", method = RequestMethod.GET)
-	public String setting(Locale locale, Model model) {
-		
-		return "/account/account-settings";
-	}
-	
-	@RequestMapping(value = "/MyWishList", method = RequestMethod.GET)
-	public String wishList(Locale locale, Model model) {
-		
-		return "/account/account-wishlist";
-	}
-	
-	@RequestMapping(value = "/booking-info", method = RequestMethod.GET)
-	public String booking(Locale locale, Model model) {
-		
-		return "/account/account-bookings";
-	}
-	
-	@RequestMapping(value = "/myReview", method = RequestMethod.GET)
-	public String myReview(Locale locale, Model model) {
-		
-		return "/account/account-review";
-	}
-	
 	@RequestMapping(value = "/board-main", method = RequestMethod.GET)
 	public String comMain(Locale locale, Model model) {
 		
