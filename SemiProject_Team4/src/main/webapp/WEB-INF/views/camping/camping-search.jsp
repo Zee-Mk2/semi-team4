@@ -117,107 +117,68 @@
                 </label>
               </div>
 
-            <!-- <!--   Advance filter START
-              <div class="collapse" id="collapseExample">
-                <form class="row g-4 mt-3">
-                  Input item -->
-
-
-                  <!-- nouislider item -->
-                  <div class="col-md-6 col-lg-4">
-                    <label class="form-label">가격대</label>
-                    <div class="position-relative">
-                      <div class="noui-wrapper">
-                        <div class="d-flex justify-content-between">
-                          <input type="text" class="text-body input-with-range-min" />
-                          <input type="text" class="text-body input-with-range-max" />
-                        </div>
-                        <div class="noui-slider-range mt-2" data-range-min="10000" data-range-max="300000" data-range-selected-min="10000" data-range-selected-max="1000000"></div>
-                      </div>
-                    </div>
-                  </div>
-
-
-                  <!-- Star rating -->
-                  <div class="col-md-6 col-lg-5">
-                    <label class="form-label">별점 필터</label>
-                    <ul class="list-inline mb-0 g-3">
-                      <!-- 1 -->
-                      <li class="list-inline-item">
-                        <input type="checkbox" class="btn-check" id="btn-check-9" />
-                        <label class="btn btn-light btn-primary-soft-check" for="btn-check-9">1<i
-                            class="bi bi-star-fill"></i></label>
-                      </li>
-                      <!-- 2 -->
-                      <li class="list-inline-item">
-                        <input type="checkbox" class="btn-check" id="btn-check-10" />
-                        <label class="btn btn-light btn-primary-soft-check" for="btn-check-10">2<i
-                            class="bi bi-star-fill"></i></label>
-                      </li>
-                      <!-- 3 -->
-                      <li class="list-inline-item">
-                        <input type="checkbox" class="btn-check" id="btn-check-11" />
-                        <label class="btn btn-light btn-primary-soft-check" for="btn-check-11">3<i
-                            class="bi bi-star-fill"></i></label>
-                      </li>
-                      <!-- 4 -->
-                      <li class="list-inline-item">
-                        <input type="checkbox" class="btn-check" id="btn-check-12" />
-                        <label class="btn btn-light btn-primary-soft-check" for="btn-check-12">4<i
-                            class="bi bi-star-fill"></i></label>
-                      </li>
-                      <!-- 4 -->
-                      <li class="list-inline-item">
-                        <input type="checkbox" class="btn-check" id="btn-check-13" />
-                        <label class="btn btn-light btn-primary-soft-check" for="btn-check-13">5<i
-                            class="bi bi-star-fill"></i></label>
-                      </li>
-                    </ul>
-                  </div>
-
-                  <!-- Select item -->
-                  <div class="col-md-6 col-lg-4">
-                    <div class="form-control-bg-light form-size-lg">
-                      <label class="form-label">테마</label>
-                      <select class="form-select js-choice">
-                        <option value="">선택 옵션</option>
-                        <option>해변</option>
-                        <option>산</option>
-                        <option>섬</option>
-                        <option>숲</option>
-                        <option>계곡</option>
-                        <option>강</option>
-                        <option>호수</option>
-                        <option>도심</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="col-md-6 col-lg-4">
-                    <div class="form-control-bg-light form-size-lg">
-                      <label class="form-label">주요 시설</label>
-                      <select class="form-select js-choice">
-                        <option value="">선택 옵션</option>
-                        <option>일반 야영장</option>
-                        <option>카라반</option>
-                        <option>글램핑</option>
-                        <option>자동차야영장</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="col-md-6 col-lg-4">
-                    <div class="form-control-bg-light form-size-lg">
-                      <label class="form-label">운영 형태</label>
-                      <select class="form-select js-choice">
-                        <option value="">선택 옵션</option>
-                        <option>지지체</option>
-                        <option>국립공원</option>
-                        <option>자연휴양림</option>
-                        <option>국민여가</option>
-                        <option>민간</option>
-                      </select>
-                    </div>
-                  </div>
-                </form>
+		<div class="container">
+		  <div class="row">
+		    <div class="col-6 order-md-1">
+		      <!-- 가격대 -->
+		      <div class="form-control-bg-light form-size-lg">
+		        <label class="form-label mt-3">가격대</label>
+		        <div class="position-relative">
+		          <div class="noui-wrapper">
+		            <div class="d-flex justify-content-between">
+		              <input type="text" class="text-body input-with-range-min" />
+		              <input type="text" class="text-body input-with-range-max" />
+		            </div>
+		            <div class="noui-slider-range mt-2" data-range-min="10000" data-range-max="300000" data-range-selected-min="10000" data-range-selected-max="1000000"></div>
+		          </div>
+		        </div>
+		      </div>
+		
+		      <!-- 테마 -->
+		      <div class="form-control-bg-light form-size-lg mt-4">
+		        <label class="form-label">테마</label>
+		        <select class="form-select js-choice">
+		          <option value="">선택 옵션</option>
+		          <option>해변</option>
+		          <option>산</option>
+		          <option>섬</option>
+		          <option>숲</option>
+		          <option>계곡</option>
+		          <option>강</option>
+		          <option>호수</option>
+		          <option>도심</option>
+		        </select>
+		      </div>
+		    </div>
+		
+		    <div class="col-6 order-md-2">
+		      <!-- 주요 시설 -->
+		      <div class="form-control-bg-light form-size-lg">
+		        <label class="form-label mt-3">주요 시설</label>
+		        <select class="form-select js-choice">
+		          <option value="">선택 옵션</option>
+		          <option>일반 야영장</option>
+		          <option>카라반</option>
+		          <option>글램핑</option>
+		          <option>자동차야영장</option>
+		        </select>
+		      </div>
+		
+		      <!-- 운영 형태 -->
+		      <div class="form-control-bg-light form-size-lg mt-3">
+		        <label class="form-label">운영 형태</label>
+		        <select class="form-select js-choice">
+		          <option value="">선택 옵션</option>
+		          <option>지지체</option>
+		          <option>국립공원</option>
+		          <option>자연휴양림</option>
+		          <option>국민여가</option>
+		          <option>민간</option>
+		        </select>
+		      </div>
+		    </div>
+		  </div>
+		</div>
               </div>
               <!-- Advance filter END -->
             </div>

@@ -43,6 +43,15 @@ public class CampService {
 		return list;
 	}
 	
+	public List<CampSiteVO> campDetailSearch(){
+		List<CampSiteVO> list =  mapper.campDetailSearch();
+		for(CampSiteVO obj : list) {
+			obj.setLocation(obj.getLocation().replace(",", "/"));
+		}
+		System.out.println(list.toString() + "\n");
+		return list;
+	}
+	
 
 }
 

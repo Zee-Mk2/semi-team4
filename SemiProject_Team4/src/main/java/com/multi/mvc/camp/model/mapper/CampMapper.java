@@ -12,4 +12,5 @@ public interface CampMapper {
 	List<CampSiteVO> selectCampAll();
 	List<CampSiteVO> campThemeBest();
 	List<CampSiteVO> campSearch();
+	List<CampSiteVO> campDetailSearch();
 }
