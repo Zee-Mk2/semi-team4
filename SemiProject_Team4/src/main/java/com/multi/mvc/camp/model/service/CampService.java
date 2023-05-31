@@ -27,14 +27,36 @@ public class CampService {
 //		while (true) {
 //			map.put("해변", )
 //		}
-		
 		for (CampSiteVO obj : list) {
 			obj.setLocation(obj.getLocation().replace(",", "/"));
 		}
-		
 		System.out.println(list.toString() + "\n");
-		
 		return list;
 	}
+	
+	public List<CampSiteVO> campSearch(){
+		List<CampSiteVO> list =  mapper.campSearch();
+		for(CampSiteVO obj : list) {
+			obj.setLocation(obj.getLocation().replace(",", "/"));
+		}
+		System.out.println(list.toString() + "\n");
+		return list;
+	}
+	
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

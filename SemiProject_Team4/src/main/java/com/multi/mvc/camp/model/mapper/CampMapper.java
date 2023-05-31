@@ -11,4 +11,5 @@ import com.multi.mvc.camp.model.vo.CampSiteVO;
 public interface CampMapper {
 	List<CampSiteVO> selectCampAll();
 	List<CampSiteVO> campThemeBest();
+	List<CampSiteVO> campSearch();
 }

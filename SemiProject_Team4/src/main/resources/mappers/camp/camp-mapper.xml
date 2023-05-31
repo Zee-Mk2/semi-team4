@@ -27,6 +27,25 @@
 		UNION ALL
 		(SELECT campNm, location, doNm, sigunguNm, img FROM campsiteInfo WHERE location LIKE '%도심%' ORDER BY views LIMIT 1)
 	</select>
-
+	
+	<select id="campSearch" resultType="CampSiteVO">
+		(SELECT campNm, location, doNm, sigunguNm, img FROM campsiteInfo WHERE location LIKE '%해변%' ORDER BY views LIMIT 1)
+		UNION ALL
+		(SELECT campNm, location, doNm, sigunguNm, img FROM campsiteInfo WHERE location LIKE '%섬%' ORDER BY views LIMIT 1)
+		UNION ALL
+		(SELECT campNm, location, doNm, sigunguNm, img FROM campsiteInfo WHERE location LIKE '%산%' ORDER BY views LIMIT 1)
+		UNION ALL
+		(SELECT campNm, location, doNm, sigunguNm, img FROM campsiteInfo WHERE location LIKE '%강%' ORDER BY views LIMIT 1)
+		UNION ALL
+		(SELECT campNm, location, doNm, sigunguNm, img FROM campsiteInfo WHERE location LIKE '%호수%' ORDER BY views LIMIT 1)
+		UNION ALL
+		(SELECT campNm, location, doNm, sigunguNm, img FROM campsiteInfo WHERE location LIKE '%도심%' ORDER BY views LIMIT 1)
+	</select>
 </mapper>
+
+
+
+
+
+
 

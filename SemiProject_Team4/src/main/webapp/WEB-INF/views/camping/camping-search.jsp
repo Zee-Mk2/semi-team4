@@ -4,8 +4,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 
-<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-
  <!-- Plugins CSS -->
  <link rel="stylesheet" type="text/css" href="${path}/resources/assets/vendor/font-awesome/css/all.min.css" />
  <link rel="stylesheet" type="text/css" href="${path}/resources/assets/vendor/bootstrap-icons/bootstrap-icons.css" />
@@ -14,14 +12,10 @@
  <link rel="stylesheet" type="text/css" href="${path}/resources/assets/vendor/choices/css/choices.min.css" />
  <link rel="stylesheet" type="text/css" href="${path}/resources/assets/vendor/flatpickr/css/flatpickr.min.css" />
  <link rel="stylesheet" type="text/css" href="${path}/resources/assets/vendor/nouislider/nouislider.css" />
+ 
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 
 
- <!-- Vendors -->
- <script src="${path}/resources/assets/vendor/tiny-slider/tiny-slider.js"></script>
- <script src="${path}/resources/assets/vendor/glightbox/js/glightbox.js"></script>
- <script src="${path}/resources/assets/vendor/choices/js/choices.min.js"></script>
- <script src="${path}/resources/assets/vendor/flatpickr/js/flatpickr.min.js"></script>
- <script src="${path}/resources/assets/vendor/nouislider/nouislider.min.js"></script>
 
   <!-- **************** MAIN CONTENT START **************** -->
   <main>
@@ -64,16 +58,25 @@
                       <div class="col-md-6 col-lg-4">
                         <!-- Input field -->
                         <div class="form-border-bottom form-control-transparent form-fs-lg" style="height: 85%;">
-                          <select class="form-select js-choice" data-search-enabled="true">
+                          <select class="form-select js-choice z-index-99" data-search-enabled="true">
                             <option value="">지역 선택</option>
-                            <option>서울/인천/경기</option>
-                            <option>부산/울산/경남</option>
-                            <option>대구/경북</option>
-                            <option>대전/충청</option>
-                            <option>광주/전남</option>
-                            <option>전북</option>
-                            <option>강원</option>
-                            <option>제주</option>
+                            <option>서울시</option>
+                            <option>부산시</option>
+                            <option>대구시</option>
+                            <option>대전시</option>
+                            <option>광주시</option>
+                            <option>전라남도</option>
+                            <option>전라북도</option>
+                            <option>경상남도</option>
+                            <option>경상북도</option>
+                            <option>강원도</option>
+                            <option>제주도</option>
+                            <option>충청북도</option>
+                            <option>충청남도</option>
+                            <option>경기도</option>
+                            <option>인천시</option>
+                            <option>울산시</option>
+                            <option>세종시</option>
                           </select>
                         </div>
                       </div>
@@ -252,22 +255,25 @@
         </div>
         <!-- Filter and content END -->
 
-        <div class="row g-4" id="packages">
-          <!-- Card item START -->
-          <div class="col-md-6 col-xl-4">
-            <!-- place item-->
-            <div class="w-100 h-100 hover-animate">
-              <div class="card card-img-scale h-100 border-0 shadow">
-                <div class="card-img-top overflow-hidden">
-                  <img class="img-fluid" src="${path}/resources/assets/images/campsite/02.jpg" />
-                  <div class="card-img-overlay-top">
-                    <div class="d-flex justify-content-between">
-                      <span class="badge text-bg-dark mt-2" style="height: 1.5rem">해변</span>
-                      <span class="mt-n2">
-                        <img src="${path}/resources/assets/images/amcharts_weather_icons_1.0.0/animated/cloudy-day-1.svg">
-                      </span>
-                    </div>
-                    <!-- 하트 -->
+     <div class="row g-4" id="packages">
+	  <c:forEach var="item" items="${searchList}">
+	    <div class="col-4 col-md-6 col-xl-4">
+	      <!-- Card item START -->
+	      <div class="w-100 h-100 hover-animate">
+	        <div class="card card-img-scale h-100 border-0 shadow">
+	          <!-- Card content -->
+	          <div class="card-img-top overflow-hidden">
+	            <!-- Card image -->
+	            <img class="img-fluid" src="${item.img}" />
+	            <!-- Overlay -->
+	            <div class="card-img-overlay-top">
+	              <div class="d-flex justify-content-between">
+	                <span class="badge text-bg-dark mt-2" style="height: 1.5rem">${item.location}</span>
+	                <span class="mt-n2">
+	                  <img src="${path}/resources/assets/images/amcharts_weather_icons_1.0.0/animated/cloudy-day-1.svg">
+	                </span>
+	              </div>
+	              <!-- 하트 -->
                     <a class="btn ms-n2 heart-btn" style="position: absolute; left: 0.5rem; top: 11rem;">
                       <i class="far fa-heart fs-5 ms-n2 heart-icon" style="color: red;"></i>
                     </a>
@@ -277,11 +283,11 @@
                   <div class="w-100">
                     <h5 class="card-title text-decoration-none text-dark">
                       <a href="${path}/camp-detail" class="stretched-link title">
-                        사천비토솔섬오토캠핑장
+                        ${item.campNm}
                       </a>
                     </h5>
-                    전라북도 부안군
-                    <div class="d-flex card-subtitle mb-n4 pt-2">
+                    ${item.doNm} ${item.sigunguNm}
+                    <div class="d-flex card-subtitle mb-n7 pt-2">
                       <p class="card-text col-7">
                         <span class="h5 text-secondary">₩ 150,000 ~</span>
                       </p>
@@ -293,239 +299,26 @@
                         <i class="far fa-star text-warning"></i>
                       </p>
                     </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Card item END -->
-
-          <!-- Card item START -->
-          <div class="col-md-6 col-xl-4">
-            <div class="w-100 h-100 hover-animate">
-              <div class="card card-img-scale h-100 border-0 shadow">
-                <div class="card-img-top overflow-hidden">
-                  <img class="img-fluid" src="${path}/resources/assets/images/campsite/03.jpg" />
-                  <div class="card-img-overlay-top">
-                    <div class="d-flex justify-content-between">
-                      <span class="badge text-bg-dark mt-2" style="height: 1.5rem">강</span>
-                      <span class="mt-n2">
-                        <img src="${path}/resources/assets/images/amcharts_weather_icons_1.0.0/animated/cloudy.svg">
-                      </span>
-                    </div>
-                    <!-- 하트 -->
-                    <a class="btn ms-n2 heart-btn" style="position: absolute; left: 0.5rem; top: 11rem;">
-                      <i class="far fa-heart fs-5 ms-n2 heart-icon" style="color: red;"></i>
-                    </a>
-                  </div>
-                </div>
-                <div class="card-body d-flex align-items-center">
-                  <div class="w-100">
-                    <h5 class="card-title text-decoration-none text-dark">
-                      <a href="${path}/camp-detail" class="stretched-link title">
-                        사천비토솔섬오토캠핑장
-                      </a>
-                    </h5>
-                    전라북도 부안군
-                    <div class="d-flex card-subtitle mb-n4 pt-2">
-                      <p class="card-text col-7">
-                        <span class="h5 text-secondary">₩ 150,000 ~</span>
-                      </p>
-                      <p class="flex-shrink-1 mt-1 card-stars text-end col-5" style="font-size: 0.7rem;">
-                        <i class="fa fa-star text-warning"></i>
-                        <i class="fa fa-star text-warning"></i>
-                        <i class="fa fa-star text-warning"></i>
-                        <i class="fa fa-star-half-alt text-warning"></i>
-                        <i class="far fa-star text-warning"></i>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Card item END -->
-
-          <!-- Card item START -->
-          <div class="col-md-6 col-xl-4">
-            <div class="w-100 h-100 hover-animate">
-              <div class="card card-img-scale h-100 border-0 shadow">
-                <div class="card-img-top overflow-hidden">
-                  <img class="img-fluid" src="${path}/resources/assets/images/campsite/05.jpg" />
-                  <div class="card-img-overlay-top">
-                    <div class="d-flex justify-content-between">
-                      <span class="badge text-bg-dark mt-2" style="height: 1.5rem">섬</span>
-                      <span class="mt-n2">
-                        <img src="${path}/resources/assets/images/amcharts_weather_icons_1.0.0/animated/day.svg">
-                      </span>
-                    </div>
-                    <!-- 하트 -->
-                    <a class="btn ms-n2 heart-btn" style="position: absolute; left: 0.5rem; top: 11rem;">
-                      <i class="far fa-heart fs-5 ms-n2 heart-icon" style="color: red;"></i>
-                    </a>
-                  </div>
-                </div>
-                <div class="card-body d-flex align-items-center">
-                  <div class="w-100">
-                    <h5 class="card-title text-decoration-none text-dark">
-                      <a href="${path}/camp-detail" class="stretched-link title">
-                        사천비토솔섬오토캠핑장
-                      </a>
-                    </h5>
-                    전라북도 부안군
-                    <div class="d-flex card-subtitle mb-n4 pt-2">
-                      <p class="card-text col-7">
-                        <span class="h5 text-secondary">₩ 150,000 ~</span>
-                      </p>
-                      <p class="flex-shrink-1 mt-1 card-stars text-end col-5" style="font-size: 0.7rem;">
-                        <i class="fa fa-star text-warning"></i>
-                        <i class="fa fa-star text-warning"></i>
-                        <i class="fa fa-star text-warning"></i>
-                        <i class="fa fa-star-half-alt text-warning"></i>
-                        <i class="far fa-star text-warning"></i>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Card item END -->
-
-          <!-- Card item START -->
-          <div class="col-md-6 col-xl-4">
-            <div class="card card-img-scale h-100 border-0 shadow">
-              <div class="card-img-top overflow-hidden">
-                <img class="img-fluid" src="${path}/resources/assets/images/campsite/06.jpg" />
-                <div class="card-img-overlay-top">
-                  <div class="d-flex justify-content-between">
-                    <span class="badge text-bg-dark mt-2" style="height: 1.5rem">산</span>
-                    <span class="mt-n2">
-                      <img src="${path}/resources/assets/images/amcharts_weather_icons_1.0.0/animated/cloudy-day-1.svg">
-                    </span>
-                  </div>
-                  <!-- 하트 -->
-                    <a class="btn ms-n2 heart-btn" style="position: absolute; left: 0.5rem; top: 11rem;">
-                    <i class="far fa-heart fs-5 ms-n2 heart-icon" style="color: red;"></i>
-                  </a>
-                </div>
-              </div>
-              <div class="card-body d-flex align-items-center">
-                <div class="w-100">
-                  <h5 class="card-title text-decoration-none text-dark">
-                    <a href="${path}/camp-detail" class="stretched-link title">
-                      사천비토솔섬오토캠핑장
-                    </a>
-                  </h5>
-                  전라북도 부안군
-                  <div class="d-flex card-subtitle mb-n4 pt-2">
-                    <p class="card-text col-7">
-                      <span class="h5 text-secondary">₩ 150,000 ~</span>
-                    </p>
-                    <p class="flex-shrink-1 mt-1 card-stars text-end col-5" style="font-size: 0.7rem;">
-                      <i class="fa fa-star text-warning"></i>
-                      <i class="fa fa-star text-warning"></i>
-                      <i class="fa fa-star text-warning"></i>
-                      <i class="fa fa-star-half-alt text-warning"></i>
-                      <i class="far fa-star text-warning"></i>
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Card item END -->
-
-          <!-- Card item START -->
-          <div class="col-md-6 col-xl-4">
-            <div class="card card-img-scale h-100 border-0 shadow">
-              <div class="card-img-top overflow-hidden">
-                <img class="img-fluid" src="${path}/resources/assets/images/campsite/07.jpg" />
-                <div class="card-img-overlay-top">
-                  <div class="d-flex justify-content-between">
-                    <span class="badge text-bg-dark mt-2" style="height: 1.5rem">숲</span>
-                    <span class="mt-n2">
-                      <img src="${path}/resources/assets/images/amcharts_weather_icons_1.0.0/animated/cloudy.svg">
-                    </span>
-                  </div>
-                  <!-- 하트 -->
-                    <a class="btn ms-n2 heart-btn" style="position: absolute; left: 0.5rem; top: 11rem;">
-                    <i class="far fa-heart fs-5 ms-n2 heart-icon" style="color: red;"></i>
-                  </a>
-                </div>
-              </div>
-              <div class="card-body d-flex align-items-center">
-                <div class="w-100">
-                  <h5 class="card-title text-decoration-none text-dark">
-                    <a href="${path}/camp-detail" class="stretched-link title">
-                      사천비토솔섬오토캠핑장
-                    </a>
-                  </h5>
-                  전라북도 부안군
-                  <div class="d-flex card-subtitle mb-n4 pt-2">
-                    <p class="card-text col-7">
-                      <span class="h5 text-secondary">₩ 150,000 ~</span>
-                    </p>
-                    <p class="flex-shrink-1 mt-1 card-stars text-end col-5" style="font-size: 0.7rem;">
-                      <i class="fa fa-star text-warning"></i>
-                      <i class="fa fa-star text-warning"></i>
-                      <i class="fa fa-star text-warning"></i>
-                      <i class="fa fa-star-half-alt text-warning"></i>
-                      <i class="far fa-star text-warning"></i>
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Card item END -->
-
-          <!-- Card item START -->
-          <div class="col-md-6 col-xl-4">
-            <div class="card card-img-scale h-100 border-0 shadow">
-              <div class="card-img-top overflow-hidden">
-                <img class="img-fluid" src="${path}/resources/assets/images/campsite/08.jpg" />
-                <div class="card-img-overlay-top">
-                  <div class="d-flex justify-content-between">
-                    <span class="badge text-bg-dark mt-2" style="height: 1.5rem">도심</span>
-                    <span class="mt-n2">
-                      <img src="${path}/resources/assets/images/amcharts_weather_icons_1.0.0/animated/rainy-6.svg">
-                    </span>
-                  </div>
-                  <!-- 하트 -->
-                    <a class="btn ms-n2 heart-btn" style="position: absolute; left: 0.5rem; top: 11rem;">
-                    <i class="far fa-heart fs-5 ms-n2 heart-icon" style="color: red;"></i>
-                  </a>
-                </div>
-              </div>
-              <div class="card-body d-flex align-items-center">
-                <div class="w-100">
-                  <h5 class="card-title text-decoration-none text-dark">
-                    <a href="${path}/camp-detail" class="stretched-link title">
-                      사천비토솔섬오토캠핑장
-                    </a>
-                  </h5>
-                  전라북도 부안군
-                  <div class="d-flex card-subtitle mb-n4 pt-2">
-                    <p class="card-text col-7">
-                      <span class="h5 text-secondary">₩ 150,000 ~</span>
-                    </p>
-                    <p class="flex-shrink-1 mt-1 card-stars text-end col-5" style="font-size: 0.7rem;">
-                      <i class="fa fa-star text-warning"></i>
-                      <i class="fa fa-star text-warning"></i>
-                      <i class="fa fa-star text-warning"></i>
-                      <i class="fa fa-star-half-alt text-warning"></i>
-                      <i class="far fa-star text-warning"></i>
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Card item END -->
-        </div>
-        <!-- Row END -->
-
+	            </div>
+	          </div>
+	          <!-- Card body -->
+	          <div class="card-body">
+	            <!-- Add card body content -->
+	          </div>
+	        </div>
+	      </div>
+	      <!-- Card item END -->
+	    </div>
+	
+	    <!-- Add a new row after every 2nd card -->
+	    <c:if test="${(status.index + 1) % 2 == 0}">
+	      </div>
+	      <div class="row g-4" id="packages">
+	    </c:if>
+	  </c:forEach>
+	</div>
+   <!-- Card item END -->
+          
         <!-- Pagination -->
         <div class="row">
           <div class="col-12">
@@ -559,5 +352,12 @@
 		Tour grid END -->
   </main>
   <!-- **************** MAIN CONTENT END **************** -->
+  
+   <!-- Vendors -->
+ <script src="${path}/resources/assets/vendor/tiny-slider/tiny-slider.js"></script>
+ <script src="${path}/resources/assets/vendor/glightbox/js/glightbox.js"></script>
+ <script src="${path}/resources/assets/vendor/choices/js/choices.min.js"></script>
+ <script src="${path}/resources/assets/vendor/flatpickr/js/flatpickr.min.js"></script>
+ <script src="${path}/resources/assets/vendor/nouislider/nouislider.min.js"></script>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
