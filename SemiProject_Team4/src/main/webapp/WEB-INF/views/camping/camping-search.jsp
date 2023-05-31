@@ -102,7 +102,7 @@
                   <!-- Button -->
                   <div class="col-xl-2 pt-2">
                     <div class="d-grid">
-                      <a href="${path}/#" class="btn btn-lg btn-dark"><i class="fa-solid fa-search fs-5"></i></a>
+                      <a href="${path}/camp-search" class="btn btn-lg btn-dark"><i class="fa-solid fa-search fs-5"></i></a>
                     </div>
                   </div>
                 </div>
