@@ -117,10 +117,10 @@
                 </label>
               </div>
 
-              <!-- Advance filter START -->
+            <!-- <!--   Advance filter START
               <div class="collapse" id="collapseExample">
                 <form class="row g-4 mt-3">
-                  <!-- Input item -->
+                  Input item -->
 
 
                   <!-- nouislider item -->
@@ -197,11 +197,10 @@
                       <label class="form-label">주요 시설</label>
                       <select class="form-select js-choice">
                         <option value="">선택 옵션</option>
-                        <option>자동차 야영장</option>
                         <option>일반 야영장</option>
                         <option>카라반</option>
                         <option>글램핑</option>
-                        <option>계곡</option>
+                        <option>자동차야영장</option>
                       </select>
                     </div>
                   </div>
@@ -273,6 +272,7 @@
 	                  <img src="${path}/resources/assets/images/amcharts_weather_icons_1.0.0/animated/cloudy-day-1.svg">
 	                </span>
 	              </div>
+	              
 	              <!-- 하트 -->
                     <a class="btn ms-n2 heart-btn" style="position: absolute; left: 0.5rem; top: 11rem;">
                       <i class="far fa-heart fs-5 ms-n2 heart-icon" style="color: red;"></i>
