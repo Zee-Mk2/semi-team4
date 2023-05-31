@@ -68,8 +68,50 @@
 
 		<!-- =======================
 	Steps START -->
-		<section>
+		Page Banner START -->
+		<section class="py-0">
 			<div class="container">
+				<div class="row mt-4 align-items-center">
+					<div class="col-12">
+						<!-- Card START -->
+						<div class="card bg-light overflow-hidden px-sm-5">
+							<div class="row align-items-center g-4">
+
+								<!-- Content -->
+								<div class="col-sm-9">
+									<div class="card-body">
+										<!-- Breadcrumb -->
+										<nav aria-label="breadcrumb">
+											<ol class="breadcrumb breadcrumb-dark mb-0">
+												<li class="breadcrumb-item"><a href="index-concert.html">메인</a></li>
+												<li class="breadcrumb-item"><a href="concert-detail.html">공연장 상세</a>
+												</li>
+												<li class="breadcrumb-item active">예약하기</li>
+											</ol>
+										</nav>
+										<!-- Title -->
+										<div class="m-0 h3 title">공연장 예약하기</div>
+									</div>
+								</div>
+
+								<!-- Image -->
+								<div class="col-sm-3 text-end d-none d-sm-block">
+									<img src="${path}/resources/assets/images/element/17.svg" class="mt-4 mb-n5">
+								</div>
+							</div>
+						</div>
+						<!-- Card END -->
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- =======================
+	Page Banner END -->
+
+		<!-- =======================
+	Steps START -->
+		<section>
+			<div class="container-fluid" style="width: 1200px;">
 				<div id="stepper" class="bs-stepper stepper-outline">
 					<!-- Step Buttons START -->
 					<div class="bs-stepper-header" role="tablist">
@@ -123,7 +165,7 @@
 									<div id="step-1" role="tabpanel" class="content fade"
 										aria-labelledby="steppertrigger1">
 										<div class="row">
-											<div class="col-7">
+											<div class="col-6">
 												<!-- Glightbox image -->
 												<div class="mb-4" style="position: relative;">
 													<img src="https://image.toast.com/aaaaab/ticketlink/TKL_8/main0518(1).jpg"
@@ -136,7 +178,7 @@
 												</div>
 
 											</div>
-											<aside class="col-5">
+											<aside class="col-6">
 												<!-- Cancellation & Date change START -->
 												<div class="card border">
 													<!-- Card header -->
@@ -186,7 +228,7 @@
 													</div>
 													<!-- Card body END -->
 												</div>
-												<button class="btn btn-warning w-250px offset-8 mt-3" type="button"
+												<button class="btn btn-outline-warning w-100 my-3" type="button"
 													data-bs-toggle="collapse" data-bs-target="#collapseOne"
 													aria-expanded="true" aria-controls="collapseOne">
 													예매/취소 안내
@@ -236,7 +278,8 @@
 											<div class="col-6">
 												<div class="card border p-3">
 													<div class="h5 title mt-3">1. 날짜 선택</div>
-													<div class="form-control flatpickr">
+													<div class="form-border-bottom form-control-transparent form-fs-lg mt-2">
+														<input type="text" class="form-control flatpickr py-2" data-date-format="Y-m-d" placeholder="예매일자를 선택해주세요">
 													</div>
 												</div>
 											</div>
@@ -247,19 +290,24 @@
 													<div class="h5 title mt-3">2. 회차 선택</div>
 													<input class="form-check-input card-radio" type="radio" name="area-select">
 													<div class="card border mb-3"> 
-														<div class="h6 title pt-2">15시 00분</div>
-														<p>
-														<span class="fs-6">출연진</span>
-														<span class="h6">옥주현, 신성민, 조풍래, 김국희, 원종환, 안창용, 허순미, 김연진, 이다정</span>
-														</p>
+														<label class="card-label card area-card">
+															<input class="form-check-input card-radio" type="radio" name="time-select">
+															<div class="p-2">
+																<div class="h6 title">15시 00분</div>
+																<div class="fs-6 fw-bold">출연진</div>
+																<div class="h6">옥주현, 신성민, 조풍래, 김국희, 원종환, 안창용, 허순미, 김연진, 이다정</div>
+															</div>
+														</label>
 													</div>
-													<input class="form-check-input card-radio" type="radio" name="area-select">
-													<div class="card border"> 
-														<div class="h6 title pt-2">19시 30분</div>
-														<p>
-														<span class="fs-6">출연진</span>
-														<span class="h6"> 박진주, 신성민, 박영수, 김국희, 원종환, 안창용, 허순미, 김연진, 이다정</span>
-														</p>
+													<div class="card border mb-3"> 
+														<label class="card-label card area-card">
+															<input class="form-check-input card-radio" type="radio" name="time-select">
+															<div class="p-2">
+																<div class="h6 title">19시 30분</div>
+																<div class="fs-6 fw-bold">출연진</div>
+																<div class="h6">박진주, 신성민, 박영수, 김국희, 원종환, 안창용, 허순미, 김연진, 이다정</div>
+															</div>
+														</label>
 													</div>
 															
 													<div>
@@ -284,49 +332,118 @@
 											</div>
 										</div>
 
-										<div class="h5 title mt-3 mb-2">출연진</div>
-										<div class="row mb-5">
-											<div class="col">
-												<img src="http://image.toast.com/aaaaab/ticketlink/TKL_4/안나_옥주현.jpg" class="rounded-circle">
-												<h6 class="text-center">배우명</h6>
-												<h6 class="text-center">배역명</h6>
-											</div>
-											<div class="col">
-												<img src="http://image.toast.com/aaaaab/ticketlink/TKL_4/안나_옥주현.jpg" class="rounded-circle">
-												<h6 class="text-center">배우명</h6>
-												<h6 class="text-center">배역명</h6>
-											</div>
-											<div class="col">
-												<img src="http://image.toast.com/aaaaab/ticketlink/TKL_4/안나_옥주현.jpg" class="rounded-circle">
-												<h6 class="text-center">배우명</h6>
-												<h6 class="text-center">배역명</h6>
-											</div>
-											<div class="col">
-												<img src="http://image.toast.com/aaaaab/ticketlink/TKL_4/안나_옥주현.jpg" class="rounded-circle">
-												<h6 class="text-center">배우명</h6>
-												<h6 class="text-center">배역명</h6>
-											</div>
-											<div class="col">
-												<img src="http://image.toast.com/aaaaab/ticketlink/TKL_4/안나_옥주현.jpg" class="rounded-circle">
-												<h6 class="text-center">배우명</h6>
-												<h6 class="text-center">배역명</h6>
-											</div>
-											<div class="col">
-												<img src="http://image.toast.com/aaaaab/ticketlink/TKL_4/안나_옥주현.jpg" class="rounded-circle">
-												<h6 class="text-center">배우명</h6>
-												<h6 class="text-center">배역명</h6>
-											</div>
-											<div class="col">
-												<img src="http://image.toast.com/aaaaab/ticketlink/TKL_4/안나_옥주현.jpg" class="rounded-circle">
-												<h6 class="text-center">배우명</h6>
-												<h6 class="text-center">배역명</h6>
-											</div>
-											<div class="col">
-												<img src="http://image.toast.com/aaaaab/ticketlink/TKL_4/안나_옥주현.jpg" class="rounded-circle">
-												<h6 class="text-center">배우명</h6>
-												<h6 class="text-center">배역명</h6>
+
+										<!-- 출연진 슬라이더 시작 -->
+										<div class="my-4">
+											<div class="h5 title mt-3 mb-2">출연진</div>
+											<!-- Slider START -->
+											<div class="tiny-slider arrow-round arrow-blur arrow-hover">
+												<div class="tiny-slider-inner" data-autoplay="true" data-arrow="true" data-edge="2" data-dots="false" data-items="8">
+													<!-- Slider item -->
+													<div>
+														<div class="card rounded-3 overflow-hidden">
+															<div class="row g-0 align-items-center">
+																<img src="http://image.toast.com/aaaaab/ticketlink/TKL_4/안나_옥주현.jpg" class="rounded-circle">
+																<h6 class="text-center">배우명</h6>
+																<h6 class="text-center">배역명</h6>
+															</div>
+														</div>
+													</div>
+													<!-- Slider item -->
+													<div>
+														<div class="card rounded-3 overflow-hidden">
+															<div class="row g-0 align-items-center">
+																<img src="http://image.toast.com/aaaaab/ticketlink/TKL_4/안나_옥주현.jpg" class="rounded-circle">
+																<h6 class="text-center">배우명</h6>
+																<h6 class="text-center">배역명</h6>
+															</div>
+														</div>
+													</div>
+													<!-- Slider item -->
+													<div>
+														<div class="card rounded-3 overflow-hidden">
+															<div class="row g-0 align-items-center">
+																<img src="http://image.toast.com/aaaaab/ticketlink/TKL_4/안나_옥주현.jpg" class="rounded-circle">
+																<h6 class="text-center">배우명</h6>
+																<h6 class="text-center">배역명</h6>
+															</div>
+														</div>
+													</div>
+													<!-- Slider item -->
+													<div>
+														<div class="card rounded-3 overflow-hidden">
+															<div class="row g-0 align-items-center">
+																<img src="http://image.toast.com/aaaaab/ticketlink/TKL_4/안나_옥주현.jpg" class="rounded-circle">
+																<h6 class="text-center">배우명</h6>
+																<h6 class="text-center">배역명</h6>
+															</div>
+														</div>
+													</div>
+													<!-- Slider item -->
+													<div>
+														<div class="card rounded-3 overflow-hidden">
+															<div class="row g-0 align-items-center">
+																<img src="http://image.toast.com/aaaaab/ticketlink/TKL_4/안나_옥주현.jpg" class="rounded-circle">
+																<h6 class="text-center">배우명</h6>
+																<h6 class="text-center">배역명</h6>
+															</div>
+														</div>
+													</div>
+													<!-- Slider item -->
+													<div>
+														<div class="card rounded-3 overflow-hidden">
+															<div class="row g-0 align-items-center">
+																<img src="http://image.toast.com/aaaaab/ticketlink/TKL_4/안나_옥주현.jpg" class="rounded-circle">
+																<h6 class="text-center">배우명</h6>
+																<h6 class="text-center">배역명</h6>
+															</div>
+														</div>
+													</div>
+													<!-- Slider item -->
+													<div>
+														<div class="card rounded-3 overflow-hidden">
+															<div class="row g-0 align-items-center">
+																<img src="http://image.toast.com/aaaaab/ticketlink/TKL_4/안나_옥주현.jpg" class="rounded-circle">
+																<h6 class="text-center">배우명</h6>
+																<h6 class="text-center">배역명</h6>
+															</div>
+														</div>
+													</div>
+													<!-- Slider item -->
+													<div>
+														<div class="card rounded-3 overflow-hidden">
+															<div class="row g-0 align-items-center">
+																<img src="http://image.toast.com/aaaaab/ticketlink/TKL_4/안나_옥주현.jpg" class="rounded-circle">
+																<h6 class="text-center">배우명</h6>
+																<h6 class="text-center">배역명</h6>
+															</div>
+														</div>
+													</div>
+													<!-- Slider item -->
+													<div>
+														<div class="card rounded-3 overflow-hidden">
+															<div class="row g-0 align-items-center">
+																<img src="http://image.toast.com/aaaaab/ticketlink/TKL_4/안나_옥주현.jpg" class="rounded-circle">
+																<h6 class="text-center">배우명</h6>
+																<h6 class="text-center">배역명</h6>
+															</div>
+														</div>
+													</div>
+													<!-- Slider item -->
+													<div>
+														<div class="card rounded-3 overflow-hidden">
+															<div class="row g-0 align-items-center">
+																<img src="http://image.toast.com/aaaaab/ticketlink/TKL_4/안나_옥주현.jpg" class="rounded-circle">
+																<h6 class="text-center">배우명</h6>
+																<h6 class="text-center">배역명</h6>
+															</div>
+														</div>
+													</div>
+
+												</div>
 											</div>
 										</div>
+										<!-- 출연진 슬라이더 끝 -->
 
 										<!-- Step 1 button -->
 										<div class="row">
@@ -346,8 +463,8 @@
 										<div class="row mb-2">
 											<div class="col-8">
 												<!-- Glightbox image -->
-												<div class="mb-4" style="position: relative;">
-													<img src="${path}https://www.tliart.co.kr/assets/images/seat/seat_bg.png" class="rounded-2 w-100">
+												<div class="mb-4 position-relative">
+													<img src="https://www.tliart.co.kr/assets/images/seat/seat_bg.png" class="rounded-2 w-100">
 													<!--A-->
 													<label class="select-seat position-absolute r-class" style="top: 15.8rem; left: 4.6rem;">
 														<input type="checkbox" class="seat-checkbox">
@@ -526,6 +643,7 @@
 													</label>
 													<label class="select-seat position-absolute s-class" style="top: 31rem; left: 20.9rem;">
 														<input type="checkbox" class="seat-checkbox">
+													</label>
 													</label>
 													<label class="select-seat position-absolute s-class" style="top: 31rem; left: 27.4rem;">
 														<input type="checkbox" class="seat-checkbox">
@@ -863,13 +981,11 @@
 													</label>
 												</div>
 											</div>
-												</div>
-											</div>
 											
-											<div class="col-7">
+											<div class="col-4">
 												<div class="card border p-3">
 													<div class="row">
-														<div class="col">
+														<div class="col-12">
 															<div class="h5 title mt-3 mb-3">좌석등급</div>
 															<div class="card border mb-3 p-2"> 
 																<li class="list-group-item d-flex justify-content-between align-items-center pt-0">
@@ -887,7 +1003,7 @@
 															</div>	
 														</div>
 														
-														<div class="col">
+														<div class="col-12">
 															<div class="h5 title mt-3 mb-3">선택좌석</div>
 															<div class="card border mb-3 p-2"> 
 																<li class="list-group-item d-flex justify-content-between align-items-center pt-0">
@@ -898,23 +1014,25 @@
 																	<span class="fs-6 fw-bold p-2">좌석번호</span>
 																	<span class="h6 mb-0 fw-bold">1층-10열-31</span>
 																</li>
-																<br><br><br><br><br>
-																<h6 style="text-align:right">총 1석 선택되었습니다</h6>
+																<br>
+																<div class="text-center">총 1석 선택되었습니다</div>
 															</div>	
+														</div>
+														
+														<div class="text-center title text-primary fs-3">
+															₩ 99,000
 														</div>
 													</div>
 												</div>
 											</div>
 										</div>	
-										<img src="${path}/resources/assets/images/concert-stage2.png" style="width: 1200px; height: 1200px;"></img>
-											<!-- Step 2 button -->
-											<div class="row mt-4">
-												<div class="text-start col-6">
-													<button class="btn btn-info prev-btn mb-0">이전 페이지</button>
-												</div>
-												<div class="text-end col-6">
-													<button class="btn btn-warning next-btn mb-0">다음 페이지</button>
-												</div>
+										<!-- Step 2 button -->
+										<div class="row mt-4">
+											<div class="text-start col-6">
+												<button class="btn btn-info prev-btn mb-0">이전 페이지</button>
+											</div>
+											<div class="text-end col-6">
+												<button class="btn btn-warning next-btn mb-0">다음 페이지</button>
 											</div>
 										</div>
 									</div>
