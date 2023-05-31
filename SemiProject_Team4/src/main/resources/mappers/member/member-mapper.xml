@@ -4,8 +4,16 @@
 
 <!-- Dao를 Mapper Interface로 대체 할 예정, namespace=Class의 풀네임 선언 필요 -->
 <mapper namespace="com.multi.mvc.member.model.mapper.MemberMapper">
-	<select id="selectMemberById" parameterType="string" resultType="com.multi.mvc.member.model.vo.Member">
+	<select id="selectMemberById" parameterType="string" resultType="Member">
 		SELECT * FROM member WHERE id = #{id} AND status = 'Y'
 	</select>
+	
+	<insert id="joinMember" parameterType="Member">
+		INSERT INTO member VALUES(DEFAULT, #{id}, #{password}, #{name}, #{gender}, #{address}, #{favDistrict}, DEFAULT, DEFAULT, 'Y', #{birth}, #{oriFileNm}, #{reFileNm}, #{phone})
+	</insert>
+	
+	<insert id="updateMember" parameterType="Member">
+		UPDATE member SET oriFileNm = #{oriFileNm}, reFileNm = #{reFileNm}, name = #{name}, phone = #{phone}, birth = #{birth}, gender = #{gender}, address = #{address} WHERE mno = #{mno}
+	</insert>
 </mapper>
 

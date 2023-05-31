@@ -77,7 +77,7 @@ Main Content START -->
 		
 								<!-- Form START -->
 								<form class="mt-4 text-start" action="${path}/sign-in" method="post">
-									<!-- Email -->
+									<!-- ID(이메일 형식) -->
 									<div class="mb-3">
 										<input type="text" id="id" name="inputId" class="form-control" placeholder="이메일을 입력해주세요" required>
 									</div>

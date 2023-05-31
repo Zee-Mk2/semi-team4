@@ -153,20 +153,6 @@ Content START -->
 												placeholder="이름을 입력하세요.">
 										</div>
 
-										<!-- Email -->
-										<div class="col-md-6">
-											<label class="form-label">Email<span class="text-danger">*</span></label>
-											<input type="email" class="form-control" value="test@email.com"
-												placeholder="Email을 입력하세요.">
-										</div>
-
-										<!-- Mobile -->
-										<div class="col-md-6">
-											<label class="form-label">아이디<span class="text-danger">*</span></label>
-											<input type="text" class="form-control" value="testID123"
-												placeholder="아이디를 입력하세요.">
-										</div>
-
 										<!-- phone number -->
 										<div class="col-md-6">
 											<label class="form-label">휴대폰 번호<span class="text-danger">*</span></label>

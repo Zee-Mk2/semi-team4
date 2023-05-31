@@ -118,40 +118,19 @@
 									</div>
 	
 									<!-- 전화번호 -->
-<!-- 									<div class="col-md-6"> -->
-<!-- 										<label class="form-label">휴대폰 번호<span class="text-danger">*</span></label> -->
-<!-- 										<input id="" type="email" class="form-control" value="" placeholder="- 없이 숫자만 입력해주세요 ex. 01012341234" required> -->
-<!-- 									</div> -->
+									<div class="col-md-6">
+										<label class="form-label">휴대폰 번호<span class="text-danger">*</span></label>
+										<input id="phone" name="phone" type="number" class="form-control" value="" placeholder="- 없이 숫자만 입력해주세요 ex. 01012341234" required>
+									</div>
 	
 									<!-- 생년월일 -->
 									<div class="col-md-6">
 										<label class="form-label">생년월일<span class="text-danger">*</span></label>
-										<input id="birth" name="birth" type="text" class="form-control" value="" placeholder="주민번호 앞자리를 입력해주세요 ex. 990102" required>
+										<input name="birth" type="date" class="form-control flatpickr" placeholder="생년월일을 선택해주세요." data-date-format="Y-m-d">
 									</div>
-
-									<!-- Gender -->
-									<div class="col-md-6">
-										<label class="form-label">성별<span class="text-danger">*</span></label>
-										<div class="d-flex gap-4 mt-3">
-											<div class="form-check radio-bg-light">
-												<input class="form-check-input" type="radio" name="gender" id="male" checked="" required>
-												<label class="form-check-label" for="gender1">
-													남
-												</label>
-											</div>
-											<div class="form-check radio-bg-light">
-												<input class="form-check-input" type="radio" name="gender" id="female" required>
-												<label class="form-check-label" for="gender2">
-													여
-												</label>
-											</div>
-										</div>
-									</div>
-	
-									<div class="col-6"></div>
 	
 									<!-- 선호지역 -->
-									<div class="col-md-12">
+									<div class="col-md-6">
 										<label class="form-label">선호지역</label>
 										<div class="form-control">
 											<select class="form-select js-choice" name="favDistrict">
@@ -165,6 +144,25 @@
 												<option>강원</option>
 												<option>제주</option>
 											</select>
+										</div>
+									</div>
+
+									<!-- Gender -->
+									<div class="col-md-6">
+										<label class="form-label">성별<span class="text-danger">*</span></label>
+										<div class="d-flex gap-4 mt-3">
+											<div class="form-check radio-bg-light">
+												<input class="form-check-input" type="radio" name="gender" value="M" checked="" required>
+												<label class="form-check-label" for="gender1">
+													남
+												</label>
+											</div>
+											<div class="form-check radio-bg-light">
+												<input class="form-check-input" type="radio" name="gender" value="F" required>
+												<label class="form-check-label" for="gender2">
+													여
+												</label>
+											</div>
 										</div>
 									</div>
 	

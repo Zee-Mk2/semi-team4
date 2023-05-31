@@ -70,10 +70,27 @@ public class MemberController {
 		return "redirect:/";
 	}
 	
-	@RequestMapping(value = "/sign-up", method = RequestMethod.GET)
-	public String signUp(Locale locale, Model model) {
-		
+	@GetMapping(value = "/sign-up")
+	public String signUpPage() {
+		log.info("회원가입 페이지 요청");
 		return "/account/sign-up";
+	}
+	
+	@PostMapping(value = "/sign-up")
+	public String signUp(Model model, Member member) {
+		log.info("회원가입 요청");
+		int result = 0;
+		result = service.joinMember(member);
+		
+		if(result > 0) {
+			model.addAttribute("msg", "회원가입 성공하였습니다.");
+			model.addAttribute("location", "/");
+		} else { 
+			model.addAttribute("msg", "회원가입에 실패하였습니다. 입력정보를 확인해주세요.");
+			model.addAttribute("location", "/member/enroll");
+		}
+		
+		return "common/msg";
 	}
 	
 	@RequestMapping(value = "/MyProfile", method = RequestMethod.GET)

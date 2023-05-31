@@ -15,4 +15,18 @@ public interface MemberMapper {
 	 * @return Member
 	 */
 	Member selectMemberById(String id);
+	
+	/**
+	 * 회원가입 쿼리
+	 * @param member
+	 * @return 성공: 1, 실패: 0
+	 */
+	int joinMember(Member member);
+
+	/**
+	 * 회원정보 수정 쿼리
+	 * @param member
+	 * @return 성공: 1, 실패: 0
+	 */
+	int updateMember(Member member);
 }

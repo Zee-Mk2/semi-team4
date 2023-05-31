@@ -24,6 +24,12 @@ public class MemberService {
 	@Autowired
 	private BCryptPasswordEncoder pwEncoder;
 	
+	/**
+	 * 로그인 메소드
+	 * @param inputId
+	 * @param inputPwd
+	 * @return 로그인 성공시 member, 실패시 null
+	 */
 	public Member login(String inputId, String inputPwd) {
 		log.info(inputId);
 		Member member = mapper.selectMemberById(inputId);
@@ -51,6 +57,22 @@ public class MemberService {
 			log.info("로그인 실패");
 			return null;
 		}
+	}
+	
+	/**
+	 * 회원가입
+	 * @param member
+	 * @return 성공시 1, 실패시 0?
+	 */
+	@Transactional(rollbackFor = Exception.class)
+	public int joinMember(Member member) {
+		int result = 0;
+		String encodePw = pwEncoder.encode(member.getPassword()); // 암호화 로직
+		member.setPassword(encodePw);
+		result = mapper.joinMember(member);
+		log.info(String.valueOf(result));
+		
+		return result;
 	}
 	
 }

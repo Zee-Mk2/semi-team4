@@ -140,7 +140,7 @@
 										</div>
 										<div>
 											<a class="h6 mt-2 mt-sm-0" href="${path}/MyProfile">${loginMember.name}</a>
-											<p class="small m-0">${loginMember.email}</p>
+											<p class="small m-0">${loginMember.id}</p>
 										</div>
 									</div>
 								</li>

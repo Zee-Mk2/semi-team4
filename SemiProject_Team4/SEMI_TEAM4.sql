@@ -146,10 +146,9 @@ SELECT * FROM conRank ORDER BY rankNum;
 DROP TABLE member;
 CREATE TABLE member (
 	mno			INT PRIMARY KEY AUTO_INCREMENT,
-    id			VARCHAR(30),
+    id			VARCHAR(50),
     password	VARCHAR(100),
     name		VARCHAR(15),
-    email		VARCHAR(100),
     gender		VARCHAR(1),
     address		VARCHAR(100),
     favDistrict	VARCHAR(100),
@@ -158,7 +157,8 @@ CREATE TABLE member (
     status		VARCHAR(1) DEFAULT 'Y',
     birth		DATETIME,
     oriFileNm	VARCHAR(100),
-    reFileNm	VARCHAR(100)
+    reFileNm	VARCHAR(100),
+    phone		VARCHAR(20)
 );
 
 SELECT * FROM member;
@@ -246,25 +246,51 @@ SELECT * FROM reply;
 ------------------------------- 쿼리 검증 -------------------------------
 
 -- 캠핑메인 테마별 BEST 캠핑장 > 테마별로 조회수가 가장 많은 캠핑장 1개씩 뽑아오는 쿼리
-(SELECT campNm, location, doNm, sigunguNm, img FROM campsiteInfo WHERE location LIKE '%해변%' ORDER BY views LIMIT 1)
-UNION ALL
-(SELECT campNm, location, doNm, sigunguNm, img FROM campsiteInfo WHERE location LIKE '%섬%' ORDER BY views LIMIT 1)
-UNION ALL
-(SELECT campNm, location, doNm, sigunguNm, img FROM campsiteInfo WHERE location LIKE '%산%' ORDER BY views LIMIT 1)
-UNION ALL
-(SELECT campNm, location, doNm, sigunguNm, img FROM campsiteInfo WHERE location LIKE '%숲%' ORDER BY views LIMIT 1)
-UNION ALL
-(SELECT campNm, location, doNm, sigunguNm, img FROM campsiteInfo WHERE location LIKE '%계곡%' ORDER BY views LIMIT 1)
-UNION ALL
-(SELECT campNm, location, doNm, sigunguNm, img FROM campsiteInfo WHERE location LIKE '%강%' ORDER BY views LIMIT 1)
-UNION ALL
-(SELECT campNm, location, doNm, sigunguNm, img FROM campsiteInfo WHERE location LIKE '%호수%' ORDER BY views LIMIT 1)
-UNION ALL
-(SELECT campNm, location, doNm, sigunguNm, img FROM campsiteInfo WHERE location LIKE '%도심%' ORDER BY views LIMIT 1);
+-- (SELECT campNm, location, doNm, sigunguNm, img FROM campsiteInfo WHERE location LIKE '%해변%' ORDER BY views LIMIT 1)
+-- UNION ALL
+-- (SELECT campNm, location, doNm, sigunguNm, img FROM campsiteInfo WHERE location LIKE '%섬%' ORDER BY views LIMIT 1)
+-- UNION ALL
+-- (SELECT campNm, location, doNm, sigunguNm, img FROM campsiteInfo WHERE location LIKE '%산%' ORDER BY views LIMIT 1)
+-- UNION ALL
+-- (SELECT campNm, location, doNm, sigunguNm, img FROM campsiteInfo WHERE location LIKE '%숲%' ORDER BY views LIMIT 1)
+-- UNION ALL
+-- (SELECT campNm, location, doNm, sigunguNm, img FROM campsiteInfo WHERE location LIKE '%계곡%' ORDER BY views LIMIT 1)
+-- UNION ALL
+-- (SELECT campNm, location, doNm, sigunguNm, img FROM campsiteInfo WHERE location LIKE '%강%' ORDER BY views LIMIT 1)
+-- UNION ALL
+-- (SELECT campNm, location, doNm, sigunguNm, img FROM campsiteInfo WHERE location LIKE '%호수%' ORDER BY views LIMIT 1)
+-- UNION ALL
+-- (SELECT campNm, location, doNm, sigunguNm, img FROM campsiteInfo WHERE location LIKE '%도심%' ORDER BY views LIMIT 1);
 
--- 회원가입
-INSERT INTO member VALUES(DEFAULT, 'admin', '1234', '관리자', null, null, null, null, DEFAULT, 'ADMIN', 'Y', null, null, null);
+-- -- 공연메인 테마별 BEST 공연
+-- (SELECT conNm, genre, startDate, endDate, conHallNm, posterImg FROM concert WHERE genre LIKE '서양음악(클래식)' ORDER BY views LIMIT 1)
+-- UNION
+-- (SELECT conNm, genre, startDate, endDate, conHallNm, posterImg FROM concert WHERE genre LIKE '대중음악' ORDER BY views LIMIT 1)
+-- UNION
+-- (SELECT conNm, genre, startDate, endDate, conHallNm, posterImg FROM concert WHERE genre LIKE '뮤지컬' ORDER BY views LIMIT 1)
+-- UNION
+-- (SELECT conNm, genre, startDate, endDate, conHallNm, posterImg FROM concert WHERE genre LIKE '연극' ORDER BY views LIMIT 1)
+-- UNION
+-- (SELECT conNm, genre, startDate, endDate, conHallNm, posterImg FROM concert WHERE genre LIKE '서커스/마술' ORDER BY views LIMIT 1)
+-- UNION
+-- (SELECT conNm, genre, startDate, endDate, conHallNm, posterImg FROM concert WHERE genre LIKE '복합' ORDER BY views LIMIT 1)
+-- UNION
+-- (SELECT conNm, genre, startDate, endDate, conHallNm, posterImg FROM concert WHERE genre LIKE '한국음악(국악)' ORDER BY views LIMIT 1)
+-- UNION
+-- (SELECT conNm, genre, startDate, endDate, conHallNm, posterImg FROM concert WHERE genre LIKE '무용' ORDER BY views LIMIT 1)
+-- UNION
+-- (SELECT conNm, genre, startDate, endDate, conHallNm, posterImg FROM concert WHERE genre LIKE '아동' ORDER BY views LIMIT 1)
+-- UNION
+-- (SELECT conNm, genre, startDate, endDate, conHallNm, posterImg FROM concert WHERE genre LIKE '대중무용' ORDER BY views LIMIT 1);
+
+-- SELECT * FROM concert WHERE genre = '아동';
+
+-- -- 회원가입
+INSERT INTO member VALUES(DEFAULT, 'admin', '1234', '관리자', null, null, null, DEFAULT, 'ADMIN', 'Y', null, null, null, null);
 SELECT * FROM member;
+
+-- -- 회원정보 수정
+UPDATE member SET name = '관리자2', email = 'verylongemailaddress@email.com' WHERE mno = '1';
 
 -- 로그인
 SELECT * FROM member WHERE id = 'admin' AND status = 'Y';
