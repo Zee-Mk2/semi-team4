@@ -162,7 +162,7 @@
 					</ul>
 				</c:if>
 				<c:if test="${loginMember == null}">
-					<a class="btn btn-primary m-2" href="${path}/sign-in">로그인</a>
+					<a class="btn btn-outline-primary m-2" href="${path}/sign-in">로그인</a>
 				</c:if>
 
 			</div>

@@ -26,7 +26,6 @@
 <!-- =======================
 Main Banner START -->
 <section class="pt-0">
-
 	<!-- 카로셀 시작 -->
 	<div id="carousel" class="carousel slide" data-bs-ride="carousel" style="background-position: center center; background-repeat: no-repeat; background-size: cover;">
 		<!-- Indicators/dots -->
@@ -111,7 +110,7 @@ Main Banner START -->
 									<!-- Input field -->
 									<div class="form-border-bottom form-control-transparent form-fs-lg" style="height: 85%;">
 										<select class="form-select js-choice" data-search-enabled="true">
-											<option value="">지역</option>
+											<option value="">지역 선택</option>
 											<option>서울/인천/경기</option>
 											<option>부산/울산/경남</option>
 											<option>대구/경북</option>
@@ -126,14 +125,14 @@ Main Banner START -->
 
 								<!-- Check in -->
 								<div class="col-md-6 col-lg-3">
-										<!-- Date input -->
-										<!-- <div class="form-control-border form-control-transparent form-fs-md">
-											<input type="text" class="form-control flatpickr" data-mode="range" placeholder="Select date"
-												value="19 Sep to 28 Sep">
-										</div> -->
-										<div class="form-border-bottom form-control-transparent form-fs-lg">
-											<input type="text" class="form-control flatpickr py-2" data-mode="range" data-date-format="m-d" placeholder="예매 일정">
-										</div>
+									<!-- Date input -->
+									<!-- <div class="form-control-border form-control-transparent form-fs-md">
+										<input type="text" class="form-control flatpickr" data-mode="range" placeholder="Select date"
+											value="19 Sep to 28 Sep">
+									</div> -->
+									<div class="form-border-bottom form-control-transparent form-fs-lg">
+										<input type="text" class="form-control flatpickr py-2" data-mode="range" data-date-format="m-d" placeholder="예매 일정">
+									</div>
 								</div>
 
 								<!-- Guest -->
@@ -203,9 +202,11 @@ Packages START -->
 										${item.conNm}
 									</a>
 								</h5>
-								<div class="h6 text-body" style="font-size: 14px;">${item.startDate} ~ ${item.endDate}</div>
+								<div class="h6 text-body" style="font-size: 14px;">
+									<fmt:formatDate value="${item.startDate}" pattern="yyyy.MM.dd"/> ~ <fmt:formatDate value="${item.endDate}" pattern="yyyy.MM.dd"/>
+								</div>
 								<div class="d-flex card-subtitle mb-n1">
-									<p class="card-text">
+									<p class="card-text text-truncate">
 										<span class="h6 text-body">${item.conHallNm}</span>
 									</p>
 								</div>
