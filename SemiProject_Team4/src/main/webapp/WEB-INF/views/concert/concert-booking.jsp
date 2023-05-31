@@ -344,10 +344,525 @@
 									<div id="step-2" role="tabpanel" class="content fade"
 										aria-labelledby="steppertrigger1">
 										<div class="row mb-2">
-											<div class="col-5">
+											<div class="col-8">
 												<!-- Glightbox image -->
 												<div class="mb-4" style="position: relative;">
-													<img src="${path}/resources/assets\images\concert-stage1.png" class="rounded-2 w-100">
+													<img src="${path}https://www.tliart.co.kr/assets/images/seat/seat_bg.png" class="rounded-2 w-100">
+													<!--A-->
+													<label class="select-seat position-absolute r-class" style="top: 15.8rem; left: 4.6rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute r-class" style="top: 15.8rem; left: 6.8rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute r-class" style="top: 15.8rem; left: 12.2rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute r-class" style="top: 15.8rem; left: 14.4rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute r-class" style="top: 15.8rem; left: 33.9rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute r-class" style="top: 15.8rem; left: 39.3rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<!--B-->
+													<label class="select-seat position-absolute r-class" style="top: 18rem; left: 6.8rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute r-class" style="top: 18rem; left: 14.3rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute r-class" style="top: 18rem; left: 20.9rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute r-class" style="top: 18rem; left: 31.7rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute r-class" style="top: 18rem; left: 41.5rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<!--C-->
+													<label class="select-seat position-absolute r-class" style="top: 20.2rem; left: 4.6rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute r-class" style="top: 20.2rem; left: 12.2rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute r-class" style="top: 20.2rem; left: 23.1rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute r-class" style="top: 20.2rem; left: 33.9rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute r-class" style="top: 20.2rem; left: 41.5rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<!--D-->
+													<label class="select-seat position-absolute r-class" style="top: 22.3rem; left: 14.4rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute r-class" style="top: 22.3rem; left: 16.5rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute r-class" style="top: 22.3rem; left: 25.2rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute r-class" style="top: 22.3rem; left: 31.7rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute r-class" style="top: 22.3rem; left: 41.5rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<!--E-->
+													<label class="select-seat position-absolute r-class" style="top: 24.5rem; left: 6.8rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute r-class" style="top: 24.5rem; left: 12.2rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute r-class" style="top: 24.5rem; left: 18.7rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute r-class" style="top: 24.5rem; left: 20.9rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute r-class" style="top: 24.5rem; left: 27.4rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute r-class" style="top: 24.5rem; left: 29.6rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute r-class" style="top: 24.5rem; left: 31.7rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute r-class" style="top: 24.5rem; left: 33.9rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<!--F-->
+													<label class="select-seat position-absolute r-class" style="top: 26.7rem; left: 6.8rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute r-class" style="top: 26.7rem; left: 12.2rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute r-class" style="top: 26.7rem; left: 14.4rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute r-class" style="top: 26.7rem; left: 16.5rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute r-class" style="top: 26.7rem; left: 25.2rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute r-class" style="top: 26.7rem; left: 29.6rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute r-class" style="top: 26.7rem; left: 31.7rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute r-class" style="top: 26.7rem; left: 33.9rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute r-class" style="top: 26.7rem; left: 39.3rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute r-class" style="top: 26.7rem; left: 41.5rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<!--G-->
+													<label class="select-seat position-absolute r-class" style="top: 28.9rem; left: 4.6rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute r-class" style="top: 28.9rem; left: 6.8rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute r-class" style="top: 28.9rem; left: 12.2rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute r-class" style="top: 28.9rem; left: 14.4rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute r-class" style="top: 28.9rem; left: 18.7rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute r-class" style="top: 28.9rem; left: 20.9rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute r-class" style="top: 28.9rem; left: 25.2rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute r-class" style="top: 28.9rem; left: 27.4rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute r-class" style="top: 28.9rem; left: 33.9rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute r-class" style="top: 28.9rem; left: 39.3rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute r-class" style="top: 28.9rem; left: 41.5rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<!--H-->
+													<label class="select-seat position-absolute s-class" style="top: 31rem; left: 4.6rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute s-class" style="top: 31rem; left: 6.8rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute s-class" style="top: 31rem; left: 12.2rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute s-class" style="top: 31rem; left: 14.4rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute s-class" style="top: 31rem; left: 16.5rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute s-class" style="top: 31rem; left: 18.7rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute s-class" style="top: 31rem; left: 20.9rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute s-class" style="top: 31rem; left: 27.4rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute s-class" style="top: 31rem; left: 29.6rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute s-class" style="top: 31rem; left: 31.7rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute s-class" style="top: 31rem; left: 39.3rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute s-class" style="top: 31rem; left: 41.5rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<!--I-->
+													<label class="select-seat position-absolute s-class" style="top: 33.2rem; left: 4.6rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute s-class" style="top: 33.2rem; left: 6.8rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute s-class" style="top: 33.2rem; left: 12.2rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute s-class" style="top: 33.2rem; left: 14.4rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute s-class" style="top: 33.2rem; left: 18.7rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute s-class" style="top: 33.2rem; left: 20.9rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute s-class" style="top: 33.2rem; left: 23.1rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute s-class" style="top: 33.2rem; left: 25.2rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute s-class" style="top: 33.2rem; left: 29.6rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute s-class" style="top: 33.2rem; left: 33.9rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute s-class" style="top: 33.2rem; left: 41.5rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<!--J-->
+													<label class="select-seat position-absolute s-class" style="top: 35.4rem; left: 6.8rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute s-class" style="top: 35.4rem; left: 12.2rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute s-class" style="top: 35.4rem; left: 14.4rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute s-class" style="top: 35.4rem; left: 16.5rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute s-class" style="top: 35.4rem; left: 18.7rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute s-class" style="top: 35.4rem; left: 20.9rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute s-class" style="top: 35.4rem; left: 23.1rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute s-class" style="top: 35.4rem; left: 25.2rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute s-class" style="top: 35.4rem; left: 29.6rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute s-class" style="top: 35.4rem; left: 33.9rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute s-class" style="top: 35.4rem; left: 39.3rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<!--K-->
+													<label class="select-seat position-absolute s-class" style="top: 37.6rem; left: 4.6rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute s-class" style="top: 37.6rem; left: 12.2rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute s-class" style="top: 37.6rem; left: 16.5rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute s-class" style="top: 37.6rem; left: 18.7rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute s-class" style="top: 37.6rem; left: 20.9rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute s-class" style="top: 37.6rem; left: 23.1rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute s-class" style="top: 37.6rem; left: 27.4rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute s-class" style="top: 37.6rem; left: 29.6rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute s-class" style="top: 37.6rem; left: 31.7rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute s-class" style="top: 37.6rem; left: 33.9rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute s-class" style="top: 37.6rem; left: 39.3rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute s-class" style="top: 37.6rem; left: 41.5rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<!--L-->
+													<label class="select-seat position-absolute s-class" style="top: 39.7rem; left: 4.6rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute s-class" style="top: 39.7rem; left: 12.2rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute s-class" style="top: 39.7rem; left: 14.4rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute s-class" style="top: 39.7rem; left: 18.7rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute s-class" style="top: 39.7rem; left: 20.9rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute s-class" style="top: 39.7rem; left: 23.1rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute s-class" style="top: 39.7rem; left: 25.2rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute s-class" style="top: 39.7rem; left: 27.4rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute s-class" style="top: 39.7rem; left: 29.6rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute s-class" style="top: 39.7rem; left: 31.7rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute s-class" style="top: 39.7rem; left: 41.5rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<!--M-->
+													<label class="select-seat position-absolute s-class" style="top: 41.9rem; left: 12.2rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute s-class" style="top: 41.9rem; left: 14.4rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute s-class" style="top: 41.9rem; left: 16.5rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute s-class" style="top: 41.9rem; left: 18.7rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute s-class" style="top: 41.9rem; left: 23.1rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute s-class" style="top: 41.9rem; left: 25.2rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute s-class" style="top: 41.9rem; left: 27.4rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute s-class" style="top: 41.9rem; left: 33.9rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<!--N-->
+													<label class="select-seat position-absolute a-class" style="top: 44rem; left: 12.2rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute a-class" style="top: 44rem; left: 14.4rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute a-class" style="top: 44rem; left: 16.5rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute a-class" style="top: 44rem; left: 18.7rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute a-class" style="top: 44rem; left: 20.9rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute a-class" style="top: 44rem; left: 25.2rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute a-class" style="top: 44rem; left: 27.4rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute a-class" style="top: 44rem; left: 29.6rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute a-class" style="top: 44rem; left: 31.7rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute a-class" style="top: 44rem; left: 33.9rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<!--O-->
+													<label class="select-seat position-absolute a-class" style="top: 46.2rem; left: 12.2rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute a-class" style="top: 46.2rem; left: 14.4rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute a-class" style="top: 46.2rem; left: 16.5rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute a-class" style="top: 46.2rem; left: 23.1rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute a-class" style="top: 46.2rem; left: 25.2rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute a-class" style="top: 46.2rem; left: 27.4rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute a-class" style="top: 46.2rem; left: 29.6rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute a-class" style="top: 46.2rem; left: 31.7rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute a-class" style="top: 46.2rem; left: 33.9rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<!--P-->
+													<label class="select-seat position-absolute a-class" style="top: 48.4rem; left: 12.2rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute a-class" style="top: 48.4rem; left: 14.4rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute a-class" style="top: 48.4rem; left: 16.5rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute a-class" style="top: 48.4rem; left: 18.7rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute a-class" style="top: 48.4rem; left: 20.9rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute a-class" style="top: 48.4rem; left: 23.1rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute a-class" style="top: 48.4rem; left: 25.2rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute a-class" style="top: 48.4rem; left: 27.4rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute a-class" style="top: 48.4rem; left: 29.6rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute a-class" style="top: 48.4rem; left: 31.7rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute a-class" style="top: 48.4rem; left: 33.9rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<!--Q-->
+													<label class="select-seat position-absolute a-class" style="top: 50.6rem; left: 12.2rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute a-class" style="top: 50.6rem; left: 14.4rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute a-class" style="top: 50.6rem; left: 16.5rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute a-class" style="top: 50.6rem; left: 18.7rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute a-class" style="top: 50.6rem; left: 20.9rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute a-class" style="top: 50.6rem; left: 23.1rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute a-class" style="top: 50.6rem; left: 25.2rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute a-class" style="top: 50.6rem; left: 27.4rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute a-class" style="top: 50.6rem; left: 29.6rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute a-class" style="top: 50.6rem; left: 33.9rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<!--R-->
+													<label class="select-seat position-absolute a-class" style="top: 52.8rem; left: 12.2rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute a-class" style="top: 52.8rem; left: 14.4rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute a-class" style="top: 52.8rem; left: 18.7rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute a-class" style="top: 52.8rem; left: 20.9rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute a-class" style="top: 52.8rem; left: 23.1rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute a-class" style="top: 52.8rem; left: 25.2rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute a-class" style="top: 52.8rem; left: 27.4rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute a-class" style="top: 52.8rem; left: 29.6rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute a-class" style="top: 52.8rem; left: 31.7rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+													<label class="select-seat position-absolute a-class" style="top: 52.8rem; left: 33.9rem;">
+														<input type="checkbox" class="seat-checkbox">
+													</label>
+												</div>
+											</div>
 												</div>
 											</div>
 											
@@ -391,7 +906,7 @@
 												</div>
 											</div>
 										</div>	
-										<img src="${path}/resources/assets\images\concert-stage2.png" style="width: 1200px; height: 1200px;"></img>
+										<img src="${path}/resources/assets/images/concert-stage2.png" style="width: 1200px; height: 1200px;"></img>
 											<!-- Step 2 button -->
 											<div class="row mt-4">
 												<div class="text-start col-6">
