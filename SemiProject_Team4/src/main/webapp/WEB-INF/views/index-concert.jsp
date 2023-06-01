@@ -225,7 +225,7 @@ Packages END -->
 <section class="pt-0 pt-md-5 bg-light" style="background-image: url(${path}/resources/assets/images/bg/bg01.png); height: 550px;">
 	
 	<div class="container position-relative">
-		<a href="${path}/test.html">
+		<a href="${path}/conc-nearby">
 			<div class="text-center pb-3 title h2 text-white">내 주변 공연장</div>
 		</a>
 

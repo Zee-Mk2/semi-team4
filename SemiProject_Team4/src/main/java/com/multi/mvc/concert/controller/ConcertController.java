@@ -35,6 +35,12 @@ public class ConcertController {
 		return "/concert/concert-detail";
 	}
 	
+	@RequestMapping(value = "/conc-nearby", method = RequestMethod.GET)
+	public String concNearby() {
+		
+		return "/concert/concert-nearby";
+	}
+	
 	@RequestMapping(value = "/conc-booking", method = RequestMethod.GET)
 	public String concBookingPage() {
 		
