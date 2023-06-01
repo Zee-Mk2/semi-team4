@@ -9,11 +9,27 @@
 	</select>
 	
 	<insert id="joinMember" parameterType="Member">
-		INSERT INTO member VALUES(DEFAULT, #{id}, #{password}, #{name}, #{gender}, #{address}, #{favDistrict}, DEFAULT, DEFAULT, 'Y', #{birth}, #{oriFileNm}, #{reFileNm}, #{phone})
+		INSERT INTO member VALUES(DEFAULT, #{id}, #{password}, #{name}, #{gender}, #{address}, #{favDistrict}, DEFAULT, DEFAULT, 'Y', #{birth}, #{oriFileNm}, DEFAULT, #{phone})
 	</insert>
 	
-	<insert id="updateMember" parameterType="Member">
-		UPDATE member SET oriFileNm = #{oriFileNm}, reFileNm = #{reFileNm}, name = #{name}, phone = #{phone}, birth = #{birth}, gender = #{gender}, address = #{address} WHERE mno = #{mno}
-	</insert>
+	<select id="findById" parameterType="String" resultType="Member">
+		SELECT mno, id, password, name, gender, address, favDistrict, enrollDate, role, status, birth, reFileNm, phone FROM member WHERE id = #{id}
+	</select>
+	
+	<update id="updateMember" parameterType="Member">
+		UPDATE member
+		SET id = #{id}, name = #{name}, gender = #{gender}, address = #{address}, phone = #{phone}, birth = #{birth}
+		WHERE mNO = #{mno}
+	</update>
+	
+	<update id="updateID">
+		UPDATE member
+		SET id = #{id}
+		WHERE mno = #{mno}
+	</update>
+	
+	<select id="findByMno" parameterType="int" resultType="Member">
+		SELECT * FROM member WHERE mno = #{mno}
+	</select>
 </mapper>
 

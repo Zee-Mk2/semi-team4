@@ -58,10 +58,10 @@ Content START -->
 											<!-- Avatar -->
 											<div class="avatar avatar-xl mb-2">
 												<img class="avatar-img rounded-circle border border-2 border-white"
-													src="${path}/resources/assets/images/avatar/01.jpg" alt="">
+													src="${path}/resources/assets/images/avatar/${loginMember.reFileNm}" alt="">
 											</div>
-											<h6 class="mb-0">테스트계정</h6>
-											<a href="${path}/MyProfile" class="text-reset text-primary-hover small">test@email.com</a>
+											<h6 class="mb-0">${loginMember.name}</h6>
+											<a href="${path}/MyProfile" class="text-reset text-primary-hover small">${loginMember.id}</a>
 											<hr>
 										</div>
 
@@ -88,7 +88,7 @@ Content START -->
 														class="bi bi-gear fa-fw me-2"></i>설정</a>
 											</li>
 											<li class="nav-item">
-												<a class="nav-link text-danger bg-danger-soft-hover" href="${path}/#"><i
+												<a class="nav-link text-danger bg-danger-soft-hover" href="${path}/logout"><i
 														class="fas fa-sign-out-alt fa-fw me-2"></i>로그아웃</a>
 											</li>
 										</ul>
@@ -106,7 +106,6 @@ Content START -->
 					<div class="col-lg-8 col-xl-9">
 
 						<!-- Offcanvas menu button -->
-						<!--뭐지-->
 						<div class="d-grid mb-0 d-lg-none w-100">
 							<button class="btn btn-primary mb-4" type="button" data-bs-toggle="offcanvas"
 								data-bs-target="#offcanvasSidebar" aria-controls="offcanvasSidebar">
@@ -125,7 +124,7 @@ Content START -->
 								<!-- Card body START -->
 								<div class="card-body">
 									<!-- Form START -->
-									<form class="row g-3">
+									<form class="row g-3" action="${path}/MyProfile" method="post">
 										<!-- Profile photo -->
 										<div class="col-12">
 											<label class="form-label">프로필 사진 업로드<span
@@ -137,11 +136,11 @@ Content START -->
 													<span class="avatar avatar-xl">
 														<img id="uploadfile-1-preview"
 															class="avatar-img rounded-circle border border-white border-3 shadow"
-															src="${path}/resources/assets/images/avatar/01.jpg" alt="">
+															src="${path}/resources/assets/images/avatar/${loginMember.reFileNm}" alt="">
 													</span>
 												</label>
 												<!-- Upload button -->
-												<label class="btn btn-sm btn-custom2 mb-0" for="uploadfile-1">변경</label>
+												<label class="btn btn-sm btn-outline-primary mb-0" for="uploadfile-1">변경</label>
 												<input id="uploadfile-1" class="form-control d-none" type="file">
 											</div>
 										</div>
@@ -149,23 +148,23 @@ Content START -->
 										<!-- Name -->
 										<div class="col-md-6">
 											<label class="form-label">이름<span class="text-danger">*</span></label>
-											<input type="text" class="form-control" value="테스트계정"
-												placeholder="이름을 입력하세요.">
+											<input type="text" class="form-control" value="${loginMember.name}" name="name"
+												placeholder="이름을 입력하세요." required>
 										</div>
 
 										<!-- phone number -->
 										<div class="col-md-6">
 											<label class="form-label">휴대폰 번호<span class="text-danger">*</span></label>
-											<input type="text" class="form-control" value="010-1234-5678"
-												placeholder="휴대폰 번호를 입력하세요.">
+											<input type="text" class="form-control" value="${loginMember.phone}" name="phone"
+												placeholder="휴대폰 번호를 입력하세요." required>
 										</div>
 
 
 										<!-- Date of birth -->
 										<div class="col-md-6">
 											<label class="form-label">생년월일<span class="text-danger">*</span></label>
-											<input type="text" class="form-control flatpickr" value="1999 Aug 29"
-												placeholder="생년월일을 입력하세요." data-date-format="Y-m-d">
+											<input type="text" class="form-control flatpickr" value="${loginMember.birth}" name="birth"
+												placeholder="생년월일을 입력하세요." data-date-format="Y-m-d" required>
 										</div>
 
 										<!-- Gender -->
@@ -173,16 +172,16 @@ Content START -->
 											<label class="form-label">성별<span class="text-danger">*</span></label>
 											<div class="d-flex gap-4">
 												<div class="form-check radio-bg-light">
-													<input class="form-check-input" type="radio" name="flexRadioDefault"
-														id="flexRadioDefault1" checked="">
-													<label class="form-check-label" for="flexRadioDefault1">
+													<input class="form-check-input" type="radio" name="gender" value="M"
+														id="M" ${loginMember.gender == 'M' ? 'checked ': ''} required>
+													<label class="form-check-label" for="M">
 														남자
 													</label>
 												</div>
 												<div class="form-check radio-bg-light">
-													<input class="form-check-input" type="radio" name="flexRadioDefault"
-														id="flexRadioDefault2">
-													<label class="form-check-label" for="flexRadioDefault2">
+													<input class="form-check-input" type="radio" name="gender" value="F"
+														id="F" ${loginMember.gender == 'F' ? 'checked ': ''} required>
+													<label class="form-check-label" for="F">
 														여자
 													</label>
 												</div>
@@ -192,13 +191,15 @@ Content START -->
 										<!-- Address -->
 										<div class="col-12">
 											<label class="form-label">주소</label>
-											<textarea class="form-control" rows="3"
-												spellcheck="false">서울특별시 강남구 언주로 508 14층(역삼동, 서울상록빌딩)</textarea>
+											<textarea class="form-control" rows="3" name="address"
+												spellcheck="false">${loginMember.address}</textarea>
 										</div>
+										
+										<input type="hidden" name="id" value="${loginMember.id}">
 
 										<!-- Button -->
 										<div class="col-12 text-end">
-											<a href="${path}/#" class="btn btn-custom mb-0">저장</a>
+											<button type="submit" class="btn btn-outline-primary mb-0">저장</button>
 										</div>
 									</form>
 									<!-- Form END -->
@@ -212,18 +213,18 @@ Content START -->
 								<!-- Card header -->
 								<div class="card-header border-bottom">
 									<h4 class="card-header-title">이메일 변경</h4>
-									<p class="mb-0">현재 이메일: <span class="text-primary">test@email.com</span></p>
+									<p class="mb-0">현재 이메일: <span class="text-primary">${loginMember.id}</span></p>
 								</div>
 
 								<!-- Card body START -->
 								<div class="card-body">
-									<form>
+									<form action="${path}/update-id" method="post">
 										<!-- Email -->
 										<label class="form-label">새 이메일을 입력하세요<span class="text-danger">*</span></label>
-										<input type="email" class="form-control" placeholder="이메일 입력">
+										<input type="email" class="form-control" placeholder="이메일 입력" name="id" required>
 
 										<div class="text-end mt-3">
-											<a href="${path}/#" class="btn btn-custom mb-0">변경</a>
+											<button type="submit" class="btn btn-outline-primary mb-0">변경</button>
 										</div>
 									</form>
 								</div>
@@ -247,12 +248,12 @@ Content START -->
 									</div>
 									<!-- New password -->
 									<div class="mb-3">
-										<label class="form-label"> 새 비밀번호를 입력하세요</label>
+										<label class="form-label">새 비밀번호를 입력하세요</label>
 										<div class="input-group">
 											<input class="form-control fakepassword" placeholder="새 비밀번호"
 												type="password" id="psw-input">
-											<span class="input-group-text p-0 bg-transparent">
-												<i class="fakepasswordicon fas fa-eye-slash cursor-pointer p-2"></i>
+											<span class="input-group-text p-0 bg-transparent align-items-center">
+												<i class="fakepasswordicon fas fa-eye-slash cursor-pointer p-2 mt-2"></i>
 											</span>
 										</div>
 									</div>
@@ -263,7 +264,7 @@ Content START -->
 									</div>
 
 									<div class="text-end">
-										<a href="${path}/#" class="btn btn-custom mb-0">변경</a>
+										<a href="${path}/#" class="btn btn-outline-primary mb-0">변경</a>
 									</div>
 								</form>
 								<!-- Card body END -->

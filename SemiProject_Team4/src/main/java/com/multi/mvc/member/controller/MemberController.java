@@ -54,6 +54,7 @@ public class MemberController {
 		// 로그인이 성공한 케이스
 		if(loginMember != null) {
 			model.addAttribute("loginMember", loginMember); // 세션으로 저장되는 코드, @SessionAttributes 사용
+			log.info("@@@로그인 성공>> " + loginMember.toString());
 			return "redirect:/"; // home으로 보내는 방법
 		} else {
 			model.addAttribute("msg", "아이디와 패스워드를 확인해주세요.");
@@ -80,7 +81,7 @@ public class MemberController {
 	public String signUp(Model model, Member member) {
 		log.info("회원가입 요청");
 		int result = 0;
-		result = service.joinMember(member);
+		result = service.saveMember(member);
 		
 		if(result > 0) {
 			model.addAttribute("msg", "회원가입 성공하였습니다.");
@@ -93,10 +94,68 @@ public class MemberController {
 		return "common/msg";
 	}
 	
-	@RequestMapping(value = "/MyProfile", method = RequestMethod.GET)
-	public String profile(Locale locale, Model model) {
-		
+	@GetMapping(value = "/MyProfile")
+	public String profilePage(Model model, @SessionAttribute(name="loginMember", required = false) Member loginMember) {
+		if (loginMember == null) {
+			model.addAttribute("msg","잘못된 접근입니다.");
+			model.addAttribute("location","/");
+			return "common/msg";
+		}
 		return "/account/account-profile";
+	}
+	
+	@PostMapping(value = "/MyProfile")
+	public String updateProfile(Model model,
+			@ModelAttribute Member updateMember, // request에서 온 값
+			@SessionAttribute(name="loginMember", required = false) Member loginMember) {
+		log.info("update method/prev value>> " + String.valueOf(loginMember));
+		log.info("update method/update value>> " + String.valueOf(updateMember));
+		
+		model.addAttribute("loginMember", loginMember);
+		
+		if(loginMember == null || loginMember.getId().equals(updateMember.getId()) == false) {
+			model.addAttribute("msg","잘못된 접근입니다.");
+			model.addAttribute("location","/");
+			return "common/msg";
+		}
+		
+		updateMember.setMno(loginMember.getMno()); // update가 되는 코드
+		int result = service.saveMember(updateMember);
+		
+		if(result > 0) {
+			loginMember = service.findById(loginMember.getId());
+			model.addAttribute("loginMember", loginMember); // 세션을 업데이트 하는 코드
+			model.addAttribute("msg", "회원정보를 수정하였습니다.");
+			model.addAttribute("location","/MyProfile");
+		} else {
+			model.addAttribute("msg", "회원정보 수정에 실패하였습니다.");
+			model.addAttribute("location","/MyProfile");
+		}
+		return "common/msg";
+	}
+	
+	@PostMapping("/update-id")
+	public String updateId(Model model, String id, @SessionAttribute(name="loginMember", required = false) Member loginMember) {
+		if(loginMember == null) {
+			model.addAttribute("msg","잘못된 접근입니다.");
+			model.addAttribute("location","/");
+			return "common/msg";
+		}
+		log.info(id);
+		int result = service.updateID(id, loginMember.getMno());
+		
+		if(result > 0) {
+			loginMember = service.findByMno(loginMember.getMno());
+			model.addAttribute("loginMember", loginMember); // 세션을 업데이트 하는 코드
+			log.info("updateId>> " + loginMember.toString());
+			model.addAttribute("msg", "로그인 이메일이 변경되었습니다.");
+			model.addAttribute("location","/MyProfile");
+		} else {
+			model.addAttribute("msg", "이메일 변경에 실패했습니다.");
+			model.addAttribute("location","/MyProfile");
+		}
+		return "common/msg";
+		
 	}
 	
 	@RequestMapping(value = "/pro-setting", method = RequestMethod.GET)

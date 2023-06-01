@@ -157,7 +157,7 @@ CREATE TABLE member (
     status		VARCHAR(1) DEFAULT 'Y',
     birth		DATETIME,
     oriFileNm	VARCHAR(100),
-    reFileNm	VARCHAR(100),
+    reFileNm	VARCHAR(100) DEFAULT 'default-avatar.png',
     phone		VARCHAR(20)
 );
 
@@ -212,7 +212,8 @@ DROP TABLE board;
 CREATE TABLE board (
 	bno				INT PRIMARY KEY AUTO_INCREMENT,
     mno				INT,
-    boartCat		VARCHAR(50),
+    boardCat		VARCHAR(50),
+    boardTag		VARCHAR(50),
     boardTitle		VARCHAR(1000),
     boardContent	VARCHAR(3000),
     boardOriFileNm	VARCHAR(100),
@@ -306,7 +307,4 @@ LIMIT 15 OFFSET 0;
 SELECT count(*)
 FROM campSiteInfo
 WHERE manStatus = '운영'
-ORDER BY views
-LIMIT 15 OFFSET 0;
-
-SELECT * FROM campSiteInfo;
+ORDER BY views;

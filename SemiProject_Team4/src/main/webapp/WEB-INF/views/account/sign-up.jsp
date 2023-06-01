@@ -84,7 +84,7 @@
 											<label class="position-relative me-4" for="uploadfile-1" title="Replace this pic">
 												<!-- Avatar place holder -->
 												<span class="avatar avatar-xl">
-													<img id="uploadfile-1-preview" class="avatar-img rounded-circle border border-white border-3 shadow" src="${path}/resources/assets/images/avatar/01.jpg" alt="">
+													<img id="uploadfile-1-preview" class="avatar-img rounded-circle border border-white border-3 shadow" src="${path}/resources/assets/images/avatar/default-avatar.png" alt="">
 												</span>
 											</label>
 											<!-- Upload button -->

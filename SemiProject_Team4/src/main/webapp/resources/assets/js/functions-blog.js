@@ -272,28 +272,28 @@ var e = {
     // END: Mega Menu
 
     // START: 03 Sticky Header
-    stickyHeader: function () {
-        var stickyNav = e.select('.navbar-sticky');
-        if (e.isVariableDefined(stickyNav)) {
-            var stickyHeight = stickyNav.offsetHeight;
-            stickyNav.insertAdjacentHTML('afterend', '<div id="sticky-space"></div>');
-            var stickySpace = e.select('#sticky-space');
-            if (e.isVariableDefined(stickySpace)) {
-                document.addEventListener('scroll', function (event) {
-                    var scTop = window.pageYOffset || document.documentElement.scrollTop;
-                    if (scTop >= 400) {
-                        stickySpace.addClass('active');
-                        e.select("#sticky-space.active").style.height = stickyHeight + 'px';
-                        stickyNav.addClass('navbar-sticky-on');
-                    } else {
-                        stickySpace.removeClass('active');
-                        stickySpace.style.height = '0px';
-                        stickyNav.removeClass("navbar-sticky-on");
-                    }
-                });
-            }
-        }
-    },
+    // stickyHeader: function () {
+    //     var stickyNav = e.select('.navbar-sticky');
+    //     if (e.isVariableDefined(stickyNav)) {
+    //         var stickyHeight = stickyNav.offsetHeight;
+    //         stickyNav.insertAdjacentHTML('afterend', '<div id="sticky-space"></div>');
+    //         var stickySpace = e.select('#sticky-space');
+    //         if (e.isVariableDefined(stickySpace)) {
+    //             document.addEventListener('scroll', function (event) {
+    //                 var scTop = window.pageYOffset || document.documentElement.scrollTop;
+    //                 if (scTop >= 400) {
+    //                     stickySpace.addClass('active');
+    //                     e.select("#sticky-space.active").style.height = stickyHeight + 'px';
+    //                     stickyNav.addClass('navbar-sticky-on');
+    //                 } else {
+    //                     stickySpace.removeClass('active');
+    //                     stickySpace.style.height = '0px';
+    //                     stickyNav.removeClass("navbar-sticky-on");
+    //                 }
+    //             });
+    //         }
+    //     }
+    // },
     // END: Sticky Header
 
     // START: 04 Tiny Slider
@@ -513,63 +513,63 @@ var e = {
     // END: GLightbox
 
     // START: 13 Isotope
-    enableIsotope: function () {
-        var isGridItem = e.select('.grid-item');
-        if (e.isVariableDefined(isGridItem)) {
+    // enableIsotope: function () {
+    //     var isGridItem = e.select('.grid-item');
+    //     if (e.isVariableDefined(isGridItem)) {
 
-            // Code only for normal Grid
-            var onlyGrid = e.select('[data-isotope]');
-            if (e.isVariableDefined(onlyGrid)) {
-                var allGrid = e.selectAll("[data-isotope]");
-                allGrid.forEach(gridItem => {
-                    var gridItemData = gridItem.getAttribute('data-isotope');
-                    var gridItemDataObj = JSON.parse(gridItemData);
-                    var iso = new Isotope(gridItem, {
-                        itemSelector: '.grid-item',
-                        layoutMode: gridItemDataObj.layoutMode
-                    });
+    //         // Code only for normal Grid
+    //         var onlyGrid = e.select('[data-isotope]');
+    //         if (e.isVariableDefined(onlyGrid)) {
+    //             var allGrid = e.selectAll("[data-isotope]");
+    //             allGrid.forEach(gridItem => {
+    //                 var gridItemData = gridItem.getAttribute('data-isotope');
+    //                 var gridItemDataObj = JSON.parse(gridItemData);
+    //                 var iso = new Isotope(gridItem, {
+    //                     itemSelector: '.grid-item',
+    //                     layoutMode: gridItemDataObj.layoutMode
+    //                 });
 
-                    imagesLoaded(gridItem).on('progress', function () {
-                        // layout Isotope after each image loads
-                        iso.layout();
-                    });
-                });
-            }
+    //                 imagesLoaded(gridItem).on('progress', function () {
+    //                     // layout Isotope after each image loads
+    //                     iso.layout();
+    //                 });
+    //             });
+    //         }
 
-            // Code only for normal Grid
-            var onlyGridFilter = e.select('.grid-menu');
-            if (e.isVariableDefined(onlyGridFilter)) {
-                var filterMenu = e.selectAll('.grid-menu');
-                filterMenu.forEach(menu => {
-                    var filterContainer = menu.getAttribute('data-target');
-                    var a = menu.dataset.target;
-                    var b = e.select(a);
-                    var filterContainerItemData = b.getAttribute('data-isotope');
-                    var filterContainerItemDataObj = JSON.parse(filterContainerItemData);
-                    var filter = new Isotope(filterContainer, {
-                        itemSelector: '.grid-item',
-                        transitionDuration: '0.7s',
-                        layoutMode: filterContainerItemDataObj.layoutMode
-                    });
+    //         // Code only for normal Grid
+    //         var onlyGridFilter = e.select('.grid-menu');
+    //         if (e.isVariableDefined(onlyGridFilter)) {
+    //             var filterMenu = e.selectAll('.grid-menu');
+    //             filterMenu.forEach(menu => {
+    //                 var filterContainer = menu.getAttribute('data-target');
+    //                 var a = menu.dataset.target;
+    //                 var b = e.select(a);
+    //                 var filterContainerItemData = b.getAttribute('data-isotope');
+    //                 var filterContainerItemDataObj = JSON.parse(filterContainerItemData);
+    //                 var filter = new Isotope(filterContainer, {
+    //                     itemSelector: '.grid-item',
+    //                     transitionDuration: '0.7s',
+    //                     layoutMode: filterContainerItemDataObj.layoutMode
+    //                 });
 
-                    var menuItems = menu.querySelectorAll('li a');
-                    menuItems.forEach(menuItem => {
-                        menuItem.addEventListener('click', function (event) {
-                            var filterValue = menuItem.getAttribute('data-filter');
-                            filter.arrange({filter: filterValue});
-                            menuItems.forEach((control) => control.removeClass('active'));
-                            menuItem.addClass('active');
-                        });
-                    });
+    //                 var menuItems = menu.querySelectorAll('li a');
+    //                 menuItems.forEach(menuItem => {
+    //                     menuItem.addEventListener('click', function (event) {
+    //                         var filterValue = menuItem.getAttribute('data-filter');
+    //                         filter.arrange({filter: filterValue});
+    //                         menuItems.forEach((control) => control.removeClass('active'));
+    //                         menuItem.addClass('active');
+    //                     });
+    //                 });
 
-                    imagesLoaded(filterContainer).on('progress', function () {
-                        filter.layout();
-                    });
-                });
-            }
+    //                 imagesLoaded(filterContainer).on('progress', function () {
+    //                     filter.layout();
+    //                 });
+    //             });
+    //         }
 
-        }
-    },
+    //     }
+    // },
     // END: Isotope
 
     // START: 14 Dark mode
@@ -667,28 +667,28 @@ var e = {
     // END: Quill Editor
 
   // START: 18 Video player
-  videoPlyr: function () {
-    var vdp = e.select('.player-wrapper');
-    if (e.isVariableDefined(vdp)) {
-      // youtube
-      const playerYoutube = Plyr.setup('.player-youtube', {});
-      window.player = playerYoutube;
+//   videoPlyr: function () {
+//     var vdp = e.select('.player-wrapper');
+//     if (e.isVariableDefined(vdp)) {
+//       // youtube
+//       const playerYoutube = Plyr.setup('.player-youtube', {});
+//       window.player = playerYoutube;
 
-      // Vimeo
-      const playerVimeo = Plyr.setup('.player-vimeo', {});
-      window.player = playerVimeo;
+//       // Vimeo
+//       const playerVimeo = Plyr.setup('.player-vimeo', {});
+//       window.player = playerVimeo;
       
-      // HTML video
-      const playerHtmlvideo = Plyr.setup('.player-html', {
-        captions: {active: true}
-      });
-      window.player = playerHtmlvideo;
+//       // HTML video
+//       const playerHtmlvideo = Plyr.setup('.player-html', {
+//         captions: {active: true}
+//       });
+//       window.player = playerHtmlvideo;
 
-      // HTML audio
-      const playerHtmlaudio = Plyr.setup('.player-audio', {});
-      window.player = playerHtmlaudio;
-    }
-  },
+//       // HTML audio
+//       const playerHtmlaudio = Plyr.setup('.player-audio', {});
+//       window.player = playerHtmlaudio;
+//     }
+//   },
   // END: Video player
 
   // START: 19 Overlay scrollbar

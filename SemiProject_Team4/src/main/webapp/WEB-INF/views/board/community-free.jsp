@@ -35,7 +35,7 @@
 					<nav class="d-flex justify-content-center" aria-label="breadcrumb">
 						<ol class="breadcrumb breadcrumb-dark m-0">
 							<li class="breadcrumb-item fs-6"><a href="${path}/home"><i class="bi bi-house me-1 text-white"></i> <span class="text-white">홈</span> </a></li>
-							<li class="breadcrumb-item fs-6"><a href="${path}/board-main" class="text-white">커뮤니티</a></li>
+							<li class="breadcrumb-item fs-6"><a href="${path}/community" class="text-white">커뮤니티</a></li>
 							<li class="breadcrumb-item fs-6 active text-white">자유게시판</li>
 						</ol>
 					</nav>
@@ -52,8 +52,8 @@
 	<section class="position-relative pt-0">
 		<div class="container">
 			<div class="row align-items-center mx-auto mb-4">
-				<a href="${path}/board-post" class="btn btn-info col-1"><i class="fas fa-pen"></i> 글쓰기</a>
-				
+				<a href="${path}/board-post" class="btn btn-info col-1 px-0 mx-0 mt-n3" style="font-size: 18px"><i class="fas fa-pen"></i> 글쓰기</a>
+
 				<div class="col-9">
 					<!-- Search START -->
 					<!-- Booking from START -->
@@ -65,8 +65,10 @@
 									<div class="col-3">
 										<!-- Input field -->
 										<div class="form-control-transparent form-fs-lg">
-											<select class="form-select js-choice" data-search-enabled="true">
+											<select class="form-select js-choice"
+												data-search-enabled="true">
 												<option value="">검색 옵션</option>
+												<option>캠핑장 이름</option>
 												<option>제목</option>
 												<option>내용</option>
 												<option>제목 + 내용</option>
@@ -79,7 +81,8 @@
 									<div class="col-9">
 										<!-- Input field -->
 										<div class="form-control-transparent form-fs-lg">
-											<input class="form-control border-0 shadow-0" type="text" name="search" placeholder="검색어 입력">
+											<input class="form-control border-0 shadow-0" type="text"
+												name="search" placeholder="검색어 입력">
 										</div>
 									</div>
 								</div>
@@ -88,17 +91,17 @@
 							<!-- Button -->
 							<div class="col-2 text-center">
 								<div class="d-grid">
-									<a href="#">
-										<i class="fa-solid fa-search fs-5 text-black-50"></i>
+									<a href="#"> <i
+										class="fa-solid fa-search fs-5 text-black-50"></i>
 									</a>
 								</div>
 							</div>
 						</div>
 					</form>
 					<!-- Booking from END -->
-					<!-- Search END -->	
+					<!-- Search END -->
 				</div>
-				
+
 				<div class="col-2">
 					<form class="form-control-bg-light">
 						<select class="form-select js-choice">

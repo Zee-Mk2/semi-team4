@@ -60,19 +60,46 @@ public class MemberService {
 	}
 	
 	/**
-	 * 회원가입
+	 * 회원가입, 회원정보 수정
 	 * @param member
 	 * @return 성공시 1, 실패시 0?
 	 */
 	@Transactional(rollbackFor = Exception.class)
-	public int joinMember(Member member) {
+	public int saveMember(Member member) {
 		int result = 0;
-		String encodePw = pwEncoder.encode(member.getPassword()); // 암호화 로직
-		member.setPassword(encodePw);
-		result = mapper.joinMember(member);
-		log.info(String.valueOf(result));
+		if (member.getMno() == 0) {
+			String encodePw = pwEncoder.encode(member.getPassword()); // 암호화 로직
+			member.setPassword(encodePw);
+			result = mapper.joinMember(member);
+		} else {
+			result = mapper.updateMember(member);
+		}
 		
 		return result;
+	}
+
+	/**
+	 * id로 회원정보 조회
+	 * @param id
+	 * @return member
+	 */
+	public Member findById(String id) {
+		return mapper.findById(id);
+	}
+	
+	/**
+	 * id 변경
+	 * @param id
+	 * @param mno 
+	 * @return 성공 1, 실패 0
+	 */
+	@Transactional(rollbackFor = Exception.class)
+	public int updateID(String id, int mno) {
+		return mapper.updateID(id, mno);
+	}
+
+	public Member findByMno(int mno) {
+		return mapper.findByMno(mno);
 	}
 	
 }

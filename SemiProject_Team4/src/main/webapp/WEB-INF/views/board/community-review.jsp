@@ -35,19 +35,19 @@
 	<section class="pt-4">
 		<div class="container">
 			<div class="row">
-		  <div class="col-12">
-				<div class="bg-success p-4 text-center rounded-3">
-					<h1 class="text-white title">후기</h1>
-					<nav class="d-flex justify-content-center" aria-label="breadcrumb">
-						<ol class="breadcrumb breadcrumb-dark m-0">
-							<li class="breadcrumb-item fs-6"><a href="${path}/home"><i class="bi bi-house me-1 text-white"></i> <span class="text-white">홈</span> </a></li>
-							<li class="breadcrumb-item fs-6"><a href="${path}/board-main" class="text-white">커뮤니티</a></li>
-							<li class="breadcrumb-item fs-6 active text-white">후기</li>
-						</ol>
-					</nav>
+				<div class="col-12">
+					<div class="bg-success p-4 text-center rounded-3">
+						<h1 class="text-white title">후기</h1>
+						<nav class="d-flex justify-content-center" aria-label="breadcrumb">
+							<ol class="breadcrumb breadcrumb-dark m-0">
+								<li class="breadcrumb-item fs-6"><a href="${path}/home"><i class="bi bi-house me-1 text-white"></i> <span class="text-white">홈</span> </a></li>
+								<li class="breadcrumb-item fs-6"><a href="${path}/community" class="text-white">커뮤니티</a></li>
+								<li class="breadcrumb-item fs-6 active text-white">후기</li>
+							</ol>
+						</nav>
+					</div>
 				</div>
-		  </div>
-		</div>
+			</div>
 		</div>
 	</section>
 	<!-- =======================
@@ -57,9 +57,15 @@
 	Main content START -->
 	<section class="position-relative pt-0">
 		<div class="container">
-			<div class="row align-items-center mx-auto mb-1">
-				<a href="${path}/board-post" class="btn btn-info col-1"><i class="fas fa-pen"></i> 글쓰기</a>
-				
+
+			<ul class="nav nav-tabs nav-justified mb-3 fs-5 title">
+				<li class="nav-item"> <a class="nav-link active" data-bs-toggle="tab" href="#tab-2-1"> 전체 </a> </li>
+				<li class="nav-item"> <a class="nav-link" data-bs-toggle="tab" href="#tab-2-2"> 캠핑 </a> </li>
+				<li class="nav-item"> <a class="nav-link" data-bs-toggle="tab" href="#tab-2-3"> 공연 </a> </li>
+			</ul>
+			<div class="row align-items-center mx-auto my-3">
+				<a href="${path}/board-post" class="btn btn-info col-1 px-0 mx-0 mt-n3" style="font-size: 18px"><i class="fas fa-pen"></i> 글쓰기</a>
+
 				<div class="col-9">
 					<!-- Search START -->
 					<!-- Booking from START -->
@@ -71,9 +77,10 @@
 									<div class="col-3">
 										<!-- Input field -->
 										<div class="form-control-transparent form-fs-lg">
-											<select class="form-select js-choice" data-search-enabled="true">
+											<select class="form-select js-choice"
+												data-search-enabled="true">
 												<option value="">검색 옵션</option>
-												<option>캠핑장 이름</option>
+												<option>캠핑장/공연 이름</option>
 												<option>제목</option>
 												<option>내용</option>
 												<option>제목 + 내용</option>
@@ -86,7 +93,8 @@
 									<div class="col-9">
 										<!-- Input field -->
 										<div class="form-control-transparent form-fs-lg">
-											<input class="form-control border-0 shadow-0" type="text" name="search" placeholder="검색어 입력">
+											<input class="form-control border-0 shadow-0" type="text"
+												name="search" placeholder="검색어 입력">
 										</div>
 									</div>
 								</div>
@@ -95,17 +103,17 @@
 							<!-- Button -->
 							<div class="col-2 text-center">
 								<div class="d-grid">
-									<a href="#">
-										<i class="fa-solid fa-search fs-5 text-black-50"></i>
+									<a href="#"> <i
+										class="fa-solid fa-search fs-5 text-black-50"></i>
 									</a>
 								</div>
 							</div>
 						</div>
 					</form>
 					<!-- Booking from END -->
-					<!-- Search END -->	
+					<!-- Search END -->
 				</div>
-				
+
 				<div class="col-2">
 					<form class="form-control-bg-light">
 						<select class="form-select js-choice">
@@ -116,7 +124,6 @@
 					</form>
 				</div>
 			</div>
-			<hr>
 
 			<div class="row filter-container overflow-hidden" data-isotope='{"layoutMode": "masonry"}'>
 				<!-- Card item START -->
@@ -133,6 +140,11 @@
 								</a>
 							</div>
 							<img class="card-img" src="${path}/resources/assets/images/blog/1by1/07.jpg" alt="Card image">
+							<div class="card-img-overlay-bottom">
+								<div class="d-flex justify-content-between">
+									<span class="badge text-bg-info" style="height: 1.5rem">캠핑</span>
+								</div>
+							</div>
 						</div>
 						<div class="card-body px-0 pt-3">
 							<h4 class="card-title">
@@ -161,12 +173,16 @@
 							<div class="overlay overflow-hidden p-4 card">
 								<a href="${path}/board-detail" class="stretched-link">
 									<div class="overlay-content text-white">
-										<div class="h4 text-white title">엉클캠핑장</div>
-										<div>경기도 포천시</div>
+										<div class="h4 text-white title">현대카드 슈퍼콘서트 27, 브루노 마스: the Purple osee</div>
 									</div>
 								</a>
 							</div>
 							<img class="card-img" src="${path}/resources/assets/images/blog/16by9/small/03.jpg" alt="Card image">
+							<div class="card-img-overlay-bottom">
+								<div class="d-flex justify-content-between">
+									<span class="badge text-bg-warning" style="height: 1.5rem">공연</span>
+								</div>
+							</div>
 						</div>
 						<div class="card-body px-0 pt-3">
 							<h4 class="card-title">
@@ -201,6 +217,11 @@
 								</a>
 							</div>
 							<img class="card-img" src="${path}/resources/assets/images/blog/12.jpg" alt="Card image">
+							<div class="card-img-overlay-bottom">
+								<div class="d-flex justify-content-between">
+									<span class="badge text-bg-info" style="height: 1.5rem">캠핑</span>
+								</div>
+							</div>
 						</div>
 						<div class="card-body px-0 pt-3">
 							<h4 class="card-title">
@@ -235,6 +256,11 @@
 								</a>
 							</div>
 							<img class="card-img" src="${path}/resources/assets/images/blog/1by1/05.jpg" alt="Card image">
+							<div class="card-img-overlay-bottom">
+								<div class="d-flex justify-content-between">
+									<span class="badge text-bg-warning" style="height: 1.5rem">공연</span>
+								</div>
+							</div>
 						</div>
 						<div class="card-body px-0 pt-3">
 							<h4 class="card-title"><a href="${path}/board-detail" class="btn-link text-reset stretched-link title">자연에 녹아든 캠핑장</a></h4>
@@ -274,6 +300,11 @@
 								</a>
 							</div>
 							<img class="card-img" src="${path}/resources/assets/images/blog/3by2/07.jpg" alt="Card image">
+							<div class="card-img-overlay-bottom">
+								<div class="d-flex justify-content-between">
+									<span class="badge text-bg-warning" style="height: 1.5rem">공연</span>
+								</div>
+							</div>
 						</div>
 						<div class="card-body px-0 pt-3">
 							<h4 class="card-title"><a href="${path}/board-detail" class="btn-link text-reset stretched-link title">야간비행</a></h4>
@@ -313,6 +344,11 @@
 								</a>
 							</div>
 							<img class="card-img" src="${path}/resources/assets/images/blog/4by3/06.jpg" alt="Card image">
+							<div class="card-img-overlay-bottom">
+								<div class="d-flex justify-content-between">
+									<span class="badge text-bg-warning" style="height: 1.5rem">공연</span>
+								</div>
+							</div>
 						</div>
 						<div class="card-body px-0 pt-3">
 							<h4 class="card-title"><a href="${path}/board-detail" class="btn-link text-reset stretched-link title">인간실격</a></h4>
@@ -352,6 +388,11 @@
 								</a>
 							</div>
 							<img class="card-img" src="${path}/resources/assets/images/blog/3by4/05.jpg" alt="Card image">
+							<div class="card-img-overlay-bottom">
+								<div class="d-flex justify-content-between">
+									<span class="badge text-bg-warning" style="height: 1.5rem">공연</span>
+								</div>
+							</div>
 						</div>
 						<div class="card-body px-0 pt-3">
 							<h4 class="card-title"><a href="${path}/board-detail" class="btn-link text-reset stretched-link title">1984</a></h4>
@@ -391,6 +432,11 @@
 								</a>
 							</div>
 							<img class="card-img" src="${path}/resources/assets/images/blog/3by4/02.jpg" alt="Card image">
+							<div class="card-img-overlay-bottom">
+								<div class="d-flex justify-content-between">
+									<span class="badge text-bg-warning" style="height: 1.5rem">공연</span>
+								</div>
+							</div>
 						</div>
 						<div class="card-body px-0 pt-3">
 							<h4 class="card-title"><a href="${path}/board-detail" class="btn-link text-reset stretched-link title">노인과 바다</a></h4>
@@ -430,6 +476,11 @@
 								</a>
 							</div>
 							<img class="card-img" src="${path}/resources/assets/images/blog/4by3/15.jpg" alt="Card image">
+							<div class="card-img-overlay-bottom">
+								<div class="d-flex justify-content-between">
+									<span class="badge text-bg-warning" style="height: 1.5rem">공연</span>
+								</div>
+							</div>
 						</div>
 						<div class="card-body px-0 pt-3">
 							<h4 class="card-title"><a href="${path}/board-detail" class="btn-link text-reset stretched-link title">무기여 잘 있거라</a></h4>

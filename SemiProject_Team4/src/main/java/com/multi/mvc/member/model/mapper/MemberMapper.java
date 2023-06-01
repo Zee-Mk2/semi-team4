@@ -1,6 +1,7 @@
 package com.multi.mvc.member.model.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import com.multi.mvc.member.model.vo.Member;
 
@@ -29,4 +30,10 @@ public interface MemberMapper {
 	 * @return 성공: 1, 실패: 0
 	 */
 	int updateMember(Member member);
+
+	Member findById(String id);
+	
+	int updateID(@Param("id") String id, @Param("mno") int mno);
+
+	Member findByMno(int mno);
 }

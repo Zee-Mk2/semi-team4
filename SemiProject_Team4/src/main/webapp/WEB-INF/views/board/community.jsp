@@ -223,8 +223,8 @@
 				<div class="col-6">
 					<!-- Card header -->
 					<div class="card-header bg-transparent border-bottom p-0 mb-4">
-						<a href="${path}/info">
-							<h3 class="mb-0 title fs-3">캠핑정보 공유</h3>
+						<a href="${path}/board-info">
+							<h3 class="mb-0 title fs-3">정보공유</h3>
 						</a>
 					</div>
 
@@ -291,7 +291,7 @@
 				<div class="col-6">
 					<!-- Card header -->
 					<div class="card-header bg-transparent border-bottom p-0 mb-4">
-						<a href="${path}/freeBoard">
+						<a href="${path}/board-free">
 							<h3 class="mb-0 title fs-3">자유게시판</h3>
 						</a>
 					</div>

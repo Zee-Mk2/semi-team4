@@ -40,8 +40,8 @@
 								<nav class="d-flex justify-content-center" aria-label="breadcrumb">
 									<ol class="breadcrumb breadcrumb-dark m-0">
 										<li class="breadcrumb-item fs-6"><a href="${path}/home"><i class="bi bi-house me-1 text-white"></i> <span class="text-white">홈</span> </a></li>
-										<li class="breadcrumb-item fs-6"><a href="${path}/board-main" class="text-white">커뮤니티</a></li>
-										<li class="breadcrumb-item fs-6"><a href="${path}/info" class="text-white">캠핑정보 공유</a></li>
+										<li class="breadcrumb-item fs-6"><a href="${path}/community" class="text-white">커뮤니티</a></li>
+										<li class="breadcrumb-item fs-6"><a href="${path}/info" class="text-white">정보공유</a></li>
 									</ol>
 								</nav>
 							</div>
@@ -58,17 +58,26 @@
 					<div class="card-body">
 					<div class="mb-4 title h2">게시글 작성</div>
 					<form>
-						<div class="mb-3">
-						<label for="postTitle" class="form-label">제목<span class="text-danger">*</span></label>
-						<input type="text" class="form-control" id="postTitle" placeholder="제목을 입력해주세요">
+						<div class="nav nav-pills nav-pills-primary-soft mb-3" id="tour-pills-tab" role="tablist">
+						<div class="btn-group" role="group" aria-label="Tab Group">
+							<input type="radio" id="camp" name="tabRadio" class="btn-check" checked>
+							<label class="btn btn-outline-primary" for="camp">캠핑</label>
+							
+							<input type="radio" id="conc" name="tabRadio" class="btn-check">
+							<label class="btn btn-outline-primary" for="conc">공연</label>
+						</div>
 						</div>
 						<div class="mb-3">
-						<label for="postContent" class="form-label">내용<span class="text-danger">*</span></label>
-						<textarea class="form-control" id="postContent" rows="5" placeholder="내용을 입력해주세요"></textarea>
+							<label for="postTitle" class="form-label">제목<span class="text-danger">*</span></label>
+							<input type="text" class="form-control" id="postTitle" placeholder="제목을 입력해주세요">
 						</div>
 						<div class="mb-3">
-						<label for="fileInput" class="form-label">파일 선택</label>
-						<input type="file" class="form-control" id="fileInput">
+							<label for="postContent" class="form-label">내용<span class="text-danger">*</span></label>
+							<textarea class="form-control" id="postContent" rows="5" placeholder="내용을 입력해주세요"></textarea>
+						</div>
+						<div class="mb-3">
+							<label for="fileInput" class="form-label">파일 선택</label>
+							<input type="file" class="form-control" id="fileInput">
 						</div>
 						<div class="row">
 							<div class="col-6">

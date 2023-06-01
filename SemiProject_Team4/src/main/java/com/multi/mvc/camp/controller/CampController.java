@@ -80,45 +80,6 @@ public class CampController {
 		return "/camping/camping-booking";
 	}
 	
-	@RequestMapping(value = "/board-main", method = RequestMethod.GET)
-	public String comMainPage() {
-		
-		return "/board/community";
-	}
-	
-	@RequestMapping(value = "/freeBoard", method = RequestMethod.GET)
-	public String communityFreePage() {
-		
-		
-		return "/board/community-free";
-	}
-	
-	@RequestMapping(value = "/info", method = RequestMethod.GET)
-	public String InfoPage() {
-		
-		
-		return "/board/community-info";
-	}
-	
-	@RequestMapping(value = "/board-review", method = RequestMethod.GET)
-	public String boardReviewPage() {
-		
-		return "/board/community-review";
-	}
-	
-	@RequestMapping(value = "/board-post", method = RequestMethod.GET)
-	public String comPostPage() {
-		
-		
-		return "/board/community-post";
-	}
-	
-	@RequestMapping(value = "/board-detail", method = RequestMethod.GET)
-	public String boardDetailPage() {
-		
-		return "/board/community-detail";
-	}
-	
 	@RequestMapping(value = "/permit", method = RequestMethod.GET)
 	public String permitPage() {
 		

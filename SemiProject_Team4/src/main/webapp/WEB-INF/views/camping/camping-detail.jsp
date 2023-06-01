@@ -13,8 +13,7 @@
 <link rel="stylesheet" type="text/css" href="${path}/resources/assets/vendor/bootstrap-icons/bootstrap-icons.css">
 <link rel="stylesheet" type="text/css" href="${path}/resources/assets/vendor/glightbox/css/glightbox.css">
 
-
-<link rel="stylesheet" type="text/css" href="${path}/resources/assets/css/style2.css">
+<link rel="stylesheet" type="text/css" href="${path}/resources/assets/css/style.css?ver=2">
 
 <!-- Vendors -->
 <script src="${path}/resources/assets/vendor/splide-master/dist/js/splide.min.js"></script>
