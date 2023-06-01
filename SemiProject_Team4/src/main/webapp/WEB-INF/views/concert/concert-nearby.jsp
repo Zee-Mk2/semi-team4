@@ -101,7 +101,7 @@
     <h3 class="h3 title" style="padding-left: 270px;">검색된 주변 공연장<div class="pageCount"><span id="facilty_num"></span></div></h3>
 	<div class="boardBasic mb_scroll">
         <div class="tbBox" style="padding-left: 275px;">
-            <table class="type1 t-fix" style="width: 1300px;">
+            <table class="type1 t-fix" style="width: 1310px;">
                 <caption>내 주변 공연장 목록</caption>
                 <colgroup>
                     <col>
