@@ -30,6 +30,8 @@ public interface MemberMapper {
 	 * @return 성공: 1, 실패: 0
 	 */
 	int updateMember(Member member);
+	
+	int deleteMember(int mno);
 
 	Member findById(String id);
 	

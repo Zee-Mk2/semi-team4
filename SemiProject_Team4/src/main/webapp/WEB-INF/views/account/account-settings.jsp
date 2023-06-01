@@ -222,9 +222,9 @@ Content START -->
 								<!-- Card body START -->
 								<div class="card-body">
 									<!-- Two factor -->
-									<form>
+									<form action="${path}/member/delete" method="post">
 										<h6>현재 비밀번호를 입력해주세요</h6>
-										<input type="text" class="form-control mb-2" placeholder="정말 탈퇴하시겠습니까?">
+										<input type="password" class="form-control mb-2" name="password" placeholder="정말 탈퇴하시겠습니까?">
 
 										<label for="cancelMembership">
 											<input type="checkbox" id="cancelMembership" name="cancelMembership"> 회원탈퇴에
@@ -232,11 +232,20 @@ Content START -->
 										</label>
 										<br>
 										<div class="col-12 text-end">
-											<button class="btn btn-sm btn-custom3">탈퇴하기</button>
+											<input type="submit" class="btn btn-sm btn-custom3" value="탈퇴하기" id="deleteMember">
 										</div>
+								     </form>
+								     
+								     <script type="text/javascript">
+									   	  $(function () {
+											$("#deleteMember").submit((e) => {
+												if(confirm("정말로 탈퇴하시겠습니까?!")) {
+													location.replace('${path}/member/delete');
+												}
+											});
+										  });
+									</script>
 								</div>
-
-
 							</div>
 							<!-- Card body END -->
 						</div>
@@ -247,6 +256,7 @@ Content START -->
 			</div>
 			</div>
 		</section>
+		
 		<!-- =======================
 Content END -->
 

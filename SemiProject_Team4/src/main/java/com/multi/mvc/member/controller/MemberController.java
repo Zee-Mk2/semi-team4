@@ -94,6 +94,24 @@ public class MemberController {
 		return "common/msg";
 	}
 	
+	@RequestMapping("/member/delete")
+	public String delete(Model model, 
+			@SessionAttribute(name="loginMember", required = false) Member loginMember // 세션값
+			) {
+		int result = service.delete(loginMember.getMno());
+		
+		if(result > 0) {
+			model.addAttribute("msg", "회원탈퇴에 성공하였습니다.");
+			model.addAttribute("location", "/logout");
+		}else {
+			model.addAttribute("msg", "회원탈퇴를 할수 없습니다.");
+			model.addAttribute("location", "/member/view");
+		}
+		
+		return "/common/msg";
+	}
+
+	
 	@GetMapping(value = "/MyProfile")
 	public String profilePage(Model model, @SessionAttribute(name="loginMember", required = false) Member loginMember) {
 		if (loginMember == null) {

@@ -77,6 +77,12 @@ public class MemberService {
 		
 		return result;
 	}
+	
+	@Transactional(rollbackFor = Exception.class)
+	public int delete(int mno) {
+		return mapper.deleteMember(mno);
+	}
+
 
 	/**
 	 * id로 회원정보 조회

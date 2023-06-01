@@ -12,6 +12,12 @@
 		INSERT INTO member VALUES(DEFAULT, #{id}, #{password}, #{name}, #{gender}, #{address}, #{favDistrict}, DEFAULT, DEFAULT, 'Y', #{birth}, #{oriFileNm}, DEFAULT, #{phone})
 	</insert>
 	
+	<update id="deleteMember" parameterType="int">
+	 	UPDATE MEMBER 
+	 		SET STATUS = 'N'
+	 	WHERE mNO = #{mno}
+	 </update>
+	
 	<select id="findById" parameterType="String" resultType="Member">
 		SELECT mno, id, password, name, gender, address, favDistrict, enrollDate, role, status, birth, reFileNm, phone FROM member WHERE id = #{id}
 	</select>
