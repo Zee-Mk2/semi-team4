@@ -62,6 +62,12 @@ public class CampController {
 		return "/camping/camping-search";
 	}
 	
+	@RequestMapping(value = "/camp-recommend", method = RequestMethod.GET)
+	public String campRecommendPage() {
+		
+		return "/camping/camping-recommend";
+	}
+	
 	@RequestMapping(value = "/camp-detail", method = RequestMethod.GET)
 	public String campDetailPage() {
 		
