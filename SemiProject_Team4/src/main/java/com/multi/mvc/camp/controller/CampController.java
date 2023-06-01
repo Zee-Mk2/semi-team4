@@ -1,15 +1,20 @@
 package com.multi.mvc.camp.controller;
 
+import java.util.List;
 import java.util.Locale;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.multi.mvc.camp.model.service.CampService;
-import com.multi.mvc.concert.model.service.ConcertService;
+import com.multi.mvc.camp.model.vo.CampSiteVO;
+import com.multi.mvc.common.util.PageInfo;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -38,8 +43,22 @@ public class CampController {
 	}
 	
 	@RequestMapping(value = "/camp-search", method = RequestMethod.GET)
-	public String campSearchPage(Locale locale, Model model) {
-		model.addAttribute("searchList", service.campSearch());
+	public String campSearchPage(Model model, @RequestParam Map<String, Object> param) {
+		log.info("param.toString()>> " + param.toString());
+		int page = 1;
+		try {
+			page = Integer.parseInt((String) param.get("page"));
+		} catch (Exception e) {}
+		
+		int resultCount = service.getResultCount(param);
+		PageInfo pageInfo = new PageInfo(page, 5, resultCount, 15);
+		List<CampSiteVO> list = service.campSearch(pageInfo, param);
+		
+		model.addAttribute("list", list);
+		model.addAttribute("param", param);
+		model.addAttribute("pageInfo", pageInfo);
+		model.addAttribute("numOfResult", resultCount);
+		
 		return "/camping/camping-search";
 	}
 	

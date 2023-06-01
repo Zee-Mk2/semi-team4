@@ -8,8 +8,12 @@ import org.springframework.stereotype.Service;
 
 import com.multi.mvc.camp.model.mapper.CampMapper;
 import com.multi.mvc.camp.model.vo.CampSiteVO;
+import com.multi.mvc.common.util.PageInfo;
+
+import lombok.extern.slf4j.Slf4j;
 
 @Service
+@Slf4j
 public class CampService {
 
 	@Autowired
@@ -28,31 +32,29 @@ public class CampService {
 //			map.put("해변", )
 //		}
 		for (CampSiteVO obj : list) {
-			obj.setLocation(obj.getLocation().replace(",", "/"));
+			if (obj.getLocation() != null) {
+				obj.setLocation(obj.getLocation().replace(",", "/"));
+			}
 		}
-		System.out.println(list.toString() + "\n");
 		return list;
 	}
 	
-	public List<CampSiteVO> campSearch(){
-		List<CampSiteVO> list =  mapper.campSearch();
+	public List<CampSiteVO> campSearch(PageInfo pageInfo, Map<String, Object> param){
+		param.put("limit", pageInfo.getListLimit());
+		param.put("offset", (pageInfo.getStartList() - 1));
+		log.info(param.toString());
+		List<CampSiteVO> list =  mapper.campSearch(param);
 		for(CampSiteVO obj : list) {
-			obj.setLocation(obj.getLocation().replace(",", "/"));
+			if (obj.getLocation() != null) {
+				obj.setLocation(obj.getLocation().replace(",", "/"));
+			}
 		}
-		System.out.println(list.toString() + "\n");
 		return list;
 	}
-	
-	public List<CampSiteVO> campDetailSearch(){
-		List<CampSiteVO> list =  mapper.campDetailSearch();
-		for(CampSiteVO obj : list) {
-			obj.setLocation(obj.getLocation().replace(",", "/"));
-		}
-		System.out.println(list.toString() + "\n");
-		return list;
-	}
-	
 
+	public int getResultCount(Map<String, Object> param) {
+		return mapper.selectResultCount(param);
+	}
 }
 
 

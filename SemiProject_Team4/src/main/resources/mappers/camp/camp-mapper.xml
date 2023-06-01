@@ -29,17 +29,49 @@
 	</select>
 	
 	<select id="campSearch" resultType="CampSiteVO">
-		(SELECT campNm, location, doNm, sigunguNm, img FROM campsiteInfo WHERE location LIKE '%해변%' ORDER BY views LIMIT 1)
-		UNION ALL
-		(SELECT campNm, location, doNm, sigunguNm, img FROM campsiteInfo WHERE location LIKE '%섬%' ORDER BY views LIMIT 1)
-		UNION ALL
-		(SELECT campNm, location, doNm, sigunguNm, img FROM campsiteInfo WHERE location LIKE '%산%' ORDER BY views LIMIT 1)
-		UNION ALL
-		(SELECT campNm, location, doNm, sigunguNm, img FROM campsiteInfo WHERE location LIKE '%강%' ORDER BY views LIMIT 1)
-		UNION ALL
-		(SELECT campNm, location, doNm, sigunguNm, img FROM campsiteInfo WHERE location LIKE '%호수%' ORDER BY views LIMIT 1)
-		UNION ALL
-		(SELECT campNm, location, doNm, sigunguNm, img FROM campsiteInfo WHERE location LIKE '%도심%' ORDER BY views LIMIT 1)
+		SELECT contentID, campNm, induType, location, doNm, sigunguNm, animalEntry, img
+		FROM campSiteInfo
+		WHERE 1 = 1
+		AND manStatus = '운영'
+		<if test="doNm != null">
+			AND doNm LIKE '%${doNm}%'
+		</if>
+		<if test="campNm != null">
+			AND campNm LIKE '%${campNm}%'
+		</if>
+		<if test="location != null">
+			AND location LIKE '%${location}%'
+		</if>
+		<if test="induType != null">
+			AND induType LIKE '%${induType}%'
+		</if>
+		<if test="animalEntry != null">
+			AND animalEntry LIKE '%${animalEntry}%'
+		</if>
+		ORDER BY views
+		LIMIT ${limit} OFFSET ${offset}
+	</select>
+	
+	<select id="selectResultCount" resultType="int">
+		SELECT count(*)
+		FROM campSiteInfo
+		WHERE 1 = 1 AND manStatus = '운영'
+		<if test="doNm != null">
+			AND doNm LIKE '%${doNm}%'
+		</if>
+		<if test="campNm != null">
+			AND campNm LIKE '%${campNm}%'
+		</if>
+		<if test="location != null">
+			AND location LIKE '%${location}%'
+		</if>
+		<if test="induType != null">
+			AND induType LIKE '%${induType}%'
+		</if>
+		<if test="animalEntry != null">
+			AND animalEntry LIKE '%${animalEntry}%'
+		</if>
+		ORDER BY views
 	</select>
 </mapper>
 

@@ -61,9 +61,9 @@ CREATE TABLE campsiteInfo (
 	animalEntry         VARCHAR(100),
 	tourDate            VARCHAR(100),
 	img                 VARCHAR(1000),
-    status				VARCHAR(1),
-    bookmarks			INT,
-    views				INT
+    status				VARCHAR(1) DEFAULT 'Y',
+    bookmarks			INT DEFAULT 0,
+    views				INT DEFAULT 0
 );
 
 SELECT * FROM campsiteInfo;
@@ -91,9 +91,9 @@ CREATE TABLE concert (
     introImg	VARCHAR(1000),
 	story		VARCHAR(5000),
 	startTime	VARCHAR(1000),
-    status		VARCHAR(1),
-    bookmarks	INT,
-    views		INT
+    status		VARCHAR(1) DEFAULT 'Y',
+    bookmarks	INT DEFAULT 0,
+    views		INT DEFAULT 0
 );
 
 SELECT * FROM concert;
@@ -294,3 +294,19 @@ UPDATE member SET name = '관리자2', email = 'verylongemailaddress@email.com' 
 
 -- 로그인
 SELECT * FROM member WHERE id = 'admin' AND status = 'Y';
+
+-- 검색 리스트
+SELECT contentID, campNm, induType, location, doNm, sigunguNm, animalEntry, img
+FROM campSiteInfo
+WHERE manStatus = '운영'
+ORDER BY views
+LIMIT 15 OFFSET 0;
+
+-- 검색결과 갯수
+SELECT count(*)
+FROM campSiteInfo
+WHERE manStatus = '운영'
+ORDER BY views
+LIMIT 15 OFFSET 0;
+
+SELECT * FROM campSiteInfo;
