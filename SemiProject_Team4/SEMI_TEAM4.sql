@@ -84,7 +84,7 @@ CREATE TABLE concert (
 	cast		VARCHAR(1000),
 	crew		VARCHAR(1000),
 	runtime		VARCHAR(100),
-	viewAge		VARCHAR(100),
+	viewAge		INT,
 	enterNm		VARCHAR(1000),
 	ticketPrice	VARCHAR(2000),
 	posterImg	VARCHAR(1000),
@@ -93,7 +93,8 @@ CREATE TABLE concert (
 	startTime	VARCHAR(1000),
     status		VARCHAR(1) DEFAULT 'Y',
     bookmarks	INT DEFAULT 0,
-    views		INT DEFAULT 0
+    views		INT DEFAULT 0,
+    minPrice	INT	
 );
 
 SELECT * FROM concert;
@@ -162,6 +163,7 @@ CREATE TABLE member (
 );
 
 SELECT * FROM member;
+DELETE FROM member WHERE mno = 13;
 
 -- 예약 테이블
 DROP TABLE reserve;
@@ -290,6 +292,7 @@ SELECT * FROM reply;
 -- -- 회원가입
 INSERT INTO member VALUES(DEFAULT, 'admin', '1234', '관리자', null, null, null, DEFAULT, 'ADMIN', 'Y', null, null, DEFAULT, null);
 SELECT * FROM member;
+DELETE FROM member WHERE mno = 6;
 
 -- 게시글 작성
 INSERT INTO board VALUES(DEFAULT, 2, '지석환', 'info', 'camp', '오토캠핑 가이드', '내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용', null, null, DEFAULT, DEFAULT, DEFAULT);
@@ -341,3 +344,8 @@ SELECT count(*)
 FROM campSiteInfo
 WHERE manStatus = '운영'
 ORDER BY views;
+
+-- 공연 검색
+SELECT conId, conNm, genre, startDate, endDate, conHallNm, posterImg, minPrice
+FROM concert
+WHERE status = 'Y';

@@ -96,7 +96,7 @@
 									<!-- 이메일 -->
 									<div class="col-md-6">
 										<label class="form-label">이메일<span class="text-danger">*</span></label>
-										<input id="id" name="id" type="text" class="form-control" value="" placeholder="example@gmail.com" required>
+										<input id="id" name="id" type="email" class="form-control" value="" placeholder="example@gmail.com" required>
 									</div>
 
 									<!-- 이름 -->
@@ -251,14 +251,6 @@
 			let email = $("#id").val();
 			if (email.length > 25) {
 				alert("이메일이 25자 이상입니다.");
-				
-				$("#id").val("");
-				$("#id").focus();
-				
-				return false;
-			}
-			if (email.includes("@") == false) {
-				alert("이메일의 형식이 올바르지 않습니다.");
 				
 				$("#id").val("");
 				$("#id").focus();

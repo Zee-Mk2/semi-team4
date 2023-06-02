@@ -32,5 +32,5 @@ public class ConcertVO {
 	private String status;
 	private int bookmarks;
 	private int views;
-	
+	private int minPrice;
 }

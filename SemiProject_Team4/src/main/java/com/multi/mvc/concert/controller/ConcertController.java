@@ -1,15 +1,20 @@
 package com.multi.mvc.concert.controller;
 
+import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import com.multi.mvc.camp.model.service.CampService;
+import com.multi.mvc.common.util.PageInfo;
 import com.multi.mvc.concert.model.service.ConcertService;
+import com.multi.mvc.concert.model.vo.ConcertVO;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -21,11 +26,11 @@ import lombok.extern.slf4j.Slf4j;
 public class ConcertController {
 	
 	@Autowired
-	private ConcertService service1;
+	private ConcertService service;
 	
 	@RequestMapping(value = "/conc-home", method = RequestMethod.GET)
 	public String concertHome(Locale locale, Model model) {
-		model.addAttribute("conBestList", service1.concertBest());
+		model.addAttribute("conBestList", service.concertBest());
 		return "/index-concert";
 	}
 
@@ -47,54 +52,28 @@ public class ConcertController {
 		return "/concert/concert-booking";
 	}
 	
-//	@RequestMapping(value = "/board-main", method = RequestMethod.GET)
-//	public String comMainPage() {
-//		
-//		return "/board/community";
-//	}
-//	
-//	@RequestMapping(value = "/freeBoard", method = RequestMethod.GET)
-//	public String communityFreePage() {
-//		
-//		
-//		return "/board/community-free";
-//	}
-//	
-//	@RequestMapping(value = "/info", method = RequestMethod.GET)
-//	public String InfoPage() {
-//		
-//		
-//		return "/board/community-info";
-//	}
-//	
-//	@RequestMapping(value = "/board-review", method = RequestMethod.GET)
-//	public String boardReviewPage() {
-//		
-//		return "/board/community-review";
-//	}
-//	
-//	@RequestMapping(value = "/board-post", method = RequestMethod.GET)
-//	public String comPostPage() {
-//		
-//		
-//		return "/board/community-post";
-//	}
-//	
-//	@RequestMapping(value = "/board-detail", method = RequestMethod.GET)
-//	public String boardDetailPage() {
-//		
-//		return "/board/community-detail";
-//	}
-//	
-//	@RequestMapping(value = "/permit", method = RequestMethod.GET)
-//	public String permitPage() {
-//		
-//		return "/common/permit";
-//	}
-//	
-	
-	
-	
+	@GetMapping(value = "/conc-search")
+	public String concSearchPage(Model model, @RequestParam Map<String, Object> param) {
+		log.info("concSearchPage 호출됨");
+		
+		int page = 1;
+		try {
+			page = Integer.parseInt((String) param.get("page"));
+		} catch (Exception e) {}
+		
+		int resultCount = service.countSearch(param);
+		PageInfo pageInfo = new PageInfo(page, 5, resultCount, 16);
+		List<ConcertVO> list = service.concSearch(pageInfo, param);
+		
+		int numOfResult = service.countSearch(param);
+		
+		model.addAttribute("items", list);
+		model.addAttribute("numOfResult", numOfResult);
+		model.addAttribute("param", param);
+		model.addAttribute("pageInfo", pageInfo);
+		
+		return "/concert/concert-search";
+	}
 }
 
 

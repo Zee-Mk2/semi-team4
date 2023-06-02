@@ -1,14 +1,19 @@
 package com.multi.mvc.concert.model.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.multi.mvc.common.util.PageInfo;
 import com.multi.mvc.concert.model.mapper.ConcertMapper;
 import com.multi.mvc.concert.model.vo.ConcertVO;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Service
+@Slf4j
 public class ConcertService {
 
 	@Autowired
@@ -36,20 +41,18 @@ public class ConcertService {
 		return list;
 	}
 	
+	public List<ConcertVO> concSearch(PageInfo pageInfo, Map<String, Object> param) {
+		param.put("limit", pageInfo.getListLimit());
+		param.put("offset", (pageInfo.getStartList() - 1));
+		log.info("conSearch - param>> " + param.toString());
+		for (ConcertVO obj : mapper.concSearch(param)) {
+			log.info("conSearch - result>> " + obj.toString());
+		}
+		return mapper.concSearch(param);
+	}
+
+	public int countSearch(Map<String, Object> param) {
+		return mapper.countSearch(param);
+	}
+	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

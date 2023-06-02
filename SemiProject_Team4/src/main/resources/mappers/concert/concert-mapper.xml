@@ -29,6 +29,62 @@
 		UNION
 		(SELECT conNm, genre, startDate, endDate, conHallNm, posterImg FROM concert WHERE genre LIKE '복합' ORDER BY views LIMIT 2)
 	</select>
+	
+	<select id="concSearch" resultType="ConcertVO" parameterType="Map">
+		SELECT conId, conNm, genre, startDate, endDate, conHallNm, posterImg, minPrice
+		FROM concert
+		WHERE status = 'Y'
+		<if test="min != null and max != null">
+			AND #{min} &lt;= minPrice AND minPrice &lt;= #{max}
+		</if>
+		<if test="genre != null and genre != ''">
+			AND genre = #{genre}
+		</if>
+		<if test="viewAge != null and viewAge != ''">
+			AND viewAge >= #{viewAge}
+		</if>
+		<if test="conState != null and conState != ''">
+			AND conState = #{conState}
+		</if>
+		<if test="searchType == 'concKeyword'">
+			AND conNm LIKE '%${keyword}%'
+		</if>
+		<if test="searchType == 'hallKeyword'">
+			AND conHallNm LIKE '%${keyword}%'
+		</if>
+		<if test="reservDate != null and reservDate != ''">
+			AND startDate &lt; #{reservDate} AND #{reservDate} &lt; endDate
+		</if>
+		ORDER BY views
+		LIMIT #{limit} OFFSET #{offset}
+	</select>
+	
+	<select id="countSearch" parameterType="Map" resultType="int">
+		SELECT count(*)
+		FROM concert
+		WHERE status = 'Y'
+		<if test="min != null and max != null">
+			AND #{min} &lt;= minPrice AND minPrice &lt;= #{max}
+		</if>
+		<if test="genre != null and genre != ''">
+			AND genre = #{genre}
+		</if>
+		<if test="viewAge != null and viewAge != ''">
+			AND viewAge >= #{viewAge}
+		</if>
+		<if test="conState != null and conState != ''">
+			AND conState = #{conState}
+		</if>
+		<if test="searchType == 'concKeyword'">
+			AND conNm LIKE '%${keyword}%'
+		</if>
+		<if test="searchType == 'hallKeyword'">
+			AND conHallNm LIKE '%${keyword}%'
+		</if>
+		<if test="reservDate != null and reservDate != ''">
+			AND startDate &lt; #{reservDate} AND #{reservDate} &lt; endDate
+		</if>
+	</select>
 
 </mapper>
 
