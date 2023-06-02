@@ -6,8 +6,6 @@
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 
 
-<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-
 <!-- Plugins CSS -->
 <link rel="stylesheet" type="text/css" href="${path}/resources/assets/vendor/font-awesome/css/all.min.css">
 <link rel="stylesheet" type="text/css" href="${path}/resources/assets/vendor/bootstrap-icons/bootstrap-icons.css">
@@ -15,6 +13,8 @@
 <link rel="stylesheet" type="text/css" href="${path}/resources/assets/vendor/glightbox/css/glightbox.css">
 <link rel="stylesheet" type="text/css" href="${path}/resources/assets/vendor/choices/css/choices.min.css">
 <link rel="stylesheet" type="text/css" href="${path}/resources/assets/vendor/flatpickr/css/flatpickr.min.css">
+
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 
 <!-- Vendors -->
 <script src="${path}/resources/assets/vendor/tiny-slider/tiny-slider.js"></script>
@@ -71,15 +71,16 @@ Main Banner START -->
 						</div>
 					</div>
 				</div>
+			</div>
+		
+			<!-- Left and right controls/icons -->
+			<button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
+				<span class="carousel-control-prev-icon"></span>
+			</button>
+			<button class="carousel-control-next" type="button" data-bs-target="#carousel" data-bs-slide="next">
+				<span class="carousel-control-next-icon"></span>
+			</button>
 		</div>
-	
-		<!-- Left and right controls/icons -->
-		<button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
-			<span class="carousel-control-prev-icon"></span>
-		</button>
-		<button class="carousel-control-next" type="button" data-bs-target="#carousel" data-bs-slide="next">
-			<span class="carousel-control-next-icon"></span>
-		</button>
 	</div>
 	<!-- 카로셀 끝 -->
 
@@ -88,24 +89,34 @@ Main Banner START -->
 		<!-- Search START -->
 		<div class="col-12 mt-n8 pb-5">
 				<!-- Booking from START -->
-				<form class="bg-mode shadow rounded-5 px-3 py-1">
+				<form class="bg-mode shadow rounded-5 px-3 py-1" action="${path}/camp-search" method="get">
+					<input type="hidden" name="page" value="1">
 					<div class="row g-4 align-items-center">
 						<div class="col-xl-11">
 							<div class="row g-4">
 								<!-- Location -->
 								<div class="col-md-6 col-lg-3">
 									<!-- Input field -->
-									<div class="form-border-bottom form-control-transparent form-fs-lg" style="height: 85%;">
-										<select class="form-select js-choice" data-search-enabled="true">
+									<div class="form-border-bottom form-control-transparent form-fs-lg">
+										<select class="form-select js-choice" data-search-enabled="true" name="doNm">
 											<option value="">지역 선택</option>
-											<option>서울/인천/경기</option>
-											<option>부산/울산/경남</option>
-											<option>대구/경북</option>
-											<option>대전/충청</option>
-											<option>광주/전남</option>
-											<option>전북</option>
-											<option>강원</option>
-											<option>제주</option>
+												<option ${doNm == '서울시' ? 'selected' : ''}>서울시</option>
+												<option ${doNm == '부산시' ? 'selected' : ''}>부산시</option>
+												<option ${doNm == '대구시' ? 'selected' : ''}>대구시</option>
+												<option ${doNm == '대전시' ? 'selected' : ''}>대전시</option>
+												<option ${doNm == '광주시' ? 'selected' : ''}>광주시</option>
+												<option ${doNm == '전라남도' ? 'selected' : ''}>전라남도</option>
+												<option ${doNm == '전라북도' ? 'selected' : ''}>전라북도</option>
+												<option ${doNm == '경상남도' ? 'selected' : ''}>경상남도</option>
+												<option ${doNm == '경상북도' ? 'selected' : ''}>경상북도</option>
+												<option ${doNm == '강원도' ? 'selected' : ''}>강원도</option>
+												<option ${doNm == '제주도' ? 'selected' : ''}>제주도</option>
+												<option ${doNm == '충청북도' ? 'selected' : ''}>충청북도</option>
+												<option ${doNm == '충청남도' ? 'selected' : ''}>충청남도</option>
+												<option ${doNm == '경기도' ? 'selected' : ''}>경기도</option>
+												<option ${doNm == '인천시' ? 'selected' : ''}>인천시</option>
+												<option ${doNm == '울산시' ? 'selected' : ''}>울산시</option>
+												<option ${doNm == '세종시' ? 'selected' : ''}>세종시</option>
 										</select>
 									</div>
 								</div>
@@ -122,11 +133,11 @@ Main Banner START -->
 									</div>
 								</div>
 
-								<!-- Guest -->
+								<!-- 키워드 -->
 								<div class="col-md-6 col-lg-6">
 									<!-- Input field -->
 									<div class="form-border-bottom form-control-transparent form-fs-lg">
-										<input class="form-control border-0 shadow-0" type="text" name="search" placeholder="캠핑장 이름으로 검색">
+										<input class="form-control border-0 shadow-0" type="text" name="campNm" placeholder="캠핑장 이름으로 검색">
 									</div>
 								</div>
 							</div>
@@ -135,9 +146,9 @@ Main Banner START -->
 						<!-- Button -->
 						<div class="col-lg-1">
 							<div class="d-grid">
-								<a href="#" class="btn btn-lg mb-n1">
+								<button type="submit" class="btn btn-lg mb-n1">
 									<i class="fa-solid fa-search fs-4"></i>
-								</a>
+								</button>
 							</div>
 						</div>
 					</div>
@@ -290,6 +301,7 @@ Packages END -->
 					</div>
 				</div>
 			</div>
+		</div>
 	</div>
 </section>
 <!-- 이달의픽 끝 -->

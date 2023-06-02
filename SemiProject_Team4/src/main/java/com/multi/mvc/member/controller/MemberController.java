@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,9 +17,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.multi.mvc.kakao.KaKaoService;
 import com.multi.mvc.member.model.service.MemberService;
@@ -78,9 +82,25 @@ public class MemberController {
 	}
 	
 	@PostMapping(value = "/sign-up")
-	public String signUp(Model model, Member member) {
+	public String signUp(Model model, Member member, HttpSession session, @RequestParam("upfile") MultipartFile upfile) {
 		log.info("회원가입 요청");
 		int result = 0;
+		
+		if(upfile != null && upfile.isEmpty() == false) {
+			String rootPath = session.getServletContext().getRealPath("resources");
+			String savePath = rootPath + "/upload/profile";
+			log.info("controller에서 보내는 savePath>> " + savePath);
+			String renamedFileName = service.saveFile(upfile, savePath); // 실제 파일 저장로직
+			
+			if(renamedFileName != null) {
+				member.setReFileNm(renamedFileName);
+				member.setOriFileNm(upfile.getOriginalFilename());
+			}
+		} else {
+			member.setReFileNm("default-avatar.png");
+		}
+		log.info(member.toString());
+		
 		result = service.saveMember(member);
 		
 		if(result > 0) {
@@ -88,7 +108,7 @@ public class MemberController {
 			model.addAttribute("location", "/");
 		} else { 
 			model.addAttribute("msg", "회원가입에 실패하였습니다. 입력정보를 확인해주세요.");
-			model.addAttribute("location", "/member/enroll");
+			model.addAttribute("location", "/sign-up");
 		}
 		
 		return "common/msg";
@@ -105,7 +125,7 @@ public class MemberController {
 			model.addAttribute("location", "/logout");
 		}else {
 			model.addAttribute("msg", "회원탈퇴를 할수 없습니다.");
-			model.addAttribute("location", "/member/view");
+			model.addAttribute("location", "/MyProfile");
 		}
 		
 		return "/common/msg";
@@ -123,7 +143,8 @@ public class MemberController {
 	}
 	
 	@PostMapping(value = "/MyProfile")
-	public String updateProfile(Model model,
+	public String updateProfile(Model model, HttpSession session,
+			@RequestParam("upfile") MultipartFile upfile,
 			@ModelAttribute Member updateMember, // request에서 온 값
 			@SessionAttribute(name="loginMember", required = false) Member loginMember) {
 		log.info("update method/prev value>> " + String.valueOf(loginMember));
@@ -135,6 +156,19 @@ public class MemberController {
 			model.addAttribute("msg","잘못된 접근입니다.");
 			model.addAttribute("location","/");
 			return "common/msg";
+		}
+		
+		if(upfile != null && upfile.isEmpty() == false) {
+			String rootPath = session.getServletContext().getRealPath("resources");
+			String savePath = rootPath + "/upload/profile";
+			log.info("controller에서 보내는 savePath>> " + savePath);
+			String renamedFileName = service.saveFile(upfile, savePath); // 실제 파일 저장로직
+			
+			if(renamedFileName != null) {
+				updateMember.setReFileNm(renamedFileName);
+				updateMember.setOriFileNm(upfile.getOriginalFilename());
+			}
+			log.info("파일 업로드 성공");
 		}
 		
 		updateMember.setMno(loginMember.getMno()); // update가 되는 코드
@@ -149,6 +183,8 @@ public class MemberController {
 			model.addAttribute("msg", "회원정보 수정에 실패하였습니다.");
 			model.addAttribute("location","/MyProfile");
 		}
+		log.info("updateProfile메소드 파일 업로드 체크>> " + loginMember.toString());
+		
 		return "common/msg";
 	}
 	
@@ -172,10 +208,34 @@ public class MemberController {
 			model.addAttribute("msg", "이메일 변경에 실패했습니다.");
 			model.addAttribute("location","/MyProfile");
 		}
-		return "common/msg";
 		
+		return "common/msg";
 	}
 	
+	@PostMapping(value = "/updatePwd")
+	public String updatePwd(Model model, @RequestParam Map<String, String> param,
+			@SessionAttribute(name="loginMember", required = false) Member loginMember) {
+		log.info("updatePwd>> " + param.toString());
+		
+		String password = String.valueOf(param.get("curPwd"));
+		boolean isMatchPwd = service.isMatchPwd(password, loginMember.getId());
+		password = param.get("password");
+		
+		if(isMatchPwd) {
+			int result = service.updatePwd(password, loginMember.getMno());
+			loginMember = service.findByMno(loginMember.getMno());
+			model.addAttribute("loginMember", loginMember); // 세션을 업데이트 하는 코드
+			log.info("updatePwd>> " + loginMember.toString());
+			model.addAttribute("msg", "비밀번호가 변경되었습니다.");
+			model.addAttribute("location","/MyProfile");
+		} else {
+			model.addAttribute("msg", "비밀번호 변경에 실패했습니다.");
+			model.addAttribute("location","/MyProfile");
+		}
+		
+		return "common/msg";
+	}
+
 	@RequestMapping(value = "/pro-setting", method = RequestMethod.GET)
 	public String setting(Locale locale, Model model) {
 		

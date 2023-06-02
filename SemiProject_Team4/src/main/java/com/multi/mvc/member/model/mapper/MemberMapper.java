@@ -1,5 +1,7 @@
 package com.multi.mvc.member.model.mapper;
 
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -38,4 +40,11 @@ public interface MemberMapper {
 	int updateID(@Param("id") String id, @Param("mno") int mno);
 
 	Member findByMno(int mno);
+
+	int updatePwd(Map<String, Object> param);
+
+	int duplID(String id);
+
+
+
 }

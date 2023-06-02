@@ -19,6 +19,7 @@
 <script src="${path}/resources/assets/vendor/glightbox/js/glightbox.js"></script>
 <script src="${path}/resources/assets/vendor/choices/js/choices.min.js"></script>
 <script src="${path}/resources/assets/vendor/flatpickr/js/flatpickr.min.js"></script>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
 
 	<!-- **************** MAIN CONTENT START **************** -->
 	<main>
@@ -42,15 +43,6 @@ Content START -->
 							<!-- Offcanvas body -->
 							<div class="offcanvas-body p-3 p-lg-0">
 								<div class="card bg-light w-100">
-
-									<!-- Edit profile button -->
-									<div class="position-absolute top-0 end-0 p-3">
-										<a href="${path}/MyProfile" class="text-primary-hover" data-bs-toggle="tooltip"
-											data-bs-title="Edit profile">
-											<i class="bi bi-pencil-square"></i>
-										</a>
-									</div>
-
 									<!-- Card body START -->
 									<div class="card-body p-3">
 										<!-- Avatar and content -->
@@ -58,7 +50,7 @@ Content START -->
 											<!-- Avatar -->
 											<div class="avatar avatar-xl mb-2">
 												<img class="avatar-img rounded-circle border border-2 border-white"
-													src="${path}/resources/assets/images/avatar/${loginMember.reFileNm}" alt="">
+													src="${path}/resources/upload/profile/${loginMember.reFileNm}" alt="">
 											</div>
 											<h6 class="mb-0">${loginMember.name}</h6>
 											<a href="${path}/MyProfile" class="text-reset text-primary-hover small">${loginMember.id}</a>
@@ -124,24 +116,20 @@ Content START -->
 								<!-- Card body START -->
 								<div class="card-body">
 									<!-- Form START -->
-									<form class="row g-3" action="${path}/MyProfile" method="post">
+									<form class="row g-3" action="${path}/MyProfile" method="post" enctype="multipart/form-data">
 										<!-- Profile photo -->
 										<div class="col-12">
-											<label class="form-label">프로필 사진 업로드<span
-													class="text-danger">*</span></label>
+											<label class="form-label">프로필 사진 업로드</label>
 											<div class="d-flex align-items-center">
-												<label class="position-relative me-4" for="uploadfile-1"
-													title="Replace this pic">
+												<label class="position-relative me-4" for="upfile" title="Replace this pic">
 													<!-- Avatar place holder -->
 													<span class="avatar avatar-xl">
-														<img id="uploadfile-1-preview"
-															class="avatar-img rounded-circle border border-white border-3 shadow"
-															src="${path}/resources/assets/images/avatar/${loginMember.reFileNm}" alt="">
+														<img id="uploadfile-1-preview" class="avatar-img rounded-circle border border-white border-3 shadow" src="${path}/resources/upload/profile/${loginMember.reFileNm}" alt="">
 													</span>
 												</label>
 												<!-- Upload button -->
-												<label class="btn btn-sm btn-outline-primary mb-0" for="uploadfile-1">변경</label>
-												<input id="uploadfile-1" class="form-control d-none" type="file">
+												<label class="btn btn-sm btn-outline-primary mb-0" for="upfile">변경</label>
+												<input id="upfile" name="upfile" class="form-control d-none" type="file">
 											</div>
 										</div>
 
@@ -240,18 +228,18 @@ Content START -->
 								</div>
 
 								<!-- Card body START -->
-								<form class="card-body">
+								<form class="card-body" action="${path}/updatePwd" method="post">
 									<!-- Current password -->
 									<div class="mb-3">
 										<label class="form-label">현재 비밀번호</label>
-										<input class="form-control" type="password" placeholder="현재 비밀번호">
+										<input class="form-control" type="password" placeholder="현재 비밀번호" name="curPwd" value="">
 									</div>
 									<!-- New password -->
 									<div class="mb-3">
 										<label class="form-label">새 비밀번호를 입력하세요</label>
 										<div class="input-group">
 											<input class="form-control fakepassword" placeholder="새 비밀번호"
-												type="password" id="psw-input">
+												type="password" name="password" id="password">
 											<span class="input-group-text p-0 bg-transparent align-items-center">
 												<i class="fakepasswordicon fas fa-eye-slash cursor-pointer p-2 mt-2"></i>
 											</span>
@@ -260,11 +248,11 @@ Content START -->
 									<!-- Confirm -->
 									<div class="mb-3">
 										<label class="form-label">새 비밀번호 확인</label>
-										<input class="form-control" type="password" placeholder="새 비밀번호 확인">
+										<input class="form-control" type="password" placeholder="새 비밀번호 확인" id="pwdCheck" value="">
 									</div>
 
 									<div class="text-end">
-										<a href="${path}/#" class="btn btn-outline-primary mb-0">변경</a>
+										<button type="submit" class="btn btn-outline-primary mb-0" id="updatePwd">변경</button>
 									</div>
 								</form>
 								<!-- Card body END -->
@@ -287,3 +275,41 @@ Content END -->
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
+
+<script type="text/javascript">
+const fileInput = document.getElementById('upfile');
+const previewImg = document.getElementById('uploadfile-1-preview');
+
+fileInput.addEventListener('change', function(event) {
+  const file = event.target.files[0];
+  
+  if (file) {
+    const reader = new FileReader();
+    
+    reader.addEventListener('load', function(event) {
+      previewImg.src = event.target.result;
+    });
+    
+    reader.readAsDataURL(file);
+  }
+});
+</script>
+
+<script>
+	$(document).ready(() => {
+		$("#updatePwd").on("click", (e) => {
+			let pass1 = $("#password").val();			
+			let pass2 = $("#pwdCheck").val();
+			
+			if (pass1.trim() !== pass2.trim()) {
+				alert("비밀번호가 일치하지 않습니다.");
+				
+				$("#password").val("");
+				$("#pwdCheck").val("");
+				$("#password").focus();
+				
+				return false;
+			}		
+		});
+	});
+</script>

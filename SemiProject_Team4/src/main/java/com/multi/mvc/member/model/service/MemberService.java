@@ -1,5 +1,8 @@
 package com.multi.mvc.member.model.service;
 
+import java.io.File;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.multi.mvc.member.model.mapper.MemberMapper;
 import com.multi.mvc.member.model.vo.Member;
@@ -23,6 +27,34 @@ public class MemberService {
 	
 	@Autowired
 	private BCryptPasswordEncoder pwEncoder;
+	
+	private static int count = 0;
+	public String saveFile(MultipartFile upfile, String savePath) {
+		File folder = new File(savePath);
+		
+		// 폴더가 없으면 경로채 폴더 만들어주는 코드
+		if(folder.exists() == false) {
+			folder.mkdirs();
+		}
+		log.info(savePath);
+		
+		// 파일 이름을 날짜시간 + 랜덤하게 바꾸는 코드, text.txt -> 20230522_14230230202.txt
+		String originalFileName = upfile.getOriginalFilename();
+		String renamedFileName = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd_HHmmssSSS"));
+		renamedFileName += (count++);									
+		renamedFileName += originalFileName.substring(originalFileName.lastIndexOf(".")).toLowerCase();
+		String renamedPath = savePath + "/" + renamedFileName;
+		log.info("saveFile method, filePath>> " + renamedFileName);
+		
+		try {
+			// 실제 파일이름을 변경하여 저장하는 코드
+			upfile.transferTo(new File(renamedPath));
+		} catch (Exception e) {
+			return null;
+		}
+		
+		return renamedFileName;
+	}
 	
 	/**
 	 * 로그인 메소드
@@ -66,6 +98,9 @@ public class MemberService {
 	 */
 	@Transactional(rollbackFor = Exception.class)
 	public int saveMember(Member member) {
+		if (mapper.duplID(member.getId()) != 0) {
+			return 0;
+		}
 		int result = 0;
 		if (member.getMno() == 0) {
 			String encodePw = pwEncoder.encode(member.getPassword()); // 암호화 로직
@@ -101,11 +136,26 @@ public class MemberService {
 	 */
 	@Transactional(rollbackFor = Exception.class)
 	public int updateID(String id, int mno) {
+		if (mapper.duplID(id) != 0) {
+			return 0;
+		}
 		return mapper.updateID(id, mno);
 	}
 
 	public Member findByMno(int mno) {
 		return mapper.findByMno(mno);
+	}
+
+	public int updatePwd(String password, int mno) {
+		Map<String, Object> param = new HashMap<String, Object>();
+		password = pwEncoder.encode(password);
+		param.put("password", password);
+		param.put("mno", mno);
+		return mapper.updatePwd(param);
+	}
+
+	public boolean isMatchPwd(String password, String id) {
+		return pwEncoder.matches(password, mapper.selectMemberById(id).getPassword()) ? true : false;
 	}
 	
 }

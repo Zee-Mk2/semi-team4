@@ -76,20 +76,20 @@
 							<!-- Card body START -->
 							<div class="card-body">
 								<!-- Form START -->
-								<form class="row g-3" action="${path}/sign-up" method="post">
+								<form class="row g-3" action="${path}/sign-up" method="post" enctype="multipart/form-data">
 									<!-- Profile photo -->
 									<div class="col-12">
 										<label class="form-label">프로필 사진 업로드</label>
 										<div class="d-flex align-items-center">
-											<label class="position-relative me-4" for="uploadfile-1" title="Replace this pic">
+											<label class="position-relative me-4" for="upfile" title="Replace this pic">
 												<!-- Avatar place holder -->
 												<span class="avatar avatar-xl">
-													<img id="uploadfile-1-preview" class="avatar-img rounded-circle border border-white border-3 shadow" src="${path}/resources/assets/images/avatar/default-avatar.png" alt="">
+													<img id="uploadfile-1-preview" class="avatar-img rounded-circle border border-white border-3 shadow" src="${path}/resources/upload/profile/default-avatar.png" alt="">
 												</span>
 											</label>
 											<!-- Upload button -->
-											<label class="btn btn-sm btn-info-soft mb-0" for="uploadfile-1">변경</label>
-											<input id="uploadfile-1" class="form-control d-none" type="file">
+											<label class="btn btn-sm btn-outline-primary mb-0" for="upfile">변경</label>
+											<input id="upfile" name="upfile" class="form-control d-none" type="file">
 										</div>
 									</div>
 	
@@ -170,7 +170,7 @@
 									<!-- Address -->
 									<div class="col-12">
 										<label class="form-label">주소</label>
-										<textarea class="form-control" rows="3" spellcheck="false" name="address"></textarea>
+										<textarea class="form-control" rows="3" spellcheck="false" name="address" id="address"></textarea>
 									</div>
 									
 									
@@ -218,9 +218,93 @@
 <script src="${path}/resources/assets/vendor/glightbox/js/glightbox.js"></script>
 <script src="${path}/resources/assets/vendor/choices/js/choices.min.js"></script>
 <script src="${path}/resources/assets/vendor/flatpickr/js/flatpickr.min.js"></script>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
 
 <!-- ThemeFunctions -->
 <script src="${path}/resources/assets/js/functions.js"></script>
+
+<script>
+	$(document).ready(() => {
+		$("#enrollSubmit").on("click", (e) => {
+			let pass1 = $("#password").val();			
+			let pass2 = $("#passwordCheck").val();
+			
+			if (pass1.trim() !== pass2.trim()) {
+				alert("비밀번호가 일치하지 않습니다.");
+				
+				$("#password").val("");
+				$("#passwordCheck").val("");
+				$("#password").focus();
+				
+				return false;
+			}
+			if (pass1.length > 50) {
+				alert("비밀번호가 너무 깁니다.");
+
+				$("#password").val("");
+				$("#passwordCheck").val("");
+				$("#password").focus();
+				
+				return false;
+			}
+			
+			let email = $("#id").val();
+			if (email.length > 25) {
+				alert("이메일이 25자 이상입니다.");
+				
+				$("#id").val("");
+				$("#id").focus();
+				
+				return false;
+			}
+			if (email.includes("@") == false) {
+				alert("이메일의 형식이 올바르지 않습니다.");
+				
+				$("#id").val("");
+				$("#id").focus();
+				
+				return false;
+			}
+			
+			let phone = $("#phone").val();
+			if (phone.length > 12) {
+				alert("휴대폰 번호의 길이가 너무 깁니다.");
+				
+				$("#phone").val("");
+				$("#phone").focus();
+				
+				return false;
+			}
+			
+			let address = $("#address");
+			if (address.length > 50) {
+				alert("주소의 길이가 너무 깁니다.");
+				
+				$("#address").val("");
+				$("#address").focus();
+			}
+		});
+	});
+</script>
+
+<script type="text/javascript">
+const fileInput = document.getElementById('upfile');
+const previewImg = document.getElementById('uploadfile-1-preview');
+
+fileInput.addEventListener('change', function(event) {
+  const file = event.target.files[0];
+  
+  if (file) {
+    const reader = new FileReader();
+    
+    reader.addEventListener('load', function(event) {
+      previewImg.src = event.target.result;
+    });
+    
+    reader.readAsDataURL(file);
+  }
+});
+</script>
 
 </body>
 </html>

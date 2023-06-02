@@ -9,7 +9,7 @@
 	</select>
 	
 	<insert id="joinMember" parameterType="Member">
-		INSERT INTO member VALUES(DEFAULT, #{id}, #{password}, #{name}, #{gender}, #{address}, #{favDistrict}, DEFAULT, DEFAULT, 'Y', #{birth}, #{oriFileNm}, DEFAULT, #{phone})
+		INSERT INTO member VALUES(DEFAULT, #{id}, #{password}, #{name}, #{gender}, #{address}, #{favDistrict}, DEFAULT, DEFAULT, 'Y', #{birth}, #{oriFileNm}, #{reFileNm}, #{phone})
 	</insert>
 	
 	<update id="deleteMember" parameterType="int">
@@ -25,6 +25,10 @@
 	<update id="updateMember" parameterType="Member">
 		UPDATE member
 		SET id = #{id}, name = #{name}, gender = #{gender}, address = #{address}, phone = #{phone}, birth = #{birth}
+		<if test="oriFileNm">
+			, oriFileNm = #{oriFileNm},
+			reFileNm = #{reFileNm}
+		</if>
 		WHERE mNO = #{mno}
 	</update>
 	
@@ -36,6 +40,16 @@
 	
 	<select id="findByMno" parameterType="int" resultType="Member">
 		SELECT * FROM member WHERE mno = #{mno}
+	</select>
+	
+	<update id="updatePwd" parameterType="Map">
+		UPDATE member
+		SET password = #{password}
+		WHERE mno = #{mno}
+	</update>
+	
+	<select id="duplID" parameterType="String" resultType="int">
+		SELECT count(*) FROM member WHERE id = #{id}
 	</select>
 </mapper>
 

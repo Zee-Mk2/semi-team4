@@ -66,8 +66,7 @@
 										<div class="col-md-6 col-lg-4">
 											<!-- Input field -->
 											<div
-												class="form-border-bottom form-control-transparent form-fs-lg"
-												style="height: 85%;">
+												class="form-border-bottom form-control-transparent form-fs-lg">
 												<c:set var="doNm" value="${param.doNm}"/>
 												<select name="doNm" class="form-select js-choice z-index-99" data-search-enabled="true">
 													<option value="">지역 선택</option>
@@ -97,7 +96,7 @@
 											<!-- Input field -->
 											<c:set var="terms" value="${param.terms}"/>
 											<div class="form-border-bottom form-control-transparent form-fs-lg">
-												<input name="terms" type="date" class="form-control flatpickr py-2" data-mode="range" data-date-format="m-d" placeholder="일정 선택" style="height: 85%;">
+												<input name="terms" type="date" class="form-control flatpickr py-2" data-mode="range" data-date-format="m-d" placeholder="일정 선택">
 											</div>
 										</div>
 
@@ -106,7 +105,7 @@
 											<!-- Input field -->
 											<div class="form-border-bottom form-control-transparent form-fs-lg">
 												<c:set var="campNm" value="${param.campNm}"/>
-												<input class="form-control border-0 shadow-0" type="text" name="campNm" placeholder="캠핑장 이름으로 검색" style="height: 85%;" value="${param.campNm}"/>
+												<input class="form-control border-0 shadow-0" type="text" name="campNm" placeholder="캠핑장 이름으로 검색" value="${param.campNm}"/>
 											</div>
 										</div>
 									</div>
