@@ -11,35 +11,17 @@ import com.multi.mvc.board.model.vo.Reply;
 
 @Mapper
 public interface BoardMapper {
+
+	int posting(Board board);
+
+	int selectBoardCount(Map<String, Object> param);
+
+	List<Board> selectInfoBoardList(Map<String, Object> param);
+
+	Board selectBoardDetail(int bno);
+
+	void updateViews(int bno);
+
+	int updatePost(Board board);
 	
-	/**
-	 * @param map (key=id, title, content, limit(필수), offset(필수))
-	 * @return
-	 */
-	List<Board> selectBoardList(Map<String, Object> map);
-
-	/**
-	 * @param map (key=id, title, content)
-	 * @return
-	 */
-	int selectBoardCount(Map<String, Object> map);
-
-	Board selectBoardByNo(int bno);
-
-	int insertBoard(Board board);
-
-	int insertReply(Reply reply);
-
-	int updateBoard(Board board);
-
-	/**
-	 * @param map (key=readCount, bno)
-	 * @return
-	 */
-//	int updateReadCount(Map<String, Object> map); 수정
-	int updateReadCount(Board board);
-
-	int deleteBoard(int bno);
-
-	int deleteReply(int rno);
 }

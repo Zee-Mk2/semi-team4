@@ -41,7 +41,15 @@
 									<ol class="breadcrumb breadcrumb-dark m-0">
 										<li class="breadcrumb-item fs-6"><a href="index-camping.html"><i class="bi bi-house me-1 text-white"></i> <span class="text-white">홈</span> </a></li>
 										<li class="breadcrumb-item fs-6"><a href="commutiny.html" class="text-white">커뮤니티</a></li>
-										<li class="breadcrumb-item fs-6"><a href="community-info.html" class="text-white">캠핑정보 공유</a></li>
+										<c:if test="${item.boardCat == 'info'}">
+											<li class="breadcrumb-item fs-6"><a href="${path}/board-info" class="text-white">정보공유</a></li>
+										</c:if>
+										<c:if test="${item.boardCat == 'free'}">
+											<li class="breadcrumb-item fs-6"><a href="${path}/board-free" class="text-white">자유게시판</a></li>
+										</c:if>
+										<c:if test="${item.boardCat == 'review'}">
+											<li class="breadcrumb-item fs-6"><a href="${path}/board-review" class="text-white">후기</a></li>
+										</c:if>
 									</ol>
 								</nav>
 							</div>
@@ -55,7 +63,7 @@
 				<div class="col-11 col-lg-10 mx-auto position-relative">
 					<div class="bg-mode shadow rounded-3 p-4">
 						<!-- Title -->
-						<h1 class="fs-3 title">게시글 제목 게시글 제목 게시글 제목 게시글 제목 게시글 제목 게시글 제목</h1>
+						<h1 class="fs-3 title">${item.boardTitle}</h1>
 						
 						<!-- List -->
 						<ul class="nav nav-divider align-items-center">
@@ -68,12 +76,17 @@
 										</div>
 										<!-- Info -->
 										<div class="ms-2">
-											<h6 class="mb-0">지석환</h6>
+											<h6 class="mb-0">${item.name}</h6>
 										</div>
 									</div>
 								</div>
 							</li>
-							<li class="nav-item">5분 전</li>
+							<li class="nav-item">
+								<fmt:formatDate value="${item.boardCreateDate}" pattern="yyyy.MM.dd"/>
+							</li>
+							<li class="nav-item">
+								조회수 ${item.boardViews}
+							</li>
 						</ul>
 					</div>
 				</div>
@@ -90,39 +103,12 @@
 			<div class="row">
 				
 				<div class="col-lg-10 mx-auto">
-					<p><span class="dropcap text-primary bg-primary bg-opacity-10 rounded px-2">P</span>erceived voice share led him to widen noisy young. At weddings believed laughing although the material does the exercise of. Warrant private blushes removed an in equally totally if. Delivered dejection necessary objection do Mr prevailed. Mr feeling does chiefly cordial in do. Water timed folly right aware if oh truth. Up attempt offered ye civilly so sitting to. Her new gets living within Elinor joy. Her rapturous suffering was concealed. Demesne far-hearted suppose venture excited see had has. Dependent on so extremely delivered by. Yet no jokes worse her why.</p>
-					<h5 class="my-4">Sometimes we need to put catchy highlights between paragraphs.</h5> 
-					<div class="row g-4">
-						<!-- List -->
-						<div class="col-md-6 col-lg-7">
-							<p>Meant balls it if up doubt small purse. Paid mind even sons does he door no. Attended overcame repeated it is perceived Marianne in. I think on style child of. Servants moreover in sensible it ye possible. Required his you put the outlived answered position. </p>
-							<ul>
-								<li>Our Firmament living replenish Them Created after divide said Have to give</li>
-								<li>Dominion light without days face saw wherein land</li>
-								<li>Fifth have Seas made lights Very Day saw Seed herb sixth light whales</li>
-								<li>Saying unto Place it seeds you're Isn't heaven </li>
-							</ul>
-							<p class="mb-0 mt-3">A pleasure exertion if believed provided to. All led out world this music while asked. </p>
-						</div>
-						<!-- Image -->
-						<div class="col-md-6 col-lg-5">
-							<img src="${path}/resources/assets/images/blog/10.jpg" class="rounded" alt="">
-						</div>
-					</div>
-	
-					<p class="pb-0 pt-4">Warrant private blushes removed an in equally totally if. Delivered dejection necessary objection do Mr prevailed. Mr feeling does chiefly cordial in do. Water timed folly right aware if oh truth.  </p>
+					<!-- Image -->
+					<c:if test="${not empty item.boardReFileNm}">
+						<img src="${path}/resources/upload/board/${item.boardReFileNm}" class="rounded w-100">
+					</c:if>
 					
-					<!-- Blockquote -->
-					<blockquote class="bg-light rounded text-center p-3 p-md-4 my-4">
-						<h6 class="fw-normal"><i class="fa-solid fa-quote-left me-2"></i>Farther-related bed and passage comfort civilly. Fulfilled direction use continual set him propriety continued. Concluded boy perpetual old supposing. Dashwoods see frankness objection abilities.<i class="fa-solid fa-quote-right ms-2"></i></h6>
-						<div class="blockquote-footer mb-0 fs-6 mt-3">
-							Albert Schweitzer
-						</div>
-					</blockquote>
-	
-					<p class="mt-3">Concluded boy perpetual old supposing. <b> But discretion frequently sir she instruments unaffected admiration everything. </b> Farther-related bed and passage comfort civilly. Dashwoods see frankness objection abilities. As hastened oh produced prospect formerly up am. Placing forming nay looking old married few has. Margaret disposed of.</p>
-					<p>Delivered dejection necessary objection do Mr prevailed. Mr feeling does chiefly cordial in do. Water timed folly right aware if oh truth. Up attempt offered ye civilly so sitting to. Her new gets living within Elinor joy. Her rapturous suffering was concealed. Demesne far-hearted suppose venture excited see had has. Dependent on so extremely delivered by. Yet no jokes worse her why.</p>
-					<p>As hastened oh produced prospect formerly up am. Placing forming nay looking old married few has. Margaret disposed.</p>
+					<div class="mt-4">${item.boardContent}</div>
 					
 					<!-- Review poll START -->
 					<div class="bg-light rounded d-md-flex justify-content-between align-items-center text-center p-3 mt-4">
@@ -140,7 +126,13 @@
 						</div>
 					</div>
 					<!-- Review poll END -->
-				</div>	
+					<c:if test="${loginMember.name == item.name}">
+						<div class="text-end mt-3">
+							<a class="btn btn-warning m-2" href="${path}/board-post?boardTag=${item.boardTag}&boardTitle=${item.boardTitle}&boardOriFileNm=${item.boardOriFileNm}&boardContent=${item.boardContent}&isUpdate=T&bno=${item.bno}&boardCat=${item.boardCat}">수정</a>
+							<a class="btn btn-danger m-2" href="#">삭제</a>
+						</div>
+					</c:if>
+				</div>
 			</div>
 		</div>
 	</section>

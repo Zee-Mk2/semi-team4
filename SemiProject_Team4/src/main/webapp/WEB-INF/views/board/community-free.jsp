@@ -52,7 +52,7 @@
 	<section class="position-relative pt-0">
 		<div class="container">
 			<div class="row align-items-center mx-auto mb-4">
-				<a href="${path}/board-post" class="btn btn-info col-1 px-0 mx-0 mt-n3" style="font-size: 18px"><i class="fas fa-pen"></i> 글쓰기</a>
+				<a href="${path}/board-post?boardCat=free" class="btn btn-info col-1 px-0 mx-0 mt-n3" style="font-size: 18px"><i class="fas fa-pen"></i> 글쓰기</a>
 
 				<div class="col-9">
 					<!-- Search START -->

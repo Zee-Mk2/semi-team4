@@ -13,15 +13,15 @@ import lombok.NoArgsConstructor;
 public class Board {
 	private int bno;
 	private int mno;
-	private String writerId;
-	private String title;
-	private String content;
-	private String type;
-	private String originalFileName;
-	private String renamedFileName;
-	private int readCount;
-	private String status;
-	private Date createDate;
-	private Date modifyDate;
+	private String name;
+	private String boardCat;
+	private String boardTag;
+	private String boardTitle;
+	private String boardContent;
+	private String boardOriFileNm;
+	private String boardReFileNm;
+	private Date boardCreateDate;
+	private int boardViews;
+	private String boardStatus;
 	private List<Reply> replies;
 }

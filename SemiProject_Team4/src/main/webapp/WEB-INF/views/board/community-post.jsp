@@ -41,7 +41,15 @@
 									<ol class="breadcrumb breadcrumb-dark m-0">
 										<li class="breadcrumb-item fs-6"><a href="${path}/home"><i class="bi bi-house me-1 text-white"></i> <span class="text-white">홈</span> </a></li>
 										<li class="breadcrumb-item fs-6"><a href="${path}/community" class="text-white">커뮤니티</a></li>
-										<li class="breadcrumb-item fs-6"><a href="${path}/info" class="text-white">정보공유</a></li>
+										<c:if test="${param.boardCat == 'free'}">
+											<li class="breadcrumb-item fs-6"><a href="${path}/${param.boardCat}" class="text-white">자유게시판</a></li>
+										</c:if>
+										<c:if test="${param.boardCat == 'info'}">
+											<li class="breadcrumb-item fs-6"><a href="${path}/${param.boardCat}" class="text-white">정보공유</a></li>
+										</c:if>
+										<c:if test="${param.boardCat == 'review'}">
+											<li class="breadcrumb-item fs-6"><a href="${path}/${param.boardCat}" class="text-white">후기</a></li>
+										</c:if>
 									</ol>
 								</nav>
 							</div>
@@ -56,32 +64,44 @@
 				<section class="mb-5">
 				<div class="container card bg-light">
 					<div class="card-body">
-					<div class="mb-4 title h2">게시글 작성</div>
-					<form>
+					<c:if test="${param.isUpdate != 'T'}">
+						<div class="mb-4 title h2">게시글 작성</div>
+					</c:if>
+					<c:if test="${param.isUpdate == 'T'}">
+						<div class="mb-4 title h2">게시글 수정</div>
+					</c:if>
+					<form action="${path}/board-post" method="post" enctype="multipart/form-data">
+						<input name="boardCat" value="${board.boardCat}" type="hidden">
+						<input name="bno" value="${board.bno}" type="hidden">
 						<div class="nav nav-pills nav-pills-primary-soft mb-3" id="tour-pills-tab" role="tablist">
 						<div class="btn-group" role="group" aria-label="Tab Group">
-							<input type="radio" id="camp" name="tabRadio" class="btn-check" checked>
+							<c:if test="${param.isUpdate != 'T'}">
+								<input type="radio" id="camp" name="boardTag" class="btn-check" value="camp" checked>
+							</c:if>
+							<c:if test="${param.isUpdate == 'T'}">
+								<input type="radio" id="camp" name="boardTag" class="btn-check" value="camp" ${board.boardTag == 'camp' ? 'checked' : ''}>
+							</c:if>
 							<label class="btn btn-outline-primary" for="camp">캠핑</label>
 							
-							<input type="radio" id="conc" name="tabRadio" class="btn-check">
+							<input type="radio" id="conc" name="boardTag" class="btn-check" value="conc" ${board.boardTag == 'conc' ? 'checked' : ''}>
 							<label class="btn btn-outline-primary" for="conc">공연</label>
 						</div>
 						</div>
 						<div class="mb-3">
-							<label for="postTitle" class="form-label">제목<span class="text-danger">*</span></label>
-							<input type="text" class="form-control" id="postTitle" placeholder="제목을 입력해주세요">
+							<label for="boardTitle" class="form-label">제목<span class="text-danger">*</span></label>
+							<input type="text" class="form-control" id="boardTitle" name="boardTitle" placeholder="제목을 입력해주세요" value="${board.boardTitle}" required>
 						</div>
 						<div class="mb-3">
-							<label for="postContent" class="form-label">내용<span class="text-danger">*</span></label>
-							<textarea class="form-control" id="postContent" rows="5" placeholder="내용을 입력해주세요"></textarea>
+							<label for="boardContent" class="form-label">내용<span class="text-danger">*</span></label>
+							<textarea class="form-control" id="boardContent" name="boardContent" rows="5" placeholder="내용을 입력해주세요" required>${board.boardContent}</textarea>
 						</div>
 						<div class="mb-3">
-							<label for="fileInput" class="form-label">파일 선택</label>
-							<input type="file" class="form-control" id="fileInput">
+							<label for="upfile" class="form-label">파일 업로드</label>
+							<input type="file" class="form-control" id="upfile" name="upfile">
 						</div>
 						<div class="row">
 							<div class="col-6">
-								<div class="btn btn-danger">취소</div>
+								<a class="btn btn-danger" href="${path}/board-${board.boardCat}">취소</a>
 							</div>
 							<div class="col-6 text-end">
 								<button type="submit" class="btn btn-info">확인</button>

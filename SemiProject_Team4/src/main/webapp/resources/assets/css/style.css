@@ -20903,7 +20903,6 @@ html[dir=rtl] .choices__input {
   position: absolute;
   right: 1.2rem;
   bottom: 1.2rem;
-  left: 1.2rem;
 }
 
 .card-fav-icon {
@@ -21063,4 +21062,8 @@ th, td {
 
 .a-class {
   background-color: #17B3FF;
+}
+
+.pre {
+  font-family: var(--bs-body-font-family);
 }

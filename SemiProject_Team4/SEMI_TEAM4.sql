@@ -212,15 +212,16 @@ DROP TABLE board;
 CREATE TABLE board (
 	bno				INT PRIMARY KEY AUTO_INCREMENT,
     mno				INT,
+    name			VARCHAR(15),
     boardCat		VARCHAR(50),
     boardTag		VARCHAR(50),
     boardTitle		VARCHAR(1000),
     boardContent	VARCHAR(3000),
     boardOriFileNm	VARCHAR(100),
     boardReFileNm	VARCHAR(100),
-    boardCreateDate	DATETIME,
-    boardViews		INT,
-    boardStatus		VARCHAR(1),
+    boardCreateDate	DATETIME DEFAULT CURRENT_TIMESTAMP,
+    boardViews		INT DEFAULT 0,
+    boardStatus		VARCHAR(1) DEFAULT 'Y',
     FOREIGN KEY (mno) REFERENCES member(mno) ON DELETE SET NULL
 );
 
@@ -287,8 +288,40 @@ SELECT * FROM reply;
 -- SELECT * FROM concert WHERE genre = '아동';
 
 -- -- 회원가입
-INSERT INTO member VALUES(DEFAULT, 'admin', '1234', '관리자', null, null, null, DEFAULT, 'ADMIN', 'Y', null, null, null, null);
+INSERT INTO member VALUES(DEFAULT, 'admin', '1234', '관리자', null, null, null, DEFAULT, 'ADMIN', 'Y', null, null, DEFAULT, null);
 SELECT * FROM member;
+
+-- 게시글 작성
+INSERT INTO board VALUES(DEFAULT, 2, '지석환', 'info', 'camp', '오토캠핑 가이드', '내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용', null, null, DEFAULT, DEFAULT, DEFAULT);
+SELECT * FROM board;
+
+-- 게시글 리스트
+SELECT 
+	B.bno, B.boardTitle, M.name, B.boardCreateDate, B.boardReFileNm, B.boardViews, B.boardStatus, B.boardTag
+FROM board B 
+JOIN member M ON(B.mno = M.mno)
+WHERE 1 = 1
+	AND B.boardStatus = 'Y'
+	AND B.boardCat = 'info'
+-- 	AND M.name LIKE '%${name}%'
+-- 	AND B.title LIKE '%${title}%'
+-- 	AND B.content LIKE '%${content}%'
+ORDER BY B.bno DESC LIMIT 15 OFFSET 0;
+
+-- 게시글 상세
+SELECT * FROM board WHERE bno = "2";
+
+-- 조회수 업데이트
+UPDATE board SET boardViews = (boardViews + 1) WHERE bno = 5;
+
+-- 게시글 수정
+UPDATE board SET
+	boardCat = 'camp',
+	boardTitle = '게시글 수정3',
+	boardContent = '제발'
+WHERE bno = 10;
+
+SELECT * FROM board;
 
 -- -- 회원정보 수정
 UPDATE member SET name = '관리자2', email = 'verylongemailaddress@email.com' WHERE mno = '1';

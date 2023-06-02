@@ -64,9 +64,7 @@
 				<li class="nav-item"> <a class="nav-link" data-bs-toggle="tab" href="#tab-2-3"> 공연 </a> </li>
 			</ul>
 			<div class="row align-items-center mx-auto my-3">
-				<a href="${path}/board-post" class="btn btn-info col-1 px-0 mx-0 mt-n3" style="font-size: 18px"><i class="fas fa-pen"></i> 글쓰기</a>
-
-				<div class="col-9">
+				<div class="col-10">
 					<!-- Search START -->
 					<!-- Booking from START -->
 					<form class="rounded-5 border ms-3">
