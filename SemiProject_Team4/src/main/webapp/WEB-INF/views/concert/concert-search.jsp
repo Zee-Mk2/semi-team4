@@ -21,7 +21,7 @@
 <link rel="stylesheet" type="text/css"
 	href="${path}/resources/assets/vendor/nouislider/nouislider.css" />
 
-<jsp:include page="/WEB-INF/views/common/header.jsp" />
+<jsp:include page="/WEB-INF/views/common/concert-header.jsp"/>
 
 <main>
 	<!-- =======================
@@ -67,9 +67,8 @@
 												<c:set var="searchType" value="${param.searchType}"/>
 												<select class="form-select js-choice" name="searchType"
 													data-search-enabled="true">
-													<option value="">검색 방식</option>
-													<option value="concKeyword" selected>공연 이름으로 검색</option>
-													<option value="hallKeyword">공연장 이름으로 검색</option>
+													<option value="concKeyword" ${param.searchType == 'concKeyword' || param.searchType == '' || param.searcyType == null ? 'selected' : ''}>공연 이름으로 검색</option>
+													<option value="hallKeyword" ${param.searchType == 'hallKeyword' ? 'selected' : ''}>공연장 이름으로 검색</option>
 												</select>
 											</div>
 										</div>

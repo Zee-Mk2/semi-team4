@@ -4,7 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 
-<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+<jsp:include page="/WEB-INF/views/common/concert-header.jsp"/>
 
 
 <!-- Plugins CSS -->
@@ -214,71 +214,76 @@
 							<div class="card bg-transparent p-0">
 								<!-- Card header -->
 								<div class="card-header bg-transparent border-bottom p-0 pb-3">
-									<h3 class="mb-0 title fs-5">예매자 통계</h3>
+									<h3 class="mb-0 title">예매자 통계</h3>
 								</div>
-	
+
 								<!-- Card body START -->
 								<div class="card">
-									<div class="card-body bg-light p-4 my-3">
-									  <div class="row">
-										<div class="col-4 ps-8">
-										  <div class="row">
-											<h3 class="mb-0 title fs-5 pt-4">성별</h3>
-											<div class="col-6 ps-2">
-											  <div class="p-1">
-												<img src="${path}/resources/assets/images/element/illust_male.png" alt="남자 이미지">
-												<p style="font-size: 24px; font-weight: bold; margin-bottom: 0;">남자</p>
-												<p style="font-size: 24px; margin-top: 0; color: rgb(5, 144, 168);">35.3%</p>
-											  </div>
+									<div class="card-body bg-light p-4 my-3 rounded">
+										<div class="container">
+											<div class="row">
+												<div class="col">
+													<div class="h4 title">성비</div>
+													<div class="row">
+														<div class="col-6"><span class="title">남</span> - 30%</div>
+														<div class="col-6 text-end">70% - <span class="title">여</span></div>
+													</div>
+													<div class="progress my-2">
+														<div class="progress-bar" role="progressbar" style="width: 30%; border-radius: 1rem 0 0 1rem; background: #4287f5"></div>
+														<div class="progress-bar" role="progressbar" style="width: 70%; border-radius: 0 1rem 1rem 0; background: #f54242;"></div>
+													</div>
+												</div>
 											</div>
-											<div class="col-6">
-											  <div class="pt-2">
-												<img src="${path}/resources/assets/images/element/illust_female.png" alt="여자 이미지">
-												<p style="font-size: 24px; font-weight: bold; margin-bottom: 0;">여자</p>
-												<p style="font-size: 24px; margin-top: 0; color: rgb(5, 144, 168);">64.7%</p>
-											  </div>
-											</div>
-										  </div>
 										</div>
-										<div class="col-8">
-											<div class="d-flex justify-content-center">
-											  <table>
-												<tr>
-												  <th>연령대</th>
-												  <th style="text-align: right;">퍼센트(%)</th>
-												</tr>
-												<tr>
-												  <td>10대</td>
-												  <td style="text-align: right;">1.7%</td>
-												</tr>
-												<tr>
-												  <td>20대</td>
-												  <td style="text-align: right;">37.3%</td>
-												</tr>
-												<tr>
-												  <td>30대</td>
-												  <td style="text-align: right;">46%</td>
-												</tr>
-												<tr>
-												  <td>40대</td>
-												  <td style="text-align: right;">8.6%</td>
-												</tr>
-												<tr>
-												  <td>50대</td>
-												  <td style="text-align: right;">4.3%</td>
-												</tr>
-											  </table>
+
+										<hr>
+										<div class="container">
+											<div class="row">
+												<div class="col">
+													<div class="h4 title">연령별 예매율</div>
+													<div class="bar-label">
+														<span class="title">10대</span> - 10%
+													</div>
+													<div class="progress mb-3">
+														<div class="progress-bar bg-primary" role="progressbar"
+															style="width: 10%;"></div>
+													</div>
+													<div class="bar-label">
+														<span class="title">20대</span> - 30%
+													</div>
+													<div class="progress mb-3">
+														<div class="progress-bar bg-primary" role="progressbar"
+															style="width: 30%;"></div>
+													</div>
+													<div class="bar-label">
+														<span class="title">30대</span> - 40%
+													</div>
+													<div class="progress mb-3">
+														<div class="progress-bar bg-primary" role="progressbar"
+															style="width: 40%;"></div>
+													</div>
+													<div class="bar-label">
+														<span class="title">40대</span> - 15%
+													</div>
+													<div class="progress mb-3">
+														<div class="progress-bar bg-primary" role="progressbar"
+															style="width: 15%;"></div>
+													</div>
+													<div class="bar-label">
+														<span class="title">50대 이상</span> - 5%
+													</div>
+													<div class="progress mb-3">
+														<div class="progress-bar bg-primary" role="progressbar"
+															style="width: 5%;"></div>
+													</div>
+												</div>
 											</div>
-											<div class="d-flex justify-content-center">
-											  <canvas id="ageChart"></canvas>
-											</div>
-										  </div>
-									  </div>
+										</div>
 									</div>
-								  </div>
+								</div>
 								<!-- Card body END -->
 							</div>
-						</div>	
+						</div>
 						<!-- Content item END -->
 					</div>	
 				</div>
@@ -320,7 +325,7 @@
 								<!-- List -->
 								<table class="table">
 									<tr>
-										<td class="fw-bold text-black"><i class="far fa-address-book text-primary"></i> 주소</td>
+										<td class="fw-bold text-black"><i class="far fa-address-book text-primary"></i> 장소</td>
 										<td>종합운동장 올림픽주경기장</td>
 									</tr>
 									<tr>

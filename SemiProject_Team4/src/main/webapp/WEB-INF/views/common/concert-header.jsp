@@ -40,7 +40,7 @@
 		<nav class="navbar navbar-expand-xl">
 			<div class="container-fluid">
 				<!-- Logo START -->
-				<a class="navbar-brand py-0" href="${pageContext.request.contextPath}">
+				<a class="navbar-brand py-0" href="${path}/conc-home">
 					<img src="${path}/resources/assets/images/logo-1.png" style="height: auto; width: 9rem;" class="py-1">
 				</a>
 				<!-- Logo END -->
@@ -69,22 +69,23 @@
 				<div class="navbar-collapse collapse" id="navbarCollapse">
 					<ul class="navbar-nav navbar-nav-scroll me-auto">
 
-						<a class="nav-link fw-bold" href="${path}/concert-search" id="listingMenu" aria-haspopup="true"
+						<a class="nav-link fw-bold" href="${path}/conc-search" id="listingMenu" aria-haspopup="true"
 							aria-expanded="false">공연 검색</a>
-						<a class="nav-link fw-bold" href="${path}/concert-recommend" id="listingMenu" aria-haspopup="true"
+						<a class="nav-link fw-bold" href="${path}/conc-recommend" id="listingMenu" aria-haspopup="true"
 							aria-expanded="false">공연 추천</a>
-						<a class="nav-link fw-bold" href="${path}/concert-nearby" id="listingMenu" aria-haspopup="true"
+						<a class="nav-link fw-bold" href="${path}/conc-nearby" id="listingMenu" aria-haspopup="true"
 							aria-expanded="false">주변 공연장</a>
 
 						<!-- Nav item Pages -->
 						<li class="nav-item dropdown">
-							<a href="${path}/board-main">
-								<div class="nav-link fw-bold dropdown-toggle" href="${path}/concert-search" id="pagesMenu">
-									커뮤니티</div>
+							<a href="${path}/community">
+								<div class="nav-link fw-bold dropdown-toggle">
+									커뮤니티
+								</div>
 							</a>
 							<ul class="dropdown-menu" aria-labelledby="pagesMenu">
-								<li> <a class="dropdown-item" href="${path}/freeBoard">자유게시판</a></li>
-								<li> <a class="dropdown-item" href="${path}/info">정보공유</a></li>
+								<li> <a class="dropdown-item" href="${path}/board-free">자유게시판</a></li>
+								<li> <a class="dropdown-item" href="${path}/board-info">정보공유</a></li>
 								<li> <a class="dropdown-item" href="${path}/board-review">후기</a></li>
 							</ul>
 						</li>
@@ -117,7 +118,7 @@
 								data-bs-auto-close="outside" data-bs-display="static" data-bs-toggle="dropdown"
 								aria-expanded="false">
 								<c:if test="${loginMember.reFileNm != null}">
-									<img class="avatar-img rounded-circle shadow" src="${path}/resources/assets/images/avatar/${loginMember.reFileNm}" alt="avatar">
+									<img class="avatar-img rounded-circle shadow" src="${path}/resources/upload/profile/${sessionScope.loginMember.reFileNm}" alt="avatar">
 								</c:if>
 								<c:if test="${loginMember.reFileNm == null}">
 									<i class="material-icons fs-3 avatar-img rounded-circle shadow text-black-50 pt-1">person</i>
@@ -132,7 +133,7 @@
 										<!-- Avatar -->
 										<div class="avatar me-3 text-center">
 											<c:if test="${loginMember.reFileNm != null}">
-												<img class="avatar-img rounded-circle shadow" src="${path}/resources/assets/images/avatar/${loginMember.reFileNm}" alt="avatar">
+												<img class="avatar-img rounded-circle shadow" src="${path}/resources/upload/profile/${sessionScope.loginMember.reFileNm}" alt="avatar">
 											</c:if>
 											<c:if test="${loginMember.reFileNm == null}">
 												<i class="material-icons fs-3 avatar-img rounded-circle shadow text-black-50 pt-1">person</i>

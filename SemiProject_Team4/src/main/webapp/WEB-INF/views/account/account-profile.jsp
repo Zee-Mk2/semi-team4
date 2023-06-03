@@ -4,7 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 
-<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+<jsp:include page="/WEB-INF/views/common/camping-header.jsp"/>
 
 <!-- Plugins CSS -->
 <link rel="stylesheet" type="text/css" href="${path}/resources/assets/vendor/font-awesome/css/all.min.css">
@@ -50,10 +50,10 @@ Content START -->
 											<!-- Avatar -->
 											<div class="avatar avatar-xl mb-2">
 												<img class="avatar-img rounded-circle border border-2 border-white"
-													src="${path}/resources/upload/profile/${loginMember.reFileNm}" alt="">
+													src="${path}/resources/upload/profile/${sessionScope.loginMember.reFileNm}" alt="">
 											</div>
-											<h6 class="mb-0">${loginMember.name}</h6>
-											<a href="${path}/MyProfile" class="text-reset text-primary-hover small">${loginMember.id}</a>
+											<h6 class="mb-0">${sessionScope.loginMember.name}</h6>
+											<a href="${path}/MyProfile" class="text-reset text-primary-hover small">${sessionScope.loginMember.id}</a>
 											<hr>
 										</div>
 
@@ -124,7 +124,7 @@ Content START -->
 												<label class="position-relative me-4" for="upfile" title="Replace this pic">
 													<!-- Avatar place holder -->
 													<span class="avatar avatar-xl">
-														<img id="uploadfile-1-preview" class="avatar-img rounded-circle border border-white border-3 shadow" src="${path}/resources/upload/profile/${loginMember.reFileNm}" alt="">
+														<img id="uploadfile-1-preview" class="avatar-img rounded-circle border border-white border-3 shadow" src="${path}/resources/upload/profile/${sessionScope.loginMember.reFileNm}" alt="">
 													</span>
 												</label>
 												<!-- Upload button -->
@@ -136,14 +136,14 @@ Content START -->
 										<!-- Name -->
 										<div class="col-md-6">
 											<label class="form-label">이름<span class="text-danger">*</span></label>
-											<input type="text" class="form-control" value="${loginMember.name}" name="name"
+											<input type="text" class="form-control" value="${sessionScope.loginMember.name}" name="name"
 												placeholder="이름을 입력하세요." required>
 										</div>
 
 										<!-- phone number -->
 										<div class="col-md-6">
 											<label class="form-label">휴대폰 번호<span class="text-danger">*</span></label>
-											<input type="text" class="form-control" value="${loginMember.phone}" name="phone"
+											<input type="text" class="form-control" value="${sessionScope.loginMember.phone}" name="phone"
 												placeholder="휴대폰 번호를 입력하세요." required>
 										</div>
 
@@ -151,7 +151,7 @@ Content START -->
 										<!-- Date of birth -->
 										<div class="col-md-6">
 											<label class="form-label">생년월일<span class="text-danger">*</span></label>
-											<input type="text" class="form-control flatpickr" value="${loginMember.birth}" name="birth"
+											<input type="text" class="form-control flatpickr" value="${sessionScope.loginMember.birth}" name="birth"
 												placeholder="생년월일을 입력하세요." data-date-format="Y-m-d" required>
 										</div>
 
@@ -161,14 +161,14 @@ Content START -->
 											<div class="d-flex gap-4">
 												<div class="form-check radio-bg-light">
 													<input class="form-check-input" type="radio" name="gender" value="M"
-														id="M" ${loginMember.gender == 'M' ? 'checked ': ''} required>
+														id="M" ${sessionScope.loginMember.gender == 'M' ? 'checked ': ''} required>
 													<label class="form-check-label" for="M">
 														남자
 													</label>
 												</div>
 												<div class="form-check radio-bg-light">
 													<input class="form-check-input" type="radio" name="gender" value="F"
-														id="F" ${loginMember.gender == 'F' ? 'checked ': ''} required>
+														id="F" ${sessionScope.loginMember.gender == 'F' ? 'checked ': ''} required>
 													<label class="form-check-label" for="F">
 														여자
 													</label>
@@ -180,10 +180,10 @@ Content START -->
 										<div class="col-12">
 											<label class="form-label">주소</label>
 											<textarea class="form-control" rows="3" name="address"
-												spellcheck="false">${loginMember.address}</textarea>
+												spellcheck="false">${sessionScope.loginMember.address}</textarea>
 										</div>
 										
-										<input type="hidden" name="id" value="${loginMember.id}">
+										<input type="hidden" name="id" value="${sessionScope.loginMember.id}">
 
 										<!-- Button -->
 										<div class="col-12 text-end">
@@ -201,7 +201,7 @@ Content START -->
 								<!-- Card header -->
 								<div class="card-header border-bottom">
 									<h4 class="card-header-title">이메일 변경</h4>
-									<p class="mb-0">현재 이메일: <span class="text-primary">${loginMember.id}</span></p>
+									<p class="mb-0">현재 이메일: <span class="text-primary">${sessionScope.loginMember.id}</span></p>
 								</div>
 
 								<!-- Card body START -->

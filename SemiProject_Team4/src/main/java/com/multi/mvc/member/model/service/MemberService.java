@@ -94,19 +94,21 @@ public class MemberService {
 	/**
 	 * 회원가입, 회원정보 수정
 	 * @param member
-	 * @return 성공시 1, 실패시 0?
+	 * @return 성공시 1, 실패시 0
 	 */
 	@Transactional(rollbackFor = Exception.class)
 	public int saveMember(Member member) {
-		if (mapper.duplID(member.getId()) != 0) {
-			return 0;
-		}
 		int result = 0;
 		if (member.getMno() == 0) {
+			if (mapper.duplID(member.getId()) != 0) {
+				return 0;
+			}
 			String encodePw = pwEncoder.encode(member.getPassword()); // 암호화 로직
 			member.setPassword(encodePw);
+			log.info("saveMember>> 회원가입");
 			result = mapper.joinMember(member);
 		} else {
+			log.info("saveMember>> 회원정보 수정");
 			result = mapper.updateMember(member);
 		}
 		

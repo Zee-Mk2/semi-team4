@@ -21,7 +21,7 @@
 <link rel="stylesheet" type="text/css"
 	href="${path}/resources/assets/vendor/nouislider/nouislider.css" />
 
-<jsp:include page="/WEB-INF/views/common/header.jsp" />
+<jsp:include page="/WEB-INF/views/common/camping-header.jsp"/>
 
 
 

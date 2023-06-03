@@ -4,7 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 
-<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+<jsp:include page="/WEB-INF/views/common/camping-header.jsp"/>
 
 <!-- Plugins CSS -->
 <link rel="stylesheet" type="text/css" href="${path}/resources/assets/vendor/font-awesome/css/all.min.css">
@@ -58,10 +58,10 @@ Content START -->
 											<!-- Avatar -->
 											<div class="avatar avatar-xl mb-2">
 												<img class="avatar-img rounded-circle border border-2 border-white"
-													src="${path}/resources/assets/images/avatar/01.jpg" alt="">
+													src="${path}/resources/upload/profile/${sessionScope.loginMember.reFileNm}" alt="">
 											</div>
-											<h6 class="mb-0">테스트계정</h6>
-											<a href="${path}/#" class="text-reset text-primary-hover small">test@email.com</a>
+											<h6 class="mb-0">${sessionScope.loginMember.name}</h6>
+											<a href="${path}/#" class="text-reset text-primary-hover small">${sessionScope.loginMember.id}</a>
 											<hr>
 										</div>
 

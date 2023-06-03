@@ -45,9 +45,6 @@ public class ConcertService {
 		param.put("limit", pageInfo.getListLimit());
 		param.put("offset", (pageInfo.getStartList() - 1));
 		log.info("conSearch - param>> " + param.toString());
-		for (ConcertVO obj : mapper.concSearch(param)) {
-			log.info("conSearch - result>> " + obj.toString());
-		}
 		return mapper.concSearch(param);
 	}
 

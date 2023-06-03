@@ -116,7 +116,7 @@
 								data-bs-auto-close="outside" data-bs-display="static" data-bs-toggle="dropdown"
 								aria-expanded="false">
 								<c:if test="${loginMember.reFileNm != null}">
-									<img class="avatar-img rounded-circle shadow" src="${path}/resources/upload/profile/${loginMember.reFileNm}" alt="avatar">
+									<img class="avatar-img rounded-circle shadow" src="${path}/resources/upload/profile/${sessionScope.loginMember.reFileNm}" alt="avatar">
 								</c:if>
 								<c:if test="${loginMember.reFileNm == null}">
 									<i class="material-icons fs-3 avatar-img rounded-circle shadow text-black-50 pt-1">person</i>
@@ -131,7 +131,7 @@
 										<!-- Avatar -->
 										<div class="avatar me-3 text-center">
 											<c:if test="${loginMember.reFileNm != null}">
-												<img class="avatar-img rounded-circle shadow" src="${path}/resources/upload/profile/${loginMember.reFileNm}" alt="avatar">
+												<img class="avatar-img rounded-circle shadow" src="${path}/resources/upload/profile/${sessionScope.loginMember.reFileNm}" alt="avatar">
 											</c:if>
 											<c:if test="${loginMember.reFileNm == null}">
 												<i class="material-icons fs-3 avatar-img rounded-circle shadow text-black-50 pt-1">person</i>
