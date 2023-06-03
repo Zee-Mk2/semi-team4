@@ -14,7 +14,7 @@
 <link rel="stylesheet" type="text/css" href="${path}/resources/assets/vendor/choices/css/choices.min.css">
 <link rel="stylesheet" type="text/css" href="${path}/resources/assets/vendor/flatpickr/css/flatpickr.min.css">
 
-<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+<jsp:include page="/WEB-INF/views/common/camping-header.jsp"/>
 
 <!-- Vendors -->
 <script src="${path}/resources/assets/vendor/tiny-slider/tiny-slider.js"></script>
