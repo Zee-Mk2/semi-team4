@@ -13,7 +13,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.multi.mvc.board.model.mapper.BoardMapper;
 import com.multi.mvc.board.model.vo.Board;
-import com.multi.mvc.board.model.vo.Reply;
 import com.multi.mvc.common.util.PageInfo;
 
 import lombok.extern.slf4j.Slf4j;
@@ -75,9 +74,24 @@ public class BoardService {
 		param.put("offset", (pageInfo.getStartList() - 1));
 		return mapper.selectInfoBoardList(param);
 	}
+	
 	public Board selectBoardDetail(int bno) {
 		mapper.updateViews(bno);
 		return mapper.selectBoardDetail(bno);
 	}
+	
+	public void deleteFile(String path) {
+		File file = new File(path);
+		if(file.exists()) {
+			file.delete();
+		}
+	}
+	
+	@Transactional(rollbackFor = Exception.class)
+	public int deleteBoard(Map<String, String> param) {
+		return mapper.deleteBoard(param);
+	}
+	
+	
 
 }

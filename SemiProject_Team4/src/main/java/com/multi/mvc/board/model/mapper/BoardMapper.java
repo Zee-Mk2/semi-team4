@@ -17,11 +17,15 @@ public interface BoardMapper {
 	int selectBoardCount(Map<String, Object> param);
 
 	List<Board> selectInfoBoardList(Map<String, Object> param);
-
+	
 	Board selectBoardDetail(int bno);
 
 	void updateViews(int bno);
 
 	int updatePost(Board board);
+	
+	int deleteReply(int rno);
+
+	int deleteBoard(Map<String, String> param);
 	
 }

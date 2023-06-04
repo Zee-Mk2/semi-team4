@@ -4,7 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 
-<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+<jsp:include page="/WEB-INF/views/common/camping-header.jsp"/>
 
 <!-- Plugins CSS -->
 <link rel="stylesheet" type="text/css" href="${path}/resources/assets/vendor/font-awesome/css/all.min.css">
@@ -39,8 +39,8 @@
 								<h1 class="text-white title">커뮤니티</h1>
 								<nav class="d-flex justify-content-center" aria-label="breadcrumb">
 									<ol class="breadcrumb breadcrumb-dark m-0">
-										<li class="breadcrumb-item fs-6"><a href="index-camping.html"><i class="bi bi-house me-1 text-white"></i> <span class="text-white">홈</span> </a></li>
-										<li class="breadcrumb-item fs-6"><a href="commutiny.html" class="text-white">커뮤니티</a></li>
+										<li class="breadcrumb-item fs-6"><a href="${path}/home"><i class="bi bi-house me-1 text-white"></i> <span class="text-white">홈</span> </a></li>
+										<li class="breadcrumb-item fs-6"><a href="${path}/commutiny" class="text-white">커뮤니티</a></li>
 										<c:if test="${item.boardCat == 'info'}">
 											<li class="breadcrumb-item fs-6"><a href="${path}/board-info" class="text-white">정보공유</a></li>
 										</c:if>
@@ -129,7 +129,7 @@
 					<c:if test="${loginMember.name == item.name}">
 						<div class="text-end mt-3">
 							<a class="btn btn-warning m-2" href="${path}/board-post?boardTag=${item.boardTag}&boardTitle=${item.boardTitle}&boardOriFileNm=${item.boardOriFileNm}&boardContent=${item.boardContent}&isUpdate=T&bno=${item.bno}&boardCat=${item.boardCat}">수정</a>
-							<a class="btn btn-danger m-2" href="#">삭제</a>
+							<a class="btn btn-danger m-2" href="${path}/board-delete?bno=${item.bno}&boardCat=${item.boardCat}">삭제</a>
 						</div>
 					</c:if>
 				</div>

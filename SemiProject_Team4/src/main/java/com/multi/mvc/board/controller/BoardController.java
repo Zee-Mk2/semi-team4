@@ -31,10 +31,12 @@ import com.multi.mvc.board.model.vo.Reply;
 import com.multi.mvc.common.util.PageInfo;
 import com.multi.mvc.member.model.vo.Member;
 
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Controller
+@AllArgsConstructor
 public class BoardController {
 
 	@Autowired
@@ -50,8 +52,26 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value = "/board-free", method = RequestMethod.GET)
-	public String communityFreePage() {
+	public String communityFreePage(Model model, @RequestParam Map<String, Object> param) {
+		log.info("board list 요청, param : " + param);
 		
+		int page = 1;
+		try {
+			if(param.get("searchType") != null) {
+				param.put((String) param.get("searchType"), param.get("searchValue"));
+			}
+			
+			page = Integer.parseInt((String) param.get("page"));
+		} catch (Exception e) {}
+		
+		int boardCount = service.getBoardCount(param);
+		PageInfo pageInfo = new PageInfo(page, 5, boardCount, 15);
+		List<Board> list = service.selectInfoBoardList(pageInfo, param);
+		
+		model.addAttribute("list", list);
+		model.addAttribute("param", param);
+		model.addAttribute("pageInfo", pageInfo);
+		model.addAttribute("numOfResult", boardCount);
 		
 		return "/board/community-free";
 	}
@@ -137,12 +157,32 @@ public class BoardController {
 		
 		if(result > 0) {
 			model.addAttribute("msg", "게시글이 등록되었습니다.");
-			model.addAttribute("location", "/board-" + board.getBoardCat());
+			model.addAttribute("location", "/board-" + board.getBoardCat() + "?boardCat=" + board.getBoardCat());
 		} else {
 			model.addAttribute("msg", "게시글 등록에 실패하였습니다.");
-			model.addAttribute("location", "/board-" + board.getBoardCat());
+			model.addAttribute("location", "/board-" + board.getBoardCat() + "?boardCat=" + board.getBoardCat());
 		}
 		return "common/msg";
+	}
+	
+	// http://localhost/mvc/board/delete?bno=51
+	@RequestMapping(value = "/board-delete")
+	public final String deleteBoard(Model model,  HttpSession session,
+			@SessionAttribute(name = "loginMember", required = false) Member loginMember,
+			@RequestParam Map<String, String> param
+			) {
+		log.info("deleteBoard - param>> " + param.toString());
+		
+		int result = service.deleteBoard(param);
+		
+		if(result > 0) {
+			model.addAttribute("msg", "게시글 삭제가 정상적으로 완료되었습니다.");
+		}else {
+			model.addAttribute("msg", "게시글 삭제에 실패하였습니다.");
+		}
+		model.addAttribute("location", "/board-" + param.get("boardCat") + "?boardCat=" + param.get("boardCat"));
+		
+		return "/common/msg";
 	}
 	
 	@RequestMapping(value = "/board-detail", method = RequestMethod.GET)
@@ -156,6 +196,7 @@ public class BoardController {
 		
 		return "/board/community-detail";
 	}
+	
 }
 
 

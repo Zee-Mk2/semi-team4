@@ -14,7 +14,7 @@
 <link rel="stylesheet" type="text/css" href="${path}/resources/assets/vendor/choices/css/choices.min.css">
 <link rel="stylesheet" type="text/css" href="${path}/resources/assets/vendor/flatpickr/css/flatpickr.min.css">
 
-<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+<jsp:include page="/WEB-INF/views/common/camping-header.jsp"/>
 
 <!-- Vendors -->
 <script src="${path}/resources/assets/vendor/isotope/isotope.pkgd.min.js"></script>
@@ -66,6 +66,7 @@
 					<!-- Booking from START -->
 					<form class="rounded-5 border ms-3" name="searchForm">
 						<input type="hidden" name="page" value="1">
+						<input type="hidden" name="boardCat" value="info">
 						<div class="row g-4 align-items-center">
 							<div class="col-10">
 								<div class="row g-4">

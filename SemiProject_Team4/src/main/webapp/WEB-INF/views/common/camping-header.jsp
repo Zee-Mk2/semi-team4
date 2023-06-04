@@ -77,13 +77,13 @@
 
 						<!-- Nav item Pages -->
 						<li class="nav-item dropdown">
-							<a href="${path}/board-main">
-								<div class="nav-link fw-bold dropdown-toggle" href="${path}/camp-search" id="pagesMenu">
+							<a href="${path}/community">
+								<div class="nav-link fw-bold dropdown-toggle" id="pagesMenu">
 									커뮤니티</div>
 							</a>
 							<ul class="dropdown-menu" aria-labelledby="pagesMenu">
-								<li> <a class="dropdown-item" href="${path}/freeBoard">자유게시판</a></li>
-								<li> <a class="dropdown-item" href="${path}/info">정보공유</a></li>
+								<li> <a class="dropdown-item" href="${path}/board-free">자유게시판</a></li>
+								<li> <a class="dropdown-item" href="${path}/board-info">정보공유</a></li>
 								<li> <a class="dropdown-item" href="${path}/board-review">후기</a></li>
 							</ul>
 						</li>

@@ -4,7 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 
-<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+<jsp:include page="/WEB-INF/views/common/camping-header.jsp"/>
 
 <!-- Plugins CSS -->
 <link rel="stylesheet" type="text/css" href="${path}/resources/assets/vendor/font-awesome/css/all.min.css">
@@ -104,7 +104,7 @@
 								<a class="btn btn-danger" href="${path}/board-${board.boardCat}">취소</a>
 							</div>
 							<div class="col-6 text-end">
-								<button type="submit" class="btn btn-info">확인</button>
+								<button type="submit" class="btn btn-info" href="${path}/board-${board.boardCat}">확인</button>
 							</div>
 						</div>
 					</form>

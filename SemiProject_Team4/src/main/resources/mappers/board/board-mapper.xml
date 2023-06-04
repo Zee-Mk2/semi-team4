@@ -2,6 +2,37 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
 <mapper namespace="com.multi.mvc.board.model.mapper.BoardMapper">
+
+	<!-- <resultMap type="Board" id="boardResultMap">
+	  <result property="bno" column="bno" />
+	  <result property="mno" column="mno" />
+	  <result property="name" column="name" />
+	  <result property="boardCat" column="boardCat" />
+	  <result property="boardTag" column="boardTag" />
+	  <result property="boardTitle" column="boardTitle" />
+	  <result property="boardContent" column="boardContent" />
+	  <result property="boardOriFileNm" column="boardOriFileNm" />
+	  <result property="boardReFileNm" column="boardReFileNm" />
+	  <result property="boardCreateDate" column="boardCreateDate" />
+	  <result property="boardViews" column="boardViews" />
+	  <result property="boardStatus" column="boardStatus" />
+	  <result property="replies" column="replies" />
+	</resultMap>
+	
+	<resultMap type="Reply" id="boardReplyResultMap">
+		<result property="rno" column="replyNo" />
+		<result property="bno" column="bNO" />
+		<result property="mno" column="mNO" />
+		<result property="content" column="replyContent" />
+		<result property="status" column="replyStatus" />
+		<result property="createDate" column="replycreateDate" />
+	</resultMap>
+	
+	<resultMap type="Board" id="boardDetailResultMap" extends="boardResultMap">
+		<collection property="replies" javaType="arrayList" columnPrefix="R_"
+													resultMap="boardReplyResultMap"/>
+	</resultMap> -->
+
 	<insert id="posting" parameterType="Board">
 		INSERT INTO board
 		VALUES(DEFAULT, #{mno}, #{name}, #{boardCat}, #{boardTag}, #{boardTitle}, #{boardContent}, #{boardOriFileNm}, #{boardReFileNm}, DEFAULT, DEFAULT, DEFAULT)
@@ -16,7 +47,7 @@
 			B.bno, B.boardTitle, M.name, B.boardCreateDate, B.boardReFileNm, B.boardViews, B.boardContent, B.boardTag
 		FROM board B 
 		JOIN member M ON(B.mno = M.mno)
-		WHERE 1 = 1 AND B.boardStatus = 'Y'
+		WHERE B.boardStatus = 'Y' AND B.boardCat = #{boardCat}
 		<if test="boardTag != null">
 			AND B.boardTag = #{boardTag}
 		</if>
@@ -28,6 +59,9 @@
 		</if>
 		<if test="content != null">
 			AND B.content LIKE '%${content}%'
+		</if>
+		<if test="boardCat != null">
+		  AND B.boardCat = #{boardCat}
 		</if>
 		ORDER BY B.bno DESC LIMIT ${limit} OFFSET ${offset}
 	</select>
@@ -49,7 +83,31 @@
 				, boardOriFileNm = #{boardOriFileNm},
 				boardReFileNm = #{boardReFileNm}
 			</if>
-		WHERE bno = #{bno};
+		WHERE bno = #{bno}
 	</update>
+	
+	<update id="deleteBoard" parameterType="Map">
+		UPDATE board SET boardStatus = 'N' WHERE bno=#{bno}
+	</update>
+	
+	<delete id="deleteReply" parameterType="int">
+		DELETE FROM reply WHERE rno=#{rno}
+	</delete>
+	
+	<!-- <select id="selectBoardByNo" parameterType="int" resultMap="Board">
+		SELECT  B.bno, B.boardTitle, M.name, B.boardCreateDate, B.boardReFileNm, B.boardViews, B.boardContent, B.boardTag
+				R.rno as R_rno,
+		        R.bno as R_bno,
+		        R.writerId as R_writerId,
+		        R.content as R_content,
+		        R.createDate as R_createDate,
+		        R.modifyDate as R_modifyDate,
+		FROM board B
+		JOIN member M ON(B.mno = M.mno)
+		LEFT OUTER JOIN reply R ON(R.bno = B.bno)
+		LEFT OUTER JOIN member M2 ON(R.mno = M2.mno)
+		WHERE B.boardStatus = 'Y' AND  B.bno= #{bno}
+	</select> -->
+	
 </mapper>
 
