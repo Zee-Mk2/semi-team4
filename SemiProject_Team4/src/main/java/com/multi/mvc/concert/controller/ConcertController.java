@@ -37,7 +37,7 @@ public class ConcertController {
 	@RequestMapping(value = "/conc-detail", method = RequestMethod.GET)
 	public String concDetailPage(Model model, @RequestParam Map<String, Object> param) {
 		ConcertVO item = service.concDetailById(param);
-		item.setTicketPrice(item.getTicketPrice().replace("원,", "원<br>"));
+		item.setTicketPrice(item.getTicketPrice().replace("�썝,", "�썝<br>"));
 		String[] introImg = item.getIntroImg().replace(" ", "").split("\n");
 		for (String str : introImg) {
 			log.info(str);
@@ -46,6 +46,12 @@ public class ConcertController {
 		model.addAttribute("introImg", introImg);
 		
 		return "/concert/concert-detail";
+	}
+	
+	@RequestMapping(value = "/conc-recommend", method = RequestMethod.GET)
+	public String concrecommend() {
+		
+		return "/concert/concert-recommend";
 	}
 	
 	@RequestMapping(value = "/conc-nearby", method = RequestMethod.GET)
@@ -62,7 +68,7 @@ public class ConcertController {
 	
 	@GetMapping(value = "/conc-search")
 	public String concSearchPage(Model model, @RequestParam Map<String, Object> param) {
-		log.info("concSearchPage 호출됨");
+		log.info("concSearchPage �샇異쒕맖");
 		
 		int page = 1;
 		try {
