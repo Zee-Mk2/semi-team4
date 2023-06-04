@@ -717,7 +717,7 @@
                                 <h1 class="text-white">당신이 보고싶었던 뮤지션들과</h1>
                                 <h1 class="text-white">신나게, 즐겁게</h1>
                                 <h4 class="text-white mb-0">
-                                    서울페스티벌
+                                    서울페스티벌축제
                                     <a href="test.html" class="btn btn-primary mx-3">상세보기</a>
                                 </h4>
                             </div>
