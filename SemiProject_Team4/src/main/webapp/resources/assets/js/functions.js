@@ -1312,3 +1312,20 @@ $(document).ready(function() {
     $('.seat-checkbox:not(:checked)').closest('.select-seat').removeClass('selected-seat');
   });
 });
+
+// 북마크 핸들러 메소드 호출하는 함수
+function callBookmarkHandler(conId) {
+  alert("callBookmarkHandler 호출됨");
+  $.ajax({
+    url: "${path}/conc-bookmark?conId=" + conId,
+    type: 'POST',
+    success: function(response) {
+      console.log(response);
+      alert("Success");
+    },
+    error: function(textStatus) {
+      console.error(textStatus);
+      alert("error");
+  }
+  });
+}

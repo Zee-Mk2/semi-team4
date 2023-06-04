@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -38,6 +39,7 @@ public class ConcertController {
 	public String concDetailPage(Model model, @RequestParam Map<String, Object> param) {
 		ConcertVO item = service.concDetailById(param);
 		item.setTicketPrice(item.getTicketPrice().replace("원,", "원<br>"));
+		item.setStartTime(item.getStartTime().replace("),", ")<br>"));
 		String[] introImg = item.getIntroImg().replace(" ", "").split("\n");
 		for (String str : introImg) {
 			log.info(str);
@@ -82,27 +84,11 @@ public class ConcertController {
 		
 		return "/concert/concert-search";
 	}
+	
+	@PostMapping(value = "/conc-bookmark")
+	public void concBookmark(@RequestParam Map<String, String> param) {
+		log.info("concBookmark 호출됨");
+		
+		
+	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

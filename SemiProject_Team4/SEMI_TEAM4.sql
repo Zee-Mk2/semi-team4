@@ -201,9 +201,9 @@ DROP TABLE concBookmark;
 CREATE TABLE concBookmark (
 	conId       		VARCHAR(100),
     mno					INT,
-    concBookmarkDate	DATETIME,
+    concBookmarkDate	DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (conId) REFERENCES concert(conId) ON DELETE CASCADE,
-    FOREIGN KEY (mno) REFERENCES memberInfo(mno) ON DELETE CASCADE
+    FOREIGN KEY (mno) REFERENCES member(mno) ON DELETE CASCADE
 );
 
 SELECT * FROM concBookmark;
@@ -355,3 +355,7 @@ AND conNm LIKE '%인어공주%';
 SELECT Conc.*, Hall.la, Hall.lo FROM concert Conc
 JOIN conHall Hall ON(Conc.conHallId = Hall.conHallId)
 WHERE conId = 'PF217342';
+
+SELECT Conc.*, Hall.la, Hall.lo FROM concert Conc
+JOIN conHall Hall ON(Conc.conHallId = Hall.conHallId)
+WHERE conNm = '%포항%';
