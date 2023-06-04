@@ -63,7 +63,14 @@ public class CampController {
 	}
 	
 	@RequestMapping(value = "/camp-recommend", method = RequestMethod.GET)
-	public String campRecommendPage() {
+	public String campRecommendPage(@RequestParam Map<String, Object> param, Model model) {
+		log.info("추천페이지>> " + param.toString());
+		List<CampSiteVO> items = service.campThemeTopTen(param);
+		for (CampSiteVO obj : items) {
+			log.info("item>> " + obj);
+		}
+		
+		model.addAttribute("items", items);
 		
 		return "/camping/camping-recommend";
 	}

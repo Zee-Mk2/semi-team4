@@ -73,11 +73,11 @@
 		</if>
 		ORDER BY views
 	</select>
+	
+	<select id="campThemeTopTen" parameterType="Map" resultType="CampSiteVO">
+		SELECT contentID, campNm, lineIntro, addr, tel, img FROM campSiteInfo WHERE
+			location=#{location}
+		AND manStatus = '운영' ORDER BY bookmarks DESC LIMIT 10;
+	</select>
+	
 </mapper>
-
-
-
-
-
-
-

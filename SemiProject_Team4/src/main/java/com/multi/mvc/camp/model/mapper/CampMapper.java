@@ -14,4 +14,5 @@ public interface CampMapper {
 	List<CampSiteVO> campThemeBest();
 	List<CampSiteVO> campSearch(Map<String, Object> param);
 	int selectResultCount(Map<String, Object> param);
+	List<CampSiteVO> campThemeTopTen(Map<String, Object> param);
 }

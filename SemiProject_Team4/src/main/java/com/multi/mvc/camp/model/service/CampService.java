@@ -55,6 +55,10 @@ public class CampService {
 	public int getResultCount(Map<String, Object> param) {
 		return mapper.selectResultCount(param);
 	}
+
+	public List<CampSiteVO> campThemeTopTen(Map<String, Object> param) {
+		return mapper.campThemeTopTen(param);
+	}
 }
 
 

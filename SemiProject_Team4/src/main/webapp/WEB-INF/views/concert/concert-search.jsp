@@ -22,6 +22,7 @@
 	href="${path}/resources/assets/vendor/nouislider/nouislider.css" />
 
 <jsp:include page="/WEB-INF/views/common/concert-header.jsp"/>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
 
 <main>
 	<!-- =======================
@@ -234,7 +235,7 @@
 									</div>
 								</div>
 								<!-- 하트 -->
-								<a class="btn heart-btn mx-2 mt-n5"> <i
+								<a class="btn heart-btn mx-2 mt-n5" onclick="callBookmarkHandler(${item.conId});"> <i
 									class="fas fa-heart fs-5 ms-n2 heart-icon" style="color: red;"></i>
 								</a>
 								<div class="card-body d-flex align-items-center">

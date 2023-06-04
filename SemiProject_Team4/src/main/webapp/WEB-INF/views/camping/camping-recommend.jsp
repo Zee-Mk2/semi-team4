@@ -35,8 +35,8 @@
 			<!-- Title -->
 			<div class="row mb-3 mb-sm-4">
 				<div class="col-12 text-center">
-					<h1 class="mb-0 text-info">요즘 뜨는 핫한 캠핑장</h1>
-					<h1 class="mb-0 text-info">테마별로 모아보기</h1>
+					<h1 class="mb-0 text-info title">요즘 뜨는 핫한 캠핑장</h1>
+					<h1 class="mb-0 text-info title">테마별로 모아보기</h1>
 				</div>
 			</div>
 			<!-- Category Items -->
@@ -53,7 +53,7 @@
 						<div class="col-md-6">
 							<div class="p-2 p-md-0">
 								<h5 class="mb-1">
-									<a href="#" class="stretched-link"> 해변 </a>
+									<a href="${path}/camp-recommend?location=해변" class="stretched-link"> 해변 </a>
 								</h5>
 								<span>4,568 Places</span>
 							</div>
@@ -243,25 +243,20 @@
 												</div>
 											</a>
 										</div>
-
-										<!-- AREA ITEM START -->
-										<label class="card-label card area-card"> <input
-											class="form-check-input card-radio" type="radio"
-											name="area-select">
-
-											<div class="card shadow overflow-hidden">
+										
+										<c:forEach var="item" items="${items}">
+											<!-- AREA ITEM START -->
+											<div class="card card-img-scale shadow overflow-hidden">
 												<div class="row" style="height: 250px">
 													<!-- Image -->
 													<div class="col-4 card-img-side">
-														<img
-															src="https://image.goodchoice.kr/resize_490x348/affiliate/2021/03/29/60615a76c8d58.jpg"
-															class="img-fluid">
+														<img src="${item.img}" class="img-fluid">
 													</div>
 													<!-- Card Body START -->
 													<div class="col-8">
 														<div class="card-body p-3">
 															<!-- Card Content -->
-															<div class="h4 card-title my-3 title">백양사 가인야영장</div>
+															<div class="h4 card-title my-3 title">${item.campNm}</div>
 															<ul class="nav nav-divider small mb-0 mt-2">
 																<li class="nav-item mb-1"><i
 																	class="far fa-thumbs-up pe-1"></i>123</li>
@@ -269,393 +264,22 @@
 																	21개</li>
 															</ul>
 															<div>
-																백양사의 아름다운 풍광과 함께하는 백양사 가인야영장 <br>주소 전라남도 장성군 북하면
-																약수리 108 <br>문의 061-393-3088
+																${item.lineIntro}<br>
+																${item.addr}<br>
+																문의 ${item.tel}
 															</div>
-															<p class="position-absolute" style="bottom: 0;">
-																<a href="test.html"> <span
-																	class="h5 card-title mb-1 title text-primary">
-																		자세히 보러가기 </span>
-																</a>
-															</p>
+															<a href="${path}/camp-detail?contentID=${contentID}" class="stretched-link">
+																<span class="h5 card-title mt-2 title text-primary">자세히 보러가기</span>
+															</a>
 														</div>
 													</div>
 													<!-- Card body END -->
 												</div>
 											</div>
-										</label>
-										<!-- AREA ITEM END -->
-
-										<!-- AREA ITEM START -->
-										<label class="card-label card area-card"> <input
-											class="form-check-input card-radio" type="radio"
-											name="area-select">
-
-											<div class="card shadow overflow-hidden">
-												<div class="row" style="height: 250px">
-													<!-- Image -->
-													<div class="col-4 card-img-side">
-														<img
-															src="https://www.insiseol.or.kr/park/songdo/img/contents/camping_reserve.jpg"
-															class="img-fluid">
-													</div>
-													<!-- Card Body START -->
-													<div class="col-8">
-														<div class="card-body p-3">
-															<!-- Card Content -->
-															<div class="h4 card-title my-3 title">백양사 가인야영장</div>
-															<ul class="nav nav-divider small mb-0 mt-2">
-																<li class="nav-item mb-1"><i
-																	class="far fa-thumbs-up pe-1"></i>123</li>
-																<li class="nav-item mb-1"><i class="nav-icon"></i>리뷰
-																	21개</li>
-															</ul>
-															<div>
-																백양사의 아름다운 풍광과 함께하는 백양사 가인야영장 <br>주소 전라남도 장성군 북하면
-																약수리 108 <br>문의 061-393-3088
-															</div>
-															<p class="position-absolute" style="bottom: 0;">
-																<a href="test.html"> <span
-																	class="h5 card-title mb-1 title text-primary">
-																		자세히 보러가기 </span>
-																</a>
-															</p>
-														</div>
-													</div>
-													<!-- Card body END -->
-												</div>
-											</div>
-										</label>
-										<!-- AREA ITEM END -->
-
-										<!-- AREA ITEM START -->
-										<label class="card-label card area-card"> <input
-											class="form-check-input card-radio" type="radio"
-											name="area-select">
-
-											<div class="card shadow overflow-hidden">
-												<div class="row" style="height: 250px">
-													<!-- Image -->
-													<div class="col-4 card-img-side">
-														<img
-															src="https://www.insiseol.or.kr/park/songdo/img/contents/camping_reserve.jpg"
-															class="img-fluid">
-													</div>
-													<!-- Card Body START -->
-													<div class="col-8">
-														<div class="card-body p-3">
-															<!-- Card Content -->
-															<div class="h4 card-title my-3 title">백양사 가인야영장</div>
-															<ul class="nav nav-divider small mb-0 mt-2">
-																<li class="nav-item mb-1"><i
-																	class="far fa-thumbs-up pe-1"></i>123</li>
-																<li class="nav-item mb-1"><i class="nav-icon"></i>리뷰
-																	21개</li>
-															</ul>
-															<div>
-																백양사의 아름다운 풍광과 함께하는 백양사 가인야영장 <br>주소 전라남도 장성군 북하면
-																약수리 108 <br>문의 061-393-3088
-															</div>
-															<p class="position-absolute" style="bottom: 0;">
-																<a href="test.html"> <span
-																	class="h5 card-title mb-1 title text-primary">
-																		자세히 보러가기 </span>
-																</a>
-															</p>
-														</div>
-													</div>
-													<!-- Card body END -->
-												</div>
-											</div>
-										</label>
-										<!-- AREA ITEM END -->
-										<!-- AREA ITEM START -->
-										<label class="card-label card area-card"> <input
-											class="form-check-input card-radio" type="radio"
-											name="area-select">
-
-											<div class="card shadow overflow-hidden">
-												<div class="row" style="height: 250px">
-													<!-- Image -->
-													<div class="col-4 card-img-side">
-														<img
-															src="https://www.insiseol.or.kr/park/songdo/img/contents/camping_reserve.jpg"
-															class="img-fluid">
-													</div>
-													<!-- Card Body START -->
-													<div class="col-8">
-														<div class="card-body p-3">
-															<!-- Card Content -->
-															<div class="h4 card-title my-3 title">백양사 가인야영장</div>
-															<ul class="nav nav-divider small mb-0 mt-2">
-																<li class="nav-item mb-1"><i
-																	class="far fa-thumbs-up pe-1"></i>123</li>
-																<li class="nav-item mb-1"><i class="nav-icon"></i>리뷰
-																	21개</li>
-															</ul>
-															<div>
-																백양사의 아름다운 풍광과 함께하는 백양사 가인야영장 <br>주소 전라남도 장성군 북하면
-																약수리 108 <br>문의 061-393-3088
-															</div>
-															<p class="position-absolute" style="bottom: 0;">
-																<a href="test.html"> <span
-																	class="h5 card-title mb-1 title text-primary">
-																		자세히 보러가기 </span>
-																</a>
-															</p>
-														</div>
-													</div>
-													<!-- Card body END -->
-												</div>
-											</div>
-										</label>
-										<!-- AREA ITEM END -->
-										<!-- AREA ITEM START -->
-										<label class="card-label card area-card"> <input
-											class="form-check-input card-radio" type="radio"
-											name="area-select">
-
-											<div class="card shadow overflow-hidden">
-												<div class="row" style="height: 250px">
-													<!-- Image -->
-													<div class="col-4 card-img-side">
-														<img
-															src="https://www.insiseol.or.kr/park/songdo/img/contents/camping_reserve.jpg"
-															class="img-fluid">
-													</div>
-													<!-- Card Body START -->
-													<div class="col-8">
-														<div class="card-body p-3">
-															<!-- Card Content -->
-															<div class="h4 card-title my-3 title">백양사 가인야영장</div>
-															<ul class="nav nav-divider small mb-0 mt-2">
-																<li class="nav-item mb-1"><i
-																	class="far fa-thumbs-up pe-1"></i>123</li>
-																<li class="nav-item mb-1"><i class="nav-icon"></i>리뷰
-																	21개</li>
-															</ul>
-															<div>
-																백양사의 아름다운 풍광과 함께하는 백양사 가인야영장 <br>주소 전라남도 장성군 북하면
-																약수리 108 <br>문의 061-393-3088
-															</div>
-															<p class="position-absolute" style="bottom: 0;">
-																<a href="test.html"> <span
-																	class="h5 card-title mb-1 title text-primary">
-																		자세히 보러가기 </span>
-																</a>
-															</p>
-														</div>
-													</div>
-													<!-- Card body END -->
-												</div>
-											</div>
-										</label>
-										<!-- AREA ITEM END -->
-										<!-- AREA ITEM START -->
-										<label class="card-label card area-card"> <input
-											class="form-check-input card-radio" type="radio"
-											name="area-select">
-
-											<div class="card shadow overflow-hidden">
-												<div class="row" style="height: 250px">
-													<!-- Image -->
-													<div class="col-4 card-img-side">
-														<img
-															src="https://www.insiseol.or.kr/park/songdo/img/contents/camping_reserve.jpg"
-															class="img-fluid">
-													</div>
-													<!-- Card Body START -->
-													<div class="col-8">
-														<div class="card-body p-3">
-															<!-- Card Content -->
-															<div class="h4 card-title my-3 title">백양사 가인야영장</div>
-															<ul class="nav nav-divider small mb-0 mt-2">
-																<li class="nav-item mb-1"><i
-																	class="far fa-thumbs-up pe-1"></i>123</li>
-																<li class="nav-item mb-1"><i class="nav-icon"></i>리뷰
-																	21개</li>
-															</ul>
-															<div>
-																백양사의 아름다운 풍광과 함께하는 백양사 가인야영장 <br>주소 전라남도 장성군 북하면
-																약수리 108 <br>문의 061-393-3088
-															</div>
-															<p class="position-absolute" style="bottom: 0;">
-																<a href="test.html"> <span
-																	class="h5 card-title mb-1 title text-primary">
-																		자세히 보러가기 </span>
-																</a>
-															</p>
-														</div>
-													</div>
-													<!-- Card body END -->
-												</div>
-											</div>
-										</label>
-										<!-- AREA ITEM END -->
-										<!-- AREA ITEM START -->
-										<label class="card-label card area-card"> <input
-											class="form-check-input card-radio" type="radio"
-											name="area-select">
-
-											<div class="card shadow overflow-hidden">
-												<div class="row" style="height: 250px">
-													<!-- Image -->
-													<div class="col-4 card-img-side">
-														<img
-															src="https://www.insiseol.or.kr/park/songdo/img/contents/camping_reserve.jpg"
-															class="img-fluid">
-													</div>
-													<!-- Card Body START -->
-													<div class="col-8">
-														<div class="card-body p-3">
-															<!-- Card Content -->
-															<div class="h4 card-title my-3 title">백양사 가인야영장</div>
-															<ul class="nav nav-divider small mb-0 mt-2">
-																<li class="nav-item mb-1"><i
-																	class="far fa-thumbs-up pe-1"></i>123</li>
-																<li class="nav-item mb-1"><i class="nav-icon"></i>리뷰
-																	21개</li>
-															</ul>
-															<div>
-																백양사의 아름다운 풍광과 함께하는 백양사 가인야영장 <br>주소 전라남도 장성군 북하면
-																약수리 108 <br>문의 061-393-3088
-															</div>
-															<p class="position-absolute" style="bottom: 0;">
-																<a href="test.html"> <span
-																	class="h5 card-title mb-1 title text-primary">
-																		자세히 보러가기 </span>
-																</a>
-															</p>
-														</div>
-													</div>
-													<!-- Card body END -->
-												</div>
-											</div>
-										</label>
-										<!-- AREA ITEM END -->
-										<!-- AREA ITEM START -->
-										<label class="card-label card area-card"> <input
-											class="form-check-input card-radio" type="radio"
-											name="area-select">
-
-											<div class="card shadow overflow-hidden">
-												<div class="row" style="height: 250px">
-													<!-- Image -->
-													<div class="col-4 card-img-side">
-														<img
-															src="https://www.insiseol.or.kr/park/songdo/img/contents/camping_reserve.jpg"
-															class="img-fluid">
-													</div>
-													<!-- Card Body START -->
-													<div class="col-8">
-														<div class="card-body p-3">
-															<!-- Card Content -->
-															<div class="h4 card-title my-3 title">백양사 가인야영장</div>
-															<ul class="nav nav-divider small mb-0 mt-2">
-																<li class="nav-item mb-1"><i
-																	class="far fa-thumbs-up pe-1"></i>123</li>
-																<li class="nav-item mb-1"><i class="nav-icon"></i>리뷰
-																	21개</li>
-															</ul>
-															<div>
-																백양사의 아름다운 풍광과 함께하는 백양사 가인야영장 <br>주소 전라남도 장성군 북하면
-																약수리 108 <br>문의 061-393-3088
-															</div>
-															<p class="position-absolute" style="bottom: 0;">
-																<a href="test.html"> <span
-																	class="h5 card-title mb-1 title text-primary">
-																		자세히 보러가기 </span>
-																</a>
-															</p>
-														</div>
-													</div>
-													<!-- Card body END -->
-												</div>
-											</div>
-										</label>
-										<!-- AREA ITEM END -->
-										<!-- AREA ITEM START -->
-										<label class="card-label card area-card"> <input
-											class="form-check-input card-radio" type="radio"
-											name="area-select">
-
-											<div class="card shadow overflow-hidden">
-												<div class="row" style="height: 250px">
-													<!-- Image -->
-													<div class="col-4 card-img-side">
-														<img
-															src="https://www.insiseol.or.kr/park/songdo/img/contents/camping_reserve.jpg"
-															class="img-fluid">
-													</div>
-													<!-- Card Body START -->
-													<div class="col-8">
-														<div class="card-body p-3">
-															<!-- Card Content -->
-															<div class="h4 card-title my-3 title">백양사 가인야영장</div>
-															<ul class="nav nav-divider small mb-0 mt-2">
-																<li class="nav-item mb-1"><i
-																	class="far fa-thumbs-up pe-1"></i>123</li>
-																<li class="nav-item mb-1"><i class="nav-icon"></i>리뷰
-																	21개</li>
-															</ul>
-															<div>
-																백양사의 아름다운 풍광과 함께하는 백양사 가인야영장 <br>주소 전라남도 장성군 북하면
-																약수리 108 <br>문의 061-393-3088
-															</div>
-															<p class="position-absolute" style="bottom: 0;">
-																<a href="test.html"> <span
-																	class="h5 card-title mb-1 title text-primary">
-																		자세히 보러가기 </span>
-																</a>
-															</p>
-														</div>
-													</div>
-													<!-- Card body END -->
-												</div>
-											</div>
-										</label>
-										<!-- AREA ITEM END -->
-										<!-- AREA ITEM START -->
-										<label class="card-label card area-card"> <input
-											class="form-check-input card-radio" type="radio"
-											name="area-select">
-
-											<div class="card shadow overflow-hidden">
-												<div class="row" style="height: 250px">
-													<!-- Image -->
-													<div class="col-4 card-img-side">
-														<img
-															src="https://www.insiseol.or.kr/park/songdo/img/contents/camping_reserve.jpg"
-															class="img-fluid">
-													</div>
-													<!-- Card Body START -->
-													<div class="col-8">
-														<div class="card-body p-3">
-															<!-- Card Content -->
-															<div class="h4 card-title my-3 title">백양사 가인야영장</div>
-															<ul class="nav nav-divider small mb-0 mt-2">
-																<li class="nav-item mb-1"><i
-																	class="far fa-thumbs-up pe-1"></i>123</li>
-																<li class="nav-item mb-1"><i class="nav-icon"></i>리뷰
-																	21개</li>
-															</ul>
-															<div>
-																백양사의 아름다운 풍광과 함께하는 백양사 가인야영장 <br>주소 전라남도 장성군 북하면
-																약수리 108 <br>문의 061-393-3088
-															</div>
-															<p class="position-absolute" style="bottom: 0;">
-																<a href="test.html"> <span
-																	class="h5 card-title mb-1 title text-primary">
-																		자세히 보러가기 </span>
-																</a>
-															</p>
-														</div>
-													</div>
-													<!-- Card body END -->
-												</div>
-											</div>
-										</label>
-										<!-- AREA ITEM END -->
+											<!-- AREA ITEM END -->
+										
+										</c:forEach>
+										
 									</div>
 								</div>
 								<!-- Step 1 content END -->
@@ -670,6 +294,7 @@
 					<!-- Step content END -->
 				</div>
 			</div>
+		</div>
 	</section>
 	<!-- =======================
 	Steps END -->
@@ -696,9 +321,9 @@
 						style="background-image: url(${path}/resources/assets/images/bg/01.jpg); background-position: center center; background-repeat: no-repeat; background-size: cover; height: 600px">
 						<div class="row justify-content-between pt-0 pb-5">
 							<div class="p-8 mx-8">
-								<h1 class="text-white">당신의 가족</h1>
-								<h1 class="text-white">반려동물과 함께 가요</h1>
-								<h4 class="text-white mb-0">
+								<h1 class="text-white title">당신의 가족</h1>
+								<h1 class="text-white title">반려동물과 함께 가요</h1>
+								<h4 class="text-white mb-0 title">
 									누리파크 캠핑장 <a href="test.html" class="btn btn-primary mx-3">상세보기</a>
 								</h4>
 							</div>
@@ -710,9 +335,9 @@
 						style="background-image: url(${path}/resources/assets/images/bg/02.jpg); background-position: center center; background-repeat: no-repeat; background-size: cover; height: 600px">
 						<div class="row justify-content-between pt-0 pb-5">
 							<div class="p-8 mx-8">
-								<h1 class="text-white">아이와 함께</h1>
-								<h1 class="text-white">편안하게, 즐겁게</h1>
-								<h4 class="text-white mb-0">
+								<h1 class="text-white title">아이와 함께</h1>
+								<h1 class="text-white title">편안하게, 즐겁게</h1>
+								<h4 class="text-white mb-0 title">
 									하늘바다오토캠핑장 <a href="test.html" class="btn btn-primary mx-3">상세보기</a>
 								</h4>
 							</div>
