@@ -33,4 +33,6 @@ public class ConcertVO {
 	private int bookmarks;
 	private int views;
 	private int minPrice;
+	private String la;
+	private String lo;
 }

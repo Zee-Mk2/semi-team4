@@ -17,4 +17,6 @@ public interface ConcertMapper {
 	List<ConcertVO> concSearch(Map<String, Object> param);
 
 	int countSearch(Map<String, Object> param);
+
+	ConcertVO concDetailById(Map<String, Object> param);
 }

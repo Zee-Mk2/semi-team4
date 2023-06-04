@@ -240,7 +240,7 @@
 								<div class="card-body d-flex align-items-center">
 									<div class="w-100">
 										<h5 class="card-title text-decoration-none text-dark">
-											<a href="concert-detail.html" class="stretched-link title">
+											<a href="${path}/conc-detail?conId=${item.conId}" class="stretched-link title">
 												${item.conNm} </a>
 										</h5>
 										<div class="overflow-ellipsis" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${item.conHallNm}</div>

@@ -50,7 +50,7 @@ Main Banner START -->
 								<div class="h1 text-dark title">돈키호테</div>
 								<div class="h5 text-dark mb-0 title">
 								  부산시민회관 대극장
-								  <a href="${path}/conc-detail" class="btn btn-orange mx-3 text-white">예매하기</a>
+								  <a href="${path}/conc-detail?conId=PF217913" class="btn btn-orange mx-3 text-white">예매하기</a>
 								</div>
 								<div class="h5 text-dark mb-0 title">2023.09.16(토) ~ 2023.09.17(일)</div>
 							  </div>
@@ -69,14 +69,14 @@ Main Banner START -->
 						  </div>
 						  <div class="col-7">
 							<div class="justify-content-between">
-							  <div class="pt-8 text-start">
-								<div class="h3 text-orange title">지금 부산에서 뜨는 무용 공연!</div>
-								<div class="h1 text-dark title">돈키호테</div>
+							  <div class="pt-7 text-start">
+								<div class="h3 text-orange title">감동과 열정이 넘치는 뜨거운 스테이지!</div>
+								<div class="h1 text-dark title">이승윤 전국투어 콘서트: DOCKING [서울 앵콜]</div>
 								<div class="h5 text-dark mb-0 title">
-								  부산시민회관 대극장
-								  <a href="${path}/conc-detail" class="btn btn-orange mx-3 text-white">예매하기</a>
+								  	올림픽공원 (올림픽홀)
+								  <a href="${path}/conc-detail?conId=PF218950" class="btn btn-orange mx-3 text-white">예매하기</a>
 								</div>
-								<div class="h5 text-dark mb-0 title">2023.09.16(토) ~ 2023.09.17(일)</div>
+								<div class="h5 text-dark mb-0 title">2023.07.01(토) ~ 2023.07.02(일)</div>
 							  </div>
 							</div>
 						  </div>
@@ -198,7 +198,7 @@ Packages START -->
 						<div class="card-body d-flex align-items-center">
 							<div class="w-100">
 								<h5 class="card-title text-decoration-none text-dark">
-									<a href="${path}/conc-detail" class="stretched-link title">
+									<a href="${path}/conc-detail?conId=${item.conId}" class="stretched-link title">
 										${item.conNm}
 									</a>
 								</h5>
@@ -524,10 +524,10 @@ Packages END -->
 
 			<!-- 광고 시작 -->
 			<span class="col-7">
-				<a href="${path}/#">
+				<a href="${path}/conc-detail?conId=PF218968">
 					<img src="http://ticketimage.interpark.com/TCMS4/Main/202304/MainVisual_f5681384-0bec-4a52-89a7-b87187341ca1.jpg" class="w-100 my-3 border-radius" style="border-radius: 0.5rem;"/>
 				</a>
-				<a href="${path}/#">
+				<a href="${path}/conc-detail?conId=PF219004">
 					<img src="http://ticketimage.interpark.com/TCMS4/Main/202305/MainVisual_6cdbe0db-d513-4a94-9101-2dc2c8c4fba3.jpg" class="w-100 my-3 border-radius" style="border-radius: 0.5rem;"/>
 				</a>
 			</span>

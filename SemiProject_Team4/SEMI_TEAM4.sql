@@ -348,4 +348,10 @@ ORDER BY views;
 -- 공연 검색
 SELECT conId, conNm, genre, startDate, endDate, conHallNm, posterImg, minPrice
 FROM concert
-WHERE status = 'Y';
+WHERE status = 'Y'
+AND conNm LIKE '%인어공주%';
+
+-- 공연 상세
+SELECT Conc.*, Hall.la, Hall.lo FROM concert Conc
+JOIN conHall Hall ON(Conc.conHallId = Hall.conHallId)
+WHERE conId = 'PF217342';

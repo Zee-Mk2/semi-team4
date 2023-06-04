@@ -11,14 +11,14 @@
 	</appender>
 	
 	<!-- Application Loggers -->
-	<logger name="com.multi.mvc">
-		<level value="info" />
+	<logger name="com.multi.mvc.*">
+		<level value="trace" />
 	</logger>
 	
 	<!-- 3rdparty Loggers -->
 	<logger name="org.springframework.core">
-		<level value="info" />
-	</logger>	
+		<level value="trace" />
+	</logger>
 	
 	<logger name="org.springframework.beans">
 		<level value="info" />
@@ -29,12 +29,13 @@
 	</logger>
 
 	<logger name="org.springframework.web">
-		<level value="info" />
+		<level value="trace" />
 	</logger>
 
 	<!-- Root Logger -->
 	<root>
-		<priority value="info" />
+		<priority value="trace" />
 		<appender-ref ref="console" />
 	</root>
+	
 </log4j:configuration>

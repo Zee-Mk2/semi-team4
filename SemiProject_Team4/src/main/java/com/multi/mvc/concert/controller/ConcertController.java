@@ -35,7 +35,15 @@ public class ConcertController {
 	}
 
 	@RequestMapping(value = "/conc-detail", method = RequestMethod.GET)
-	public String concDetailPage() {
+	public String concDetailPage(Model model, @RequestParam Map<String, Object> param) {
+		ConcertVO item = service.concDetailById(param);
+		item.setTicketPrice(item.getTicketPrice().replace("원,", "원<br>"));
+		String[] introImg = item.getIntroImg().replace(" ", "").split("\n");
+		for (String str : introImg) {
+			log.info(str);
+		}
+		model.addAttribute("item", item);
+		model.addAttribute("introImg", introImg);
 		
 		return "/concert/concert-detail";
 	}

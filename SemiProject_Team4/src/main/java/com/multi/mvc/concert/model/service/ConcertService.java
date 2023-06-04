@@ -51,5 +51,9 @@ public class ConcertService {
 	public int countSearch(Map<String, Object> param) {
 		return mapper.countSearch(param);
 	}
+
+	public ConcertVO concDetailById(Map<String, Object> param) {
+		return mapper.concDetailById(param);
+	}
 	
 }

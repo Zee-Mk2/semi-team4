@@ -35,9 +35,9 @@
 						<!-- Title -->
 						<div>
 							<ul class="nav nav-divider h6 text-body mb-0">
-								<li class="nav-item fs-4 title">대중음악</li>
+								<li class="nav-item fs-4 title">${item.genre}</li>
 							</ul>
-							<h1 class="fs-3 title">현대카드 슈퍼콘서트 27, 브루노 마스: the Purple osee</h1>
+							<h1 class="fs-3 title">${item.conNm}</h1>
 						</div>
 	
 						<!-- Buttons -->
@@ -69,41 +69,40 @@
 			<!-- Image gallery START -->
 			<div class="row mt-4">
 				<div class="col-lg-6">
-					<img src="https://dive.hyundaicard.com/resources/images/upload/content/8a0c359e8bbf42e5b661b6f3aedadf4d.jpg" alt="제 15회 서울재즈페스티벌" class="w-100">
+					<img src="${item.posterImg}" alt="제 15회 서울재즈페스티벌" class="w-100">
 				</div>
 				<div class="col-lg-6">
 					<table class="table">
 						<tr>
 							<td class="title h5">공연기간</td>
-							<td>2023.06.17(토) ~ 2023.06.18(일)</td>
+							<td><fmt:formatDate value="${item.startDate}" pattern="yyyy.MM.dd"/> ~ <fmt:formatDate value="${item.endDate}" pattern="yyyy.MM.dd"/></td>
 						</tr>
 						<tr>
 							<td class="title h5">공연장소</td>
-							<td>잠실종합운동장 주경기장</td>
+							<td>${item.conHallNm}</td>
 						</tr>
 						<tr>
 							<td class="title h5">공연시간</td>
-							<td>토요일 ~ 일요일(20:00)</td>
+							<td>${item.startTime}</td>
 						</tr>
 						<tr>
 							<td class="title h5">관람연령</td>
-							<td>만 12세 이상</td>
+							<c:if test="${item.viewAge == 0}">
+								<td>전체관람가</td>
+							</c:if>
+							<c:if test="${item.viewAge != 0}">
+								<td>만 12세 이상</td>
+							</c:if>
 						</tr>
 							<tr>
 								<td class="title h5">티켓가격</td>
 								<td>
-									G1석 200,000원<br>
-									G2석 168,000<br>
-									G3석 132,000원<br>
-									P석 140,000원<br>
-									R석 105,000원<br>
-									S석 79,200원<br>
-									A석 61,600원<br>
+									${item.ticketPrice}
 								</td>
 							</tr>
 						<tr>
 							<td class="title h5">출연진</td>
-							<td>브루노 마스</td>
+							<td>${item.cast}</td>
 						</tr>
 					</table>
 				</div>
@@ -164,45 +163,9 @@
 	
 								<!-- Card body START -->
 								<div class="card-body p-0 pt-4 text-black">
-									<!-- <h3 class="mb-0 title fs-5">공연시간 정보</h3><br></br>
-									<p class="mb-2">2023. 6. 17(토) ~ 6. 18(일) 오후 8시</p><br></br>
-									<h3 class="mb-0 title fs-5">공지사항</h3><br></br>
-									<p class="mb-2">* 본 공연 예매자는 상세페이지의 내용을 숙지 및 동의한 것으로 간주합니다.
-										공연 관람에 지장이 생기거나 불이익을 받지 않도록 관람 전 공연 안내사항을 꼭 확인 해 주시기 바랍니다.</p>
-									<br>
-									<p class="mb-2">* 본 공연은 원활한 예매 환경 제공을 위하여 예매 당일 동일좌석 재예매 서비스 이용이 일시적으로 제한됩니다.
-										서비스 제한 시간: 2023년 05월 18일(목) 오후 12시 ~ 오후 1시</p>
-									<br>
-									<p class="mb-2">* 티켓 판매 준비를 위해 2023년 5월 17일(수) 낮 12시~5월 18일(목) 오전 11시 59분까지 티켓판매가 잠시 중단될 예정입니다.</p>
-									<br>
-									<p class="mb-2">* 무통장입금 선택 시 예매 당일 23시 59분에 입금이 마감됩니다.
-										* 예매대기 시스템을 악용하여 부정거래에 이용하는 정황이 파악되어 본 공연은 더이상 예매대기서비스를 제공하지 않습니다.</p>
-									<br></br>
-									<span style="color:rgb(239,62, 67);"><브루노 마스 내한공연 부정 거래 티켓 취소 안내></p>
-									안녕하세요, 라이브네이션 입니다. 여러 관객분들의 신고 및 개인 SNS와 중고거래 사이트, 프리미엄 티켓 사이트 등에서 브루노 마스 내한공연 티켓의 부정 거래 내용을 파악하였습니다.
-										여러 좌석들에 대한 세부내용은 이미 파악되었으며, 나머지 좌석들도 확인 중에 있습니다.</p>
-									<br>
-									당사는 부정 티켓 거래가 강력히 의심/확인되는 경우, 티켓 정보 확인 후 티켓은 사전 안내 없이 예매 무효(취소) 처리 예정임을 사전에 공지드린 바 있으며, 공정거래위원회 및 개인정보위원회 등의 암표 대응을 위해 노력하고 있는 정부시책에 따라 강력하게 대응해 오고 있습니다.
-									<br><br>
-									부정 티켓 거래 또는 안내된 유의사항을 지키지 않아 발생하는 모든 문제에 대해 공연 주최/주관/예매처/공연장 등은 일절 책임이 없으므로, 관람객 여러분들께서는 부정 티켓 거래로 인한 불이익을 당하지 않도록 각별히 유의하시기 바랍니다.
-									부정 티켓 거래를 발견하신 분은 info@livenation.kr로 거래 증거 (좌석번호, 예매 번호, 거래 가격, 판매 관련 정황이 담긴 URL, 이미지, 판매자 식별 가능한 내용 등)와 함께 지속적인 제보를 부탁드립니다 (참고로 제보메일에 회신은 따로 하지 않습니다)
-									<br><br>
-									*티켓 예매 정보가 담긴 이미지 및 수령한 티켓 이미지를 온라인에 업로드 또는 제3자에게 전달/제공하는 경우, 거짓 티켓 인증 등 사기 수단으로 이용될 수 있습니다. 이 경우 부정 거래 티켓으로 간주되어 해당 예매가 취소 처리 될 수 있습니다<div class="br"></div>
-									*부정 거래로 간주되는 건의 해당 좌석은 당일 티켓을 소지하고 있더라도 입장이 제한될 수 있습니다<div class="br"></div>
-									*제보 내용에 따르면, 오픈 되지 않은 좌석을 판매석으로 교묘히 편집하여 판매하는 수법도 확인되고 있습니다. 부정 거래 티켓 구매 시 존재하지 않는 좌석의 티켓을 구매하게 되실 수 있으니 절대 구매하지 마시기 바랍니다.
-									건전한 공연 관람 문화 정립을 위해 노력하겠습니다.
-									<br><br><br><br>
-									<h3 class="mb-0 title fs-5">할인정보</h3></span><br>
-									<p class="mb-2">- 현대카드 결제 시 20% 할인 (회당 1인 4매 한정 / Gift 카드로 티켓 구매 불가)</p><br></br>
-									<p class="mb-2">- 장애인 본인 및 동반자 1인 30% 할인, 국가유공상이자 본인만 30% 할인<br>
-										* 온라인 예매 시 장애인 및 국가유공자 할인 적용 가능<br>
-										* 국가유공상이자증 또는 복지카드 상의 이름이 ‘예매자 본인’인 경우에만 예매 가능<br>
-										* 장애인 복지할인 및 국가유공상이자 할인이 적용된 티켓은 복지카드 혹은 국가유공상이자증 확인 후 현장수령만 가능<br>
-										* 예매자 본인 복지카드 미 지참 시, 현장에서 차액 지불 후 티켓 수령 가능<br>
-										* 장애인 복지 할인 및 국가유공상이자 할인은 현대카드 할인과 중복 적용 불가<br>
-										* 현장구매 시 장애인 복지 할인 및 국가유공상이자 할인 적용 가능</p><br><br>
-									<h3 class="title fs-4">공연상세/ 출연진정보</h3> -->
-									<img src="https://ticketimage.interpark.com/Play/image/etc/23/23005708-05.jpg" class="w-100">
+									<c:forEach var="intro" items="${introImg}">
+										<img src="${intro}" class="w-100">
+									</c:forEach>
 						
 								</div>
 							</div>
@@ -326,15 +289,15 @@
 								<table class="table">
 									<tr>
 										<td class="fw-bold text-black"><i class="far fa-address-book text-primary"></i> 장소</td>
-										<td>종합운동장 올림픽주경기장</td>
+										<td>${item.conHallNm}</td>
 									</tr>
 									<tr>
 										<td class="fw-bold text-black"><i class="far fa-calendar text-primary"></i> 공연기간</td>
-										<td>2023. 6. 17(토) ~ 6. 18(일) 오후 8시</td>
+										<td><fmt:formatDate value="${item.startDate}" pattern="yyyy.MM.dd"/> ~ <fmt:formatDate value="${item.endDate}" pattern="yyyy.MM.dd"/></td>
 									</tr>
 									<tr>
 										<td class="fw-bold text-black"><i class="fas fa-calendar-day text-primary"></i> 운영일</td>
-										<td>주말</td>
+										<td>${item.startTime}</td>
 									</tr>
 								</table>
 								<a href="#" class="btn btn-outline-primary">문의하기</a>
@@ -342,8 +305,9 @@
 						</div>
 						<!-- Help item END -->
 						
+						${item.la} ${item.lo}
 						<!-- 날씨 위젯 -->
-						<div class="tomorrow card" data-location-id="065368" data-language="KO" data-unit-system="METRIC" data-skin="light" data-widget-type="upcoming">
+						<div class="tomorrow card" data-lat="${item.la}" data-lon="${item.lo}" data-language="KO" data-unit-system="METRIC" data-skin="light" data-widget-type="upcoming">
 							<a href="https://www.tomorrow.io/weather-api/" rel="nofollow noopener noreferrer" target="_blank"
 								style="position: absolute; bottom: 0; transform: translateX(-50%); left: 50%;">
 								<img alt="Powered by the Tomorrow.io Weather API"
@@ -362,7 +326,7 @@
 						<script>
 							var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 								mapOption = {
-									center: new kakao.maps.LatLng(37.511444073, 127.076251001), // 지도의 중심좌표
+									center: new kakao.maps.LatLng(${item.la}, ${item.lo}), // 지도의 중심좌표
 									level: 4, // 지도의 확대 레벨
 								};
 					
@@ -370,7 +334,7 @@
 							var map = new kakao.maps.Map(mapContainer, mapOption);
 					
 							// 마커가 표시될 위치입니다 
-							var markerPosition = new kakao.maps.LatLng(33.450701, 126.570667);
+							var markerPosition = new kakao.maps.LatLng(${item.la}, ${item.lo});
 					
 							// 마커를 생성합니다
 							var marker = new kakao.maps.Marker({
