@@ -73,22 +73,8 @@
 							aria-expanded="false">공연 검색</a>
 						<a class="nav-link fw-bold" href="${path}/conc-recommend" id="listingMenu" aria-haspopup="true"
 							aria-expanded="false">공연 추천</a>
-						<a class="nav-link fw-bold" href="${path}/conc-nearby" id="listingMenu" aria-haspopup="true"
-							aria-expanded="false">주변 공연장</a>
-
-						<!-- Nav item Pages -->
-						<li class="nav-item dropdown">
-							<a href="${path}/community">
-								<div class="nav-link fw-bold dropdown-toggle">
-									커뮤니티
-								</div>
-							</a>
-							<ul class="dropdown-menu" aria-labelledby="pagesMenu">
-								<li> <a class="dropdown-item" href="${path}/board-free">자유게시판</a></li>
-								<li> <a class="dropdown-item" href="${path}/board-info">정보공유</a></li>
-								<li> <a class="dropdown-item" href="${path}/board-review">후기</a></li>
-							</ul>
-						</li>
+						<a class="nav-link fw-bold" href="${path}/community" id="listingMenu" aria-haspopup="true"
+							aria-expanded="false">커뮤니티</a>	
 					</ul>
 				</div>
 				<!-- Main navbar END -->
