@@ -6,11 +6,11 @@
 
 
 <jsp:include page="/WEB-INF/views/common/camping-header.jsp"/>
-<link rel="stylesheet" type="text/css" href="${path}/resources/assets/vendor/splide-master/dist/css/splide.min.css">
 
 <!-- Plugins CSS -->
 <link rel="stylesheet" type="text/css" href="${path}/resources/assets/vendor/font-awesome/css/all.min.css">
 <link rel="stylesheet" type="text/css" href="${path}/resources/assets/vendor/bootstrap-icons/bootstrap-icons.css">
+<link rel="stylesheet" type="text/css" href="${path}/resources/assets/vendor/splide-master/dist/css/splide.min.css">
 <link rel="stylesheet" type="text/css" href="${path}/resources/assets/vendor/glightbox/css/glightbox.css">
 
 <link rel="stylesheet" type="text/css" href="${path}/resources/assets/css/style.css?ver=2">
@@ -21,6 +21,8 @@
 
 <!-- 카카오맵 -->
 <script charset="UTF-8" class="daum_roughmap_loader_script" src="https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js"></script>
+
+<!-- **************** MAIN CAMPING START **************** -->
 
 <main>
 	<!-- =======================
@@ -37,11 +39,11 @@
 						<!-- Title -->
 						<div>
 							<ul class="nav nav-divider h6 text-body mb-0">
-								<li class="nav-item fs-5 title">자동차야영장</li>
+								<li class="nav-item fs-5 title">${item.location}</li>
 							</ul>
-							<h1 class="fs-2 title">동강전망휴양림오토캠핑장</h1>
+							<h1 class="fs-2 title">${item.campNm}</h1>
 							<ul class="nav nav-divider h6 mb-0">
-								<li class="nav-item fs-4 title">운해와 야경이 일품인 휴양림속 야영장</li>
+								<li class="nav-item fs-4 title">${item.lineIntro}</li>
 							</ul>
 						</div>
 	
@@ -78,7 +80,7 @@
 					<div class="splide splide-main mb-3" data-splide='{"type" : "fade","autoplay": true,"heightRatio":0.5,"pagination":false,"arrows":false,"cover":true,"lazyLoad":"sequential"}'>
 						<div class="splide__track">
 							<ul class="splide__list">
-								<li class="splide__slide rounded"><img src="${path}/resources/assets/images/gallery/04.jpg" alt="">
+								<li class="splide__slide rounded"><img src="${item.img}" alt="">
 									<!-- Glightbox image -->
 									<a href="${path}/resources/assets/images/gallery/04.jpg" class="stretched-link" data-glightbox="" data-gallery="banner"></a>
 								</li>
@@ -117,7 +119,7 @@
 					<div class="splide splide-thumb" data-splide='{"rewind":true,"fixedWidth":200,"fixedHeight":120,"isNavigation":true,"gap":20,"focus":"center","pagination":false,"cover":true,"lazyLoad":"sequential","breakpoints":{"600":{"fixedWidth":150,"fixedHeight":80}}}'>
 						<div class="splide__track">
 							<ul class="splide__list">
-								<li class="splide__slide"><img src="${path}/resources/assets/images/gallery/04.jpg" alt=""></li>
+								<li class="splide__slide"><img src="${item.img}" alt=""></li>
 								<li class="splide__slide"><img src="${path}/resources/assets/images/gallery/05.jpg" alt=""></li>
 								<li class="splide__slide"><img src="${path}/resources/assets/images/gallery/03.jpg" alt=""></li>
 								<li class="splide__slide"><img src="${path}/resources/assets/images/gallery/09.jpg" alt=""></li>
@@ -191,22 +193,7 @@
 	
 								<!-- Card body START -->
 								<div class="card-body p-0 pt-3 text-black">
-									<p class="mb-2">우리나라에서 가장 아름답고 보존이 잘 된 강으로 통하는 동강.</p>
-									<p class="mb-2">정선 가수리를 들머리로 운치리와 제장마을,연포마을 차례로 거쳐 영월에서 서강을 만나기까지 장장 65km를 구절양장으로 흐른다.</p>
-									<p class="mb-2">동강이 특별한 것은 물 흐름의 모양새에 있다.</p>
-									<p class="mb-2">백두대간의 산세를 따라 구절양장으로 흐르다 못해 물이 고인 듯 깊은 소를 수없이 만들고 지나간다.</p>
-									<p class="mb-2">경치좋은 동강중에서도 최고로 일컬어지는 곳이 고성산성과 연포마을 주변.</p>
-									<p class="mb-2">백운산 자락을 앞에 두고 하늘을 가리는 뼝대와 모래 강변이 번갈아 나타나는 풍경이 가히 절경이다.</p>
-									<p class="mb-2">동강 전망자연휴양림은 바로 이곳에 자리잡고 있다.</p>
-									<p class="mb-2">고성산성 앞에서 산으로 난 길을 올라가야 하는데 마치 한계령처럼 구비길이 이어진다.</p>
-									<p class="mb-2">힘들게 오르고 나면 발아래로 동강의 물길이 아스라이 지나가고 고봉준령들이 주변을 빙둘러 싸고 있는 모습이 말로만 듣던 명당이 이런 것이었구나 싶어진다.</p>
-									<p class="mb-2">해발 600m에 위치한 동강전망자연휴양림오토캠핑장은 풍경 하나만큼은 최고다.</p>
-									<p class="mb-2">눈앞에는 산이 너울너울 능선을 이루고, 발아래 강이 굽이굽이 산을 휘감아 흐른다.</p>
-									<p class="mb-2">강과 산이 만들어내는 풍경도 명품이지만 이곳의 또 다른 자랑거리는 운해다.</p>
-									<p class="mb-2">백운산과 그 뒤로 겹겹이 서 있는 능선 사이로 넘실대는 운해가 말 그대로 장관을 이룬 다.</p>
-									<p class="mb-2">발아래 구름바다가 펼쳐지면 마치 구름 위에 텐트를 친 듯 황홀하다.</p>
-									<p class="mb-2">가장 인기 있는 사이트는 전망대 옆으로 이어져 있는 데크 사이트.</p>
-									<p class="mb-2">1년내내 예약이 밀린다 할 정도로 캠퍼들에게는 꿈의 장소다.</p>
+									<p class="mb-2">{item.intro}</p>
 									<p class="mb-4 text-black-50">최종 정보 수정일 : 2018-12-08</p>
 								</div>
 								<!-- Card body END -->
@@ -299,19 +286,19 @@
 								<table class="table">
 									<tr>
 										<td class="fw-bold text-black"><i class="far fa-address-book text-primary"></i> 주소</td>
-										<td>강원 정선군 신동읍 동강로 916-212</td>
+										<td>${item.addr}</td>
 									</tr>
 									<tr>
 										<td class="fw-bold text-black"><i class="fas fa-phone text-primary"></i> 전화번호</td>
-										<td>063-620-5752</td>
+										<td>${item.tel}</td>
 									</tr>
 									<tr>
 										<td class="fw-bold text-black"><i class="far fa-calendar text-primary"></i> 운영기간</td>
-										<td>봄, 여름, 가을, 겨울</td>
+										<td>${item.openSeason}</td>
 									</tr>
 									<tr>
 										<td class="fw-bold text-black"><i class="fas fa-calendar-day text-primary"></i> 운영일</td>
-										<td>평일+주말</td>
+										<td>${item.openDay}</td>
 									</tr>
 								</table>
 								<a href="#" class="btn btn-outline-primary">문의하기</a>
@@ -339,7 +326,7 @@
 						<script>
 							var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 								mapOption = {
-									center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+									center: new kakao.maps.LatLng(${item.mapX}, ${item.mapY}), // 지도의 중심좌표
 									level: 4, // 지도의 확대 레벨
 								};
 					
@@ -347,7 +334,7 @@
 							var map = new kakao.maps.Map(mapContainer, mapOption);
 					
 							// 마커가 표시될 위치입니다 
-							var markerPosition = new kakao.maps.LatLng(33.450701, 126.570667);
+							var markerPosition = new kakao.maps.LatLng(${item.mapX}, ${item.mapY});
 					
 							// 마커를 생성합니다
 							var marker = new kakao.maps.Marker({

@@ -29,7 +29,7 @@ public class CampService {
 //		Map<String, CampSiteVO> map = null;
 //		System.out.println(list.toString());
 //		while (true) {
-//			map.put("해변", )
+//			map.put("�빐蹂�", )
 //		}
 		for (CampSiteVO obj : list) {
 			if (obj.getLocation() != null) {
@@ -49,7 +49,7 @@ public class CampService {
 				obj.setLocation(obj.getLocation().replace(",", "/"));
 			}
 		}
-		return list;
+		return mapper.campSearch(param);
 	}
 
 	public int getResultCount(Map<String, Object> param) {
@@ -58,6 +58,10 @@ public class CampService {
 
 	public List<CampSiteVO> campThemeTopTen(Map<String, Object> param) {
 		return mapper.campThemeTopTen(param);
+	}
+	
+	public CampSiteVO campDetailById(Map<String, Object> param) {
+		return mapper.campDetailById(param);
 	}
 }
 

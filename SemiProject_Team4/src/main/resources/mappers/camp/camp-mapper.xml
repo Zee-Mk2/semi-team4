@@ -80,4 +80,10 @@
 		AND manStatus = '운영' ORDER BY bookmarks DESC LIMIT 10;
 	</select>
 	
+	<select id="campDetailById" parameterType="Map" resultType="CampSiteVO">
+		SELECT contentID, campNm, lineIntro, intro, location, addr, mapX, mapY, tel, img
+		FROM campSiteInfo
+		WHERE contentID=#{contentId}
+	</select>
+	
 </mapper>

@@ -11,8 +11,14 @@ import com.multi.mvc.camp.model.vo.CampSiteVO;
 @Mapper
 public interface CampMapper {
 	List<CampSiteVO> selectCampAll();
+	
 	List<CampSiteVO> campThemeBest();
+	
 	List<CampSiteVO> campSearch(Map<String, Object> param);
+	
 	int selectResultCount(Map<String, Object> param);
+	
 	List<CampSiteVO> campThemeTopTen(Map<String, Object> param);
+	
+	CampSiteVO campDetailById(Map<String, Object> param);
 }

@@ -3,7 +3,6 @@ package com.multi.mvc.camp.controller;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Map.Entry;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -64,7 +63,7 @@ public class CampController {
 	
 	@RequestMapping(value = "/camp-recommend", method = RequestMethod.GET)
 	public String campRecommendPage(@RequestParam Map<String, Object> param, Model model) {
-		log.info("추천페이지>> " + param.toString());
+		log.info("異붿쿇�럹�씠吏�>> " + param.toString());
 		List<CampSiteVO> items = service.campThemeTopTen(param);
 		for (CampSiteVO obj : items) {
 			log.info("item>> " + obj);
@@ -76,7 +75,9 @@ public class CampController {
 	}
 	
 	@RequestMapping(value = "/camp-detail", method = RequestMethod.GET)
-	public String campDetailPage() {
+	public String campDetailPage(Model model, @RequestParam Map<String, Object> param) {
+		CampSiteVO item = service.campDetailById(param);
+		model.addAttribute("item", item);
 		
 		return "/camping/camping-detail";
 	}
