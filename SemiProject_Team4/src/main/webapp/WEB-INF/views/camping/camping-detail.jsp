@@ -74,65 +74,12 @@
 			<!-- Title and button END -->
 	
 			<!-- Image gallery START -->
-			<div class="row mt-md-5">
-				<div class="col-12">
+			<div class="mt-md-5">
+				<div>
 					<!-- Primary image -->
-					<div class="splide splide-main mb-3" data-splide='{"type" : "fade","autoplay": true,"heightRatio":0.5,"pagination":false,"arrows":false,"cover":true,"lazyLoad":"sequential"}'>
-						<div class="splide__track">
-							<ul class="splide__list">
-								<li class="splide__slide rounded"><img src="${item.img}" alt="">
-									<!-- Glightbox image -->
-									<a href="${path}/resources/assets/images/gallery/04.jpg" class="stretched-link" data-glightbox="" data-gallery="banner"></a>
-								</li>
-								<li class="splide__slide rounded"><img src="${path}/resources/assets/images/gallery/05.jpg" alt="">
-									<!-- Glightbox image -->
-									<a href="${path}/resources/assets/images/gallery/05.jpg" class="stretched-link" data-glightbox="" data-gallery="banner"></a>
-								</li>
-								<li class="splide__slide rounded"><img src="${path}/resources/assets/images/gallery/03.jpg" alt="">
-									<!-- Glightbox image -->
-									<a href="${path}/resources/assets/images/gallery/03.jpg" class="stretched-link" data-glightbox="" data-gallery="banner"></a>
-								</li>
-								<li class="splide__slide rounded"><img src="${path}/resources/assets/images/gallery/09.jpg" alt="">
-									<!-- Glightbox image -->
-									<a href="${path}/resources/assets/images/gallery/09.jpg" class="stretched-link" data-glightbox="" data-gallery="banner"></a>
-								</li>
-								<li class="splide__slide rounded"><img src="${path}/resources/assets/images/gallery/10.jpg" alt="">
-									<!-- Glightbox image -->
-									<a href="${path}/resources/assets/images/gallery/10.jpg" class="stretched-link" data-glightbox="" data-gallery="banner"></a>
-								</li>
-								<li class="splide__slide rounded"><img src="${path}/resources/assets/images/gallery/06.jpg" alt="">
-									<!-- Glightbox image -->
-									<a href="${path}/resources/assets/images/gallery/06.jpg" class="stretched-link" data-glightbox="" data-gallery="banner"></a>
-								</li>
-								<li class="splide__slide rounded"><img src="${path}/resources/assets/images/gallery/07.jpg" alt="">
-									<!-- Glightbox image -->
-									<a href="${path}/resources/assets/images/gallery/07.jpg" class="stretched-link" data-glightbox="" data-gallery="banner"></a>
-								</li>
-								<li class="splide__slide rounded"><img src="${path}/resources/assets/images/gallery/08.jpg" alt="">
-									<!-- Glightbox image -->
-									<a href="${path}/resources/assets/images/gallery/08.jpg" class="stretched-link" data-glightbox="" data-gallery="banner"></a>
-								</li>
-							</ul>
-						</div>
-					</div>
-					<!-- Secondary image -->
-					<div class="splide splide-thumb" data-splide='{"rewind":true,"fixedWidth":200,"fixedHeight":120,"isNavigation":true,"gap":20,"focus":"center","pagination":false,"cover":true,"lazyLoad":"sequential","breakpoints":{"600":{"fixedWidth":150,"fixedHeight":80}}}'>
-						<div class="splide__track">
-							<ul class="splide__list">
-								<li class="splide__slide"><img src="${item.img}" alt=""></li>
-								<li class="splide__slide"><img src="${path}/resources/assets/images/gallery/05.jpg" alt=""></li>
-								<li class="splide__slide"><img src="${path}/resources/assets/images/gallery/03.jpg" alt=""></li>
-								<li class="splide__slide"><img src="${path}/resources/assets/images/gallery/09.jpg" alt=""></li>
-								<li class="splide__slide"><img src="${path}/resources/assets/images/gallery/10.jpg" alt=""></li>
-								<li class="splide__slide"><img src="${path}/resources/assets/images/gallery/06.jpg" alt=""></li>
-								<li class="splide__slide"><img src="${path}/resources/assets/images/gallery/07.jpg" alt=""></li>
-								<li class="splide__slide"><img src="${path}/resources/assets/images/gallery/08.jpg" alt=""></li>
-							</ul>
-						</div>
-						<!-- Arrows -->
-						<div class="splide__arrows">
-							<button class="splide__arrow  splide__arrow--prev p-splide__arrow--prev bg-primary"><span class="spi-angle-left text-white"><i class="fa-solid fa-fw fa-angle-left"></i></span></button>
-							<button class="splide__arrow splide__arrow--next p-splide__arrow--next bg-primary"><span class="spi-angle-right text-white"><i class="fa-solid fa-fw fa-angle-right"></i></span></button>
+					<div class="mb-3">
+						<div style="display:flex; justify-content: center;">
+							<a href="${item.img}" class="stretched-link" data-glightbox="" data-gallery="banner"><img src="${item.img}" alt=""></a>	
 						</div>
 					</div>
 				</div>
@@ -193,7 +140,7 @@
 	
 								<!-- Card body START -->
 								<div class="card-body p-0 pt-3 text-black">
-									<p class="mb-2">{item.intro}</p>
+									<p class="mb-2">${item.intro}</p>
 									<p class="mb-4 text-black-50">최종 정보 수정일 : 2018-12-08</p>
 								</div>
 								<!-- Card body END -->

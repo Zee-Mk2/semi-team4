@@ -263,7 +263,7 @@
 								<div class="card-body d-flex align-items-center">
 									<div class="w-100">
 										<h5 class="card-title text-decoration-none text-dark">
-											<a href="${path}/camp-detail" class="stretched-link title">
+											<a href="${path}/camp-detail?contentId=${item.contentID}" class="stretched-link title">
 												${item.campNm} </a>
 										</h5>
 										${item.doNm} ${item.sigunguNm}

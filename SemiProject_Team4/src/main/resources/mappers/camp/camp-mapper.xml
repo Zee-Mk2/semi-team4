@@ -81,7 +81,7 @@
 	</select>
 	
 	<select id="campDetailById" parameterType="Map" resultType="CampSiteVO">
-		SELECT contentID, campNm, lineIntro, intro, location, addr, mapX, mapY, tel, img
+		SELECT contentID, campNm, lineIntro, intro, location, addr, mapX, mapY, tel, img, openSeason, openDay
 		FROM campSiteInfo
 		WHERE contentID=#{contentId}
 	</select>
