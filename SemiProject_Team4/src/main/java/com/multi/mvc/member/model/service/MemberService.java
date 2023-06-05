@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.multi.mvc.concert.model.vo.ConcertVO;
 import com.multi.mvc.member.model.mapper.MemberMapper;
 import com.multi.mvc.member.model.vo.Member;
 
@@ -158,6 +159,14 @@ public class MemberService {
 
 	public boolean isMatchPwd(String password, String id) {
 		return pwEncoder.matches(password, mapper.selectMemberById(id).getPassword()) ? true : false;
+	}
+
+	public List<ConcertVO> getConWishList(int mno) {
+		return mapper.getConWishList(mno);
+	}
+
+	public int deleteAllWishlist(int mno) {
+		return mapper.deleteAllWishlist(mno);
 	}
 	
 }

@@ -207,7 +207,16 @@ CREATE TABLE concBookmark (
 );
 
 SELECT * FROM concBookmark;
+SELECT * FROM member;
+SELECT * FROM concert LIMIT 1;
+INSERT INTO concBookmark VALUES('PF217342', 7, DEFAULT);
+DELETE FROM concBookmark WHERE conId = 'PF217342' AND mno = 7;
 
+SELECT * FROM concert WHERE conId = 'PF217344';
+SELECT Conc.*, Hall.la, Hall.lo FROM concert Conc JOIN conHall Hall ON(Conc.conHallId = Hall.conHallId) WHERE Conc.conId = 'PF217344';
+SELECT * FROM conHall;
+
+SELECT * FROM campSiteInfo;
 
 -- 게시판 테이블
 DROP TABLE board;
@@ -250,42 +259,40 @@ SELECT * FROM reply;
 ------------------------------- 쿼리 검증 -------------------------------
 
 -- 캠핑메인 테마별 BEST 캠핑장 > 테마별로 조회수가 가장 많은 캠핑장 1개씩 뽑아오는 쿼리
--- (SELECT campNm, location, doNm, sigunguNm, img FROM campsiteInfo WHERE location LIKE '%해변%' ORDER BY views LIMIT 1)
--- UNION ALL
--- (SELECT campNm, location, doNm, sigunguNm, img FROM campsiteInfo WHERE location LIKE '%섬%' ORDER BY views LIMIT 1)
--- UNION ALL
--- (SELECT campNm, location, doNm, sigunguNm, img FROM campsiteInfo WHERE location LIKE '%산%' ORDER BY views LIMIT 1)
--- UNION ALL
--- (SELECT campNm, location, doNm, sigunguNm, img FROM campsiteInfo WHERE location LIKE '%숲%' ORDER BY views LIMIT 1)
--- UNION ALL
--- (SELECT campNm, location, doNm, sigunguNm, img FROM campsiteInfo WHERE location LIKE '%계곡%' ORDER BY views LIMIT 1)
--- UNION ALL
--- (SELECT campNm, location, doNm, sigunguNm, img FROM campsiteInfo WHERE location LIKE '%강%' ORDER BY views LIMIT 1)
--- UNION ALL
--- (SELECT campNm, location, doNm, sigunguNm, img FROM campsiteInfo WHERE location LIKE '%호수%' ORDER BY views LIMIT 1)
--- UNION ALL
--- (SELECT campNm, location, doNm, sigunguNm, img FROM campsiteInfo WHERE location LIKE '%도심%' ORDER BY views LIMIT 1);
+(SELECT campNm, location, doNm, sigunguNm, img FROM campsiteInfo WHERE location LIKE '%해변%' ORDER BY views LIMIT 1)
+UNION ALL
+(SELECT campNm, location, doNm, sigunguNm, img FROM campsiteInfo WHERE location LIKE '%섬%' ORDER BY views LIMIT 1)
+UNION ALL
+(SELECT campNm, location, doNm, sigunguNm, img FROM campsiteInfo WHERE location LIKE '%산%' ORDER BY views LIMIT 1)
+UNION ALL
+(SELECT campNm, location, doNm, sigunguNm, img FROM campsiteInfo WHERE location LIKE '%숲%' ORDER BY views LIMIT 1)
+UNION ALL
+(SELECT campNm, location, doNm, sigunguNm, img FROM campsiteInfo WHERE location LIKE '%계곡%' ORDER BY views LIMIT 1)
+UNION ALL
+(SELECT campNm, location, doNm, sigunguNm, img FROM campsiteInfo WHERE location LIKE '%강%' ORDER BY views LIMIT 1)
+UNION ALL
+(SELECT campNm, location, doNm, sigunguNm, img FROM campsiteInfo WHERE location LIKE '%호수%' ORDER BY views LIMIT 1)
+UNION ALL
+(SELECT campNm, location, doNm, sigunguNm, img FROM campsiteInfo WHERE location LIKE '%도심%' ORDER BY views LIMIT 1);
 
--- -- 공연메인 테마별 BEST 공연
--- (SELECT conNm, genre, startDate, endDate, conHallNm, posterImg FROM concert WHERE genre LIKE '서양음악(클래식)' ORDER BY views LIMIT 1)
--- UNION
--- (SELECT conNm, genre, startDate, endDate, conHallNm, posterImg FROM concert WHERE genre LIKE '대중음악' ORDER BY views LIMIT 1)
--- UNION
--- (SELECT conNm, genre, startDate, endDate, conHallNm, posterImg FROM concert WHERE genre LIKE '뮤지컬' ORDER BY views LIMIT 1)
--- UNION
--- (SELECT conNm, genre, startDate, endDate, conHallNm, posterImg FROM concert WHERE genre LIKE '연극' ORDER BY views LIMIT 1)
--- UNION
--- (SELECT conNm, genre, startDate, endDate, conHallNm, posterImg FROM concert WHERE genre LIKE '서커스/마술' ORDER BY views LIMIT 1)
--- UNION
--- (SELECT conNm, genre, startDate, endDate, conHallNm, posterImg FROM concert WHERE genre LIKE '복합' ORDER BY views LIMIT 1)
--- UNION
--- (SELECT conNm, genre, startDate, endDate, conHallNm, posterImg FROM concert WHERE genre LIKE '한국음악(국악)' ORDER BY views LIMIT 1)
--- UNION
--- (SELECT conNm, genre, startDate, endDate, conHallNm, posterImg FROM concert WHERE genre LIKE '무용' ORDER BY views LIMIT 1)
--- UNION
--- (SELECT conNm, genre, startDate, endDate, conHallNm, posterImg FROM concert WHERE genre LIKE '아동' ORDER BY views LIMIT 1)
--- UNION
--- (SELECT conNm, genre, startDate, endDate, conHallNm, posterImg FROM concert WHERE genre LIKE '대중무용' ORDER BY views LIMIT 1);
+-- 공연메인 테마별 BEST 공연
+(SELECT conNm, genre, startDate, endDate, conHallNm, posterImg, conId FROM concert WHERE genre LIKE '서양음악(클래식)' ORDER BY views LIMIT 1)
+UNION
+(SELECT conNm, genre, startDate, endDate, conHallNm, posterImg, conId FROM concert WHERE genre LIKE '대중음악' ORDER BY views LIMIT 1)
+UNION
+(SELECT conNm, genre, startDate, endDate, conHallNm, posterImg, conId FROM concert WHERE genre LIKE '뮤지컬' ORDER BY views LIMIT 1)
+UNION
+(SELECT conNm, genre, startDate, endDate, conHallNm, posterImg, conId FROM concert WHERE genre LIKE '연극' ORDER BY views LIMIT 1)
+UNION
+(SELECT conNm, genre, startDate, endDate, conHallNm, posterImg, conId FROM concert WHERE genre LIKE '서커스/마술' ORDER BY views LIMIT 1)
+UNION
+(SELECT conNm, genre, startDate, endDate, conHallNm, posterImg, conId FROM concert WHERE genre LIKE '한국음악(국악)' ORDER BY views LIMIT 1)
+UNION
+(SELECT conNm, genre, startDate, endDate, conHallNm, posterImg, conId FROM concert WHERE genre LIKE '무용' ORDER BY views LIMIT 1)
+UNION
+(SELECT conNm, genre, startDate, endDate, conHallNm, posterImg, conId FROM concert WHERE genre LIKE '대중무용' ORDER BY views LIMIT 1)
+UNION
+(SELECT conNm, genre, startDate, endDate, conHallNm, posterImg, conId FROM concert WHERE genre LIKE '복합' ORDER BY views LIMIT 2);
 
 -- SELECT * FROM concert WHERE genre = '아동';
 
@@ -351,6 +358,8 @@ FROM concert
 WHERE status = 'Y'
 AND conNm LIKE '%인어공주%';
 
+SELECT * FROM concert WHERE conNm LIKE '%포항뮤직%';
+
 -- 공연 상세
 SELECT Conc.*, Hall.la, Hall.lo FROM concert Conc
 JOIN conHall Hall ON(Conc.conHallId = Hall.conHallId)
@@ -359,3 +368,11 @@ WHERE conId = 'PF217342';
 SELECT Conc.*, Hall.la, Hall.lo FROM concert Conc
 JOIN conHall Hall ON(Conc.conHallId = Hall.conHallId)
 WHERE conNm = '%포항%';
+
+SELECT * FROM campSiteInfo;
+SELECT contentID, campNm, lineIntro, addr, tel, img FROM campSiteInfo WHERE location='해변' AND manStatus = '운영' ORDER BY bookmarks DESC LIMIT 10;
+
+-- 위시리스트 조회
+SELECT C.conNm, C.genre, C.conHallNm, C.minPrice, C.posterImg, C.conId, C.startDate, C.endDate, C.cast, C.runtime
+FROM concert C JOIN concBookmark B ON(C.conId = B.conId)
+WHERE C.status = 'Y' AND B.mno = 7;

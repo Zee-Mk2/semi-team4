@@ -87,10 +87,35 @@
 	</select>
 	
 	<select id="concDetailById" parameterType="Map" resultType="concertVO">
-		SELECT Conc.*, Hall.la, Hall.lo FROM concert Conc
-		JOIN conHall Hall ON(Conc.conHallId = Hall.conHallId)
+		<if test="hallId != null">
+			SELECT Conc.*, Hall.la, Hall.lo FROM concert Conc
+			JOIN conHall Hall ON(Conc.conHallId = Hall.conHallId)
+		</if>
+		<if test="hallId == null or hallId == ''">
+			SELECT * FROM concert
+		</if>
 		WHERE conId = #{conId}
 	</select>
-
+	
+	<select id="getConcBookmark" parameterType="int" resultType="ConcBookmark">
+		SELECT * FROM concBookmark WHERE mno = ${mno};
+	</select>
+	
+	<insert id="concBookmark" parameterType="Map">
+		INSERT INTO concBookmark VALUES(#{conId}, #{mno}, DEFAULT);
+	</insert>
+	
+	<delete id="concBookmarkRemove">
+		DELETE FROM concBookmark WHERE conId = #{conId} AND mno = #{mno};
+	</delete>
+	
+	<select id="HallIdOfConcTable" parameterType="Map" resultType="String">
+		SELECT conHallId FROM concert WHERE conId = #{conId}
+	</select>
+	
+	<select id="getConhallId" parameterType="String" resultType="String">
+		SELECT conHallId FROM conHall WHERE conHallId = #{hallId}
+	</select>
+	
 </mapper>
 

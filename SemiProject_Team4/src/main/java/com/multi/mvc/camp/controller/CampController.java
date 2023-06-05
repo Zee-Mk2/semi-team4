@@ -76,6 +76,7 @@ public class CampController {
 	
 	@RequestMapping(value = "/camp-detail", method = RequestMethod.GET)
 	public String campDetailPage(Model model, @RequestParam Map<String, Object> param) {
+		log.info("campDetailPage - param >> " + param.toString());
 		CampSiteVO item = service.campDetailById(param);
 		model.addAttribute("item", item);
 		

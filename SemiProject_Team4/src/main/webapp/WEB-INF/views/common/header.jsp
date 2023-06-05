@@ -69,25 +69,12 @@
 				<div class="navbar-collapse collapse" id="navbarCollapse">
 					<ul class="navbar-nav navbar-nav-scroll me-auto">
 
-						<a class="nav-link fw-bold" href="${path}/camp-search" id="listingMenu" aria-haspopup="true"
-							aria-expanded="false">캠핑장 검색</a>
-						<a class="nav-link fw-bold" href="${path}/test.html" id="listingMenu" aria-haspopup="true"
-							aria-expanded="false">캠핑장 추천</a>
-						<a class="nav-link fw-bold" href="${path}/test.html" id="listingMenu" aria-haspopup="true"
-							aria-expanded="false">캠핑몰</a>
-
-						<!-- Nav item Pages -->
-						<li class="nav-item dropdown">
-							<a href="${path}/community">
-								<div class="nav-link fw-bold dropdown-toggle" href="${path}/camp-search" id="pagesMenu">
-									커뮤니티</div>
-							</a>
-							<ul class="dropdown-menu" aria-labelledby="pagesMenu">
-								<li> <a class="dropdown-item" href="${path}/board-free">자유게시판</a></li>
-								<li> <a class="dropdown-item" href="${path}/board-info">정보공유</a></li>
-								<li> <a class="dropdown-item" href="${path}/board-review">후기</a></li>
-							</ul>
-						</li>
+						<a class="nav-link fw-bold" href="${path}/board-free" id="listingMenu" aria-haspopup="true"
+							aria-expanded="false">자유게시판</a>
+						<a class="nav-link fw-bold" href="${path}/board-info" id="listingMenu" aria-haspopup="true"
+							aria-expanded="false">정보공유</a>
+						<a class="nav-link fw-bold" href="${path}/board-review" id="listingMenu" aria-haspopup="true"
+							aria-expanded="false">후기</a>
 					</ul>
 				</div>
 				<!-- Main navbar END -->
@@ -100,7 +87,7 @@
 									class="fa-solid fa-ghost me-2"></i>공연</a> </li>
 
 						<!-- Nav item 캠핑 -->
-						<li class="nav-item"> <a class="nav-link fw-bold active" href="${path}/home"><i
+						<li class="nav-item"> <a class="nav-link fw-bold" href="${path}/home"><i
 									class="fa-solid fa-campground me-2"></i>캠핑</a> </li>
 					</ul>
 				</div>

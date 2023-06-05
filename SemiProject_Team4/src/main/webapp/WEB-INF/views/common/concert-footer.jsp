@@ -119,5 +119,44 @@ Footer END -->
 <!-- ThemeFunctions -->
 <script src="${path}/resources/assets/js/functions.js"></script>
 
+<script type="text/javascript">
+$(".heart-icon.concert").click(function () {
+	var conId = $(this).parent().data("conid");
+    var $heartIcon = $(this);
+    
+    if ($(this).hasClass('fas')) { // 북마크 제거
+        $.ajax({
+            url: "${path}/conc-bookmarkRemove?conId=" + conId,
+            type: 'GET',
+            success: function (result) {
+                console.log(result);
+                if (result != '0') {
+                    $heartIcon.removeClass('fas');
+                    $heartIcon.addClass('far');
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.error(jqXHR, textStatus, errorThrown);
+            }
+        });
+    } else { // 북마크 추가
+        $.ajax({
+            url: "${path}/conc-bookmark?conId=" + conId,
+            type: 'GET',
+            success: function (result) {
+                console.log(result);
+                if (result != '0') {
+                    $heartIcon.removeClass('far');
+                    $heartIcon.addClass('fas');
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.error(jqXHR, textStatus, errorThrown);
+            }
+        });
+    }
+});
+</script>
+
 </body>
 </html>

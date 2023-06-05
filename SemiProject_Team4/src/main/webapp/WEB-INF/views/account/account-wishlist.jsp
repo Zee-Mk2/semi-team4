@@ -4,7 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 
-<jsp:include page="/WEB-INF/views/common/camping-header.jsp"/>
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 
 <!-- Plugins CSS -->
 <link rel="stylesheet" type="text/css" href="${path}/resources/assets/vendor/font-awesome/css/all.min.css">
@@ -118,7 +118,7 @@ Content START -->
 						<div class="card border bg-transparent">
 							<!-- Card header -->
 							<div class="card-header bg-transparent border-bottom">
-								<h4 class="card-header-title">내 북마크</h4>
+								<h4 class="card-header-title title">내 북마크</h4>
 							</div>
 
 							<!-- Card body START -->
@@ -134,176 +134,99 @@ Content START -->
 										</select>
 									</div>
 									<!-- Button -->
-									<button class="btn btn-danger-soft mb-0"><i class="fas fa-trash me-2"></i>전체
-										삭제</button>
+									<a class="btn btn-danger-soft mb-0" href="${path}/deleteAllWishlist"><i class="fas fa-trash me-2"></i>전체 삭제</a>
 								</form>
 
-								<!-- Wishlist item START -->
-								<div class="card shadow p-2">
-									<div class="row g-0">
-										<!-- Card img -->
-										<div class="col-md-3">
-											<img src="https://th.bing.com/th/id/OIP.4lsYU8yh5_Bw3J9JKNaRkQHaE8?w=257&h=180&c=7&r=0&o=5&dpr=1.1&pid=1.7"
-												class="card-img rounded-2" alt="Card image">
-										</div>
-
-										<!-- Card body -->
-										<div class="col-md-9">
-											<div class="card-body py-md-2 d-flex flex-column h-100">
-
-												<!-- Rating and buttons -->
-												<div class="d-flex justify-content-between align-items-center">
-													<ul class="list-inline small mb-0">
-														<li class="list-inline-item me-0"><i
-																class="fa-solid fa-star text-warning"></i></li>
-														<li class="list-inline-item me-0"><i
-																class="fa-solid fa-star text-warning"></i></li>
-														<li class="list-inline-item me-0"><i
-																class="fa-solid fa-star text-warning"></i></li>
-														<li class="list-inline-item me-0"><i
-																class="fa-solid fa-star text-warning"></i></li>
-														<li class="list-inline-item"><i
-																class="fa-solid fa-star-half-alt text-warning"></i></li>
-													</ul>
-
-													<ul class="list-inline mb-0">
-														<!-- Heart icon -->
-														<li class="list-inline-item">
-															<a href="${path}/#" class="btn btn-sm btn-round btn-danger mb-0"><i
-																	class="fa-solid fa-fw fa-heart"></i></a>
-														</li>
-														<!-- Share icon -->
-														<li class="list-inline-item dropdown">
-															<!-- Share button -->
-															<a href="${path}/#" class="btn btn-sm btn-round btn-light mb-0"
-																role="button" id="dropdownShare2"
-																data-bs-toggle="dropdown" aria-expanded="false">
-																<i class="fa-solid fa-fw fa-share-alt"></i>
-															</a>
-															<!-- dropdown button -->
-															<ul class="dropdown-menu dropdown-menu-end min-w-auto shadow rounded"
-																aria-labelledby="dropdownShare2">
-																<li><a class="dropdown-item" href="${path}/#"><i
-																			class="fab fa-twitter-square me-2"></i>트위터</a>
-																</li>
-																<li><a class="dropdown-item" href="${path}/#"><i
-																			class="fab fa-facebook-square me-2"></i>페이스북</a>
-																</li>
-																<li><a class="dropdown-item" href="${path}/#"><i
-																			class="fa-solid fa-copy me-2"></i>링크복사</a>
-																</li>
-															</ul>
-														</li>
-													</ul>
-												</div>
-
-												<!-- Title -->
-												<h5 class="card-title mb-1"><a href="${path}/camp-detail">정읍시 내장산
-														국민여가캠프장</a></h5>
-												<small><i class="bi bi-geo-alt me-2"></i>전라북도 정읍시 내장산로 390</small>
-
-												<!-- Price and Button -->
-												<div
-													class="d-sm-flex justify-content-sm-between align-items-center mt-3 mt-md-auto">
-													<!-- Button -->
-													<div class="d-flex align-items-center">
-														<h5 class="fw-bold mb-0 me-1">20,000</h5>
-														<span class="mb-0 me-2">/ 일</span>
+								<c:forEach var="item" items="${items}">
+									<!-- Wishlist item START -->
+									<div class="card shadow p-2 position-relative">
+										<div class="row g-0">
+											<!-- Card img -->
+											<div class="col-md-3">
+												<img src="${item.posterImg}"
+													class="card-img rounded-2" alt="Card image">
+											</div>
+	
+											<!-- Card body -->
+											<div class="col-md-9">
+												<div class="card-body py-md-2 d-flex flex-column h-100">
+	
+													<!-- Rating and buttons -->
+													<div class="d-flex justify-content-between align-items-center">
+														<ul class="list-inline small mb-2">
+															<li class="list-inline-item me-0"><i
+																	class="fa-solid fa-star text-warning"></i></li>
+															<li class="list-inline-item me-0"><i
+																	class="fa-solid fa-star text-warning"></i></li>
+															<li class="list-inline-item me-0"><i
+																	class="fa-solid fa-star text-warning"></i></li>
+															<li class="list-inline-item me-0"><i
+																	class="fa-solid fa-star text-warning"></i></li>
+															<li class="list-inline-item"><i
+																	class="fa-solid fa-star-half-alt text-warning"></i></li>
+														</ul>
+	
+														<ul class="list-inline mb-0">
+															<!-- Heart icon -->
+															<li class="list-inline-item">
+																<a class="btn btn-sm btn-round btn-danger mb-0" style="z-index: 99; position: absolute; top: 15px; right: 60px;" data-conid="${item.conId}">
+																	<i class="fas fa-heart heart-icon concert fs-6 mt-2"></i>
+																</a>
+															</li>
+															<!-- Share icon -->
+															<li class="list-inline-item dropdown" style="z-index: 99; position: absolute; top: 15px; right: 20px;">
+																<!-- Share button -->
+																<a href="${path}/#" class="btn btn-sm btn-round btn-light mb-0" role="button" id="dropdownShare2" 
+																	data-bs-toggle="dropdown" aria-expanded="false">
+																	<i class="fa-solid fa-fw fa-share-alt fs-6 mt-2"></i>
+																</a>
+																<!-- dropdown button -->
+																<ul class="dropdown-menu dropdown-menu-end min-w-auto shadow rounded"
+																	aria-labelledby="dropdownShare2">
+																	<li><a class="dropdown-item" href="${path}/#"><i
+																				class="fab fa-twitter-square me-2"></i>트위터</a>
+																	</li>
+																	<li><a class="dropdown-item" href="${path}/#"><i
+																				class="fab fa-facebook-square me-2"></i>페이스북</a>
+																	</li>
+																	<li><a class="dropdown-item" href="${path}/#"><i
+																				class="fa-solid fa-copy me-2"></i>링크복사</a>
+																	</li>
+																</ul>
+															</li>
+														</ul>
 													</div>
-													<!-- Price -->
-													<div class="mt-3 mt-sm-0">
-														<a href="${path}/camp-detail" class="btn btn-sm btn-dark w-80 mb-0">상세 정보</a>
-														<a href="${path}/#" class="btn btn-sm btn-danger w-60 mb-0">삭제</a>
+	
+													<!-- Title -->
+													<h5 class="card-title my-2 title">
+														<a href="${path}/conc-detail?conId=${item.conId}" class="stretched-link">
+															<span class="badge text-bg-warning title px-2" style="height: 1.5rem">${item.genre}</span> ${item.conNm}
+														</a>
+													</h5>
+													<div class="row g-2 mt-1">
+														<div class="text-center px-0 col-1"><i class="bi bi-geo-alt"></i></div>
+														<div class="px-0 col-11">${item.conHallNm}</div>
+														<div class="text-center px-0 col-1"><i class='far fa-calendar'></i></div>
+														<div class="px-0 col-11"><fmt:formatDate value="${item.startDate}" pattern="yyyy.MM.dd"/> ~ <fmt:formatDate value="${item.endDate}" pattern="yyyy.MM.dd"/></div>
+														<div class="text-center px-0 col-1"><i class="material-icons">people</i></div>
+														<div class="px-0 col-11">${item.cast}</div>
+														<div class="text-center px-0 col-1"><i class='far fa-clock'></i></div>
+														<div class="px-0 col-11">${item.runtime}</div>
+													</div>
+	
+													<!-- Price and Button -->
+													<div class="d-sm-flex justify-content-sm-between align-items-center mt-3 mt-md-auto">
+														<!-- Button -->
+														<div class="d-flex align-items-center">
+															<div class="fw-bold mb-0 me-1 text-secondary title" style="font-size: 24px">₩ ${item.minPrice} ~</div>
+														</div>
 													</div>
 												</div>
 											</div>
 										</div>
 									</div>
-								</div>
-								<!-- Wishlist item END -->
-
-								<!-- Wishlist item START -->
-								<div class="card shadow p-2">
-									<div class="row g-0">
-										<!-- Card img -->
-										<div class="col-md-3">
-											<img src="https://th.bing.com/th/id/OIP.UTkLKzzmLO-QIk5Mn0ZfZgHaE8?w=263&h=180&c=7&r=0&o=5&dpr=1.1&pid=1.7"
-												class="card-img rounded-2" alt="Card image">
-										</div>
-
-										<!-- Card body -->
-										<div class="col-md-9">
-											<div class="card-body d-flex flex-column h-100 py-md-2">
-
-												<!-- Rating and buttons -->
-												<div class="d-flex justify-content-between align-items-center">
-													<ul class="list-inline small mb-0">
-														<li class="list-inline-item me-0"><i
-																class="fa-solid fa-star text-warning"></i></li>
-														<li class="list-inline-item me-0"><i
-																class="fa-solid fa-star text-warning"></i></li>
-														<li class="list-inline-item me-0"><i
-																class="fa-solid fa-star text-warning"></i></li>
-														<li class="list-inline-item me-0"><i
-																class="fa-solid fa-star text-warning"></i></li>
-														<li class="list-inline-item"><i
-																class="fa-solid fa-star-half-alt text-warning"></i></li>
-													</ul>
-
-													<ul class="list-inline mb-0">
-														<!-- Heart icon -->
-														<li class="list-inline-item">
-															<a href="${path}/#" class="btn btn-sm btn-round btn-danger mb-0"><i
-																	class="fa-solid fa-fw fa-heart"></i></a>
-														</li>
-														<!-- Share icon -->
-														<li class="list-inline-item dropdown">
-															<a href="${path}/#" class="btn btn-sm btn-round btn-light mb-0"
-																role="button" id="dropdownShare3"
-																data-bs-toggle="dropdown" aria-expanded="false">
-																<i class="fa-solid fa-fw fa-share-alt"></i>
-															</a>
-															<!-- dropdown button -->
-															<ul class="dropdown-menu dropdown-menu-end min-w-auto shadow rounded"
-																aria-labelledby="dropdownShare2">
-																<li><a class="dropdown-item" href="${path}/#"><i
-																			class="fab fa-twitter-square me-2"></i>트위터</a>
-																</li>
-																<li><a class="dropdown-item" href="${path}/#"><i
-																			class="fab fa-facebook-square me-2"></i>페이스북</a>
-																</li>
-																<li><a class="dropdown-item" href="${path}/#"><i
-																			class="fa-solid fa-copy me-2"></i>링크복사</a>
-																</li>
-															</ul>
-														</li>
-													</ul>
-												</div>
-
-												<!-- Title -->
-												<h5 class="card-title mb-1"><a href="${path}/camp-detail">안산 화랑 오토캠핑장</a>
-												</h5>
-												<small><i class="bi bi-geo-alt me-2"></i>경기도 안산시 단원구 동산로 268</small>
-
-												<!-- Price and Button -->
-												<div
-													class="d-sm-flex justify-content-sm-between align-items-center mt-3 mt-md-auto">
-													<!-- Button -->
-													<div class="d-flex align-items-center">
-														<h5 class="fw-bold mb-0 me-1">25,000원</h5>
-														<span class="mb-0 me-2">/ 일</span>
-													</div>
-													<!-- Price -->
-													<div class="mt-3 mt-sm-0">
-														<a href="${path}/camp-detail" class="btn btn-sm btn-dark w-80 mb-0">상세 정보</a>
-														<a href="${path}/#" class="btn btn-sm btn-danger w-60 mb-0">삭제</a>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<!-- Wishlist item END -->
+									<!-- Wishlist item END -->
+								</c:forEach>
 
 							</div>
 							<!-- Card body END -->
@@ -323,5 +246,44 @@ Content END -->
 
 <script src="${path}/resources/assets/vendor/stepper/js/bs-stepper.min.js"></script>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
+
+<script type="text/javascript">
+$(".heart-icon.concert").click(function () {
+	var conId = $(this).parent().data("conid");
+    var $heartIcon = $(this);
+    
+    if ($(this).hasClass('fas')) { // 북마크 제거
+        $.ajax({
+            url: "${path}/conc-bookmarkRemove?conId=" + conId,
+            type: 'GET',
+            success: function (result) {
+                console.log(result);
+                if (result != '0') {
+                    $heartIcon.removeClass('fas');
+                    $heartIcon.addClass('far');
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.error(jqXHR, textStatus, errorThrown);
+            }
+        });
+    } else { // 북마크 추가
+        $.ajax({
+            url: "${path}/conc-bookmark?conId=" + conId,
+            type: 'GET',
+            success: function (result) {
+                console.log(result);
+                if (result != '0') {
+                    $heartIcon.removeClass('far');
+                    $heartIcon.addClass('fas');
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.error(jqXHR, textStatus, errorThrown);
+            }
+        });
+    }
+});
+</script>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>

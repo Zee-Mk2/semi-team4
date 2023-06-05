@@ -1,5 +1,6 @@
 package com.multi.mvc.member.controller;
 
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.multi.mvc.concert.model.vo.ConcertVO;
 import com.multi.mvc.kakao.KaKaoService;
 import com.multi.mvc.member.model.service.MemberService;
 import com.multi.mvc.member.model.vo.Member;
@@ -239,7 +241,14 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "/MyWishList", method = RequestMethod.GET)
-	public String wishList(Locale locale, Model model) {
+	public String wishList(Model model, HttpSession session) {
+		Member loginMember = (Member) session.getAttribute("loginMember");
+		int mno = loginMember.getMno();
+		log.info("@@@@@@@ wishList - mno>> " + mno);
+		
+		List<ConcertVO> conList = service.getConWishList(mno);
+		
+		model.addAttribute("items", conList);
 		
 		return "/account/account-wishlist";
 	}
@@ -254,6 +263,23 @@ public class MemberController {
 	public String myReview(Locale locale, Model model) {
 		
 		return "/account/account-review";
+	}
+	
+	@RequestMapping("/deleteAllWishlist")
+	public String deleteAllWishlist(Model model, HttpSession session) {
+		Member loginMember = (Member) session.getAttribute("loginMember");
+		int mno = loginMember.getMno();
+		int result = service.deleteAllWishlist(mno);
+		
+		if (result != 0) {
+			model.addAttribute("msg", "모든 북마크가 삭제되었습니다.");
+			model.addAttribute("location","/account-wishlist");
+		} else {
+			model.addAttribute("msg", "북마크 삭제에 실패했습니다.");
+			model.addAttribute("location","/MyWishList");
+		}
+		
+		return "common/msg";
 	}
 	
 	// contoller에서 전체 Error 처리하는 핸들러 

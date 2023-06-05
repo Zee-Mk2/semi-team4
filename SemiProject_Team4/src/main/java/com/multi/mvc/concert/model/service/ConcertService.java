@@ -1,5 +1,6 @@
 package com.multi.mvc.concert.model.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -8,7 +9,9 @@ import org.springframework.stereotype.Service;
 
 import com.multi.mvc.common.util.PageInfo;
 import com.multi.mvc.concert.model.mapper.ConcertMapper;
+import com.multi.mvc.concert.model.vo.ConHall;
 import com.multi.mvc.concert.model.vo.ConcertVO;
+import com.multi.mvc.member.model.vo.ConcBookmark;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -53,7 +56,27 @@ public class ConcertService {
 	}
 
 	public ConcertVO concDetailById(Map<String, Object> param) {
+		String hallId = mapper.HallIdOfConcTable(param);
+		param.put("hallId", mapper.getConhallId(hallId));
 		return mapper.concDetailById(param);
+	}
+
+	public int concBookmark(Map<String, Object> param) {
+		return mapper.concBookmark(param);
+	}
+
+	public int concBookmarkRemove(Map<String, Object> param) {
+		return mapper.concBookmarkRemove(param);
+	}
+	
+	public Map<String, Integer> getConcBookmark(int mno) {
+		List<ConcBookmark> list = mapper.getConcBookmark(mno);
+		Map<String, Integer> map = new HashMap<>();
+		for (ConcBookmark obj : list) {
+			map.put(obj.getConId(), 1);
+		}
+		
+		return map;
 	}
 	
 }

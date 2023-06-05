@@ -1181,45 +1181,6 @@ var e = {
 };
 e.init();
 
-// 하트 아이콘 클릭, 마우스오버 이벤트 처리
-document.addEventListener('DOMContentLoaded', function () {
-  const packages = document.getElementById('packages');
-
-  packages.addEventListener('click', event => {
-    if (event.target.classList.contains('heart-icon')) {
-      var heartIcon = event.target;
-      if (heartIcon.classList.contains('fas')) {
-        heartIcon.classList.remove('fas');
-        heartIcon.classList.add('far');
-      } else {
-        heartIcon.classList.remove('far');
-        heartIcon.classList.add('fas');
-      }
-    }
-  });
-
-  var scaleValue = 1.1;
-  var duration = 300;
-
-  packages.addEventListener('mouseover', event => {
-    if (event.target.classList.contains('heart-icon')) {
-      var heartIcon = event.target;
-
-      heartIcon.style.transition = "transform " + duration + "ms ease-in-out";
-      heartIcon.style.transform = "scale(" + scaleValue + ")";
-    }
-  });
-
-  packages.addEventListener('mouseout', event => {
-    if (event.target.classList.contains('heart-icon')) {
-      var heartIcon = event.target;
-
-      heartIcon.style.transition = "transform " + duration + "ms ease-in-out";
-      heartIcon.style.transform = "scale(1)";
-    }
-  });
-});
-
 // 베스트리뷰 오버레이
 function showOverlay(element) {
   const overlay = element.querySelector('.overlay');

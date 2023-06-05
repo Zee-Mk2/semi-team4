@@ -178,44 +178,52 @@ Packages START -->
 		</div>
 
 		<div class="row g-4 mb-5" id="packages">
-		  <c:forEach var="item" items="${conBestList}">
-			<div style="width: 20%;">
-				<!-- place item-->
-				<div class="w-100 h-100">
-					<div class="card card-img-scale h-100 border-0 shadow">
-						<div class="card-img-top overflow-hidden" style="height: 17.5rem">
-							<img class="img-fluid" src="${item.posterImg}" />
-							<div class="card-img-overlay-top">
-								<div class="d-flex justify-content-between">
-									<span class="badge text-bg-orange mt-2" style="height: 1.5rem">${item.genre}</span>
+			<c:forEach var="item" items="${conBestList}">
+				<div style="width: 20%;">
+					<!-- place item-->
+					<div class="w-100 h-100">
+						<div class="card card-img-scale h-100 border-0 shadow">
+							<div class="card-img-top overflow-hidden" style="height: 17.5rem">
+								<img class="img-fluid" src="${item.posterImg}" />
+								<div class="card-img-overlay-top">
+									<div class="d-flex justify-content-between">
+										<span class="badge text-bg-orange mt-2" style="height: 1.5rem">${item.genre}</span>
+									</div>
 								</div>
 							</div>
-						</div>
-						<!-- 하트 -->
-						<a class="btn heart-btn mx-2 mt-n5">
-							<i class="fas fa-heart fs-5 ms-n2 heart-icon" style="color: red;"></i>
-						</a>
-						<div class="card-body d-flex align-items-center">
-							<div class="w-100">
-								<h5 class="card-title text-decoration-none text-dark">
-									<a href="${path}/conc-detail?conId=${item.conId}" class="stretched-link title">
-										${item.conNm}
-									</a>
-								</h5>
-								<div class="h6 text-body" style="font-size: 14px;">
-									<fmt:formatDate value="${item.startDate}" pattern="yyyy.MM.dd"/> ~ <fmt:formatDate value="${item.endDate}" pattern="yyyy.MM.dd"/>
-								</div>
-								<div class="d-flex card-subtitle mb-n1">
-									<p class="card-text text-truncate">
-										<span class="h6 text-body">${item.conHallNm}</span>
-									</p>
+							<!-- 하트 -->
+							<a class="btn heart-btn mx-2 mt-n5" data-conid="${item.conId}">
+								<c:if test="${sessionScope.loginMember != null}">
+									<c:if test="${bookmarks[item.conId] != 1}">
+										<i class="far fa-heart fs-5 ms-n2 heart-icon concert" style="color: red;"></i>
+									</c:if>
+									<c:if test="${bookmarks[item.conId] == 1}">
+										<i class="fas fa-heart fs-5 ms-n2 heart-icon concert" style="color: red;"></i>
+									</c:if>
+								</c:if>
+							</a>
+							<div class="card-body d-flex align-items-center">
+								<div class="w-100">
+									<h5 class="card-title text-decoration-none text-dark">
+										<a href="${path}/conc-detail?conId=${item.conId}" class="stretched-link title">
+											${item.conNm}
+										</a>
+									</h5>
+									<div class="h6 text-body" style="font-size: 14px;">
+										<fmt:formatDate value="${item.startDate}" pattern="yyyy.MM.dd"/> ~ <fmt:formatDate value="${item.endDate}" pattern="yyyy.MM.dd"/>
+									</div>
+									<div class="d-flex card-subtitle mb-n1">
+										<p class="card-text text-truncate">
+											<span class="h6 text-body">${item.conHallNm}</span>
+										</p>
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</c:forEach>
+			</c:forEach>
+		</div>
 	</div>
 </section>
 <!-- =======================

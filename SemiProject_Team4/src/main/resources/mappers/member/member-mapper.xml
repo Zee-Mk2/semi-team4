@@ -51,5 +51,15 @@
 	<select id="duplID" parameterType="String" resultType="int">
 		SELECT count(*) FROM member WHERE id = #{id}
 	</select>
+	
+	<select id="getConWishList" parameterType="int" resultType="ConcertVO">
+		SELECT C.conNm, C.genre, C.conHallNm, C.minPrice, C.posterImg, C.conId, C.startDate, C.endDate, C.cast, C.runtime
+		FROM concert C JOIN concBookmark B ON(C.conId = B.conId)
+		WHERE status = 'Y' AND B.mno = #{mno}
+	</select>
+	
+	<delete id="deleteAllWishlist" parameterType="int">
+		DELETE FROM concBookmark WHERE mno = #{mno};
+	</delete>
 </mapper>
 

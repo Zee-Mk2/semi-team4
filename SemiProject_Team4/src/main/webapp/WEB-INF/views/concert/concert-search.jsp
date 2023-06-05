@@ -235,8 +235,15 @@
 									</div>
 								</div>
 								<!-- 하트 -->
-								<a class="btn heart-btn mx-2 mt-n5" onclick="callBookmarkHandler(${item.conId});"> <i
-									class="fas fa-heart fs-5 ms-n2 heart-icon" style="color: red;"></i>
+								<a class="btn heart-btn mx-2 mt-n5" data-conid="${item.conId}">
+									<c:if test="${sessionScope.loginMember != null}">
+										<c:if test="${bookmarks[item.conId] != 1}">
+											<i class="far fa-heart fs-5 ms-n2 heart-icon concert" style="color: red;"></i>
+										</c:if>
+										<c:if test="${bookmarks[item.conId] == 1}">
+											<i class="fas fa-heart fs-5 ms-n2 heart-icon concert" style="color: red;"></i>
+										</c:if>
+									</c:if>
 								</a>
 								<div class="card-body d-flex align-items-center">
 									<div class="w-100">
@@ -323,7 +330,7 @@
 <script
 	src="${path}/resources/assets/vendor/nouislider/nouislider.min.js"></script>
 
-<jsp:include page="/WEB-INF/views/common/footer.jsp" />
+<jsp:include page="/WEB-INF/views/common/concert-footer.jsp"/>
 
 
 <script type="text/javascript">

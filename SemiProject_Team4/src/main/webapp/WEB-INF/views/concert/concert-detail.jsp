@@ -42,10 +42,21 @@
 	
 						<!-- Buttons -->
 						<ul class="list-inline text-end">
-							<!-- Heart icon -->
-							<li class="list-inline-item">
-								<a href="#" class="btn btn-sm btn-light px-2"><i class="fa-solid fa-fw fa-heart"></i></a>
-							</li>
+							<c:if test="${sessionScope.loginMember != null}">
+								<!-- Heart icon -->
+								<li class="list-inline-item">
+									<a class="btn btn-sm btn-light px-2" data-conid="${item.conId}">
+										<c:if test="${sessionScope.loginMember != null}">
+											<c:if test="${bookmarks[item.conId] != 1}">
+												<i class="far fa-heart heart-icon concert"></i>
+											</c:if>
+											<c:if test="${bookmarks[item.conId] == 1}">
+												<i class="fas fa-heart heart-icon concert"></i>
+											</c:if>
+										</c:if>
+									</a>
+								</li>
+							</c:if>
 							<!-- Share icon -->
 							<li class="list-inline-item dropdown">
 								<!-- Share button -->
@@ -487,4 +498,4 @@
 </main>
 <!-- **************** MAIN CONTENT END **************** -->
 
-<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
+<jsp:include page="/WEB-INF/views/common/concert-footer.jsp"/>

@@ -29,6 +29,8 @@
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 	<!-- 나눔스퀘어 -->
 	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@2.0/nanumsquare.css">
+	
+	<script src="http://code.jquery.com/jquery-latest.js"></script>
 </head>
 
 <body>
