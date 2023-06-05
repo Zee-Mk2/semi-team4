@@ -82,9 +82,9 @@
 									커뮤니티</div>
 							</a>
 							<ul class="dropdown-menu" aria-labelledby="pagesMenu">
-								<li> <a class="dropdown-item" href="${path}/board-free">자유게시판</a></li>
-								<li> <a class="dropdown-item" href="${path}/board-info">정보공유</a></li>
-								<li> <a class="dropdown-item" href="${path}/board-review">후기</a></li>
+								<li> <a class="dropdown-item" href="${path}/board-free?boardCat=free">자유게시판</a></li>
+								<li> <a class="dropdown-item" href="${path}/board-info?boardCat=info">정보공유</a></li>
+								<li> <a class="dropdown-item" href="${path}/board-review?boardCat=review">후기</a></li>
 							</ul>
 						</li>
 					</ul>

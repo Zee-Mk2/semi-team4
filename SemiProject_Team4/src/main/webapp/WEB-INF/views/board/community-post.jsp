@@ -4,7 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 
-<jsp:include page="/WEB-INF/views/common/camping-header.jsp"/>
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 
 <!-- Plugins CSS -->
 <link rel="stylesheet" type="text/css" href="${path}/resources/assets/vendor/font-awesome/css/all.min.css">
@@ -65,7 +65,7 @@
 				<div class="container card bg-light">
 					<div class="card-body">
 					<c:if test="${param.isUpdate != 'T'}">
-						<div class="mb-4 title h2">게시글 작성</div>
+						<div class="mb-4 title h2">작성</div>
 					</c:if>
 					<c:if test="${param.isUpdate == 'T'}">
 						<div class="mb-4 title h2">게시글 수정</div>
@@ -74,18 +74,6 @@
 						<input name="boardCat" value="${board.boardCat}" type="hidden">
 						<input name="bno" value="${board.bno}" type="hidden">
 						<div class="nav nav-pills nav-pills-primary-soft mb-3" id="tour-pills-tab" role="tablist">
-						<div class="btn-group" role="group" aria-label="Tab Group">
-							<c:if test="${param.isUpdate != 'T'}">
-								<input type="radio" id="camp" name="boardTag" class="btn-check" value="camp" checked>
-							</c:if>
-							<c:if test="${param.isUpdate == 'T'}">
-								<input type="radio" id="camp" name="boardTag" class="btn-check" value="camp" ${board.boardTag == 'camp' ? 'checked' : ''}>
-							</c:if>
-							<label class="btn btn-outline-primary" for="camp">캠핑</label>
-							
-							<input type="radio" id="conc" name="boardTag" class="btn-check" value="conc" ${board.boardTag == 'conc' ? 'checked' : ''}>
-							<label class="btn btn-outline-primary" for="conc">공연</label>
-						</div>
 						</div>
 						<div class="mb-3">
 							<label for="boardTitle" class="form-label">제목<span class="text-danger">*</span></label>

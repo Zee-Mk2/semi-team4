@@ -69,11 +69,13 @@
 				<div class="navbar-collapse collapse" id="navbarCollapse">
 					<ul class="navbar-nav navbar-nav-scroll me-auto">
 
-						<a class="nav-link fw-bold" href="${path}/board-free" id="listingMenu" aria-haspopup="true"
+						<a class="nav-link fw-bold" href="${path}/community" id="listingMenu" aria-haspopup="true"
+							aria-expanded="false">커뮤니티</a>
+						<a class="nav-link fw-bold" href="${path}/board-free?boardCat=free" id="listingMenu" aria-haspopup="true"
 							aria-expanded="false">자유게시판</a>
-						<a class="nav-link fw-bold" href="${path}/board-info" id="listingMenu" aria-haspopup="true"
+						<a class="nav-link fw-bold" href="${path}/board-info?boardCat=info" id="listingMenu" aria-haspopup="true"
 							aria-expanded="false">정보공유</a>
-						<a class="nav-link fw-bold" href="${path}/board-review" id="listingMenu" aria-haspopup="true"
+						<a class="nav-link fw-bold" href="${path}/board-review?boardCat=review" id="listingMenu" aria-haspopup="true"
 							aria-expanded="false">후기</a>
 					</ul>
 				</div>

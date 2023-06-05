@@ -5,7 +5,7 @@
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 
 <link rel="stylesheet" type="text/css" href="${path}/resources/assets/css/style-blog.css">
-<jsp:include page="/WEB-INF/views/common/camping-header.jsp"/>
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 
 <!-- Plugins CSS -->
 <link rel="stylesheet" type="text/css" href="${path}/resources/assets/vendor/font-awesome/css/all.min.css">

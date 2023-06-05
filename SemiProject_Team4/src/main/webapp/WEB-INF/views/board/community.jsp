@@ -4,7 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 
-<jsp:include page="/WEB-INF/views/common/camping-header.jsp"/>
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 
 <!-- Plugins CSS -->
 <link rel="stylesheet" type="text/css" href="${path}/resources/assets/vendor/font-awesome/css/all.min.css">
@@ -86,6 +86,7 @@
 					</div>
 				</div>
 	
+			  <c:forEach var="item" items="${list}">
 				<!-- Blog list START -->
 				<div class="col-lg-6 ps-lg-5">
 					<div class="vstack gap-4">
@@ -97,7 +98,7 @@
 									<img src="${path}/resources/assets/images/blog/01.jpg" class="card-img" alt="">
 									<div class="card-img-overlay-top">
 										<div class="d-flex justify-content-between">
-											<span class="badge text-bg-info" style="height: 1.5rem">캠핑</span>
+											<span class="badge text-bg-info" style="height: 1.5rem">${item.location}</span>
 										</div>
 									</div>
 								</div>
@@ -105,7 +106,7 @@
 									<!-- card body -->
 									<div class="card-body p-0">
 										<h5 class="card-title">
-											<a href="${path}/board-detail" class="stretched-link title fs-4">후기 제목</a>
+											<a href="${path}/board-detail" class="stretched-link title fs-4">${item.boardTitle}</a>
 										</h5>
 										<p class="flex-shrink-1 card-stars fs-6 mb-0 mt-n2" style="font-size: 0.7rem;">
 											<i class="fa fa-star text-warning"></i>
@@ -118,91 +119,15 @@
 											</a>
 										</p>
 										<div>
-											후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용...
+											${item.boardContent}
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
 						<!-- 후기 아이템 끝 -->
-	
 						<hr class="my-0"> <!-- Divider -->
-	
-						<!-- 후기 아이템 시작 -->
-						<div class="card bg-transparent">
-							<div class="row g-3 g-sm-4 align-items-sm-center">
-								<!-- Image -->
-								<div class="col-4">
-									<img src="${path}/resources/assets/images/blog/01.jpg" class="card-img" alt="">
-									<div class="card-img-overlay-top">
-										<div class="d-flex justify-content-between">
-											<span class="badge text-bg-warning" style="height: 1.5rem">공연</span>
-										</div>
-									</div>
-								</div>
-								<div class="col-8">
-									<!-- card body -->
-									<div class="card-body p-0">
-										<h5 class="card-title">
-											<a href="${path}/board-detail" class="stretched-link title fs-4">후기 제목</a>
-										</h5>
-										<p class="flex-shrink-1 card-stars fs-6 mb-0 mt-n2" style="font-size: 0.7rem;">
-											<i class="fa fa-star text-warning"></i>
-											<i class="fa fa-star text-warning"></i>
-											<i class="fa fa-star text-warning"></i>
-											<i class="fa fa-star-half-alt text-warning"></i>
-											<i class="far fa-star text-warning"></i>
-											<a class="btn position-relative z-index-99 fw-normal h-75">
-												<i class="far fa-thumbs-up pe-1"></i>123
-											</a>
-										</p>
-										<div>
-											후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용...
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- 후기 아이템 끝 -->
-	
-						<hr class="my-0"> <!-- Divider -->
-	
-						<!-- 후기 아이템 시작 -->
-						<div class="card bg-transparent">
-							<div class="row g-3 g-sm-4 align-items-sm-center">
-								<!-- Image -->
-								<div class="col-4">
-									<img src="${path}/resources/assets/images/blog/01.jpg" class="card-img" alt="">
-									<div class="card-img-overlay-top">
-										<div class="d-flex justify-content-between">
-											<span class="badge text-bg-info" style="height: 1.5rem">캠핑</span>
-										</div>
-									</div>
-								</div>
-								<div class="col-8">
-									<!-- card body -->
-									<div class="card-body p-0">
-										<h5 class="card-title">
-											<a href="${path}/board-detail" class="stretched-link title fs-4">후기 제목</a>
-										</h5>
-										<p class="flex-shrink-1 card-stars fs-6 mb-0 mt-n2" style="font-size: 0.7rem;">
-											<i class="fa fa-star text-warning"></i>
-											<i class="fa fa-star text-warning"></i>
-											<i class="fa fa-star text-warning"></i>
-											<i class="fa fa-star-half-alt text-warning"></i>
-											<i class="far fa-star text-warning"></i>
-											<a class="btn position-relative z-index-99 fw-normal h-75">
-												<i class="far fa-thumbs-up pe-1"></i>123
-											</a>
-										</p>
-										<div>
-											후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용...
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- 후기 아이템 끝 -->
+				     </c:forEach>
 					</div>
 				</div>
 				<!-- Blog list END -->
@@ -223,66 +148,21 @@
 				<div class="col-6">
 					<!-- Card header -->
 					<div class="card-header bg-transparent border-bottom p-0 mb-4">
-						<a href="${path}/board-info">
+						<a href="${path}/board-info?boardCat=info">
 							<h3 class="mb-0 title fs-3">정보공유</h3>
 						</a>
 					</div>
-
 					<ul class="nav flex-column text-info">
+				   <c:forEach var="item" items="${list}">
 						<li class="nav-item">
-							<a class="nav-link py-1" href="${path}/test.html">애견 캠퍼 분들 주목! 윈드스크린 추천
+						  <div>
+							<a class="nav-link py-1" href="${path}/board-detail?bno=${item.bno}">${item.boardTitle}
 								<span class="ps-1 text-black-50" style="font-size: 0.9rem;">[1]</span>
 								<span class="ps-1 text-black-50" style="font-size: 0.9rem;">1분 전</span>
 							</a>
+						  </div>
 						</li>
-						<li class="nav-item">
-							<a class="nav-link py-1" href="${path}/test.html">초보 캠퍼들의 오토캠핑 입문을 위한 가이드 2편
-								<span class="ps-1 text-black-50" style="font-size: 0.9rem;">[1]</span>
-								<span class="ps-1 text-black-50" style="font-size: 0.9rem;">1분 전</span>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link py-1" href="${path}/test.html">애견 캠퍼 분들 주목! 윈드스크린 추천
-								<span class="ps-1 text-black-50" style="font-size: 0.9rem;">[1]</span>
-								<span class="ps-1 text-black-50" style="font-size: 0.9rem;">1분 전</span>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link py-1" href="${path}/test.html">초보 캠퍼들의 오토캠핑 입문을 위한 가이드 2편
-								<span class="ps-1 text-black-50" style="font-size: 0.9rem;">[1]</span>
-								<span class="ps-1 text-black-50" style="font-size: 0.9rem;">1분 전</span>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link py-1" href="${path}/test.html">애견 캠퍼 분들 주목! 윈드스크린 추천
-								<span class="ps-1 text-black-50" style="font-size: 0.9rem;">[1]</span>
-								<span class="ps-1 text-black-50" style="font-size: 0.9rem;">1분 전</span>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link py-1" href="${path}/test.html">초보 캠퍼들의 오토캠핑 입문을 위한 가이드 2편
-								<span class="ps-1 text-black-50" style="font-size: 0.9rem;">[1]</span>
-								<span class="ps-1 text-black-50" style="font-size: 0.9rem;">1분 전</span>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link py-1" href="${path}/test.html">애견 캠퍼 분들 주목! 윈드스크린 추천
-								<span class="ps-1 text-black-50" style="font-size: 0.9rem;">[1]</span>
-								<span class="ps-1 text-black-50" style="font-size: 0.9rem;">1분 전</span>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link py-1" href="${path}/test.html">초보 캠퍼들의 오토캠핑 입문을 위한 가이드 2편
-								<span class="ps-1 text-black-50" style="font-size: 0.9rem;">[1]</span>
-								<span class="ps-1 text-black-50" style="font-size: 0.9rem;">1분 전</span>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link py-1" href="${path}/test.html">애견 캠퍼 분들 주목! 윈드스크린 추천
-								<span class="ps-1 text-black-50" style="font-size: 0.9rem;">[1]</span>
-								<span class="ps-1 text-black-50" style="font-size: 0.9rem;">1분 전</span>
-							</a>
-						</li>
+				   </c:forEach>
 					</ul>
 				</div>
 				<!-- 정보공유 끝 -->
@@ -291,67 +171,20 @@
 				<div class="col-6">
 					<!-- Card header -->
 					<div class="card-header bg-transparent border-bottom p-0 mb-4">
-						<a href="${path}/board-free">
+						<a href="${path}/board-free?boardCat=free">
 							<h3 class="mb-0 title fs-3">자유게시판</h3>
 						</a>
 					</div>
-
+				  <c:forEach var="item" items="${list}">
 					<ul class="nav flex-column text-info">
 						<li class="nav-item">
-							<a class="nav-link py-1" href="${path}/test.html">애견 캠퍼 분들 주목! 윈드스크린 추천
-								<span class="ps-1 text-black-50" style="font-size: 0.9rem;">[1]</span>
-								<span class="ps-1 text-black-50" style="font-size: 0.9rem;">1분 전</span>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link py-1" href="${path}/test.html">초보 캠퍼들의 오토캠핑 입문을 위한 가이드 2편
-								<span class="ps-1 text-black-50" style="font-size: 0.9rem;">[1]</span>
-								<span class="ps-1 text-black-50" style="font-size: 0.9rem;">1분 전</span>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link py-1" href="${path}/test.html">애견 캠퍼 분들 주목! 윈드스크린 추천
-								<span class="ps-1 text-black-50" style="font-size: 0.9rem;">[1]</span>
-								<span class="ps-1 text-black-50" style="font-size: 0.9rem;">1분 전</span>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link py-1" href="${path}/test.html">초보 캠퍼들의 오토캠핑 입문을 위한 가이드 2편
-								<span class="ps-1 text-black-50" style="font-size: 0.9rem;">[1]</span>
-								<span class="ps-1 text-black-50" style="font-size: 0.9rem;">1분 전</span>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link py-1" href="${path}/test.html">애견 캠퍼 분들 주목! 윈드스크린 추천
-								<span class="ps-1 text-black-50" style="font-size: 0.9rem;">[1]</span>
-								<span class="ps-1 text-black-50" style="font-size: 0.9rem;">1분 전</span>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link py-1" href="${path}/test.html">초보 캠퍼들의 오토캠핑 입문을 위한 가이드 2편
-								<span class="ps-1 text-black-50" style="font-size: 0.9rem;">[1]</span>
-								<span class="ps-1 text-black-50" style="font-size: 0.9rem;">1분 전</span>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link py-1" href="${path}/test.html">애견 캠퍼 분들 주목! 윈드스크린 추천
-								<span class="ps-1 text-black-50" style="font-size: 0.9rem;">[1]</span>
-								<span class="ps-1 text-black-50" style="font-size: 0.9rem;">1분 전</span>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link py-1" href="${path}/test.html">초보 캠퍼들의 오토캠핑 입문을 위한 가이드 2편
-								<span class="ps-1 text-black-50" style="font-size: 0.9rem;">[1]</span>
-								<span class="ps-1 text-black-50" style="font-size: 0.9rem;">1분 전</span>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link py-1" href="${path}/test.html">애견 캠퍼 분들 주목! 윈드스크린 추천
+							<a class="nav-link py-1" href="${path}/board-detail?bno=${item.bno}">${item.boardTitle}
 								<span class="ps-1 text-black-50" style="font-size: 0.9rem;">[1]</span>
 								<span class="ps-1 text-black-50" style="font-size: 0.9rem;">1분 전</span>
 							</a>
 						</li>
 					</ul>
+			      </c:forEach>
 				</div>
 				<!-- 자유게시판 끝 -->
 
@@ -359,7 +192,7 @@
 
 				<div class="card">
 					<div class="card-header bg-transparent border-bottom p-0 pb-3">
-						<a href="${path}/board-review">
+						<a href="${path}/board-review?boardCat=review">
 							<h3 class="mb-0 title fs-2">후기</h3>
 						</a>
 					</div>
@@ -400,96 +233,6 @@
 											<span class="small">
 												<img src="${path}/resources/assets/images/avatar/02.jpg" class="avatar-sm" style="border-radius: 100%;"/>
 												<span class="text-black fs-5 fw-bold px-2">권수경</span>
-												2023-05-25
-											</span>
-											<a href="${path}/board-detail" class="btn btn-link p-0 mb-0">Read more <i class="bi bi-arrow-up-right"></i></a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- 후기 아이템 끝 -->
-						<!-- 후기 아이템 시작 -->
-						<div class="card bg-transparent my-2">
-							<div class="row g-3 g-sm-4 align-items-sm-center">
-								<!-- Image -->
-								<div class="col-4">
-									<img src="${path}/resources/assets/images/blog/02.jpg" class="card-img" alt="">
-									<div class="card-img-overlay-top">
-										<div class="d-flex justify-content-between">
-											<span class="badge text-bg-warning" style="height: 1.5rem">공연</span>
-										</div>
-									</div>
-								</div>
-								<div class="col-8">
-									<!-- card body -->
-									<div class="card-body p-0">
-										<h5 class="card-title">
-											<a href="${path}/board-detail" class="stretched-link title fs-4">[현대카드 슈퍼콘서트 27, 브루노 마스: the Purple osee] 후기 제목</a>
-										</h5>
-										<p class="flex-shrink-1 card-stars fs-6" style="font-size: 0.7rem;">
-											<i class="fa fa-star text-warning"></i>
-											<i class="fa fa-star text-warning"></i>
-											<i class="fa fa-star text-warning"></i>
-											<i class="fa fa-star-half-alt text-warning"></i>
-											<i class="far fa-star text-warning"></i>
-											<a class="btn position-relative z-index-99 fw-normal">
-												<i class="far fa-thumbs-up pe-1"></i>123
-											</a>
-										</p>
-										<div class="pb-3">
-											후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 
-										</div>
-										<!-- Author name and button -->
-										<div class="d-flex justify-content-between align-items-center">
-											<span class="small">
-												<img src="${path}/resources/assets/images/avatar/03.jpg" class="avatar-sm" style="border-radius: 100%;"/>
-												<span class="text-black fs-5 fw-bold px-2">김대훈</span>
-												2023-05-25
-											</span>
-											<a href="${path}/board-detail" class="btn btn-link p-0 mb-0">Read more <i class="bi bi-arrow-up-right"></i></a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- 후기 아이템 끝 -->
-						<!-- 후기 아이템 시작 -->
-						<div class="card bg-transparent my-2">
-							<div class="row g-3 g-sm-4 align-items-sm-center">
-								<!-- Image -->
-								<div class="col-4">
-									<img src="${path}/resources/assets/images/blog/03.jpg" class="card-img" alt="">
-									<div class="card-img-overlay-top">
-										<div class="d-flex justify-content-between">
-											<span class="badge text-bg-info" style="height: 1.5rem">캠핑</span>
-										</div>
-									</div>
-								</div>
-								<div class="col-8">
-									<!-- card body -->
-									<div class="card-body p-0">
-										<h5 class="card-title">
-											<a href="${path}/board-detail" class="stretched-link title fs-4">[사천비토솔섬오토캠핑장] 후기 제목</a>
-										</h5>
-										<p class="flex-shrink-1 card-stars fs-6" style="font-size: 0.7rem;">
-											<i class="fa fa-star text-warning"></i>
-											<i class="fa fa-star text-warning"></i>
-											<i class="fa fa-star text-warning"></i>
-											<i class="fa fa-star-half-alt text-warning"></i>
-											<i class="far fa-star text-warning"></i>
-											<a class="btn position-relative z-index-99 fw-normal">
-												<i class="far fa-thumbs-up pe-1"></i>123
-											</a>
-										</p>
-										<div class="pb-3">
-											후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 
-										</div>
-										<!-- Author name and button -->
-										<div class="d-flex justify-content-between align-items-center">
-											<span class="small">
-												<img src="${path}/resources/assets/images/avatar/04.jpg" class="avatar-sm" style="border-radius: 100%;"/>
-												<span class="text-black fs-5 fw-bold px-2">김상혁</span>
 												2023-05-25
 											</span>
 											<a href="${path}/board-detail" class="btn btn-link p-0 mb-0">Read more <i class="bi bi-arrow-up-right"></i></a>
