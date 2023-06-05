@@ -29,7 +29,7 @@ public class CampService {
 //		Map<String, CampSiteVO> map = null;
 //		System.out.println(list.toString());
 //		while (true) {
-//			map.put("�빐蹂�", )
+//			map.put("해변", )
 //		}
 		for (CampSiteVO obj : list) {
 			if (obj.getLocation() != null) {
