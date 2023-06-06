@@ -31,4 +31,6 @@ public interface ConcertMapper {
 	String HallIdOfConcTable(Map<String, Object> param);
 
 	String getConhallId(String hallId);
+
+	void concViewsPlus(Map<String, Object> param);
 }

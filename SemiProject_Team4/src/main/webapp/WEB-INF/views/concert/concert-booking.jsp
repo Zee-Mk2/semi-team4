@@ -68,48 +68,6 @@
 
 		<!-- =======================
 	Steps START -->
-		Page Banner START -->
-		<section class="py-0">
-			<div class="container">
-				<div class="row mt-4 align-items-center">
-					<div class="col-12">
-						<!-- Card START -->
-						<div class="card bg-light overflow-hidden px-sm-5">
-							<div class="row align-items-center g-4">
-
-								<!-- Content -->
-								<div class="col-sm-9">
-									<div class="card-body">
-										<!-- Breadcrumb -->
-										<nav aria-label="breadcrumb">
-											<ol class="breadcrumb breadcrumb-dark mb-0">
-												<li class="breadcrumb-item"><a href="index-concert.html">메인</a></li>
-												<li class="breadcrumb-item"><a href="concert-detail.html">공연장 상세</a>
-												</li>
-												<li class="breadcrumb-item active">예약하기</li>
-											</ol>
-										</nav>
-										<!-- Title -->
-										<div class="m-0 h3 title">공연장 예약하기</div>
-									</div>
-								</div>
-
-								<!-- Image -->
-								<div class="col-sm-3 text-end d-none d-sm-block">
-									<img src="${path}/resources/assets/images/element/17.svg" class="mt-4 mb-n5">
-								</div>
-							</div>
-						</div>
-						<!-- Card END -->
-					</div>
-				</div>
-			</div>
-		</section>
-		<!-- =======================
-	Page Banner END -->
-
-		<!-- =======================
-	Steps START -->
 		<section>
 			<div class="container-fluid" style="width: 1200px;">
 				<div id="stepper" class="bs-stepper stepper-outline">

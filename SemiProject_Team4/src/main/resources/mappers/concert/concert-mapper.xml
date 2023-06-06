@@ -11,51 +11,56 @@
 	</select>
 	
 	<select id="concertBest" resultType="ConcertVO">
-		(SELECT conNm, genre, startDate, endDate, conHallNm, posterImg, conId FROM concert WHERE genre LIKE '서양음악(클래식)' ORDER BY views LIMIT 1)
+		(SELECT conNm, genre, startDate, endDate, conHallNm, posterImg, conId FROM concert WHERE genre LIKE '서양음악(클래식)' ORDER BY views DESC LIMIT 1)
 		UNION
-		(SELECT conNm, genre, startDate, endDate, conHallNm, posterImg, conId FROM concert WHERE genre LIKE '대중음악' ORDER BY views LIMIT 1)
+		(SELECT conNm, genre, startDate, endDate, conHallNm, posterImg, conId FROM concert WHERE genre LIKE '대중음악' ORDER BY views DESC LIMIT 1)
 		UNION
-		(SELECT conNm, genre, startDate, endDate, conHallNm, posterImg, conId FROM concert WHERE genre LIKE '뮤지컬' ORDER BY views LIMIT 1)
+		(SELECT conNm, genre, startDate, endDate, conHallNm, posterImg, conId FROM concert WHERE genre LIKE '뮤지컬' ORDER BY views DESC LIMIT 1)
 		UNION
-		(SELECT conNm, genre, startDate, endDate, conHallNm, posterImg, conId FROM concert WHERE genre LIKE '연극' ORDER BY views LIMIT 1)
+		(SELECT conNm, genre, startDate, endDate, conHallNm, posterImg, conId FROM concert WHERE genre LIKE '연극' ORDER BY views DESC LIMIT 1)
 		UNION
-		(SELECT conNm, genre, startDate, endDate, conHallNm, posterImg, conId FROM concert WHERE genre LIKE '서커스/마술' ORDER BY views LIMIT 1)
+		(SELECT conNm, genre, startDate, endDate, conHallNm, posterImg, conId FROM concert WHERE genre LIKE '서커스/마술' ORDER BY views DESC LIMIT 1)
 		UNION
-		(SELECT conNm, genre, startDate, endDate, conHallNm, posterImg, conId FROM concert WHERE genre LIKE '한국음악(국악)' ORDER BY views LIMIT 1)
+		(SELECT conNm, genre, startDate, endDate, conHallNm, posterImg, conId FROM concert WHERE genre LIKE '한국음악(국악)' ORDER BY views DESC LIMIT 1)
 		UNION
-		(SELECT conNm, genre, startDate, endDate, conHallNm, posterImg, conId FROM concert WHERE genre LIKE '무용' ORDER BY views LIMIT 1)
+		(SELECT conNm, genre, startDate, endDate, conHallNm, posterImg, conId FROM concert WHERE genre LIKE '무용' ORDER BY views DESC LIMIT 1)
 		UNION
-		(SELECT conNm, genre, startDate, endDate, conHallNm, posterImg, conId FROM concert WHERE genre LIKE '대중무용' ORDER BY views LIMIT 1)
+		(SELECT conNm, genre, startDate, endDate, conHallNm, posterImg, conId FROM concert WHERE genre LIKE '대중무용' ORDER BY views DESC LIMIT 1)
 		UNION
-		(SELECT conNm, genre, startDate, endDate, conHallNm, posterImg, conId FROM concert WHERE genre LIKE '복합' ORDER BY views LIMIT 2)
+		(SELECT conNm, genre, startDate, endDate, conHallNm, posterImg, conId FROM concert WHERE genre LIKE '복합' ORDER BY views DESC LIMIT 2)
 	</select>
 	
 	<select id="concSearch" resultType="ConcertVO" parameterType="Map">
-		SELECT conId, conNm, genre, startDate, endDate, conHallNm, posterImg, minPrice
-		FROM concert
-		WHERE status = 'Y'
+		SELECT C.conId, C.conNm, C.genre, C.startDate, C.endDate, C.conHallNm, C.posterImg, C.minPrice
+		FROM concert C
+		LEFT JOIN (
+			SELECT conId, count(*) AS bookmarks
+			FROM concBookmark
+			GROUP BY conId
+		) bookmarks ON C.conId = bookmarks.conId
+		WHERE C.status = 'Y'
 		<if test="min != null and max != null">
-			AND #{min} &lt;= minPrice AND minPrice &lt;= #{max}
+			AND #{min} &lt;= C.minPrice AND C.minPrice &lt;= #{max}
 		</if>
 		<if test="genre != null and genre != ''">
-			AND genre = #{genre}
+			AND C.genre LIKE '%${genre}%'
 		</if>
 		<if test="viewAge != null and viewAge != ''">
-			AND viewAge >= #{viewAge}
+			AND C.viewAge >= #{viewAge}
 		</if>
 		<if test="conState != null and conState != ''">
-			AND conState = #{conState}
+			AND C.conState = '%${conState}%'
 		</if>
 		<if test="searchType == 'concKeyword'">
-			AND conNm LIKE '%${keyword}%'
+			AND C.conNm LIKE '%${keyword}%'
 		</if>
 		<if test="searchType == 'hallKeyword'">
-			AND conHallNm LIKE '%${keyword}%'
+			AND C.conHallNm LIKE '%${keyword}%'
 		</if>
 		<if test="reservDate != null and reservDate != ''">
-			AND startDate &lt; #{reservDate} AND #{reservDate} &lt; endDate
+			AND C.startDate &lt; #{reservDate} AND #{reservDate} &lt; C.endDate
 		</if>
-		ORDER BY views
+		ORDER BY bookmarks.bookmarks DESC
 		LIMIT #{limit} OFFSET #{offset}
 	</select>
 	
@@ -67,13 +72,13 @@
 			AND #{min} &lt;= minPrice AND minPrice &lt;= #{max}
 		</if>
 		<if test="genre != null and genre != ''">
-			AND genre = #{genre}
+			AND genre LIKE '%${genre}%'
 		</if>
 		<if test="viewAge != null and viewAge != ''">
 			AND viewAge >= #{viewAge}
 		</if>
 		<if test="conState != null and conState != ''">
-			AND conState = #{conState}
+			AND conState = '%${conState}%'
 		</if>
 		<if test="searchType == 'concKeyword'">
 			AND conNm LIKE '%${keyword}%'
@@ -87,14 +92,16 @@
 	</select>
 	
 	<select id="concDetailById" parameterType="Map" resultType="concertVO">
-		<if test="hallId != null">
-			SELECT Conc.*, Hall.la, Hall.lo FROM concert Conc
-			JOIN conHall Hall ON(Conc.conHallId = Hall.conHallId)
-		</if>
-		<if test="hallId == null or hallId == ''">
-			SELECT * FROM concert
-		</if>
-		WHERE conId = #{conId}
+		SELECT Conc.*, Hall.la, Hall.lo, bookmarks.bookmarks
+		FROM concert Conc
+		LEFT JOIN conHall Hall ON Conc.conHallId = Hall.conHallId
+		LEFT JOIN (
+			SELECT conId, count(*) AS bookmarks
+			FROM concBookmark
+			WHERE conId = #{conId}
+			GROUP BY conId
+		) bookmarks ON Conc.conId = bookmarks.conId
+		WHERE Conc.conId = #{conId}
 	</select>
 	
 	<select id="getConcBookmark" parameterType="int" resultType="ConcBookmark">
@@ -115,6 +122,14 @@
 	
 	<select id="getConhallId" parameterType="String" resultType="String">
 		SELECT conHallId FROM conHall WHERE conHallId = #{hallId}
+	</select>
+	
+	<update id="concViewsPlus" parameterType="Map">
+		UPDATE concert SET views = views + 1 WHERE conId = #{conId}
+	</update>
+	
+	<select id="getConcBookmarks">
+		SELECT 
 	</select>
 	
 </mapper>

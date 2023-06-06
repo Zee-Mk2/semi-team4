@@ -207,9 +207,9 @@
 				<div class="col-xl-2">
 					<form class="form-control-bg-light">
 						<select class="form-select js-choice">
-							<option value="">추천 많은 순</option>
-							<option>인기순</option>
-							<option>별점순</option>
+							<option value="">정렬기준</option>
+							<option>조회순</option>
+							<option>북마크순</option>
 						</select>
 					</form>
 				</div>

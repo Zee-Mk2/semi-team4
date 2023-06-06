@@ -72,7 +72,6 @@
 							</li>
 						</ul>
 					</div>
-	
 				</div>
 			</div>
 			<!-- Title and button END -->
@@ -274,19 +273,30 @@
 								<div class="d-flex justify-content-between mb-4">
 									<!-- Rating -->
 									<ul class="list-inline mb-0">
-										<li class="list-inline-item me-1 h6 mb-0">4.5</li>
 										<li class="list-inline-item me-0 small"><i class="fas fa-star text-warning"></i></li>
 										<li class="list-inline-item me-0 small"><i class="fas fa-star text-warning"></i></li>
 										<li class="list-inline-item me-0 small"><i class="fas fa-star text-warning"></i></li>
 										<li class="list-inline-item me-0 small"><i class="fas fa-star text-warning"></i></li>
-										<li class="list-inline-item me-0 small"><i class="fas fa-star-half-alt text-warning"></i></li>
+										<li class="list-inline-item me-4 small"><i class="fas fa-star-half-alt text-warning"></i></li>
+										<li class="list-inline-item me-3 h6 mb-0 text-black-50"><i class="far fa-eye"></i> ${item.views}</li>
+										<li class="list-inline-item me-3 h6 mb-0 text-black-50"><i class="fas fa-heart"></i> ${item.bookmarks}</li>
+										<li class="list-inline-item me-0 h6 mb-0 text-black-50"><a href="#" class="mb-0 m-0 text-reset text-primary-hover">후기 365개</a></li>
 									</ul>
-									<a href="#" class="mb-0 m-0 text-reset text-primary-hover">후기 365개</a>
+								</div>
+								
+								<!-- Title -->
+								<div class="hstack gap-2 mb-1">
+									<c:if test="${item.minPrice == 0}">
+										<h3 class="card-title mb-0 title text-secondary">전석무료</h3>
+									</c:if>
+									<c:if test="${item.minPrice != 0}">
+										<h3 class="card-title mb-0 title text-secondary">₩<fmt:formatNumber value="${item.minPrice}" pattern="#,###" /> ~</h3>
+									</c:if>
 								</div>
 	
 								<!-- Button -->
 								<div class="d-grid gap-2">
-									<a href="tour-booking.html" class="btn btn-primary">예매하기</a>
+									<a href="${path}/conc-booking?conId=${item.conId}" class="btn btn-primary">예매하기</a>
 								</div>
 	
 							</div>

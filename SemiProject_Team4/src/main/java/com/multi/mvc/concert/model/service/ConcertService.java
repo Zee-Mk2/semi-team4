@@ -56,6 +56,7 @@ public class ConcertService {
 	}
 
 	public ConcertVO concDetailById(Map<String, Object> param) {
+		mapper.concViewsPlus(param);
 		String hallId = mapper.HallIdOfConcTable(param);
 		param.put("hallId", mapper.getConhallId(hallId));
 		return mapper.concDetailById(param);
