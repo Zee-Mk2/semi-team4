@@ -47,7 +47,7 @@ Main Banner START -->
 								<div class="h1 text-white title">주말에 캠핑 어때요?</div>
 								<div class="h4 text-white mb-0 title">
 									동강전망휴양림오토캠핑장
-									<a href="${path}/camp-detail" class="btn btn-primary mx-3 text-white">상세보기</a>
+									<a href="${path}/camp-detail?contentId=${item.contentID}" class="btn btn-primary mx-3 text-white">상세보기</a>
 								</div>
 							</div>
 						</div>
@@ -64,7 +64,7 @@ Main Banner START -->
 									<div class="h1 text-white title">주말에 캠핑 어때요?</div>
 									<div class="h4 text-white mb-0 title">
 										사천비토솔섬오토캠핑장
-										<a href="${path}/camp-detail" class="btn btn-primary mx-3 text-white">상세보기</a>
+										<a href="${path}/camp-detail?contentId=${item.contentID}" class="btn btn-primary mx-3 text-white">상세보기</a>
 									</div>
 								</div>
 							</div>
@@ -201,7 +201,7 @@ Packages START -->
 							<div class="card-body d-flex align-items-center">
 								<div class="w-100">
 									<h5 class="card-title text-decoration-none text-dark">
-										<a href="${path}/camp-detail" class="stretched-link title">
+										<a href="${path}/camp-detail?contentId=${item.contentID}" class="stretched-link title">
 											${item.campNm}
 										</a>
 									</h5>

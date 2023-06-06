@@ -4,7 +4,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 
-
 <jsp:include page="/WEB-INF/views/common/camping-header.jsp"/>
 
 <!-- Plugins CSS -->
@@ -141,7 +140,7 @@
 								<!-- Card body START -->
 								<div class="card-body p-0 pt-3 text-black">
 									<p class="mb-2">${item.intro}</p>
-									<p class="mb-4 text-black-50">최종 정보 수정일 : 2018-12-08</p>
+									<p class="mb-4 text-black-50"></p>
 								</div>
 								<!-- Card body END -->
 								
@@ -151,21 +150,43 @@
 									</div>
 									<div class="card card-body bg-light p-4 d-flex justify-content-center my-3">
 										<div class="d-flex flex-wrap align-items-center text-center mx-auto">
-											<div class="p-4">
-												<i class="fas fa-plug fs-3"></i><br>전기
-											</div>
-											<div class="p-4">
-												<i class="fas fa-wifi fs-3"></i><br>와이파이
-											</div>
-											<div class="p-4">
-												<i class="fas fa-fire-alt fs-3"></i><br>장작판매
-											</div>
-											<div class="p-4">
-												<i class="fas fa-hot-tub fs-3"></i><br>온수
-											</div>
-											<div class="p-4">
-												<i class="fas fa-basketball-ball fs-3"></i><br>운동시설
-											</div>
+											<c:forTokens var="token" items="${item.addFclty}" delims=",">
+												<div class="p-4">
+													<c:if test="${token == '전기'}">
+														<i class="fas fa-plug fs-3"></i><br>전기														
+													</c:if>
+													<c:if test="${token == '무선인터넷'}">
+														<i class="fas fa-wifi fs-3"></i><br>무선인터넷
+													</c:if>
+													<c:if test="${token == '장작판매'}">
+														<i class="fas fa-fire-alt fs-3"></i><br>장작판매
+													</c:if>
+													<c:if test="${token == '온수'}">
+														<i class="fas fa-hot-tub fs-3"></i><br>온수
+													</c:if>
+													<c:if test="${token == '트렘폴린'}">
+														<i class="fas fa-hockey-puck fs-3"></i><br>트렘폴린
+													</c:if>
+													<c:if test="${token == '물놀이장'}">
+														<i class="fas fa-swimming-pool fs-3"></i><br>물놀이장
+													</c:if>
+													<c:if test="${token == '놀이터'}">
+														<i class="fas fa-shapes fs-3"></i><br>놀이터
+													</c:if>
+													<c:if test="${token == '산책로'}">
+														<i class="fas fa-walking fs-3"></i><br>산책로
+													</c:if>
+													<c:if test="${token == '운동장'}">
+														<i class="fas fa-basketball-ball fs-3"></i><br>운동장
+													</c:if>
+													<c:if test="${token == '운동시설'}">
+														<i class="fas fa-dumbbell fs-3"></i><br>운동시설
+													</c:if>
+													<c:if test="${token == '마트.편의점'}">
+														<i class="fas fa-store fs-3"></i><br>마트/편의점
+													</c:if>
+												</div>
+											</c:forTokens>
 										</div>
 									</div>
 								</div>
@@ -176,11 +197,35 @@
 						<!-- Content item START -->
 						<div class="tab-pane fade" id="tour-pills-tab2" role="tabpanel" aria-labelledby="tour-pills-tab-2">
 							<div class="card bg-transparent p-0">
-								<!-- Card header -->
+								<!-- Card header -->						
 								<div class="card-header bg-transparent border-bottom p-0 pb-3">
-									<h3 class="mb-0 title fs-2">안전 및 시설 배치도</h3>
+									<h3 class="mb-0 title fs-2">시설물 개수</h3>			
 								</div>
-	
+								<div class="card card-body bg-light p-4 d-flex justify-content-center my-3">
+									<div class="d-flex flex-wrap align-items-center text-center mx-auto">
+										<div class="p-4">
+											화장실<br>
+											<i class="fas fa-toilet fs-3"></i><br>${item.toiletCo} 개														
+										</div>
+										<div class="p-4">
+											샤워실<br>
+											<i class="fas fa-shower fs-3"></i><br>${item.showerCo} 개														
+										</div>
+										<div class="p-4">
+											개수대<br>
+											<i class="fas fa-water fs-3"></i><br>${item.sinkCo} 개														
+										</div>
+										<div class="p-4">
+											소화기<br>
+											<i class="fas fa-fire-extinguisher fs-3"></i><br>${item.fireExtCo} 개														
+										</div>
+										<div class="p-4">
+											화재감지기<br>
+											<i class="fas fa-bell fs-3"></i><br>${item.fireSensorCo} 개														
+										</div>
+									</div>
+								</div>
+								
 								<!-- Card body START -->
 								<div class="card-body p-0 pt-3">
 									<img src="https://www.gocamping.or.kr/upload/camp/6975/8401kgFa2KKczlc2Hx0UPtlY.jpg" alt="">
@@ -248,13 +293,14 @@
 										<td>${item.openDay}</td>
 									</tr>
 								</table>
-								<a href="#" class="btn btn-outline-primary">문의하기</a>
+								<a href="${item.homepage}" class="btn btn-outline-primary">홈페이지 가기</a>
 							</div>
 						</div>
 						<!-- Help item END -->
 						
+						${item.mapX} ${item.mapY}
 						<!-- 날씨 위젯 -->
-						<div class="tomorrow card" data-location-id="065368" data-language="KO" data-unit-system="METRIC" data-skin="light" data-widget-type="upcoming">
+						<div class="tomorrow card" data-lat="Float.parseFloat(${item.mapX})" data-lon="Float.parseFloat(${item.mapY})" data-language="KO" data-unit-system="METRIC" data-skin="light" data-widget-type="upcoming">
 							<a href="https://www.tomorrow.io/weather-api/" rel="nofollow noopener noreferrer" target="_blank"
 								style="position: absolute; bottom: 0; transform: translateX(-50%); left: 50%;">
 								<img alt="Powered by the Tomorrow.io Weather API"
@@ -273,7 +319,7 @@
 						<script>
 							var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 								mapOption = {
-									center: new kakao.maps.LatLng(${item.mapX}, ${item.mapY}), // 지도의 중심좌표
+									center: new kakao.maps.LatLng(37.4812845080678, 126.952713197762), // 지도의 중심좌표
 									level: 4, // 지도의 확대 레벨
 								};
 					
@@ -298,7 +344,7 @@
 				<div class="card">
 					<div class="card-header bg-transparent border-bottom p-0 pb-3">
 						<a href="${path}/board-review">
-							<h3 class="mb-0 title fs-2">후기</h3>
+							<h3 class="mb-0 title fs-2">${item.campNm} 이용후기</h3>
 						</a>
 					</div>
 					<div class="card card-body p-4 d-flex justify-content-center my-3">

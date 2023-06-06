@@ -11,21 +11,21 @@
 	</select>
 	
 	<select id="campThemeBest" resultType="CampSiteVO">
-		(SELECT campNm, location, doNm, sigunguNm, img FROM campsiteInfo WHERE location LIKE '%해변%' ORDER BY views LIMIT 1)
+		(SELECT contentID, campNm, location, doNm, sigunguNm, img FROM campsiteInfo WHERE location LIKE '%해변%' ORDER BY views LIMIT 1)
 		UNION ALL
-		(SELECT campNm, location, doNm, sigunguNm, img FROM campsiteInfo WHERE location LIKE '%섬%' ORDER BY views LIMIT 1)
+		(SELECT contentID, campNm, location, doNm, sigunguNm, img FROM campsiteInfo WHERE location LIKE '%섬%' ORDER BY views LIMIT 1)
 		UNION ALL
-		(SELECT campNm, location, doNm, sigunguNm, img FROM campsiteInfo WHERE location LIKE '%산%' ORDER BY views LIMIT 1)
+		(SELECT contentID, campNm, location, doNm, sigunguNm, img FROM campsiteInfo WHERE location LIKE '%산%' ORDER BY views LIMIT 1)
 		UNION ALL
-		(SELECT campNm, location, doNm, sigunguNm, img FROM campsiteInfo WHERE location LIKE '%숲%' ORDER BY views LIMIT 1)
+		(SELECT contentID, campNm, location, doNm, sigunguNm, img FROM campsiteInfo WHERE location LIKE '%숲%' ORDER BY views LIMIT 1)
 		UNION ALL
-		(SELECT campNm, location, doNm, sigunguNm, img FROM campsiteInfo WHERE location LIKE '%계곡%' ORDER BY views LIMIT 1)
+		(SELECT contentID, campNm, location, doNm, sigunguNm, img FROM campsiteInfo WHERE location LIKE '%계곡%' ORDER BY views LIMIT 1)
 		UNION ALL
-		(SELECT campNm, location, doNm, sigunguNm, img FROM campsiteInfo WHERE location LIKE '%강%' ORDER BY views LIMIT 1)
+		(SELECT contentID, campNm, location, doNm, sigunguNm, img FROM campsiteInfo WHERE location LIKE '%강%' ORDER BY views LIMIT 1)
 		UNION ALL
-		(SELECT campNm, location, doNm, sigunguNm, img FROM campsiteInfo WHERE location LIKE '%호수%' ORDER BY views LIMIT 1)
+		(SELECT contentID, campNm, location, doNm, sigunguNm, img FROM campsiteInfo WHERE location LIKE '%호수%' ORDER BY views LIMIT 1)
 		UNION ALL
-		(SELECT campNm, location, doNm, sigunguNm, img FROM campsiteInfo WHERE location LIKE '%도심%' ORDER BY views LIMIT 1)
+		(SELECT contentID, campNm, location, doNm, sigunguNm, img FROM campsiteInfo WHERE location LIKE '%도심%' ORDER BY views LIMIT 1)
 	</select>
 	
 	<select id="campSearch" resultType="CampSiteVO">
@@ -81,9 +81,9 @@
 	</select>
 	
 	<select id="campDetailById" parameterType="Map" resultType="CampSiteVO">
-		SELECT contentID, campNm, lineIntro, intro, location, addr, mapX, mapY, tel, img, openSeason, openDay
+		SELECT contentID, campNm, lineIntro, intro, addr, tel, img, mapX, mapY, location, openSeason, openDay, addFclty, homepage, toiletCo, showerCo, sinkCo, fireExtCo, fireSensorCo
 		FROM campSiteInfo
-		WHERE contentID=#{contentId}
+		WHERE contentID = #{contentId}
 	</select>
 	
 </mapper>
