@@ -48,7 +48,7 @@
 	
 						<!-- Buttons -->
 						<ul class="list-inline text-end">
-								<!-- Heart icon -->
+							<!-- Heart icon -->
 							<li class="list-inline-item">
 								<a href="#" class="btn btn-sm btn-light px-2"><i class="fa-solid fa-fw fa-heart"></i></a>
 							</li>
@@ -74,13 +74,9 @@
 	
 			<!-- Image gallery START -->
 			<div class="mt-md-5">
-				<div>
-					<!-- Primary image -->
-					<div class="mb-3">
-						<div style="display:flex; justify-content: center;">
-							<a href="${item.img}" class="stretched-link" data-glightbox="" data-gallery="banner"><img src="${item.img}" alt=""></a>	
-						</div>
-					</div>
+				<!-- Primary image -->
+				<div class="mb-3" style="display:flex; justify-content: center;">
+					<a href="${item.img}" data-glightbox="" data-gallery="banner"><img src="${item.img}" alt="${item.campNm} 대표이미지"></a>	
 				</div>
 			</div>
 			<!-- Image gallery END -->
@@ -145,9 +141,11 @@
 								<!-- Card body END -->
 								
 								<div class="card">
+									<!-- Card header -->
 									<div class="card-header bg-transparent border-bottom p-0 pb-3">
 										<h3 class="mb-0 title fs-2">시설정보</h3>
 									</div>
+									<!-- Card body START -->
 									<div class="card card-body bg-light p-4 d-flex justify-content-center my-3">
 										<div class="d-flex flex-wrap align-items-center text-center mx-auto">
 											<c:forTokens var="token" items="${item.addFclty}" delims=",">
@@ -189,6 +187,38 @@
 											</c:forTokens>
 										</div>
 									</div>
+									<!-- Card body END -->
+									
+									<!-- Card header -->
+									<div class="card-header bg-transparent border-bottom p-0 pb-3">
+										<h3 class="mb-0 title fs-2">시설물 개수</h3>			
+									</div>
+									<!-- Card body START -->
+									<div class="card card-body bg-light p-4 d-flex justify-content-center my-3">
+										<div class="d-flex flex-wrap align-items-center text-center mx-auto">
+											<div class="p-4">
+												화장실<br>
+												<i class="fas fa-toilet fs-3"></i><br>${item.toiletCo} 개														
+											</div>
+											<div class="p-4">
+												샤워실<br>
+												<i class="fas fa-shower fs-3"></i><br>${item.showerCo} 개														
+											</div>
+											<div class="p-4">
+												개수대<br>
+												<i class="fas fa-water fs-3"></i><br>${item.sinkCo} 개														
+											</div>
+											<div class="p-4">
+												소화기<br>
+												<i class="fas fa-fire-extinguisher fs-3"></i><br>${item.fireExtCo} 개														
+											</div>
+											<div class="p-4">
+												화재감지기<br>
+												<i class="fas fa-bell fs-3"></i><br>${item.fireSensorCo} 개														
+											</div>
+										</div>
+									</div>
+									<!-- Card body END -->
 								</div>
 							</div>
 						</div>		
@@ -199,38 +229,11 @@
 							<div class="card bg-transparent p-0">
 								<!-- Card header -->						
 								<div class="card-header bg-transparent border-bottom p-0 pb-3">
-									<h3 class="mb-0 title fs-2">시설물 개수</h3>			
+									<h3 class="mb-0 title fs-2">이용시설 안내도</h3>			
 								</div>
-								<div class="card card-body bg-light p-4 d-flex justify-content-center my-3">
-									<div class="d-flex flex-wrap align-items-center text-center mx-auto">
-										<div class="p-4">
-											화장실<br>
-											<i class="fas fa-toilet fs-3"></i><br>${item.toiletCo} 개														
-										</div>
-										<div class="p-4">
-											샤워실<br>
-											<i class="fas fa-shower fs-3"></i><br>${item.showerCo} 개														
-										</div>
-										<div class="p-4">
-											개수대<br>
-											<i class="fas fa-water fs-3"></i><br>${item.sinkCo} 개														
-										</div>
-										<div class="p-4">
-											소화기<br>
-											<i class="fas fa-fire-extinguisher fs-3"></i><br>${item.fireExtCo} 개														
-										</div>
-										<div class="p-4">
-											화재감지기<br>
-											<i class="fas fa-bell fs-3"></i><br>${item.fireSensorCo} 개														
-										</div>
-									</div>
-								</div>
-								
-								<!-- Card body START -->
 								<div class="card-body p-0 pt-3">
 									<img src="https://www.gocamping.or.kr/upload/camp/6975/8401kgFa2KKczlc2Hx0UPtlY.jpg" alt="">
 								</div>
-								<!-- Card body END -->
 							</div>
 						</div>	
 						<!-- Content item END -->
