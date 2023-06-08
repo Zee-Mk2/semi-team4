@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.multi.mvc.concert.model.vo.ConcertVO;
 import com.multi.mvc.member.model.mapper.MemberMapper;
+import com.multi.mvc.member.model.vo.ConcBooking;
 import com.multi.mvc.member.model.vo.Member;
 
 import lombok.extern.slf4j.Slf4j;
@@ -167,6 +168,14 @@ public class MemberService {
 
 	public int deleteAllWishlist(int mno) {
 		return mapper.deleteAllWishlist(mno);
+	}
+
+	public List<ConcBooking> getConBookingList(Map<String, Object> param) {
+		return mapper.getConBookingList(param);
+	}
+
+	public int cancelBooking(Map<String, Object> param) {
+		return mapper.cancelBooking(param);
 	}
 	
 }

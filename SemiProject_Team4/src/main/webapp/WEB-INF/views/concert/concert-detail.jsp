@@ -296,7 +296,7 @@
 	
 								<!-- Button -->
 								<div class="d-grid gap-2">
-									<a href="${path}/conc-booking?conId=${item.conId}" class="btn btn-primary">예매하기</a>
+									<a href="${path}/conc-booking?conId=${item.conId}&conHallId=${item.conHallId}" class="btn btn-primary">예매하기</a>
 								</div>
 	
 							</div>

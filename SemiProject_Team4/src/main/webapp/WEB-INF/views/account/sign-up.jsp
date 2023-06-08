@@ -36,6 +36,10 @@
 	<link rel="stylesheet" type="text/css" href="${path}/resources/assets/vendor/glightbox/css/glightbox.css">
 	<link rel="stylesheet" type="text/css" href="${path}/resources/assets/vendor/choices/css/choices.min.css">
 	<link rel="stylesheet" type="text/css" href="${path}/resources/assets/vendor/flatpickr/css/flatpickr.min.css">
+	
+	
+	<script src="${path}/resources/assets/vendor/flatpickr/ko.js"></script>
+	<script src="${path}/resources/assets/vendor/flatpickr/js/flatpickr.min.js"></script>
 
 	<!-- Theme CSS -->
 	<link rel="stylesheet" type="text/css" href="${path}/resources/assets/css/style.css">
@@ -126,8 +130,13 @@
 									<!-- 생년월일 -->
 									<div class="col-md-6">
 										<label class="form-label">생년월일<span class="text-danger">*</span></label>
-										<input name="birth" type="date" class="form-control flatpickr" placeholder="생년월일을 선택해주세요." data-date-format="Y-m-d">
+										<input id="datePicker" name="birth" type="date" class="form-control" placeholder="생년월일을 선택해주세요." data-date-format="Y-m-d">
 									</div>
+								    <script>
+								        flatpickr("#datePicker", {
+								        	locale: Korean,
+								        });
+								    </script>
 	
 									<!-- 선호지역 -->
 									<div class="col-md-6">

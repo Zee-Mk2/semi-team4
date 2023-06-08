@@ -1,5 +1,7 @@
 package com.multi.mvc.concert.controller;
 
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -10,14 +12,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.multi.mvc.common.util.PageInfo;
 import com.multi.mvc.concert.model.service.ConcertService;
 import com.multi.mvc.concert.model.vo.ConcertVO;
+import com.multi.mvc.concert.model.vo.HallSeats;
 import com.multi.mvc.member.model.vo.Member;
 
 import lombok.extern.slf4j.Slf4j;
@@ -79,8 +85,44 @@ public class ConcertController {
 	}
 	
 	@RequestMapping(value = "/conc-booking", method = RequestMethod.GET)
-	public String concBookingPage() {
+	public String concBookingPage(Model model, @RequestParam Map<String, Object> param, @SessionAttribute(name="loginMember", required = false) Member loginMember) {
+		if (loginMember == null) {
+			model.addAttribute("msg", "로그인한 상태가 아닙니다.");
+			model.addAttribute("location", "/sign-in");
+			return "common/msg";
+		}
+		ConcertVO conc = service.concDetailById(param);
+		conc.setStartTime(conc.getStartTime().replace(", ", "<br>"));
+		conc.setTicketPrice(conc.getTicketPrice().replace("원, ", "원<br>"));
+		
+		HallSeats prices = service.getPrices(param);
+		
+		model.addAttribute("conc", conc);
+		model.addAttribute("prices", prices);
+		
 		return "/concert/concert-booking";
+	}
+	
+	@PostMapping(value = "/conc-booking")
+	public String concBooking(@RequestParam Map<String, Object> param, @RequestParam("seatNo") String[] seatNos, Model model,
+			@SessionAttribute(name="loginMember", required = false) Member loginMember) {
+		if (loginMember == null) {
+			model.addAttribute("msg", "잘못된 접근입니다.");
+			model.addAttribute("location", "/sign-in");
+			return "common/msg";
+		}
+		log.info("@@@@ concBooking>> " + param.toString());
+		log.info("@@@@ concBooking - seatNos>> " + Arrays.toString(seatNos));
+		int result = service.reqBooking(param, seatNos);
+		if (result == 0) {
+			model.addAttribute("msg", "예약에 실패했습니다.");
+			model.addAttribute("location", "/conc-detail?conId=" + param.get("conId"));
+		} else {
+			model.addAttribute("msg", "공연이 예매되었습니다.<br>마이페이지 나의 예약정보에서 확인할 수 있습니다.");
+			model.addAttribute("location", "/conc-detail?conId=" + param.get("conId"));
+		}
+		
+		return "common/msg";
 	}
 	
 	@GetMapping(value = "/conc-search")
@@ -140,7 +182,6 @@ public class ConcertController {
 		
 		if (loginMember != null) {
 			param.put("mno", loginMember.getMno());
-			log.info("conBookmark - param>> " + param.toString());
 			int result = service.concBookmark(param);
 			
 			return String.valueOf(result);
@@ -149,5 +190,34 @@ public class ConcertController {
 			return "0";
 		}
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/conc-getScheduleList", produces = "application/json; charset=utf-8")
+	public List<HallSeats> getScheduleList(@RequestBody Map<String, Object> param) {
+		String str = String.valueOf(param.get("selectedDate"));
+		param.put("selectedDate", str.substring(0, str.indexOf("T")));
+		log.info("@@@@@@@@@@@ getScheduleList - param>> " + param.toString());
+		List<HallSeats> seats = service.getHallSeatsByDay(param);
+		
+		for (HallSeats obj : seats) {
+			obj.setStartTime(obj.getStartTime());
+		}
+		
+		return seats;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/conc-bookedSeats", produces = "application/json; charset=utf-8")
+	public List<String> bookedSeats(@RequestBody Map<String, Object> param) {
+		log.info("@@@@@@@@@@@ bookedSeats - param>> " + param);
+		Map<String, Object> map = new HashMap<>();
+		String str = String.valueOf(param.get("date")).replace(".", "").replace(" ", "-") + " " +  String.valueOf(param.get("time"));
+		map.put("startTime", str);
+		List<String> bookedSeats = service.bookedSeats(map);
+		log.info("@@@@@@@@@@@ bookedSeats - bookedSeats>> " + bookedSeats);
+		
+		return bookedSeats;
+	}
+	
 	
 }

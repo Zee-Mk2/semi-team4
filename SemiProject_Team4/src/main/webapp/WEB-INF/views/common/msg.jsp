@@ -14,7 +14,7 @@
 	<script>
 		// 알림메세지를 띄움
 		${script}
-		alert("${msg}");
+		alert("${msg}".replace("<br>", "\n"));
 
 		// 페이지 이동
 		location.replace("${pageContext.request.contextPath}${location}");

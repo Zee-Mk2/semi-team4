@@ -20,6 +20,7 @@
 <script src="${path}/resources/assets/vendor/tiny-slider/tiny-slider.js"></script>
 <script src="${path}/resources/assets/vendor/glightbox/js/glightbox.js"></script>
 <script src="${path}/resources/assets/vendor/choices/js/choices.min.js"></script>
+<script src="${path}/resources/assets/vendor/flatpickr/ko.js"></script>
 <script src="${path}/resources/assets/vendor/flatpickr/js/flatpickr.min.js"></script>
 
 
@@ -123,14 +124,14 @@ Main Banner START -->
 
 								<!-- Check in -->
 								<div class="col-md-6 col-lg-3">
-									<!-- Date input -->
-									<!-- <div class="form-control-border form-control-transparent form-fs-md">
-										<input type="text" class="form-control flatpickr" data-mode="range" placeholder="Select date"
-											value="19 Sep to 28 Sep">
-									</div> -->
 									<div class="form-border-bottom form-control-transparent form-fs-lg">
-										<input type="text" class="form-control flatpickr py-2" data-mode="range" data-date-format="m-d" placeholder="일정 선택">
+										<input id="datePicker" type="text" class="form-control" data-mode="range" data-date-format="m-d" placeholder="일정 선택">
 									</div>
+								    <script>
+								        flatpickr("#datePicker", {
+								        	locale: Korean,
+								        });
+								    </script>
 								</div>
 
 								<!-- 키워드 -->

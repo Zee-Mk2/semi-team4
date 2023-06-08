@@ -1258,11 +1258,12 @@ window.addEventListener('DOMContentLoaded', function() {
 // 구역 선택에 라디오버튼 속성 주기
 $(document).ready(function() {
   // 카드의 라디오 버튼 클릭 이벤트 처리
-  $('.card-radio').on('click', function() {
-    // 선택된 카드를 강조 표시
-    $('.card-radio:checked').closest('.card').addClass('card-selected');
-    // 선택되지 않은 다른 카드들의 강조 표시 제거
-    $('.card-radio:not(:checked)').closest('.card').removeClass('card-selected');
+  $(document).on('click', '.card-radio', function() {
+    // 모든 카드의 강조 표시 제거
+    $('.card-label').removeClass('card-selected');
+    
+    // 선택된 카드에 강조 표시 추가
+    $(this).closest('.card-label').addClass('card-selected');
   });
 });
 
@@ -1273,20 +1274,3 @@ $(document).ready(function() {
     $('.seat-checkbox:not(:checked)').closest('.select-seat').removeClass('selected-seat');
   });
 });
-
-// 북마크 핸들러 메소드 호출하는 함수
-function callBookmarkHandler(conId) {
-  alert("callBookmarkHandler 호출됨");
-  $.ajax({
-    url: "${path}/conc-bookmark?conId=" + conId,
-    type: 'POST',
-    success: function(response) {
-      console.log(response);
-      alert("Success");
-    },
-    error: function(textStatus) {
-      console.error(textStatus);
-      alert("error");
-  }
-  });
-}

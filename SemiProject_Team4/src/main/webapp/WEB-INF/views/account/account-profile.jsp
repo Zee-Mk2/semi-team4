@@ -18,6 +18,7 @@
 <script src="${path}/resources/assets/vendor/tiny-slider/tiny-slider.js"></script>
 <script src="${path}/resources/assets/vendor/glightbox/js/glightbox.js"></script>
 <script src="${path}/resources/assets/vendor/choices/js/choices.min.js"></script>
+<script src="${path}/resources/assets/vendor/flatpickr/ko.js"></script>
 <script src="${path}/resources/assets/vendor/flatpickr/js/flatpickr.min.js"></script>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 
@@ -151,9 +152,14 @@ Content START -->
 										<!-- Date of birth -->
 										<div class="col-md-6">
 											<label class="form-label">생년월일<span class="text-danger">*</span></label>
-											<input type="text" class="form-control flatpickr" value="${sessionScope.loginMember.birth}" name="birth"
+											<input id="datePicker" type="text" class="form-control" value="${sessionScope.loginMember.birth}" name="birth"
 												placeholder="생년월일을 입력하세요." data-date-format="Y-m-d" required>
 										</div>
+									    <script>
+									        flatpickr("#datePicker", {
+									        	locale: Korean,
+									        });
+									    </script>
 
 										<!-- Gender -->
 										<div class="col-md-6">

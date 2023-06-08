@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import com.multi.mvc.concert.model.vo.ConcertVO;
+import com.multi.mvc.member.model.vo.ConcBooking;
 import com.multi.mvc.member.model.vo.Member;
 
 //@Mapper : DAO 없이 자동으로 Mapper 객체를 생성해주는 어노테이션. 별도의 DAO 작성이 필요 없어진다.
@@ -50,6 +51,10 @@ public interface MemberMapper {
 	List<ConcertVO> getConWishList(int mno);
 
 	int deleteAllWishlist(int mno);
+
+	List<ConcBooking> getConBookingList(Map<String, Object> param);
+
+	int cancelBooking(Map<String, Object> param);
 
 
 

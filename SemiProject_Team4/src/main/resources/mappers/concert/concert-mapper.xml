@@ -128,9 +128,70 @@
 		UPDATE concert SET views = views + 1 WHERE conId = #{conId}
 	</update>
 	
-	<select id="getConcBookmarks">
-		SELECT 
+	<select id="whatTheFuckIsThis" parameterType="Map" resultType="HallSeats">
+		SELECT
+		    cs.conTime AS startTime,
+		    COALESCE(t.R - booked.R, t.R) AS R,
+		    COALESCE(t.S - booked.S, t.S) AS S,
+		    COALESCE(t.A - booked.A, t.A) AS A
+		FROM
+		    concSchedule cs
+		    JOIN
+		    (
+		        SELECT
+		            IFNULL(MAX(CASE WHEN seatType = 'R석' THEN count END), 0) AS 'R',
+		            IFNULL(MAX(CASE WHEN seatType = 'S석' THEN count END), 0) AS 'S',
+		            IFNULL(MAX(CASE WHEN seatType = 'A석' THEN count END), 0) AS 'A'
+		        FROM
+		            (
+		                SELECT seatType, COUNT(*) AS count
+		                FROM seat
+		                WHERE conHallId = 'FC003045'
+		                GROUP BY seatType
+		            ) AS subquery
+		    ) AS t
+		    LEFT JOIN
+		    (
+		        SELECT
+		            resvTime,
+		            SUM(CASE WHEN seatType = 'R석' THEN count ELSE 0 END) AS R,
+		            SUM(CASE WHEN seatType = 'S석' THEN count ELSE 0 END) AS S,
+		            SUM(CASE WHEN seatType = 'A석' THEN count ELSE 0 END) AS A
+		        FROM
+		            (
+		                SELECT resvTime, seatType, COUNT(*) AS count
+		                FROM concReserve
+		                WHERE conHallId = 'FC003045'
+		                AND status = 'Y'
+		                GROUP BY resvTime, seatType
+		            ) AS subquery
+		        GROUP BY resvTime
+		    ) booked ON (booked.resvTime = cs.conTime)
+		WHERE conTime LIKE '${selectedDate}%'
+		ORDER BY conTime;
 	</select>
 	
+	<select id="getPrices" parameterType="Map" resultType="HallSeats">
+		SELECT 
+			MAX(CASE WHEN seatType = 'R석' THEN seatPrice END) AS R,
+			MAX(CASE WHEN seatType = 'S석' THEN seatPrice END) AS S,
+			MAX(CASE WHEN seatType = 'A석' THEN seatPrice END) AS A
+		FROM seat
+		WHERE conHallId = #{conHallId}
+		GROUP BY conHallId;
+	</select>
+	
+	<select id="bookedSeats" parameterType="Map" resultType="String">
+		SELECT S.seatNo FROM concReserve R
+		JOIN (
+			SELECT * FROM seat
+		) S ON (R.seatNo = S.seatNo)
+		WHERE R.conHallId = 'FC003045' AND R.resvTime = #{startTime} AND R.status = 'Y';
+	</select>
+	
+	<insert id="reqBooking" parameterType="Map">
+		INSERT INTO concReserve VALUES(DEFAULT, #{mno}, #{conId}, #{conHallId}, #{seatNo}, #{seatType}, #{userName}, #{tel}, #{time-select}, DEFAULT);
+	</insert>
+	<!-- {tel=01012341234, conHallId=FC003045, seatNo=C-10, userName=지석환, time-select=Sat Jun 10 2023 15:00:00 GMT+0900 (한국 표준시), mno=, seatType=R석} -->
 </mapper>
 

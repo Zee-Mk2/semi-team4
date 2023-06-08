@@ -9,13 +9,14 @@
 	</select>
 	
 	<insert id="joinMember" parameterType="Member">
-		INSERT INTO member VALUES(DEFAULT, #{id}, #{password}, #{name}, #{gender}, #{address}, #{favDistrict}, DEFAULT, DEFAULT, 'Y', #{birth}, #{oriFileNm}, #{reFileNm}, #{phone})
+		INSERT INTO member
+			VALUES(DEFAULT, #{id}, #{password}, #{name}, #{gender}, #{address}, #{favDistrict}, DEFAULT, DEFAULT, 'Y', #{birth}, #{oriFileNm}, #{reFileNm}, #{phone})
 	</insert>
 	
 	<update id="deleteMember" parameterType="int">
 	 	UPDATE MEMBER 
 	 		SET STATUS = 'N'
-	 	WHERE mNO = #{mno}
+	 		WHERE mNO = #{mno}
 	 </update>
 	
 	<select id="findById" parameterType="String" resultType="Member">
@@ -24,18 +25,18 @@
 	
 	<update id="updateMember" parameterType="Member">
 		UPDATE member
-		SET id = #{id}, name = #{name}, gender = #{gender}, address = #{address}, phone = #{phone}, birth = #{birth}
-		<if test="oriFileNm">
-			, oriFileNm = #{oriFileNm},
-			reFileNm = #{reFileNm}
-		</if>
-		WHERE mNO = #{mno}
+			SET id = #{id}, name = #{name}, gender = #{gender}, address = #{address}, phone = #{phone}, birth = #{birth}
+			<if test="oriFileNm">
+				, oriFileNm = #{oriFileNm},
+				reFileNm = #{reFileNm}
+			</if>
+			WHERE mNO = #{mno}
 	</update>
 	
 	<update id="updateID">
 		UPDATE member
-		SET id = #{id}
-		WHERE mno = #{mno}
+			SET id = #{id}
+			WHERE mno = #{mno}
 	</update>
 	
 	<select id="findByMno" parameterType="int" resultType="Member">
@@ -44,8 +45,8 @@
 	
 	<update id="updatePwd" parameterType="Map">
 		UPDATE member
-		SET password = #{password}
-		WHERE mno = #{mno}
+			SET password = #{password}
+			WHERE mno = #{mno}
 	</update>
 	
 	<select id="duplID" parameterType="String" resultType="int">
@@ -54,12 +55,25 @@
 	
 	<select id="getConWishList" parameterType="int" resultType="ConcertVO">
 		SELECT C.conNm, C.genre, C.conHallNm, C.minPrice, C.posterImg, C.conId, C.startDate, C.endDate, C.cast, C.runtime
-		FROM concert C JOIN concBookmark B ON(C.conId = B.conId)
-		WHERE status = 'Y' AND B.mno = #{mno}
+			FROM concert C JOIN concBookmark B ON(C.conId = B.conId)
+			WHERE status = 'Y' AND B.mno = #{mno}
 	</select>
 	
 	<delete id="deleteAllWishlist" parameterType="int">
 		DELETE FROM concBookmark WHERE mno = #{mno};
 	</delete>
+	
+	<select id="getConBookingList" parameterType="Map" resultType="ConcBooking">
+		SELECT cr.*, conc.posterImg, conc.conNm, hall.conHallNm, st.seatPrice
+			FROM concReserve cr
+			JOIN concert conc ON (conc.conId = cr.conId)
+		    JOIN conHall hall ON (cr.conHallId = hall.conHallId)
+			JOIN seat st ON (cr.seatNo = st.seatNo)
+		    WHERE cr.mno = #{mno} AND cr.status = #{status};
+	</select>
+	
+	<update id="cancelBooking" parameterType="Map">
+		UPDATE concReserve SET status = 'N' WHERE resvNo = #{resvNo}
+	</update>
 </mapper>
 

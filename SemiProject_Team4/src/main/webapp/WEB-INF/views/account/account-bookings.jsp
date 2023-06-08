@@ -19,6 +19,7 @@
 <script src="${path}/resources/assets/vendor/glightbox/js/glightbox.js"></script>
 <script src="${path}/resources/assets/vendor/choices/js/choices.min.js"></script>
 <script src="${path}/resources/assets/vendor/flatpickr/js/flatpickr.min.js"></script>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
 
 	<!-- **************** MAIN CONTENT START **************** -->
 	<main>
@@ -143,182 +144,198 @@ Content START -->
 
 									<!-- Tab content item START -->
 									<div class="tab-pane fade show active" id="tab-1">
-										<h6>다가오는 예약 (2)</h6>
-										<!-- Card item START -->
-										<div class="card border mb-4">
-											<!-- Card header -->
-											<div
-												class="card-header border-bottom d-md-flex justify-content-md-between align-items-center">
-												<!-- Icon and Title -->
-												<div class="d-flex align-items-center">
-													<div class="icon-lg bg-light rounded-circle flex-shrink-0">
-														<img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https:%2F%2Fblog.kakaocdn.net%2Fdn%2FbWjYtg%2Fbtq05oTANNg%2FhjdZjtkLe8DcOWc3PZIToK%2Fimg.jpg"
-															alt="변산반도국립공원 고사포"
-															style="height: 55px; border-radius: 50%;">
-														</img>
+										<c:forEach var="item" items="${upcome}">
+											<!-- Wishlist item START -->
+											<div class="card shadow p-2 position-relative mb-3" id="resv-${item.resvNo}">
+												<div class="row g-0">
+													<!-- Card img -->
+													<div class="col-md-3">
+														<img src="${item.posterImg}"
+															class="card-img rounded-2" alt="Card image">
 													</div>
-													<!-- Title -->
-													<div class="ms-2">
-														<h6 class="card-title mb-0">변산반도국립공원 고사포</h6>
-														<ul class="nav nav-divider small">
-															<li class="nav-item">예약 ID: testID123</li>
-															<li class="nav-item">가격: 15,000원</li>
-														</ul>
-													</div>
-												</div>
-
-												<!-- Button -->
-												<div class="mt-2 mt-md-0">
-													<a href="${path}/camp-detail" class="btn btn-custom2 mb-0">예약 정보</a>
-												</div>
-											</div>
-
-											<!-- Card body -->
-											<div class="card-body">
-												<div class="row g-3">
-													<div class="col-sm-6 col-md-5">
-														<span>예약 날짜</span>
-														<h6 class="mb-0">2023.05.13(토) ~ 2023.05.14(일)</h6>
-													</div>
-
-													<div class="col-sm-6 col-md-3">
-														<span>체크인/체크아웃</span>
-														<h6 class="mb-0">15:00 ~ 11:00</h6>
-													</div>
-
-													<div class="col-md-4">
-														<span>예약자</span>
-														<h6 class="mb-0">테스트계정</h6>
-													</div>
-												</div>
-											</div>
-										</div>
-										<!-- Card item END -->
-
-										<!-- Card item START -->
-										<div class="card border">
-											<!-- Card header -->
-											<div
-												class="card-header border-bottom d-md-flex justify-content-md-between align-items-center">
-												<!-- Icon and Title -->
-												<div class="d-flex align-items-center">
-													<div class="icon-lg bg-light rounded-circle flex-shrink-0">
-														<img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRXb5MorGuSWtVYCOPO4ZlIqKXZudP51MCJFCFiaOcoOKDsNTLm"
-															alt="장수상회"
-															style="width: 100px; height: 59px; border-radius: 50%;"></img>
-													</div>
-													<!-- Title -->
-													<div class="ms-2">
-														<h6 class="card-title mb-0">장수상회</h6>
-														<ul class="nav nav-divider small">
-															<li class="nav-item">예약 ID: testID123</li>
-															<li class="nav-item">가격: 15,000원</li>
-														</ul>
-													</div>
-												</div>
-
-												<!-- Button -->
-												<div class="mt-2 mt-md-0">
-													<a href="${path}/conc-detail" class="btn btn-custom2 mb-0">예약 정보</a>
-												</div>
-											</div>
-
-											<!-- Card body -->
-											<div class="card-body">
-												<div class="row g-3">
-													<div class="col-sm-6 col-md-5">
-														<span>예약 날짜 및 시간</span>
-														<h6 class="mb-0">2023.05.20(토) 14:00</h6>
-													</div>
-
-													<div class="col-sm-6 col-md-3">
-														<span>장소</span>
-														<h6 class="mb-0">두산아트센터</h6>
-													</div>
-
-													<div class="col-md-4">
-														<span>예약자</span>
-														<h6 class="mb-0">테스트계정</h6>
+			
+													<!-- Card body -->
+													<div class="col-md-9">
+														<div class="card-body py-md-2 d-flex flex-column h-100">
+			
+															<!-- Rating and buttons -->
+															<div class="d-flex justify-content-between align-items-center">
+																<ul class="list-inline mb-0">
+																	<!-- Cancel icon -->
+																	<li class="list-inline-item">
+																		<a class="btn btn-sm btn-round btn-danger mb-0 delete-resv" style="z-index: 99; position: absolute; top: 15px; right: 20px;" data-resvno="${item.resvNo}"}>
+																			<i class="fas fa-trash-alt fs-6 mt-2"></i>
+																		</a>
+																	</li>
+																</ul>
+															</div>
+			
+															<!-- Title -->
+															<h5 class="card-title mb-2 title">
+																<a href="${path}/conc-detail?conId=${item.conId}" class="stretched-link">
+																	${item.conNm}
+																</a>
+															</h5>
+														<div class="row g-2 mt-1">
+															<div class="text-center px-0 col-1"><i class='far fa-calendar'></i></div>
+															<div class="px-0 col-11"><fmt:formatDate value="${item.resvTime}" pattern="yyyy.MM.dd HH:mm"/></div>
+															<div class="text-center px-0 col-1"><i class="bi bi-geo-alt"></i></div>
+															<div class="px-0 col-11">${item.conHallNm}</div>
+															<div class="text-center px-0 col-1"><i class="fas fa-chair"></i></div>
+															<div class="px-0 col-11">${item.seatNo} (${item.seatType})</div>
+															<div class="text-center px-0 col-1"><i class="material-icons">person</i></div>
+															<div class="px-0 col-11">${item.userName}</div>
+														</div>
+			
+															<!-- Price and Button -->
+															<div class="d-sm-flex justify-content-sm-between align-items-center mt-3 mt-md-auto">
+																<!-- Button -->
+																<div class="d-flex align-items-center">
+																	<div class="fw-bold mb-0 mx-1 text-secondary title" style="font-size: 24px">₩ ${item.seatPrice}</div>
+																</div>
+															</div>
+														</div>
 													</div>
 												</div>
 											</div>
-										</div>
-										<!-- Card item END -->
+											<!-- Wishlist item END -->
+										</c:forEach>
 									</div>
 									<!-- Tabs content item END -->
 
 									<!-- Tab content item START -->
 									<div class="tab-pane fade" id="tab-2">
-										<h6>취소된 예약 (1)</h6>
-
-										<!-- Card item START -->
-										<div class="card border">
-											<!-- Card header -->
-											<div
-												class="card-header border-bottom d-md-flex justify-content-md-between align-items-center">
-												<!-- Icon and Title -->
-												<div class="d-flex align-items-center">
-													<div class="icon-lg bg-light rounded-circle flex-shrink-0">
-														<img src="https://th.bing.com/th/id/OIP.f8QBQEZR9s2YqgQAomRHAgHaE7?w=293&h=195&c=7&r=0&o=5&dpr=1.1&pid=1.7"
-															alt="사천 비토솔섬 캠핑장"
-															style="width: 110px; height: 55px; border-radius: 50%;"></img>
+										<c:forEach var="item" items="${cancle}">
+											<!-- Wishlist item START -->
+											<div class="card shadow p-2 position-relative mb-3" id="resv-${item.resvNo}">
+												<div class="row g-0">
+													<!-- Card img -->
+													<div class="col-md-3">
+														<img src="${item.posterImg}"
+															class="card-img rounded-2" alt="Card image">
 													</div>
-													<!-- Title -->
-													<div class="ms-2">
-														<h6 class="card-title mb-0">사천 비토솔섬 캠핑장</h6>
-														<ul class="nav nav-divider small">
-															<li class="nav-item">예약 ID : testID123 · 가격 : 15,000원</li>
-														</ul>
+			
+													<!-- Card body -->
+													<div class="col-md-9">
+														<div class="card-body py-md-2 d-flex flex-column h-100">
+			
+															<!-- Rating and buttons -->
+															<div class="d-flex justify-content-between align-items-center">
+																<ul class="list-inline mb-0">
+																	<!-- Cancel icon -->
+																	<li class="list-inline-item">
+																		<a class="btn btn-danger mb-0" style="z-index: 99; position: absolute; top: 15px; right: 20px;" onclick="javascript: void()">
+																			취소됨
+																		</a>
+																	</li>
+																</ul>
+															</div>
+			
+															<!-- Title -->
+															<h5 class="card-title mb-2 title">
+																<a href="${path}/conc-detail?conId=${item.conId}" class="stretched-link">
+																	${item.conNm}
+																</a>
+															</h5>
+														<div class="row g-2 mt-1">
+															<div class="text-center px-0 col-1"><i class='far fa-calendar'></i></div>
+															<div class="px-0 col-11"><fmt:formatDate value="${item.resvTime}" pattern="yyyy.MM.dd HH:mm"/></div>
+															<div class="text-center px-0 col-1"><i class="bi bi-geo-alt"></i></div>
+															<div class="px-0 col-11">${item.conHallNm}</div>
+															<div class="text-center px-0 col-1"><i class="fas fa-chair"></i></div>
+															<div class="px-0 col-11">${item.seatNo} (${item.seatType})</div>
+															<div class="text-center px-0 col-1"><i class="material-icons">person</i></div>
+															<div class="px-0 col-11">${item.userName}</div>
+														</div>
+			
+															<!-- Price and Button -->
+															<div class="d-sm-flex justify-content-sm-between align-items-center mt-3 mt-md-auto">
+																<!-- Button -->
+																<div class="d-flex align-items-center">
+																	<div class="fw-bold mb-0 mx-1 text-secondary title" style="font-size: 24px">₩ ${item.seatPrice}</div>
+																</div>
+															</div>
+														</div>
 													</div>
-												</div>
-
-												<!-- Button -->
-												<div class="mt-2 mt-md-0">
-													<a href="${path}/camp-detail" class="btn btn-custom2 mb-0">예약 정보</a>
-													<p class="text-danger text-sm-end mb-0">취소 됨</p>
 												</div>
 											</div>
-
-											<!-- Card body -->
-											<div class="card-body">
-												<div class="row g-3">
-													<div class="col-sm-6 col-md-5">
-														<span>예약 날짜</span>
-														<h6 class="mb-0">2023.05.13(토) ~ 2023.05.14(일)</h6>
-													</div>
-
-													<div class="col-sm-6 col-md-3">
-														<span>체크인/체크아웃</span>
-														<h6 class="mb-0">15:00 ~ 11:00</h6>
-													</div>
-
-													<div class="col-md-4">
-														<span>예약자</span>
-														<h6 class="mb-0">테스트계정</h6>
-													</div>
-												</div>
-											</div>
-										</div>
-										<!-- Card item END -->
+											<!-- Wishlist item END -->
+										</c:forEach>
 									</div>
 									<!-- Tabs content item END -->
 
 									<!-- Tab content item START -->
 									<div class="tab-pane fade" id="tab-3">
-										<div class="bg-custom shadow p-4 rounded overflow-hidden">
-											<div class="row g-4 align-items-center">
-												<!-- Content -->
-												<div class="col-md-9">
-													<h6 class="Orange">현재까지 예약한 적이 없습니다.</h6>
-													<h4 class="mb-2">예약을 하면 여기에 표시됩니다.</h4>
-													<a href="${path}/hotel-list.html" class="btn btn-custom mb-0">지금 예약 시작</a>
-												</div>
-												<!-- Image -->
-												<div class="col-md-3 text-end">
-													<img src="${path}/resources/assets/images/element/17.svg" class="mb-n5" alt="">
+										<c:if test="${empty complete}">
+											<div class="bg-custom shadow p-4 rounded overflow-hidden">
+												<div class="row g-4 align-items-center">
+													<!-- Content -->
+													<div class="col-md-9">
+														<h6 class="Orange">현재까지 예약한 적이 없습니다.</h6>
+														<h4 class="mb-2 title">예약을 하면 여기에 표시됩니다.</h4>
+													</div>
+													<!-- Image -->
+													<div class="col-md-3 text-end">
+														<img src="${path}/resources/assets/images/element/17.svg" class="mb-n5" alt="">
+													</div>
 												</div>
 											</div>
-										</div>
+										</c:if>
+										<c:forEach var="item" items="${complete}">
+											<!-- Wishlist item START -->
+											<div class="card shadow p-2 position-relative mb-3" id="resv-${item.resvNo}">
+												<div class="row g-0">
+													<!-- Card img -->
+													<div class="col-md-3">
+														<img src="${item.posterImg}" class="card-img rounded-2" alt="Card image">
+													</div>
+			
+													<!-- Card body -->
+													<div class="col-md-9">
+														<div class="card-body py-md-2 d-flex flex-column h-100">
+			
+															<!-- Rating and buttons -->
+															<div class="d-flex justify-content-between align-items-center">
+																<ul class="list-inline mb-0">
+																	<!-- Cancel icon -->
+																	<li class="list-inline-item">
+																		<a class="btn btn-info mb-0" style="z-index: 99; position: absolute; top: 15px; right: 20px;" onclick="javascript: void()">
+																			완료된 예약
+																		</a>
+																	</li>
+																</ul>
+															</div>
+			
+															<!-- Title -->
+															<h5 class="card-title mb-2 title">
+																<a href="${path}/conc-detail?conId=${item.conId}" class="stretched-link">
+																	${item.conNm}
+																</a>
+															</h5>
+														<div class="row g-2 mt-1">
+															<div class="text-center px-0 col-1"><i class='far fa-calendar'></i></div>
+															<div class="px-0 col-11"><fmt:formatDate value="${item.resvTime}" pattern="yyyy.MM.dd HH:mm"/></div>
+															<div class="text-center px-0 col-1"><i class="bi bi-geo-alt"></i></div>
+															<div class="px-0 col-11">${item.conHallNm}</div>
+															<div class="text-center px-0 col-1"><i class="fas fa-chair"></i></div>
+															<div class="px-0 col-11">${item.seatNo} (${item.seatType})</div>
+															<div class="text-center px-0 col-1"><i class="material-icons">person</i></div>
+															<div class="px-0 col-11">${item.userName}</div>
+														</div>
+			
+															<!-- Price and Button -->
+															<div class="d-sm-flex justify-content-sm-between align-items-center mt-3 mt-md-auto">
+																<!-- Button -->
+																<div class="d-flex align-items-center">
+																	<div class="fw-bold mb-0 mx-1 text-secondary title" style="font-size: 24px">₩ ${item.seatPrice}</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<!-- Wishlist item END -->
+										</c:forEach>
 
 									</div>
 									<!-- Tabs content item END -->
@@ -339,4 +356,33 @@ Content END -->
 	</main>
 	<!-- **************** MAIN CONTENT END **************** -->
 
+
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
+
+<script type="text/javascript">
+$(document).ready(function () {
+    $('.delete-resv').click(function () {
+        if (confirm('정말 예매를 취소하시겠습니까?')) {
+            var resvNo = $(this).data('resvno');
+            var targetId = 'resv-' + resvNo;
+            var requestData = JSON.stringify({
+                "resvNo": resvNo,
+            });
+
+            $.ajax({
+                url: '${path}/cancel-booking',
+                type: 'POST',
+                contentType: 'application/json',
+                data: requestData,
+                success: function () {
+                    $('#' + targetId).remove();
+                    alert('예매가 취소되었습니다.');
+                },
+                error: function () {
+                    alert('Error!');
+                }
+            });
+        }
+    });
+});
+</script>

@@ -165,24 +165,6 @@ CREATE TABLE member (
 SELECT * FROM member;
 DELETE FROM member WHERE mno = 13;
 
--- 예약 테이블
-DROP TABLE reserve;
-CREATE TABLE reserve (
-	resvNo		INT PRIMARY KEY AUTO_INCREMENT,
-    mno			INT,
-    category	VARCHAR(50),
-    resvName 	VARCHAR(15),
-    resvTel		VARCHAR(100),
-    numOfPeople	INT,
-    resvPrice	INT,
-    resvDate	DATETIME,
-    resvStatus	DATETIME,
-    FOREIGN KEY (mno) REFERENCES memberInfo(mno) ON DELETE CASCADE
-);
-
-SELECT * FROM reserve;
-
-
 -- 캠핑 북마크 테이블
 DROP TABLE campBookmark;
 CREATE TABLE campBookmark (
@@ -194,7 +176,6 @@ CREATE TABLE campBookmark (
 );
 
 SELECT * FROM campBookmark;
-
 
 -- 공연 북마크 테이블
 DROP TABLE concBookmark;
@@ -211,6 +192,8 @@ SELECT * FROM member;
 SELECT * FROM concert LIMIT 1;
 INSERT INTO concBookmark VALUES('PF217342', 7, DEFAULT);
 DELETE FROM concBookmark WHERE conId = 'PF217342' AND mno = 7;
+-- 북마크 수 구하기
+SELECT conId, count(*) AS bookmarks FROM concBookmark WHERE conId = 'PF218950' GROUP BY conId;
 
 SELECT * FROM concert WHERE conId = 'PF217344';
 SELECT Conc.*, Hall.la, Hall.lo FROM concert Conc JOIN conHall Hall ON(Conc.conHallId = Hall.conHallId) WHERE Conc.conId = 'PF217344';
@@ -253,6 +236,252 @@ CREATE TABLE reply(
 );
 
 SELECT * FROM reply;
+
+-- 공연장 좌석 테이블
+DROP TABLE seat;
+CREATE TABLE seat (
+	seatId		INT PRIMARY KEY AUTO_INCREMENT,
+    conHallId	VARCHAR(100),
+    seatNo		VARCHAR(20),
+    seatType	VARCHAR(20),
+    seatPrice	INT,
+    FOREIGN KEY (conHallId) REFERENCES conHall(conHallId) ON DELETE SET NULL
+);
+
+SELECT * FROM seat;
+
+-- 예약 테이블
+DROP TABLE concReserve;
+CREATE TABLE concReserve (
+	resvNo		INT PRIMARY KEY AUTO_INCREMENT,
+    mno			INT,
+    conId		VARCHAR(100),
+    conHallId	VARCHAR(100),
+    seatNo		VARCHAR(20),
+    seatType	VARCHAR(20),
+    userName 	VARCHAR(15),
+    tel			VARCHAR(100),
+    resvTime	DATETIME,
+    status	VARCHAR(1) DEFAULT 'Y',
+    FOREIGN KEY (mno) REFERENCES member(mno) ON DELETE CASCADE,
+    FOREIGN KEY (conHallId) REFERENCES seat(conHallId) ON DELETE CASCADE,
+    FOREIGN KEY (conId) REFERENCES concert(conId) ON DELETE CASCADE
+);
+
+SELECT * FROM concReserve;
+INSERT INTO concReserve VALUES(DEFAULT, 1, 'FC003045', 'PF215902', 'A-1', 'R석', '지석환', '01011112222', '2023-06-10 15:00', DEFAULT);
+INSERT INTO concReserve VALUES(DEFAULT, 1, 'FC003045', 'PF215902', 'A-2', 'R석', '지석환', '01011112222', '2023-06-10 15:00', DEFAULT);
+INSERT INTO concReserve VALUES(DEFAULT, 1, 'FC003045', 'PF215902', 'D-1', 'S석', '지석환', '01011112222', '2023-06-10 15:00', DEFAULT);
+INSERT INTO concReserve VALUES(DEFAULT, 1, 'FC003045', 'PF215902', 'A-1', 'R석', '지석환', '01011112222', '2023-06-10 19:00', DEFAULT);
+SELECT * FROM member;
+SELECT * FROM concert WHERE conId = 'PF215902';
+SELECT * FROM seat;
+
+SELECT seatType, COUNT(*) AS count FROM concReserve WHERE conHallId = 'FC003045' AND resvTime = '2023-06-10 15:00:00' GROUP BY seatType;
+
+SELECT
+	IFNULL(MAX(CASE WHEN seatType = 'R석' THEN count END), 0) AS 'R',
+    IFNULL(MAX(CASE WHEN seatType = 'S석' THEN count END), 0) AS 'S',
+    IFNULL(MAX(CASE WHEN seatType = 'A석' THEN count END), 0) AS 'A'
+FROM
+	(SELECT resvTime, seatType, COUNT(*) AS count
+		FROM concReserve
+		WHERE conHallId = 'FC003045'
+		AND resvTime = '2023-06-10 15:00:00'
+		GROUP BY seatType) AS subquery;
+    
+SELECT resvTime, seatType, COUNT(*) AS count
+	FROM concReserve
+	WHERE conHallId = 'FC003045'
+	GROUP BY resvTime, seatType
+	ORDER BY resvTime;
+
+
+
+
+-- 공연 스케줄 테이블
+DROP TABLE concSchedule;
+CREATE TABLE concSchedule (
+	conTime		DATETIME,
+    conId		VARCHAR(100),
+    conHallId	VARCHAR(100),
+    FOREIGN KEY (conId) REFERENCES concert(conId) ON DELETE CASCADE,
+    FOREIGN KEY (conHallId) REFERENCES conHall(conHallId) ON DELETE CASCADE
+);
+
+SELECT * FROM concSchedule;
+
+-- 스케줄 테이블 초기화
+INSERT INTO concSchedule VALUES('2023-06-4 15:00:00', 'PF215902', 'FC003045');
+INSERT INTO concSchedule VALUES('2023-06-4 19:00:00', 'PF215902', 'FC003045');
+INSERT INTO concSchedule VALUES('2023-06-5 20:00:00', 'PF215902', 'FC003045');
+INSERT INTO concSchedule VALUES('2023-06-6 20:00:00', 'PF215902', 'FC003045');
+INSERT INTO concSchedule VALUES('2023-06-7 16:00:00', 'PF215902', 'FC003045');
+INSERT INTO concSchedule VALUES('2023-06-7 20:00:00', 'PF215902', 'FC003045');
+INSERT INTO concSchedule VALUES('2023-06-8 20:00:00', 'PF215902', 'FC003045');
+INSERT INTO concSchedule VALUES('2023-06-9 20:00:00', 'PF215902', 'FC003045');
+INSERT INTO concSchedule VALUES('2023-06-10 15:00:00', 'PF215902', 'FC003045');
+INSERT INTO concSchedule VALUES('2023-06-10 19:00:00', 'PF215902', 'FC003045');
+
+SELECT conTime FROM concSchedule WHERE conHallId = 'FC003045' AND conTime LIKE '2023-06-10%';
+
+SELECT S.* FROM concSchedule S;
+
+SELECT	count(CASE WHEN seatType='R석' THEN 1 END) AS R석,
+		count(CASE WHEN seatType='S석' THEN 1 END) AS S석,
+		count(CASE WHEN seatType='A석' THEN 1 END) AS A석 FROM seat;
+
+SELECT seatType, count(*) FROM seat WHERE conHallId = 'FC003045' GROUP BY seatType;
+
+-- 선택한 일자의 회차별 잔여 좌석 조회 쿼리
+SELECT
+    cs.conTime AS startTime,
+    COALESCE(t.R - booked.R, t.R) AS R,
+    COALESCE(t.S - booked.S, t.S) AS S,
+    COALESCE(t.A - booked.A, t.A) AS A
+FROM
+    concSchedule cs
+    JOIN
+    (
+        SELECT
+            IFNULL(MAX(CASE WHEN seatType = 'R석' THEN count END), 0) AS 'R',
+            IFNULL(MAX(CASE WHEN seatType = 'S석' THEN count END), 0) AS 'S',
+            IFNULL(MAX(CASE WHEN seatType = 'A석' THEN count END), 0) AS 'A'
+        FROM
+            (
+                SELECT seatType, COUNT(*) AS count
+                FROM seat
+                WHERE conHallId = 'FC003045'
+                GROUP BY seatType
+            ) AS subquery
+    ) AS t
+    LEFT JOIN
+    (
+        SELECT
+            resvTime,
+            SUM(CASE WHEN seatType = 'R석' THEN count ELSE 0 END) AS R,
+            SUM(CASE WHEN seatType = 'S석' THEN count ELSE 0 END) AS S,
+            SUM(CASE WHEN seatType = 'A석' THEN count ELSE 0 END) AS A
+        FROM
+            (
+                SELECT resvTime, seatType,  COUNT(*) AS count
+                FROM concReserve
+                WHERE conHallId = 'FC003045'
+                AND status = 'Y'
+                GROUP BY resvTime, seatType
+            ) AS subquery
+        GROUP BY resvTime
+    ) booked ON (booked.resvTime = cs.conTime)
+WHERE conTime LIKE '2023-06-10%'
+ORDER BY conTime;
+
+-- 좌석별 가격 조회 쿼리
+SELECT
+	  MAX(CASE WHEN seatType = 'R석' THEN seatPrice END) AS R,
+	  MAX(CASE WHEN seatType = 'S석' THEN seatPrice END) AS S,
+	  MAX(CASE WHEN seatType = 'A석' THEN seatPrice END) AS A
+FROM seat
+WHERE conHallId = 'FC003045'
+GROUP BY conHallId;
+
+-- 이미 예약된 좌석 조회 쿼리
+SELECT S.seatNo FROM concReserve R
+JOIN (
+	SELECT * FROM seat
+) S ON (R.seatNo = S.seatNo)
+WHERE R.conHallId = 'FC003045' AND R.resvTime = '2023-06-10 15:00:00' AND R.status = 'Y';
+
+-- 좌석 테이블 초기화
+INSERT INTO seat VALUES(DEFAULT, 'FC003045', 'A-1', 'R석', 60000);
+INSERT INTO seat VALUES(DEFAULT, 'FC003045', 'A-2', 'R석', 60000);
+INSERT INTO seat VALUES(DEFAULT, 'FC003045', 'A-3', 'R석', 60000);
+INSERT INTO seat VALUES(DEFAULT, 'FC003045', 'A-4', 'R석', 60000);
+INSERT INTO seat VALUES(DEFAULT, 'FC003045', 'A-5', 'R석', 60000);
+INSERT INTO seat VALUES(DEFAULT, 'FC003045', 'A-6', 'R석', 60000);
+INSERT INTO seat VALUES(DEFAULT, 'FC003045', 'A-7', 'R석', 60000);
+INSERT INTO seat VALUES(DEFAULT, 'FC003045', 'A-8', 'R석', 60000);
+INSERT INTO seat VALUES(DEFAULT, 'FC003045', 'A-9', 'R석', 60000);
+INSERT INTO seat VALUES(DEFAULT, 'FC003045', 'A-10', 'R석', 60000);
+INSERT INTO seat VALUES(DEFAULT, 'FC003045', 'A-11', 'R석', 60000);
+INSERT INTO seat VALUES(DEFAULT, 'FC003045', 'A-12', 'R석', 60000);
+INSERT INTO seat VALUES(DEFAULT, 'FC003045', 'A-13', 'R석', 60000);
+INSERT INTO seat VALUES(DEFAULT, 'FC003045', 'A-14', 'R석', 60000);
+INSERT INTO seat VALUES(DEFAULT, 'FC003045', 'A-15', 'R석', 60000);
+INSERT INTO seat VALUES(DEFAULT, 'FC003045', 'B-1', 'R석', 60000);
+INSERT INTO seat VALUES(DEFAULT, 'FC003045', 'B-2', 'R석', 60000);
+INSERT INTO seat VALUES(DEFAULT, 'FC003045', 'B-3', 'R석', 60000);
+INSERT INTO seat VALUES(DEFAULT, 'FC003045', 'B-4', 'R석', 60000);
+INSERT INTO seat VALUES(DEFAULT, 'FC003045', 'B-5', 'R석', 60000);
+INSERT INTO seat VALUES(DEFAULT, 'FC003045', 'B-6', 'R석', 60000);
+INSERT INTO seat VALUES(DEFAULT, 'FC003045', 'B-7', 'R석', 60000);
+INSERT INTO seat VALUES(DEFAULT, 'FC003045', 'B-8', 'R석', 60000);
+INSERT INTO seat VALUES(DEFAULT, 'FC003045', 'B-9', 'R석', 60000);
+INSERT INTO seat VALUES(DEFAULT, 'FC003045', 'B-10', 'R석', 60000);
+INSERT INTO seat VALUES(DEFAULT, 'FC003045', 'B-11', 'R석', 60000);
+INSERT INTO seat VALUES(DEFAULT, 'FC003045', 'B-12', 'R석', 60000);
+INSERT INTO seat VALUES(DEFAULT, 'FC003045', 'B-13', 'R석', 60000);
+INSERT INTO seat VALUES(DEFAULT, 'FC003045', 'B-14', 'R석', 60000);
+INSERT INTO seat VALUES(DEFAULT, 'FC003045', 'B-15', 'R석', 60000);
+INSERT INTO seat VALUES(DEFAULT, 'FC003045', 'C-1', 'R석', 60000);
+INSERT INTO seat VALUES(DEFAULT, 'FC003045', 'C-2', 'R석', 60000);
+INSERT INTO seat VALUES(DEFAULT, 'FC003045', 'C-3', 'R석', 60000);
+INSERT INTO seat VALUES(DEFAULT, 'FC003045', 'C-4', 'R석', 60000);
+INSERT INTO seat VALUES(DEFAULT, 'FC003045', 'C-5', 'R석', 60000);
+INSERT INTO seat VALUES(DEFAULT, 'FC003045', 'C-6', 'R석', 60000);
+INSERT INTO seat VALUES(DEFAULT, 'FC003045', 'C-7', 'R석', 60000);
+INSERT INTO seat VALUES(DEFAULT, 'FC003045', 'C-8', 'R석', 60000);
+INSERT INTO seat VALUES(DEFAULT, 'FC003045', 'C-9', 'R석', 60000);
+INSERT INTO seat VALUES(DEFAULT, 'FC003045', 'C-10', 'R석', 60000);
+INSERT INTO seat VALUES(DEFAULT, 'FC003045', 'C-11', 'R석', 60000);
+INSERT INTO seat VALUES(DEFAULT, 'FC003045', 'C-12', 'R석', 60000);
+INSERT INTO seat VALUES(DEFAULT, 'FC003045', 'C-13', 'R석', 60000);
+INSERT INTO seat VALUES(DEFAULT, 'FC003045', 'C-14', 'R석', 60000);
+INSERT INTO seat VALUES(DEFAULT, 'FC003045', 'C-15', 'R석', 60000);
+INSERT INTO seat VALUES(DEFAULT, 'FC003045', 'D-1', 'S석', 50000);
+INSERT INTO seat VALUES(DEFAULT, 'FC003045', 'D-2', 'S석', 50000);
+INSERT INTO seat VALUES(DEFAULT, 'FC003045', 'D-3', 'S석', 50000);
+INSERT INTO seat VALUES(DEFAULT, 'FC003045', 'D-4', 'S석', 50000);
+INSERT INTO seat VALUES(DEFAULT, 'FC003045', 'D-5', 'S석', 50000);
+INSERT INTO seat VALUES(DEFAULT, 'FC003045', 'D-6', 'S석', 50000);
+INSERT INTO seat VALUES(DEFAULT, 'FC003045', 'D-7', 'S석', 50000);
+INSERT INTO seat VALUES(DEFAULT, 'FC003045', 'D-8', 'S석', 50000);
+INSERT INTO seat VALUES(DEFAULT, 'FC003045', 'D-9', 'S석', 50000);
+INSERT INTO seat VALUES(DEFAULT, 'FC003045', 'D-10', 'S석', 50000);
+INSERT INTO seat VALUES(DEFAULT, 'FC003045', 'D-11', 'S석', 50000);
+INSERT INTO seat VALUES(DEFAULT, 'FC003045', 'D-12', 'S석', 50000);
+INSERT INTO seat VALUES(DEFAULT, 'FC003045', 'D-13', 'S석', 50000);
+INSERT INTO seat VALUES(DEFAULT, 'FC003045', 'D-14', 'S석', 50000);
+INSERT INTO seat VALUES(DEFAULT, 'FC003045', 'D-15', 'S석', 50000);
+INSERT INTO seat VALUES(DEFAULT, 'FC003045', 'E-1', 'S석', 50000);
+INSERT INTO seat VALUES(DEFAULT, 'FC003045', 'E-2', 'S석', 50000);
+INSERT INTO seat VALUES(DEFAULT, 'FC003045', 'E-3', 'S석', 50000);
+INSERT INTO seat VALUES(DEFAULT, 'FC003045', 'E-4', 'S석', 50000);
+INSERT INTO seat VALUES(DEFAULT, 'FC003045', 'E-5', 'S석', 50000);
+INSERT INTO seat VALUES(DEFAULT, 'FC003045', 'E-6', 'S석', 50000);
+INSERT INTO seat VALUES(DEFAULT, 'FC003045', 'E-7', 'S석', 50000);
+INSERT INTO seat VALUES(DEFAULT, 'FC003045', 'E-8', 'S석', 50000);
+INSERT INTO seat VALUES(DEFAULT, 'FC003045', 'E-9', 'S석', 50000);
+INSERT INTO seat VALUES(DEFAULT, 'FC003045', 'E-10', 'S석', 50000);
+INSERT INTO seat VALUES(DEFAULT, 'FC003045', 'E-11', 'S석', 50000);
+INSERT INTO seat VALUES(DEFAULT, 'FC003045', 'E-12', 'S석', 50000);
+INSERT INTO seat VALUES(DEFAULT, 'FC003045', 'E-13', 'S석', 50000);
+INSERT INTO seat VALUES(DEFAULT, 'FC003045', 'E-14', 'S석', 50000);
+INSERT INTO seat VALUES(DEFAULT, 'FC003045', 'E-15', 'S석', 50000);
+INSERT INTO seat VALUES(DEFAULT, 'FC003045', 'F-1', 'S석', 50000);
+INSERT INTO seat VALUES(DEFAULT, 'FC003045', 'F-2', 'S석', 50000);
+INSERT INTO seat VALUES(DEFAULT, 'FC003045', 'F-3', 'S석', 50000);
+INSERT INTO seat VALUES(DEFAULT, 'FC003045', 'F-4', 'S석', 50000);
+INSERT INTO seat VALUES(DEFAULT, 'FC003045', 'F-5', 'S석', 50000);
+INSERT INTO seat VALUES(DEFAULT, 'FC003045', 'F-6', 'S석', 50000);
+INSERT INTO seat VALUES(DEFAULT, 'FC003045', 'F-7', 'S석', 50000);
+INSERT INTO seat VALUES(DEFAULT, 'FC003045', 'F-8', 'S석', 50000);
+INSERT INTO seat VALUES(DEFAULT, 'FC003045', 'F-9', 'S석', 50000);
+INSERT INTO seat VALUES(DEFAULT, 'FC003045', 'F-10', 'S석', 50000);
+INSERT INTO seat VALUES(DEFAULT, 'FC003045', 'F-11', 'S석', 50000);
+INSERT INTO seat VALUES(DEFAULT, 'FC003045', 'F-12', 'S석', 50000);
+INSERT INTO seat VALUES(DEFAULT, 'FC003045', 'F-13', 'S석', 50000);
+INSERT INTO seat VALUES(DEFAULT, 'FC003045', 'F-14', 'S석', 50000);
+INSERT INTO seat VALUES(DEFAULT, 'FC003045', 'F-15', 'S석', 50000);
 
 ------------------------------- 테이블 끝 -------------------------------
 
@@ -352,18 +581,41 @@ FROM campSiteInfo
 WHERE manStatus = '운영'
 ORDER BY views;
 
--- 공연 검색
-SELECT conId, conNm, genre, startDate, endDate, conHallNm, posterImg, minPrice
-FROM concert
-WHERE status = 'Y'
-AND conNm LIKE '%인어공주%';
+-- 공연 검색 'PF218950'
+SELECT C.conId, C.conNm, C.genre, C.startDate, C.endDate, C.conHallNm, C.posterImg, C.minPrice
+FROM concert C
+LEFT JOIN (
+	SELECT conId, count(*) AS bookmarks
+	FROM concBookmark
+	GROUP BY conId
+) bookmarks ON C.conId = bookmarks.conId
+WHERE C.status = 'Y'
+ORDER BY bookmarks.bookmarks DESC;
 
-SELECT * FROM concert WHERE conNm LIKE '%포항뮤직%';
+SELECT * FROM concert ORDER BY views DESC;
 
 -- 공연 상세
-SELECT Conc.*, Hall.la, Hall.lo FROM concert Conc
-JOIN conHall Hall ON(Conc.conHallId = Hall.conHallId)
-WHERE conId = 'PF217342';
+SELECT Conc.*, Hall.la, Hall.lo, bookmarks.bookmarks
+FROM concert Conc
+JOIN conHall Hall ON Conc.conHallId = Hall.conHallId
+JOIN (
+	SELECT conId, count(*) AS bookmarks
+	FROM concBookmark
+	WHERE conId = 'PF218950'
+	GROUP BY conId
+) bookmarks ON Conc.conId = bookmarks.conId
+WHERE Conc.conId = 'PF218950';
+
+SELECT Conc.*, Hall.la, Hall.lo, bookmarks.bookmarks FROM concert Conc
+LEFT JOIN conHall Hall ON Conc.conHallId = Hall.conHallId
+LEFT JOIN (
+	SELECT conId, count(*) AS bookmarks
+    FROM concBookmark
+    WHERE conId = 'PF218968'
+    GROUP BY conId
+) bookmarks ON Conc.conId = bookmarks.conId WHERE Conc.conId = 'PF218968';
+
+
 
 SELECT Conc.*, Hall.la, Hall.lo FROM concert Conc
 JOIN conHall Hall ON(Conc.conHallId = Hall.conHallId)
@@ -376,3 +628,14 @@ SELECT contentID, campNm, lineIntro, addr, tel, img FROM campSiteInfo WHERE loca
 SELECT C.conNm, C.genre, C.conHallNm, C.minPrice, C.posterImg, C.conId, C.startDate, C.endDate, C.cast, C.runtime
 FROM concert C JOIN concBookmark B ON(C.conId = B.conId)
 WHERE C.status = 'Y' AND B.mno = 7;
+
+SELECT * FROM concert WHERE genre = '연극';
+SELECT * FROM conHall WHERE conHallId='FC001247';
+
+SELECT * FROM concReserve;
+-- 나의 예약정보 조회 / Y: 다가오는 예약, N: 취소된 예약, 'E': 완료된 예약
+SELECT cr.*, conc.posterImg, hall.conHallNm
+	FROM concReserve cr
+	JOIN concert conc ON (conc.conId = cr.conId)
+    JOIN conHall hall ON (cr.conHallId = cr.conHallId)
+    WHERE cr.mno = 1 AND cr.status = 'Y';

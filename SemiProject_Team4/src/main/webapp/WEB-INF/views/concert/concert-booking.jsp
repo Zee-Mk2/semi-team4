@@ -19,6 +19,7 @@
 <script src="${path}/resources/assets/vendor/tiny-slider/tiny-slider.js"></script>
 <script src="${path}/resources/assets/vendor/glightbox/js/glightbox.js"></script>
 <script src="${path}/resources/assets/vendor/choices/js/choices.min.js"></script>
+<script src="${path}/resources/assets/vendor/flatpickr/ko.js"></script>
 <script src="${path}/resources/assets/vendor/flatpickr/js/flatpickr.min.js"></script>
 <script src="${path}/resources/assets/vendor/stepper/js/bs-stepper.min.js"></script>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
@@ -41,8 +42,8 @@
 										<!-- Breadcrumb -->
 										<nav aria-label="breadcrumb">
 											<ol class="breadcrumb breadcrumb-dark mb-0">
-												<li class="breadcrumb-item"><a href="index-concert.html">메인</a></li>
-												<li class="breadcrumb-item"><a href="concert-detail.html">공연장 상세</a>
+												<li class="breadcrumb-item"><a href="${path}/conc-home">메인</a></li>
+												<li class="breadcrumb-item"><a href="${path}/conc-detail?conId=${conc.conId}">공연장 상세</a>
 												</li>
 												<li class="breadcrumb-item active">예약하기</li>
 											</ol>
@@ -117,7 +118,10 @@
 							<!-- Main content START -->
 							<div class="col-12">
 
-								<form onsubmit="return false">
+								<form action="${path}/conc-booking" method="post" enctype="multipart/form-data">
+									<input type="hidden" value="${conc.conHallId}" name="conHallId">
+									<input type="hidden" value="${conc.conId}" name="conId">
+									<input type="hidden" value="${sessionScope.loginMember.mno}" name="mno">
 
 									<!-- Step 1 content START -->
 									<div id="step-1" role="tabpanel" class="content fade"
@@ -126,10 +130,10 @@
 											<div class="col-6">
 												<!-- Glightbox image -->
 												<div class="mb-4" style="position: relative;">
-													<img src="https://image.toast.com/aaaaab/ticketlink/TKL_8/main0518(1).jpg"
+													<img src="${conc.posterImg}"
 														class="rounded-2 w-100">
 													<!-- Glightbox image -->
-													<a href="https://image.toast.com/aaaaab/ticketlink/TKL_8/main0518(1).jpg"
+													<a href="${conc.posterImg}"
 														class="stretched-link overflow-hidden" data-glightbox=""
 														data-gallery="banner">
 													</a>
@@ -142,47 +146,52 @@
 													<!-- Card header -->
 													<div class="card-header border-bottom">
 														<!-- Title -->
-														<h5 class="title mb-0">뮤지컬<레드북></h5>
+														<h5 class="title mb-0">${conc.genre} <${conc.conNm}></h5>
 													</div>
 
 													<!-- Card body START -->
 													<div class="card-body">
 														<ul class="list-group list-group-borderless">
 															<li
-																class="list-group-item d-flex justify-content-between align-items-center pt-0">
+																class="list-group-item d-flex justify-content-between align-items-center py-1">
 																<span class="fs-6 fw-bold">장소</span>
-																<span class="h6 mb-0 fw-bold">홍익대 대학로 아트센터 대극장</span>
+																<span class="h6 mb-0 fw-bold">${conc.conHallNm}</span>
 															</li>
 															<li
-																class="list-group-item d-flex justify-content-between align-items-center pt-0">
+																class="list-group-item d-flex justify-content-between align-items-center py-1">
 																<span class="fs-6 fw-bold">기간</span>
-																<span class="h6 mb-0 fw-bold">2023.03.14 - 2023.05.28</span>
+																<span class="h6 mb-0 fw-bold">
+																	<fmt:formatDate var="fmtStartDate" value="${conc.startDate}" pattern="yyyy.MM.dd"/>
+																	<fmt:formatDate var="fmtEndDate" value="${conc.endDate}" pattern="yyyy.MM.dd"/>
+																	${fmtStartDate} ~ ${fmtEndDate}
+																 </span>
 															</li>
 															<li
-																class="list-group-item d-flex justify-content-between align-items-center pt-0">
+																class="list-group-item d-flex justify-content-between align-items-center py-1">
 																<span class="fs-6 fw-bold">관람시간</span>
-																<span class="h6 mb-0 fw-bold">160분(인터미션:15분)</span>
+																<span class="h6 mb-0 fw-bold">${conc.runtime}</span>
 															</li>
 															<li
-																class="list-group-item d-flex justify-content-between align-items-center pt-0">
+																class="list-group-item d-flex justify-content-between align-items-center py-1">
 																<span class="fs-6 fw-bold">관람등급</span>
-																<span class="h6 mb-0 fw-bold">중학생이상관람가</span>
+																<c:if test="${conc.viewAge == 0}">
+																	<span class="h6 mb-0 fw-bold">전체관람가</span>
+																</c:if>
+																<c:if test="${conc.viewAge != 0}">
+																	<span class="h6 mb-0 fw-bold">${conc.viewAge}세 이상 관람가</span>
+																</c:if>
+															</li>
+															<li
+																class="list-group-item d-flex justify-content-between align-items-center py-1">
+																<span class="fs-6 fw-bold">공연시간</span>
+																<span class="h6 mb-0 fw-bold text-end">${conc.startTime}</span>
+															</li>
+															<li
+																class="list-group-item d-flex justify-content-between align-items-center py-1">
+																<span class="fs-6 fw-bold">가격</span>
+																<span class="h6 mb-0 fw-bold text-end">${conc.ticketPrice}</span>
 															</li>
 														</ul>
-															<br>
-														<div class="text-black">
-															<ul>
-															<li>
-																<h6 class="strong">공연시간</h6>
-																<p>화, 목, 금 19시 30분 / 수 15시, 19시 30분 / 주말 14시, 18시 30분 (월요일 공연 없음)<br>
-																	※ 05월 19일(금), 05월 22일(월), 05월 23일(화), 05월 26일(금) 15시, 19시 30분 공연​</p>
-															</li>
-															<li>
-																<h6 class="strong">가격</h6>
-																<p>VIP석 <b>110,000</b>원 <br>R석 <b>90,000</b>원 <br>S석 <b>65,000</b>원</p>
-															</li>
-														</ul>
-														</div>	
 													</div>
 													<!-- Card body END -->
 												</div>
@@ -231,13 +240,19 @@
 											
 										</div>
 
-
 										<div class="row mt-4 mb-4">
 											<div class="col-6">
 												<div class="card border p-3">
 													<div class="h5 title mt-3">1. 날짜 선택</div>
 													<div class="form-border-bottom form-control-transparent form-fs-lg mt-2">
-														<input type="text" class="form-control flatpickr py-2" data-date-format="Y-m-d" placeholder="예매일자를 선택해주세요">
+														<input id="datePicker" type="text" class="form-control py-2" data-date-format="Y-m-d" placeholder="예매일자를 선택해주세요">
+													    <script>
+													        flatpickr("#datePicker", {
+													        	locale: Korean,
+													        	minDate: "${fmtStartDate}",
+													        	maxDate: "${fmtEndDate}",
+													        });
+													    </script>
 													</div>
 												</div>
 											</div>
@@ -246,170 +261,19 @@
 												<div class="card border p-3">
 												
 													<div class="h5 title mt-3">2. 회차 선택</div>
-													<input class="form-check-input card-radio" type="radio" name="area-select">
-													<div class="card border mb-3"> 
-														<label class="card-label card area-card">
-															<input class="form-check-input card-radio" type="radio" name="time-select">
-															<div class="p-2">
-																<div class="h6 title">15시 00분</div>
-																<div class="fs-6 fw-bold">출연진</div>
-																<div class="h6">옥주현, 신성민, 조풍래, 김국희, 원종환, 안창용, 허순미, 김연진, 이다정</div>
-															</div>
-														</label>
-													</div>
-													<div class="card border mb-3"> 
-														<label class="card-label card area-card">
-															<input class="form-check-input card-radio" type="radio" name="time-select">
-															<div class="p-2">
-																<div class="h6 title">19시 30분</div>
-																<div class="fs-6 fw-bold">출연진</div>
-																<div class="h6">박진주, 신성민, 박영수, 김국희, 원종환, 안창용, 허순미, 김연진, 이다정</div>
-															</div>
-														</label>
-													</div>
-															
-													<div>
-														<div class="h5 title mt-3">잔여 좌석</div>
-														<div class="row">
-															<p class="col">
-																<span class="fs-6">VIP석</span>
-																<span class="h6"> 45석</span>
-															</p>
-															<p class="col">
-																<span class="fs-6">R석</span>
-																<span class="h6"> 60석</span>
-															</p>
-															<p class="col">
-																<span class="fs-6">S석</span>
-																<span class="h6"> 3석</span>
-															</p>
-														</div>
-													</div>
+													<div id="selectSchedule">예매일자를 선택해주세요</div>
 												</div>
 												
 											</div>
 										</div>
 
-
-										<!-- 출연진 슬라이더 시작 -->
-										<div class="my-4">
-											<div class="h5 title mt-3 mb-2">출연진</div>
-											<!-- Slider START -->
-											<div class="tiny-slider arrow-round arrow-blur arrow-hover">
-												<div class="tiny-slider-inner" data-autoplay="true" data-arrow="true" data-edge="2" data-dots="false" data-items="8">
-													<!-- Slider item -->
-													<div>
-														<div class="card rounded-3 overflow-hidden">
-															<div class="row g-0 align-items-center">
-																<img src="http://image.toast.com/aaaaab/ticketlink/TKL_4/안나_옥주현.jpg" class="rounded-circle">
-																<h6 class="text-center">배우명</h6>
-																<h6 class="text-center">배역명</h6>
-															</div>
-														</div>
-													</div>
-													<!-- Slider item -->
-													<div>
-														<div class="card rounded-3 overflow-hidden">
-															<div class="row g-0 align-items-center">
-																<img src="http://image.toast.com/aaaaab/ticketlink/TKL_4/안나_옥주현.jpg" class="rounded-circle">
-																<h6 class="text-center">배우명</h6>
-																<h6 class="text-center">배역명</h6>
-															</div>
-														</div>
-													</div>
-													<!-- Slider item -->
-													<div>
-														<div class="card rounded-3 overflow-hidden">
-															<div class="row g-0 align-items-center">
-																<img src="http://image.toast.com/aaaaab/ticketlink/TKL_4/안나_옥주현.jpg" class="rounded-circle">
-																<h6 class="text-center">배우명</h6>
-																<h6 class="text-center">배역명</h6>
-															</div>
-														</div>
-													</div>
-													<!-- Slider item -->
-													<div>
-														<div class="card rounded-3 overflow-hidden">
-															<div class="row g-0 align-items-center">
-																<img src="http://image.toast.com/aaaaab/ticketlink/TKL_4/안나_옥주현.jpg" class="rounded-circle">
-																<h6 class="text-center">배우명</h6>
-																<h6 class="text-center">배역명</h6>
-															</div>
-														</div>
-													</div>
-													<!-- Slider item -->
-													<div>
-														<div class="card rounded-3 overflow-hidden">
-															<div class="row g-0 align-items-center">
-																<img src="http://image.toast.com/aaaaab/ticketlink/TKL_4/안나_옥주현.jpg" class="rounded-circle">
-																<h6 class="text-center">배우명</h6>
-																<h6 class="text-center">배역명</h6>
-															</div>
-														</div>
-													</div>
-													<!-- Slider item -->
-													<div>
-														<div class="card rounded-3 overflow-hidden">
-															<div class="row g-0 align-items-center">
-																<img src="http://image.toast.com/aaaaab/ticketlink/TKL_4/안나_옥주현.jpg" class="rounded-circle">
-																<h6 class="text-center">배우명</h6>
-																<h6 class="text-center">배역명</h6>
-															</div>
-														</div>
-													</div>
-													<!-- Slider item -->
-													<div>
-														<div class="card rounded-3 overflow-hidden">
-															<div class="row g-0 align-items-center">
-																<img src="http://image.toast.com/aaaaab/ticketlink/TKL_4/안나_옥주현.jpg" class="rounded-circle">
-																<h6 class="text-center">배우명</h6>
-																<h6 class="text-center">배역명</h6>
-															</div>
-														</div>
-													</div>
-													<!-- Slider item -->
-													<div>
-														<div class="card rounded-3 overflow-hidden">
-															<div class="row g-0 align-items-center">
-																<img src="http://image.toast.com/aaaaab/ticketlink/TKL_4/안나_옥주현.jpg" class="rounded-circle">
-																<h6 class="text-center">배우명</h6>
-																<h6 class="text-center">배역명</h6>
-															</div>
-														</div>
-													</div>
-													<!-- Slider item -->
-													<div>
-														<div class="card rounded-3 overflow-hidden">
-															<div class="row g-0 align-items-center">
-																<img src="http://image.toast.com/aaaaab/ticketlink/TKL_4/안나_옥주현.jpg" class="rounded-circle">
-																<h6 class="text-center">배우명</h6>
-																<h6 class="text-center">배역명</h6>
-															</div>
-														</div>
-													</div>
-													<!-- Slider item -->
-													<div>
-														<div class="card rounded-3 overflow-hidden">
-															<div class="row g-0 align-items-center">
-																<img src="http://image.toast.com/aaaaab/ticketlink/TKL_4/안나_옥주현.jpg" class="rounded-circle">
-																<h6 class="text-center">배우명</h6>
-																<h6 class="text-center">배역명</h6>
-															</div>
-														</div>
-													</div>
-
-												</div>
-											</div>
-										</div>
-										<!-- 출연진 슬라이더 끝 -->
-
 										<!-- Step 1 button -->
 										<div class="row">
 											<div class="text-start col-6">
-												<button class="btn btn-info prev-btn mb-0">이전 페이지</button>
+												<a class="btn btn-info prev-btn mb-0" href="${path}/conc-detail?conId=${conc.conId}">이전 페이지</a>
 											</div>
 											<div class="text-end col-6">
-												<button class="btn btn-warning next-btn mb-0">다음 페이지</button>
+												<button type="button" class="btn btn-warning next-btn mb-0" id="seatsPage" disabled="true">다음 페이지</button>
 											</div>
 										</div>
 									</div>
@@ -422,520 +286,282 @@
 											<div class="col-8">
 												<!-- Glightbox image -->
 												<div class="mb-4 position-relative">
-													<img src="https://www.tliart.co.kr/assets/images/seat/seat_bg.png" class="rounded-2 w-100">
+													<img src="${path}/resources/assets/images/hall_seat/seat_bg.png" class="rounded-2 w-100">
 													<!--A-->
-													<label class="select-seat position-absolute r-class" style="top: 15.8rem; left: 4.6rem;">
-														<input type="checkbox" class="seat-checkbox">
+													<label class="select-seat position-absolute r-class" style="top: 15.8em; left: 4.6rem;" id="A-1">
+														<input type="checkbox" class="seat-checkbox" name="seatNo" data-seatno="A-1" data-seattype="R석" data-price="60000" value="A-1 R석">
 													</label>
-													<label class="select-seat position-absolute r-class" style="top: 15.8rem; left: 6.8rem;">
-														<input type="checkbox" class="seat-checkbox">
+													<label class="select-seat position-absolute r-class" style="top: 15.8rem; left: 6.8rem;" id="A-2">
+														<input type="checkbox" class="seat-checkbox" name="seatNo" data-seatno="A-2" data-seattype="R석" data-price="60000" value="A-2 R석">
 													</label>
-													<label class="select-seat position-absolute r-class" style="top: 15.8rem; left: 12.2rem;">
-														<input type="checkbox" class="seat-checkbox">
+													<label class="select-seat position-absolute r-class" style="top: 15.8rem; left: 12.2rem;" id="A-3">
+														<input type="checkbox" class="seat-checkbox" name="seatNo" data-seatno="A-3" data-seattype="R석" data-price="60000" value="A-3 R석">
 													</label>
-													<label class="select-seat position-absolute r-class" style="top: 15.8rem; left: 14.4rem;">
-														<input type="checkbox" class="seat-checkbox">
+													<label class="select-seat position-absolute r-class" style="top: 15.8rem; left: 14.4rem;" id="A-4">
+														<input type="checkbox" class="seat-checkbox" name="seatNo" data-seatno="A-4" data-seattype="R석" data-price="60000" value="A-4 R석">
 													</label>
-													<label class="select-seat position-absolute r-class" style="top: 15.8rem; left: 33.9rem;">
-														<input type="checkbox" class="seat-checkbox">
+													<label class="select-seat position-absolute r-class" style="top: 15.8rem; left: 16.5rem;" id="A-5">
+														<input type="checkbox" class="seat-checkbox" name="seatNo" data-seatno="A-5" data-seattype="R석" data-price="60000" value="A-5 R석">
 													</label>
-													<label class="select-seat position-absolute r-class" style="top: 15.8rem; left: 39.3rem;">
-														<input type="checkbox" class="seat-checkbox">
+													<label class="select-seat position-absolute r-class" style="top: 15.8rem; left: 18.7rem;" id="A-6">
+														<input type="checkbox" class="seat-checkbox" name="seatNo" data-seatno="A-6" data-seattype="R석" data-price="60000" value="A-6 R석">
+													</label>
+													<label class="select-seat position-absolute r-class" style="top: 15.8rem; left: 20.9rem;" id="A-7">
+														<input type="checkbox" class="seat-checkbox" name="seatNo" data-seatno="A-7" data-seattype="R석" data-price="60000" value="A-7 R석">
+													</label>
+													<label class="select-seat position-absolute r-class" style="top: 15.8rem; left: 23.0rem;" id="A-8">
+														<input type="checkbox" class="seat-checkbox" name="seatNo" data-seatno="A-8" data-seattype="R석" data-price="60000" value="A-8 R석">
+													</label>
+													<label class="select-seat position-absolute r-class" style="top: 15.8rem; left: 25.2rem;" id="A-9">
+														<input type="checkbox" class="seat-checkbox" name="seatNo" data-seatno="A-9" data-seattype="R석" data-price="60000" value="A-9 R석">
+													</label>
+													<label class="select-seat position-absolute r-class" style="top: 15.8rem; left: 27.4rem;" id="A-10">
+														<input type="checkbox" class="seat-checkbox" name="seatNo" data-seatno="A-10" data-seattype="R석" data-price="60000" value="A-10 R석">
+													</label>
+													<label class="select-seat position-absolute r-class" style="top: 15.8rem; left: 29.5rem;" id="A-11">
+														<input type="checkbox" class="seat-checkbox" name="seatNo" data-seatno="A-11" data-seattype="R석" data-price="60000" value="A-11 R석">
+													</label>
+													<label class="select-seat position-absolute r-class" style="top: 15.8rem; left: 31.7rem;" id="A-12">
+														<input type="checkbox" class="seat-checkbox" name="seatNo" data-seatno="A-12" data-seattype="R석" data-price="60000" value="A-12 R석">
+													</label>
+													<label class="select-seat position-absolute r-class" style="top: 15.8rem; left: 33.9rem;" id="A-13">
+														<input type="checkbox" class="seat-checkbox" name="seatNo" data-seatno="A-13" data-seattype="R석" data-price="60000" value="A-13 R석">
+													</label>
+													<label class="select-seat position-absolute r-class" style="top: 15.8rem; left: 39.3rem;" id="A-14">
+														<input type="checkbox" class="seat-checkbox" name="seatNo" data-seatno="A-14" data-seattype="R석" data-price="60000" value="A-14 R석">
+													</label>
+													<label class="select-seat position-absolute r-class" style="top: 15.8rem; left: 41.5rem;" id="A-15">
+														<input type="checkbox" class="seat-checkbox" name="seatNo" data-seatno="A-15" data-seattype="R석" data-price="60000" value="A-15 R석">
 													</label>
 													<!--B-->
-													<label class="select-seat position-absolute r-class" style="top: 18rem; left: 6.8rem;">
-														<input type="checkbox" class="seat-checkbox">
+													<label class="select-seat position-absolute r-class" style="top: 18rem; left: 4.6rem;" id="B-1">
+														<input type="checkbox" class="seat-checkbox" name="seatNo" data-seatno="B-1" data-seattype="R석" data-price="60000" value="B-1 R석">
 													</label>
-													<label class="select-seat position-absolute r-class" style="top: 18rem; left: 14.3rem;">
-														<input type="checkbox" class="seat-checkbox">
+													<label class="select-seat position-absolute r-class" style="top: 18rem; left: 6.8rem;" id="B-2">
+														<input type="checkbox" class="seat-checkbox" name="seatNo" data-seatno="B-2" data-seattype="R석" data-price="60000" value="B-2 R석">
 													</label>
-													<label class="select-seat position-absolute r-class" style="top: 18rem; left: 20.9rem;">
-														<input type="checkbox" class="seat-checkbox">
+													<label class="select-seat position-absolute r-class" style="top: 18rem; left: 12.2rem;" id="B-3">
+														<input type="checkbox" class="seat-checkbox" name="seatNo" data-seatno="B-3" data-seattype="R석" data-price="60000" value="B-3 R석">
 													</label>
-													<label class="select-seat position-absolute r-class" style="top: 18rem; left: 31.7rem;">
-														<input type="checkbox" class="seat-checkbox">
+													<label class="select-seat position-absolute r-class" style="top: 18rem; left: 14.4rem;" id="B-4">
+														<input type="checkbox" class="seat-checkbox" name="seatNo" data-seatno="B-4" data-seattype="R석" data-price="60000" value="B-4 R석">
 													</label>
-													<label class="select-seat position-absolute r-class" style="top: 18rem; left: 41.5rem;">
-														<input type="checkbox" class="seat-checkbox">
+													<label class="select-seat position-absolute r-class" style="top: 18rem; left: 16.5rem;" id="B-5">
+														<input type="checkbox" class="seat-checkbox" name="seatNo" data-seatno="B-5" data-seattype="R석" data-price="60000" value="B-5 R석">
 													</label>
-													<!--C-->
-													<label class="select-seat position-absolute r-class" style="top: 20.2rem; left: 4.6rem;">
-														<input type="checkbox" class="seat-checkbox">
+													<label class="select-seat position-absolute r-class" style="top: 18rem; left: 18.7rem;" id="B-6">
+														<input type="checkbox" class="seat-checkbox" name="seatNo" data-seatno="B-6" data-seattype="R석" data-price="60000" value="B-6 R석">
 													</label>
-													<label class="select-seat position-absolute r-class" style="top: 20.2rem; left: 12.2rem;">
-														<input type="checkbox" class="seat-checkbox">
+													<label class="select-seat position-absolute r-class" style="top: 18rem; left: 20.9rem;" id="B-7">
+														<input type="checkbox" class="seat-checkbox" name="seatNo" data-seatno="B-7" data-seattype="R석" data-price="60000" value="B-7 R석">
 													</label>
-													<label class="select-seat position-absolute r-class" style="top: 20.2rem; left: 23.1rem;">
-														<input type="checkbox" class="seat-checkbox">
+													<label class="select-seat position-absolute r-class" style="top: 18rem; left: 23.0rem;" id="B-8">
+														<input type="checkbox" class="seat-checkbox" name="seatNo" data-seatno="B-8" data-seattype="R석" data-price="60000" value="B-8 R석">
 													</label>
-													<label class="select-seat position-absolute r-class" style="top: 20.2rem; left: 33.9rem;">
-														<input type="checkbox" class="seat-checkbox">
+													<label class="select-seat position-absolute r-class" style="top: 18rem; left: 25.2rem;" id="B-9">
+														<input type="checkbox" class="seat-checkbox" name="seatNo" data-seatno="B-9" data-seattype="R석" data-price="60000" value="B-9 R석">
 													</label>
-													<label class="select-seat position-absolute r-class" style="top: 20.2rem; left: 41.5rem;">
-														<input type="checkbox" class="seat-checkbox">
+													<label class="select-seat position-absolute r-class" style="top: 18rem; left: 27.4rem;" id="B-10">
+														<input type="checkbox" class="seat-checkbox" name="seatNo" data-seatno="B-10" data-seattype="R석" data-price="60000" value="B-10 R석">
 													</label>
-													<!--D-->
-													<label class="select-seat position-absolute r-class" style="top: 22.3rem; left: 14.4rem;">
-														<input type="checkbox" class="seat-checkbox">
+													<label class="select-seat position-absolute r-class" style="top: 18rem; left: 29.5rem;" id="B-11">
+														<input type="checkbox" class="seat-checkbox" name="seatNo" data-seatno="B-11" data-seattype="R석" data-price="60000" value="B-11 R석">
 													</label>
-													<label class="select-seat position-absolute r-class" style="top: 22.3rem; left: 16.5rem;">
-														<input type="checkbox" class="seat-checkbox">
+													<label class="select-seat position-absolute r-class" style="top: 18rem; left: 31.7rem;" id="B-12">
+														<input type="checkbox" class="seat-checkbox" name="seatNo" data-seatno="B-12" data-seattype="R석" data-price="60000" value="B-12 R석">
 													</label>
-													<label class="select-seat position-absolute r-class" style="top: 22.3rem; left: 25.2rem;">
-														<input type="checkbox" class="seat-checkbox">
+													<label class="select-seat position-absolute r-class" style="top: 18rem; left: 33.9rem;" id="B-13">
+														<input type="checkbox" class="seat-checkbox" name="seatNo" data-seatno="B-13" data-seattype="R석" data-price="60000" value="B-13 R석">
 													</label>
-													<label class="select-seat position-absolute r-class" style="top: 22.3rem; left: 31.7rem;">
-														<input type="checkbox" class="seat-checkbox">
+													<label class="select-seat position-absolute r-class" style="top: 18rem; left: 39.3rem;" id="B-14">
+														<input type="checkbox" class="seat-checkbox" name="seatNo" data-seatno="B-14" data-seattype="R석" data-price="60000" value="B-14 R석">
 													</label>
-													<label class="select-seat position-absolute r-class" style="top: 22.3rem; left: 41.5rem;">
-														<input type="checkbox" class="seat-checkbox">
+													<label class="select-seat position-absolute r-class" style="top: 18rem; left: 41.5rem;" id="B-15">
+														<input type="checkbox" class="seat-checkbox" name="seatNo" data-seatno="B-15" data-seattype="R석" data-price="60000" value="B-15 R석">
 													</label>
-													<!--E-->
-													<label class="select-seat position-absolute r-class" style="top: 24.5rem; left: 6.8rem;">
-														<input type="checkbox" class="seat-checkbox">
+													<!-- C -->
+													<label class="select-seat position-absolute r-class" style="top: 20.15rem; left: 4.6rem;" id="C-1">
+														<input type="checkbox" class="seat-checkbox" name="seatNo" data-seatno="C-1" data-seattype="R석" data-price="60000" value="C-1 R석">
 													</label>
-													<label class="select-seat position-absolute r-class" style="top: 24.5rem; left: 12.2rem;">
-														<input type="checkbox" class="seat-checkbox">
+													<label class="select-seat position-absolute r-class" style="top: 20.15rem; left: 6.8rem;" id="C-2">
+														<input type="checkbox" class="seat-checkbox" name="seatNo" data-seatno="C-2" data-seattype="R석" data-price="60000" value="C-2 R석">
 													</label>
-													<label class="select-seat position-absolute r-class" style="top: 24.5rem; left: 18.7rem;">
-														<input type="checkbox" class="seat-checkbox">
+													<label class="select-seat position-absolute r-class" style="top: 20.15rem; left: 12.2rem;" id="C-3">
+														<input type="checkbox" class="seat-checkbox" name="seatNo" data-seatno="C-3" data-seattype="R석" data-price="60000" value="C-3 R석">
 													</label>
-													<label class="select-seat position-absolute r-class" style="top: 24.5rem; left: 20.9rem;">
-														<input type="checkbox" class="seat-checkbox">
+													<label class="select-seat position-absolute r-class" style="top: 20.15rem; left: 14.4rem;" id="C-4">
+														<input type="checkbox" class="seat-checkbox" name="seatNo" data-seatno="C-4" data-seattype="R석" data-price="60000" value="C-4 R석">
 													</label>
-													<label class="select-seat position-absolute r-class" style="top: 24.5rem; left: 27.4rem;">
-														<input type="checkbox" class="seat-checkbox">
+													<label class="select-seat position-absolute r-class" style="top: 20.15rem; left: 16.5rem;" id="C-5">
+														<input type="checkbox" class="seat-checkbox" name="seatNo" data-seatno="C-5" data-seattype="R석" data-price="60000" value="C-5 R석">
 													</label>
-													<label class="select-seat position-absolute r-class" style="top: 24.5rem; left: 29.6rem;">
-														<input type="checkbox" class="seat-checkbox">
+													<label class="select-seat position-absolute r-class" style="top: 20.15rem; left: 18.7rem;" id="C-6">
+														<input type="checkbox" class="seat-checkbox" name="seatNo" data-seatno="C-6" data-seattype="R석" data-price="60000" value="C-6 R석">
 													</label>
-													<label class="select-seat position-absolute r-class" style="top: 24.5rem; left: 31.7rem;">
-														<input type="checkbox" class="seat-checkbox">
+													<label class="select-seat position-absolute r-class" style="top: 20.15rem; left: 20.9rem;" id="C-7">
+														<input type="checkbox" class="seat-checkbox" name="seatNo" data-seatno="C-7" data-seattype="R석" data-price="60000" value="C-7 R석">
 													</label>
-													<label class="select-seat position-absolute r-class" style="top: 24.5rem; left: 33.9rem;">
-														<input type="checkbox" class="seat-checkbox">
+													<label class="select-seat position-absolute r-class" style="top: 20.15rem; left: 23.0rem;" id="C-8">
+														<input type="checkbox" class="seat-checkbox" name="seatNo" data-seatno="C-8" data-seattype="R석" data-price="60000" value="C-8 R석">
 													</label>
-													<!--F-->
-													<label class="select-seat position-absolute r-class" style="top: 26.7rem; left: 6.8rem;">
-														<input type="checkbox" class="seat-checkbox">
+													<label class="select-seat position-absolute r-class" style="top: 20.15rem; left: 25.2rem;" id="C-9">
+														<input type="checkbox" class="seat-checkbox" name="seatNo" data-seatno="C-9" data-seattype="R석" data-price="60000" value="C-9 R석">
 													</label>
-													<label class="select-seat position-absolute r-class" style="top: 26.7rem; left: 12.2rem;">
-														<input type="checkbox" class="seat-checkbox">
+													<label class="select-seat position-absolute r-class" style="top: 20.15rem; left: 27.4rem;" id="C-10">
+														<input type="checkbox" class="seat-checkbox" name="seatNo" data-seatno="C-10" data-seattype="R석" data-price="60000" value="C-10 R석">
 													</label>
-													<label class="select-seat position-absolute r-class" style="top: 26.7rem; left: 14.4rem;">
-														<input type="checkbox" class="seat-checkbox">
+													<label class="select-seat position-absolute r-class" style="top: 20.15rem; left: 29.5rem;" id="C-11">
+														<input type="checkbox" class="seat-checkbox" name="seatNo" data-seatno="C-11" data-seattype="R석" data-price="60000" value="C-11 R석">
 													</label>
-													<label class="select-seat position-absolute r-class" style="top: 26.7rem; left: 16.5rem;">
-														<input type="checkbox" class="seat-checkbox">
+													<label class="select-seat position-absolute r-class" style="top: 20.15rem; left: 31.7rem;" id="C-12">
+														<input type="checkbox" class="seat-checkbox" name="seatNo" data-seatno="C-12" data-seattype="R석" data-price="60000" value="C-12 R석">
 													</label>
-													<label class="select-seat position-absolute r-class" style="top: 26.7rem; left: 25.2rem;">
-														<input type="checkbox" class="seat-checkbox">
+													<label class="select-seat position-absolute r-class" style="top: 20.15rem; left: 33.9rem;" id="C-13">
+														<input type="checkbox" class="seat-checkbox" name="seatNo" data-seatno="C-13" data-seattype="R석" data-price="60000" value="C-13 R석">
 													</label>
-													<label class="select-seat position-absolute r-class" style="top: 26.7rem; left: 29.6rem;">
-														<input type="checkbox" class="seat-checkbox">
+													<label class="select-seat position-absolute r-class" style="top: 20.15rem; left: 39.3rem;" id="C-14">
+														<input type="checkbox" class="seat-checkbox" name="seatNo" data-seatno="C-14" data-seattype="R석" data-price="60000" value="C-14 R석">
 													</label>
-													<label class="select-seat position-absolute r-class" style="top: 26.7rem; left: 31.7rem;">
-														<input type="checkbox" class="seat-checkbox">
+													<label class="select-seat position-absolute r-class" style="top: 20.15rem; left: 41.5rem;" id="C-15">
+														<input type="checkbox" class="seat-checkbox" name="seatNo" data-seatno="C-15" data-seattype="R석" data-price="60000" value="C-15 R석">
 													</label>
-													<label class="select-seat position-absolute r-class" style="top: 26.7rem; left: 33.9rem;">
-														<input type="checkbox" class="seat-checkbox">
+													<!-- D -->
+													<label class="select-seat position-absolute s-class" style="top: 22.35rem; left: 4.6rem;" id="D-1">
+														<input type="checkbox" class="seat-checkbox" name="seatNo" data-seatno="D-1" data-seattype="S석" data-price="50000" value="D-1 S석">
 													</label>
-													<label class="select-seat position-absolute r-class" style="top: 26.7rem; left: 39.3rem;">
-														<input type="checkbox" class="seat-checkbox">
+													<label class="select-seat position-absolute s-class" style="top: 22.35rem; left: 6.8rem;" id="D-2">
+														<input type="checkbox" class="seat-checkbox" name="seatNo" data-seatno="D-2" data-seattype="S석" data-price="50000" value="D-2 S석">
 													</label>
-													<label class="select-seat position-absolute r-class" style="top: 26.7rem; left: 41.5rem;">
-														<input type="checkbox" class="seat-checkbox">
+													<label class="select-seat position-absolute s-class" style="top: 22.35rem; left: 12.2rem;" id="D-3">
+														<input type="checkbox" class="seat-checkbox" name="seatNo" data-seatno="D-3" data-seattype="S석" data-price="50000" value="D-3 S석">
 													</label>
-													<!--G-->
-													<label class="select-seat position-absolute r-class" style="top: 28.9rem; left: 4.6rem;">
-														<input type="checkbox" class="seat-checkbox">
+													<label class="select-seat position-absolute s-class" style="top: 22.35rem; left: 14.4rem;" id="D-4">
+														<input type="checkbox" class="seat-checkbox" name="seatNo" data-seatno="D-4" data-seattype="S석" data-price="50000" value="D-4 S석">
 													</label>
-													<label class="select-seat position-absolute r-class" style="top: 28.9rem; left: 6.8rem;">
-														<input type="checkbox" class="seat-checkbox">
+													<label class="select-seat position-absolute s-class" style="top: 22.35rem; left: 16.5rem;" id="D-5">
+														<input type="checkbox" class="seat-checkbox" name="seatNo" data-seatno="D-5" data-seattype="S석" data-price="50000" value="D-5 S석">
 													</label>
-													<label class="select-seat position-absolute r-class" style="top: 28.9rem; left: 12.2rem;">
-														<input type="checkbox" class="seat-checkbox">
+													<label class="select-seat position-absolute s-class" style="top: 22.35rem; left: 18.7rem;" id="D-6">
+														<input type="checkbox" class="seat-checkbox" name="seatNo" data-seatno="D-6" data-seattype="S석" data-price="50000" value="D-6 S석">
 													</label>
-													<label class="select-seat position-absolute r-class" style="top: 28.9rem; left: 14.4rem;">
-														<input type="checkbox" class="seat-checkbox">
+													<label class="select-seat position-absolute s-class" style="top: 22.35rem; left: 20.9rem;" id="D-7">
+														<input type="checkbox" class="seat-checkbox" name="seatNo" data-seatno="D-7" data-seattype="S석" data-price="50000" value="D-7 S석">
 													</label>
-													<label class="select-seat position-absolute r-class" style="top: 28.9rem; left: 18.7rem;">
-														<input type="checkbox" class="seat-checkbox">
+													<label class="select-seat position-absolute s-class" style="top: 22.35rem; left: 23.0rem;" id="D-8">
+														<input type="checkbox" class="seat-checkbox" name="seatNo" data-seatno="D-8" data-seattype="S석" data-price="50000" value="D-8 S석">
 													</label>
-													<label class="select-seat position-absolute r-class" style="top: 28.9rem; left: 20.9rem;">
-														<input type="checkbox" class="seat-checkbox">
+													<label class="select-seat position-absolute s-class" style="top: 22.35rem; left: 25.2rem;" id="D-9">
+														<input type="checkbox" class="seat-checkbox" name="seatNo" data-seatno="D-9" data-seattype="S석" data-price="50000" value="D-9 S석">
 													</label>
-													<label class="select-seat position-absolute r-class" style="top: 28.9rem; left: 25.2rem;">
-														<input type="checkbox" class="seat-checkbox">
+													<label class="select-seat position-absolute s-class" style="top: 22.35rem; left: 27.4rem;" id="D-10">
+														<input type="checkbox" class="seat-checkbox" name="seatNo" data-seatno="D-10" data-seattype="S석" data-price="50000" value="D-10 S석">
 													</label>
-													<label class="select-seat position-absolute r-class" style="top: 28.9rem; left: 27.4rem;">
-														<input type="checkbox" class="seat-checkbox">
+													<label class="select-seat position-absolute s-class" style="top: 22.35rem; left: 29.5rem;" id="D-11">
+														<input type="checkbox" class="seat-checkbox" name="seatNo" data-seatno="D-11" data-seattype="S석" data-price="50000" value="D-11 S석">
 													</label>
-													<label class="select-seat position-absolute r-class" style="top: 28.9rem; left: 33.9rem;">
-														<input type="checkbox" class="seat-checkbox">
+													<label class="select-seat position-absolute s-class" style="top: 22.35rem; left: 31.7rem;" id="D-12">
+														<input type="checkbox" class="seat-checkbox" name="seatNo" data-seatno="D-12" data-seattype="S석" data-price="50000" value="D-12 S석">
 													</label>
-													<label class="select-seat position-absolute r-class" style="top: 28.9rem; left: 39.3rem;">
-														<input type="checkbox" class="seat-checkbox">
+													<label class="select-seat position-absolute s-class" style="top: 22.35rem; left: 33.9rem;" id="D-13">
+														<input type="checkbox" class="seat-checkbox" name="seatNo" data-seatno="D-13" data-seattype="S석" data-price="50000" value="D-13 S석">
 													</label>
-													<label class="select-seat position-absolute r-class" style="top: 28.9rem; left: 41.5rem;">
-														<input type="checkbox" class="seat-checkbox">
+													<label class="select-seat position-absolute s-class" style="top: 22.35rem; left: 39.3rem;" id="D-14">
+														<input type="checkbox" class="seat-checkbox" name="seatNo" data-seatno="D-14" data-seattype="S석" data-price="50000" value="D-14 S석">
 													</label>
-													<!--H-->
-													<label class="select-seat position-absolute s-class" style="top: 31rem; left: 4.6rem;">
-														<input type="checkbox" class="seat-checkbox">
+													<label class="select-seat position-absolute s-class" style="top: 22.35rem; left: 41.5rem;" id="D-15">
+														<input type="checkbox" class="seat-checkbox" name="seatNo" data-seatno="D-15" data-seattype="S석" data-price="50000" value="D-15 S석">
 													</label>
-													<label class="select-seat position-absolute s-class" style="top: 31rem; left: 6.8rem;">
-														<input type="checkbox" class="seat-checkbox">
+													<!-- E -->
+													<label class="select-seat position-absolute s-class" style="top: 24.55rem; left: 4.6rem;" id="E-1">
+														<input type="checkbox" class="seat-checkbox" name="seatNo" data-seatno="E-1" data-seattype="S석" data-price="50000" value="E-1 S석">
 													</label>
-													<label class="select-seat position-absolute s-class" style="top: 31rem; left: 12.2rem;">
-														<input type="checkbox" class="seat-checkbox">
+													<label class="select-seat position-absolute s-class" style="top: 24.55rem; left: 6.8rem;" id="E-2">
+														<input type="checkbox" class="seat-checkbox" name="seatNo" data-seatno="E-2" data-seattype="S석" data-price="50000" value="E-2 S석">
 													</label>
-													<label class="select-seat position-absolute s-class" style="top: 31rem; left: 14.4rem;">
-														<input type="checkbox" class="seat-checkbox">
+													<label class="select-seat position-absolute s-class" style="top: 24.55rem; left: 12.2rem;" id="E-3">
+														<input type="checkbox" class="seat-checkbox" name="seatNo" data-seatno="E-3" data-seattype="S석" data-price="50000" value="E-3 S석">
 													</label>
-													<label class="select-seat position-absolute s-class" style="top: 31rem; left: 16.5rem;">
-														<input type="checkbox" class="seat-checkbox">
+													<label class="select-seat position-absolute s-class" style="top: 24.55rem; left: 14.4rem;" id="E-4">
+														<input type="checkbox" class="seat-checkbox" name="seatNo" data-seatno="E-4" data-seattype="S석" data-price="50000" value="E-4 S석">
 													</label>
-													<label class="select-seat position-absolute s-class" style="top: 31rem; left: 18.7rem;">
-														<input type="checkbox" class="seat-checkbox">
+													<label class="select-seat position-absolute s-class" style="top: 24.55rem; left: 16.5rem;" id="E-5">
+														<input type="checkbox" class="seat-checkbox" name="seatNo" data-seatno="E-5" data-seattype="S석" data-price="50000" value="E-5 S석">
 													</label>
-													<label class="select-seat position-absolute s-class" style="top: 31rem; left: 20.9rem;">
-														<input type="checkbox" class="seat-checkbox">
+													<label class="select-seat position-absolute s-class" style="top: 24.55rem; left: 18.7rem;" id="E-6">
+														<input type="checkbox" class="seat-checkbox" name="seatNo" data-seatno="E-6" data-seattype="S석" data-price="50000" value="E-6 S석">
 													</label>
+													<label class="select-seat position-absolute s-class" style="top: 24.55rem; left: 20.9rem;" id="E-7">
+														<input type="checkbox" class="seat-checkbox" name="seatNo" data-seatno="E-7" data-seattype="S석" data-price="50000" value="E-7 S석">
 													</label>
-													<label class="select-seat position-absolute s-class" style="top: 31rem; left: 27.4rem;">
-														<input type="checkbox" class="seat-checkbox">
+													<label class="select-seat position-absolute s-class" style="top: 24.55rem; left: 23.0rem;" id="E-8">
+														<input type="checkbox" class="seat-checkbox" name="seatNo" data-seatno="E-8" data-seattype="S석" data-price="50000" value="E-8 S석">
 													</label>
-													<label class="select-seat position-absolute s-class" style="top: 31rem; left: 29.6rem;">
-														<input type="checkbox" class="seat-checkbox">
+													<label class="select-seat position-absolute s-class" style="top: 24.55rem; left: 25.2rem;" id="E-9">
+														<input type="checkbox" class="seat-checkbox" name="seatNo" data-seatno="E-9" data-seattype="S석" data-price="50000" value="E-9 S석">
 													</label>
-													<label class="select-seat position-absolute s-class" style="top: 31rem; left: 31.7rem;">
-														<input type="checkbox" class="seat-checkbox">
+													<label class="select-seat position-absolute s-class" style="top: 24.55rem; left: 27.4rem;" id="E-10">
+														<input type="checkbox" class="seat-checkbox" name="seatNo" data-seatno="E-10" data-seattype="S석" data-price="50000" value="E-10 S석">
 													</label>
-													<label class="select-seat position-absolute s-class" style="top: 31rem; left: 39.3rem;">
-														<input type="checkbox" class="seat-checkbox">
+													<label class="select-seat position-absolute s-class" style="top: 24.55rem; left: 29.5rem;" id="E-11">
+														<input type="checkbox" class="seat-checkbox" name="seatNo" data-seatno="E-11" data-seattype="S석" data-price="50000" value="E-11 S석">
 													</label>
-													<label class="select-seat position-absolute s-class" style="top: 31rem; left: 41.5rem;">
-														<input type="checkbox" class="seat-checkbox">
+													<label class="select-seat position-absolute s-class" style="top: 24.55rem; left: 31.7rem;" id="E-12">
+														<input type="checkbox" class="seat-checkbox" name="seatNo" data-seatno="E-12" data-seattype="S석" data-price="50000" value="E-12 S석">
 													</label>
-													<!--I-->
-													<label class="select-seat position-absolute s-class" style="top: 33.2rem; left: 4.6rem;">
-														<input type="checkbox" class="seat-checkbox">
+													<label class="select-seat position-absolute s-class" style="top: 24.55rem; left: 33.9rem;" id="E-13">
+														<input type="checkbox" class="seat-checkbox" name="seatNo" data-seatno="E-13" data-seattype="S석" data-price="50000" value="E-13 S석">
 													</label>
-													<label class="select-seat position-absolute s-class" style="top: 33.2rem; left: 6.8rem;">
-														<input type="checkbox" class="seat-checkbox">
+													<label class="select-seat position-absolute s-class" style="top: 24.55rem; left: 39.3rem;" id="E-14">
+														<input type="checkbox" class="seat-checkbox" name="seatNo" data-seatno="E-14" data-seattype="S석" data-price="50000" value="E-14 S석">
 													</label>
-													<label class="select-seat position-absolute s-class" style="top: 33.2rem; left: 12.2rem;">
-														<input type="checkbox" class="seat-checkbox">
+													<label class="select-seat position-absolute s-class" style="top: 24.55rem; left: 41.5rem;" id="E-15">
+														<input type="checkbox" class="seat-checkbox" name="seatNo" data-seatno="E-15" data-seattype="S석" data-price="50000" value="E-15 S석">
 													</label>
-													<label class="select-seat position-absolute s-class" style="top: 33.2rem; left: 14.4rem;">
-														<input type="checkbox" class="seat-checkbox">
+													<!-- F -->
+													<label class="select-seat position-absolute s-class" style="top: 26.7rem; left: 4.6rem;" id="F-1">
+														<input type="checkbox" class="seat-checkbox" name="seatNo" data-seatno="F-1" data-seattype="S석" data-price="50000" value="F-1 S석">
 													</label>
-													<label class="select-seat position-absolute s-class" style="top: 33.2rem; left: 18.7rem;">
-														<input type="checkbox" class="seat-checkbox">
+													<label class="select-seat position-absolute s-class" style="top: 26.7rem; left: 6.8rem;" id="F-2">
+														<input type="checkbox" class="seat-checkbox" name="seatNo" data-seatno="F-2" data-seattype="S석" data-price="50000" value="F-2 S석">
 													</label>
-													<label class="select-seat position-absolute s-class" style="top: 33.2rem; left: 20.9rem;">
-														<input type="checkbox" class="seat-checkbox">
+													<label class="select-seat position-absolute s-class" style="top: 26.7rem; left: 12.2rem;" id="F-3">
+														<input type="checkbox" class="seat-checkbox" name="seatNo" data-seatno="F-3" data-seattype="S석" data-price="50000" value="F-3 S석">
 													</label>
-													<label class="select-seat position-absolute s-class" style="top: 33.2rem; left: 23.1rem;">
-														<input type="checkbox" class="seat-checkbox">
+													<label class="select-seat position-absolute s-class" style="top: 26.7rem; left: 14.4rem;" id="F-4">
+														<input type="checkbox" class="seat-checkbox" name="seatNo" data-seatno="F-4" data-seattype="S석" data-price="50000" value="F-4 S석">
 													</label>
-													<label class="select-seat position-absolute s-class" style="top: 33.2rem; left: 25.2rem;">
-														<input type="checkbox" class="seat-checkbox">
+													<label class="select-seat position-absolute s-class" style="top: 26.7rem; left: 16.5rem;" id="F-5">
+														<input type="checkbox" class="seat-checkbox" name="seatNo" data-seatno="F-5" data-seattype="S석" data-price="50000" value="F-5 S석">
 													</label>
-													<label class="select-seat position-absolute s-class" style="top: 33.2rem; left: 29.6rem;">
-														<input type="checkbox" class="seat-checkbox">
+													<label class="select-seat position-absolute s-class" style="top: 26.7rem; left: 18.7rem;" id="F-6">
+														<input type="checkbox" class="seat-checkbox" name="seatNo" data-seatno="F-6" data-seattype="S석" data-price="50000" value="F-6 S석">
 													</label>
-													<label class="select-seat position-absolute s-class" style="top: 33.2rem; left: 33.9rem;">
-														<input type="checkbox" class="seat-checkbox">
+													<label class="select-seat position-absolute s-class" style="top: 26.7rem; left: 20.9rem;" id="F-7">
+														<input type="checkbox" class="seat-checkbox" name="seatNo" data-seatno="F-7" data-seattype="S석" data-price="50000" value="F-7 S석">
 													</label>
-													<label class="select-seat position-absolute s-class" style="top: 33.2rem; left: 41.5rem;">
-														<input type="checkbox" class="seat-checkbox">
+													<label class="select-seat position-absolute s-class" style="top: 26.7rem; left: 23.0rem;" id="F-8">
+														<input type="checkbox" class="seat-checkbox" name="seatNo" data-seatno="F-8" data-seattype="S석" data-price="50000" value="F-8 S석">
 													</label>
-													<!--J-->
-													<label class="select-seat position-absolute s-class" style="top: 35.4rem; left: 6.8rem;">
-														<input type="checkbox" class="seat-checkbox">
+													<label class="select-seat position-absolute s-class" style="top: 26.7rem; left: 25.2rem;" id="F-9">
+														<input type="checkbox" class="seat-checkbox" name="seatNo" data-seatno="F-9" data-seattype="S석" data-price="50000" value="F-9 S석">
 													</label>
-													<label class="select-seat position-absolute s-class" style="top: 35.4rem; left: 12.2rem;">
-														<input type="checkbox" class="seat-checkbox">
+													<label class="select-seat position-absolute s-class" style="top: 26.7rem; left: 27.4rem;" id="F-10">
+														<input type="checkbox" class="seat-checkbox" name="seatNo" data-seatno="F-10" data-seattype="S석" data-price="50000" value="F-10 S석">
 													</label>
-													<label class="select-seat position-absolute s-class" style="top: 35.4rem; left: 14.4rem;">
-														<input type="checkbox" class="seat-checkbox">
+													<label class="select-seat position-absolute s-class" style="top: 26.7rem; left: 29.5rem;" id="F-11">
+														<input type="checkbox" class="seat-checkbox" name="seatNo" data-seatno="F-11" data-seattype="S석" data-price="50000" value="F-11 S석">
 													</label>
-													<label class="select-seat position-absolute s-class" style="top: 35.4rem; left: 16.5rem;">
-														<input type="checkbox" class="seat-checkbox">
+													<label class="select-seat position-absolute s-class" style="top: 26.7rem; left: 31.7rem;" id="F-12">
+														<input type="checkbox" class="seat-checkbox" name="seatNo" data-seatno="F-12" data-seattype="S석" data-price="50000" value="F-12 S석">
 													</label>
-													<label class="select-seat position-absolute s-class" style="top: 35.4rem; left: 18.7rem;">
-														<input type="checkbox" class="seat-checkbox">
+													<label class="select-seat position-absolute s-class" style="top: 26.7rem; left: 33.9rem;" id="F-13">
+														<input type="checkbox" class="seat-checkbox" name="seatNo" data-seatno="F-13" data-seattype="S석" data-price="50000" value="F-13 S석">
 													</label>
-													<label class="select-seat position-absolute s-class" style="top: 35.4rem; left: 20.9rem;">
-														<input type="checkbox" class="seat-checkbox">
+													<label class="select-seat position-absolute s-class" style="top: 26.7rem; left: 39.3rem;" id="F-14">
+														<input type="checkbox" class="seat-checkbox" name="seatNo" data-seatno="F-14" data-seattype="S석" data-price="50000" value="F-14 S석">
 													</label>
-													<label class="select-seat position-absolute s-class" style="top: 35.4rem; left: 23.1rem;">
-														<input type="checkbox" class="seat-checkbox">
-													</label>
-													<label class="select-seat position-absolute s-class" style="top: 35.4rem; left: 25.2rem;">
-														<input type="checkbox" class="seat-checkbox">
-													</label>
-													<label class="select-seat position-absolute s-class" style="top: 35.4rem; left: 29.6rem;">
-														<input type="checkbox" class="seat-checkbox">
-													</label>
-													<label class="select-seat position-absolute s-class" style="top: 35.4rem; left: 33.9rem;">
-														<input type="checkbox" class="seat-checkbox">
-													</label>
-													<label class="select-seat position-absolute s-class" style="top: 35.4rem; left: 39.3rem;">
-														<input type="checkbox" class="seat-checkbox">
-													</label>
-													<!--K-->
-													<label class="select-seat position-absolute s-class" style="top: 37.6rem; left: 4.6rem;">
-														<input type="checkbox" class="seat-checkbox">
-													</label>
-													<label class="select-seat position-absolute s-class" style="top: 37.6rem; left: 12.2rem;">
-														<input type="checkbox" class="seat-checkbox">
-													</label>
-													<label class="select-seat position-absolute s-class" style="top: 37.6rem; left: 16.5rem;">
-														<input type="checkbox" class="seat-checkbox">
-													</label>
-													<label class="select-seat position-absolute s-class" style="top: 37.6rem; left: 18.7rem;">
-														<input type="checkbox" class="seat-checkbox">
-													</label>
-													<label class="select-seat position-absolute s-class" style="top: 37.6rem; left: 20.9rem;">
-														<input type="checkbox" class="seat-checkbox">
-													</label>
-													<label class="select-seat position-absolute s-class" style="top: 37.6rem; left: 23.1rem;">
-														<input type="checkbox" class="seat-checkbox">
-													</label>
-													<label class="select-seat position-absolute s-class" style="top: 37.6rem; left: 27.4rem;">
-														<input type="checkbox" class="seat-checkbox">
-													</label>
-													<label class="select-seat position-absolute s-class" style="top: 37.6rem; left: 29.6rem;">
-														<input type="checkbox" class="seat-checkbox">
-													</label>
-													<label class="select-seat position-absolute s-class" style="top: 37.6rem; left: 31.7rem;">
-														<input type="checkbox" class="seat-checkbox">
-													</label>
-													<label class="select-seat position-absolute s-class" style="top: 37.6rem; left: 33.9rem;">
-														<input type="checkbox" class="seat-checkbox">
-													</label>
-													<label class="select-seat position-absolute s-class" style="top: 37.6rem; left: 39.3rem;">
-														<input type="checkbox" class="seat-checkbox">
-													</label>
-													<label class="select-seat position-absolute s-class" style="top: 37.6rem; left: 41.5rem;">
-														<input type="checkbox" class="seat-checkbox">
-													</label>
-													<!--L-->
-													<label class="select-seat position-absolute s-class" style="top: 39.7rem; left: 4.6rem;">
-														<input type="checkbox" class="seat-checkbox">
-													</label>
-													<label class="select-seat position-absolute s-class" style="top: 39.7rem; left: 12.2rem;">
-														<input type="checkbox" class="seat-checkbox">
-													</label>
-													<label class="select-seat position-absolute s-class" style="top: 39.7rem; left: 14.4rem;">
-														<input type="checkbox" class="seat-checkbox">
-													</label>
-													<label class="select-seat position-absolute s-class" style="top: 39.7rem; left: 18.7rem;">
-														<input type="checkbox" class="seat-checkbox">
-													</label>
-													<label class="select-seat position-absolute s-class" style="top: 39.7rem; left: 20.9rem;">
-														<input type="checkbox" class="seat-checkbox">
-													</label>
-													<label class="select-seat position-absolute s-class" style="top: 39.7rem; left: 23.1rem;">
-														<input type="checkbox" class="seat-checkbox">
-													</label>
-													<label class="select-seat position-absolute s-class" style="top: 39.7rem; left: 25.2rem;">
-														<input type="checkbox" class="seat-checkbox">
-													</label>
-													<label class="select-seat position-absolute s-class" style="top: 39.7rem; left: 27.4rem;">
-														<input type="checkbox" class="seat-checkbox">
-													</label>
-													<label class="select-seat position-absolute s-class" style="top: 39.7rem; left: 29.6rem;">
-														<input type="checkbox" class="seat-checkbox">
-													</label>
-													<label class="select-seat position-absolute s-class" style="top: 39.7rem; left: 31.7rem;">
-														<input type="checkbox" class="seat-checkbox">
-													</label>
-													<label class="select-seat position-absolute s-class" style="top: 39.7rem; left: 41.5rem;">
-														<input type="checkbox" class="seat-checkbox">
-													</label>
-													<!--M-->
-													<label class="select-seat position-absolute s-class" style="top: 41.9rem; left: 12.2rem;">
-														<input type="checkbox" class="seat-checkbox">
-													</label>
-													<label class="select-seat position-absolute s-class" style="top: 41.9rem; left: 14.4rem;">
-														<input type="checkbox" class="seat-checkbox">
-													</label>
-													<label class="select-seat position-absolute s-class" style="top: 41.9rem; left: 16.5rem;">
-														<input type="checkbox" class="seat-checkbox">
-													</label>
-													<label class="select-seat position-absolute s-class" style="top: 41.9rem; left: 18.7rem;">
-														<input type="checkbox" class="seat-checkbox">
-													</label>
-													<label class="select-seat position-absolute s-class" style="top: 41.9rem; left: 23.1rem;">
-														<input type="checkbox" class="seat-checkbox">
-													</label>
-													<label class="select-seat position-absolute s-class" style="top: 41.9rem; left: 25.2rem;">
-														<input type="checkbox" class="seat-checkbox">
-													</label>
-													<label class="select-seat position-absolute s-class" style="top: 41.9rem; left: 27.4rem;">
-														<input type="checkbox" class="seat-checkbox">
-													</label>
-													<label class="select-seat position-absolute s-class" style="top: 41.9rem; left: 33.9rem;">
-														<input type="checkbox" class="seat-checkbox">
-													</label>
-													<!--N-->
-													<label class="select-seat position-absolute a-class" style="top: 44rem; left: 12.2rem;">
-														<input type="checkbox" class="seat-checkbox">
-													</label>
-													<label class="select-seat position-absolute a-class" style="top: 44rem; left: 14.4rem;">
-														<input type="checkbox" class="seat-checkbox">
-													</label>
-													<label class="select-seat position-absolute a-class" style="top: 44rem; left: 16.5rem;">
-														<input type="checkbox" class="seat-checkbox">
-													</label>
-													<label class="select-seat position-absolute a-class" style="top: 44rem; left: 18.7rem;">
-														<input type="checkbox" class="seat-checkbox">
-													</label>
-													<label class="select-seat position-absolute a-class" style="top: 44rem; left: 20.9rem;">
-														<input type="checkbox" class="seat-checkbox">
-													</label>
-													<label class="select-seat position-absolute a-class" style="top: 44rem; left: 25.2rem;">
-														<input type="checkbox" class="seat-checkbox">
-													</label>
-													<label class="select-seat position-absolute a-class" style="top: 44rem; left: 27.4rem;">
-														<input type="checkbox" class="seat-checkbox">
-													</label>
-													<label class="select-seat position-absolute a-class" style="top: 44rem; left: 29.6rem;">
-														<input type="checkbox" class="seat-checkbox">
-													</label>
-													<label class="select-seat position-absolute a-class" style="top: 44rem; left: 31.7rem;">
-														<input type="checkbox" class="seat-checkbox">
-													</label>
-													<label class="select-seat position-absolute a-class" style="top: 44rem; left: 33.9rem;">
-														<input type="checkbox" class="seat-checkbox">
-													</label>
-													<!--O-->
-													<label class="select-seat position-absolute a-class" style="top: 46.2rem; left: 12.2rem;">
-														<input type="checkbox" class="seat-checkbox">
-													</label>
-													<label class="select-seat position-absolute a-class" style="top: 46.2rem; left: 14.4rem;">
-														<input type="checkbox" class="seat-checkbox">
-													</label>
-													<label class="select-seat position-absolute a-class" style="top: 46.2rem; left: 16.5rem;">
-														<input type="checkbox" class="seat-checkbox">
-													</label>
-													<label class="select-seat position-absolute a-class" style="top: 46.2rem; left: 23.1rem;">
-														<input type="checkbox" class="seat-checkbox">
-													</label>
-													<label class="select-seat position-absolute a-class" style="top: 46.2rem; left: 25.2rem;">
-														<input type="checkbox" class="seat-checkbox">
-													</label>
-													<label class="select-seat position-absolute a-class" style="top: 46.2rem; left: 27.4rem;">
-														<input type="checkbox" class="seat-checkbox">
-													</label>
-													<label class="select-seat position-absolute a-class" style="top: 46.2rem; left: 29.6rem;">
-														<input type="checkbox" class="seat-checkbox">
-													</label>
-													<label class="select-seat position-absolute a-class" style="top: 46.2rem; left: 31.7rem;">
-														<input type="checkbox" class="seat-checkbox">
-													</label>
-													<label class="select-seat position-absolute a-class" style="top: 46.2rem; left: 33.9rem;">
-														<input type="checkbox" class="seat-checkbox">
-													</label>
-													<!--P-->
-													<label class="select-seat position-absolute a-class" style="top: 48.4rem; left: 12.2rem;">
-														<input type="checkbox" class="seat-checkbox">
-													</label>
-													<label class="select-seat position-absolute a-class" style="top: 48.4rem; left: 14.4rem;">
-														<input type="checkbox" class="seat-checkbox">
-													</label>
-													<label class="select-seat position-absolute a-class" style="top: 48.4rem; left: 16.5rem;">
-														<input type="checkbox" class="seat-checkbox">
-													</label>
-													<label class="select-seat position-absolute a-class" style="top: 48.4rem; left: 18.7rem;">
-														<input type="checkbox" class="seat-checkbox">
-													</label>
-													<label class="select-seat position-absolute a-class" style="top: 48.4rem; left: 20.9rem;">
-														<input type="checkbox" class="seat-checkbox">
-													</label>
-													<label class="select-seat position-absolute a-class" style="top: 48.4rem; left: 23.1rem;">
-														<input type="checkbox" class="seat-checkbox">
-													</label>
-													<label class="select-seat position-absolute a-class" style="top: 48.4rem; left: 25.2rem;">
-														<input type="checkbox" class="seat-checkbox">
-													</label>
-													<label class="select-seat position-absolute a-class" style="top: 48.4rem; left: 27.4rem;">
-														<input type="checkbox" class="seat-checkbox">
-													</label>
-													<label class="select-seat position-absolute a-class" style="top: 48.4rem; left: 29.6rem;">
-														<input type="checkbox" class="seat-checkbox">
-													</label>
-													<label class="select-seat position-absolute a-class" style="top: 48.4rem; left: 31.7rem;">
-														<input type="checkbox" class="seat-checkbox">
-													</label>
-													<label class="select-seat position-absolute a-class" style="top: 48.4rem; left: 33.9rem;">
-														<input type="checkbox" class="seat-checkbox">
-													</label>
-													<!--Q-->
-													<label class="select-seat position-absolute a-class" style="top: 50.6rem; left: 12.2rem;">
-														<input type="checkbox" class="seat-checkbox">
-													</label>
-													<label class="select-seat position-absolute a-class" style="top: 50.6rem; left: 14.4rem;">
-														<input type="checkbox" class="seat-checkbox">
-													</label>
-													<label class="select-seat position-absolute a-class" style="top: 50.6rem; left: 16.5rem;">
-														<input type="checkbox" class="seat-checkbox">
-													</label>
-													<label class="select-seat position-absolute a-class" style="top: 50.6rem; left: 18.7rem;">
-														<input type="checkbox" class="seat-checkbox">
-													</label>
-													<label class="select-seat position-absolute a-class" style="top: 50.6rem; left: 20.9rem;">
-														<input type="checkbox" class="seat-checkbox">
-													</label>
-													<label class="select-seat position-absolute a-class" style="top: 50.6rem; left: 23.1rem;">
-														<input type="checkbox" class="seat-checkbox">
-													</label>
-													<label class="select-seat position-absolute a-class" style="top: 50.6rem; left: 25.2rem;">
-														<input type="checkbox" class="seat-checkbox">
-													</label>
-													<label class="select-seat position-absolute a-class" style="top: 50.6rem; left: 27.4rem;">
-														<input type="checkbox" class="seat-checkbox">
-													</label>
-													<label class="select-seat position-absolute a-class" style="top: 50.6rem; left: 29.6rem;">
-														<input type="checkbox" class="seat-checkbox">
-													</label>
-													<label class="select-seat position-absolute a-class" style="top: 50.6rem; left: 33.9rem;">
-														<input type="checkbox" class="seat-checkbox">
-													</label>
-													<!--R-->
-													<label class="select-seat position-absolute a-class" style="top: 52.8rem; left: 12.2rem;">
-														<input type="checkbox" class="seat-checkbox">
-													</label>
-													<label class="select-seat position-absolute a-class" style="top: 52.8rem; left: 14.4rem;">
-														<input type="checkbox" class="seat-checkbox">
-													</label>
-													<label class="select-seat position-absolute a-class" style="top: 52.8rem; left: 18.7rem;">
-														<input type="checkbox" class="seat-checkbox">
-													</label>
-													<label class="select-seat position-absolute a-class" style="top: 52.8rem; left: 20.9rem;">
-														<input type="checkbox" class="seat-checkbox">
-													</label>
-													<label class="select-seat position-absolute a-class" style="top: 52.8rem; left: 23.1rem;">
-														<input type="checkbox" class="seat-checkbox">
-													</label>
-													<label class="select-seat position-absolute a-class" style="top: 52.8rem; left: 25.2rem;">
-														<input type="checkbox" class="seat-checkbox">
-													</label>
-													<label class="select-seat position-absolute a-class" style="top: 52.8rem; left: 27.4rem;">
-														<input type="checkbox" class="seat-checkbox">
-													</label>
-													<label class="select-seat position-absolute a-class" style="top: 52.8rem; left: 29.6rem;">
-														<input type="checkbox" class="seat-checkbox">
-													</label>
-													<label class="select-seat position-absolute a-class" style="top: 52.8rem; left: 31.7rem;">
-														<input type="checkbox" class="seat-checkbox">
-													</label>
-													<label class="select-seat position-absolute a-class" style="top: 52.8rem; left: 33.9rem;">
-														<input type="checkbox" class="seat-checkbox">
+													<label class="select-seat position-absolute s-class" style="top: 26.7rem; left: 41.5rem;" id="F-15">
+														<input type="checkbox" class="seat-checkbox" name="seatNo" data-seatno="F-15" data-seattype="S석" data-price="50000" value="F-15 S석">
 													</label>
 												</div>
 											</div>
@@ -945,41 +571,34 @@
 													<div class="row">
 														<div class="col-12">
 															<div class="h5 title mt-3 mb-3">좌석등급</div>
-															<div class="card border mb-3 p-2"> 
-																<li class="list-group-item d-flex justify-content-between align-items-center pt-0">
-																	<span class="h6 title mb-0" style="color:#7C68EE">R석</span>
-																	<span class="fs-6 fw-bold p-2">99,000원</span>
-																</li>
-																<li class="list-group-item d-flex justify-content-between align-items-center pt-0">
-																	<span class="h6 title mb-0" style="color:#1CA814">S석</span>
-																	<span class="fs-6 fw-bold p-2">77,000원</span>
-																</li>
-																<li class="list-group-item d-flex justify-content-between align-items-center pt-0">
-																	<span class="h6 title mb-0" style="color:#17B3FF">A석</span>
-																	<span class="fs-6 fw-bold p-2">44,000원</span>
-																</li>
+															<div class="card border mb-3 p-2">
+																<c:if test="${prices.r != 0}">
+																	<li class="list-group-item d-flex justify-content-between align-items-center pt-0">
+																		<span class="h6 title mb-0" style="color:#7C68EE">R석</span>
+																		<span class="fs-6 fw-bold p-2"><fmt:formatNumber value="${prices.r}" pattern="#,###" />원</span>
+																	</li>
+																</c:if>
+																<c:if test="${prices.s != 0}">
+																	<li class="list-group-item d-flex justify-content-between align-items-center pt-0">
+																		<span class="h6 title mb-0" style="color:#1CA814">S석</span>
+																		<span class="fs-6 fw-bold p-2"><fmt:formatNumber value="${prices.s}" pattern="#,###" />원</span>
+																	</li>
+																</c:if>
+																<c:if test="${prices.a != 0}">
+																	<li class="list-group-item d-flex justify-content-between align-items-center pt-0">
+																		<span class="h6 title mb-0" style="color:#17B3FF">A석</span>
+																		<span class="fs-6 fw-bold p-2"><fmt:formatNumber value="${prices.a}" pattern="#,###" />원</span>
+																	</li>
+																</c:if>
 															</div>	
 														</div>
 														
 														<div class="col-12">
 															<div class="h5 title mt-3 mb-3">선택좌석</div>
-															<div class="card border mb-3 p-2"> 
-																<li class="list-group-item d-flex justify-content-between align-items-center pt-0">
-																<span class="fs-6 fw-bold p-2">좌석등급</span>
-																<span class="h6 mb-0 fw-bold">R석</span>
-																</li>
-																<li class="list-group-item d-flex justify-content-between align-items-center pt-0">
-																	<span class="fs-6 fw-bold p-2">좌석번호</span>
-																	<span class="h6 mb-0 fw-bold">1층-10열-31</span>
-																</li>
-																<br>
-																<div class="text-center">총 1석 선택되었습니다</div>
-															</div>	
+															<div id="selected-seat"></div>
 														</div>
 														
-														<div class="text-center title text-primary fs-3">
-															₩ 99,000
-														</div>
+														<div class="text-center title text-primary fs-3" id="totalPrice">₩ 0</div>
 													</div>
 												</div>
 											</div>
@@ -987,10 +606,10 @@
 										<!-- Step 2 button -->
 										<div class="row mt-4">
 											<div class="text-start col-6">
-												<button class="btn btn-info prev-btn mb-0">이전 페이지</button>
+												<a class="btn btn-info mb-0" href="${path}/conc-booking?conId=${conc.conId}&conHallId=${conc.conHallId}">이전 페이지</a>
 											</div>
 											<div class="text-end col-6">
-												<button class="btn btn-warning next-btn mb-0">다음 페이지</button>
+												<button type="button" class="btn btn-warning next-btn mb-0" id="goto3" disabled="true">다음 페이지</button>
 											</div>
 										</div>
 									</div>
@@ -1011,7 +630,7 @@
 													<div>
 														<label class="form-label">이름</label>
 														<div class="position-relative form-control-bg-light">
-															<input type="text" class="form-control" maxlength="14" placeholder="">
+															<input type="text" class="form-control" maxlength="14" placeholder="" name="userName">
 														</div>
 													</div>
 													<br>
@@ -1019,7 +638,7 @@
 													<div class="row">
 														<label class="form-label">전화번호</label>
 														<div class="form-control-bg-light col-9">
-															<input type="text" class="form-control" maxlength="11" placeholder="- 없이 입력해주세요 ex. 01012341234">
+															<input type="text" class="form-control" maxlength="11" placeholder="- 없이 입력해주세요 ex. 01012341234" name="tel">
 														</div>
 														<div class="btn btn-outline-light col-3">인증번호 전송</div>
 													</div>
@@ -1031,15 +650,15 @@
 												<div class="card border">
 													<!-- Title -->
 													<div class="card-header border-bottom">
-														<div class="h4 title mb-0">뮤지컬<레드북></div>
+														<div class="h4 title mb-0">${conc.genre} <${conc.conNm}></div>
 													</div>
 
 													<!-- Card body START -->
 													<div class="card-body row">
 														<div class="col-6">일시</div>
-														<div class="col-6 text-end">2023년 6월 1일(목) 19:00</div>
+														<div class="col-6 text-end" id="submitCardTime">-</div>
 														<div class="col-6">선택좌석</div>
-														<div class="col-6 text-end">R석 1층-10열-31</div>
+														<div class="col-6 text-end" id="submitCardSeatInfo"></div>
 													</div>
 													<!-- Card body END -->
 
@@ -1048,10 +667,10 @@
 													<!-- 결제금액 -->
 													<div class="card-body row h4 title text-black">
 														<div class="col-6">결제금액</div>
-														<div class="col-6 text-end">₩ 80,000</div>
+														<div class="col-6 text-end" id="submitCardPrice">-</div>
 													</div>
 
-													<div class="btn btn-primary col-11 align-self-center mb-3" href="#">결제하기</div>
+													<button type="submit" class="btn btn-primary col-11 align-self-center mb-3">결제하기</button>
 												</div>
 											</div>
 
@@ -1105,7 +724,7 @@
 
 										<!-- Step 3 button -->
 										<div class="d-flex justify-content-between mt-4">
-											<button class="btn btn-info prev-btn mb-0">이전 페이지</button>
+											<button type="button" class="btn btn-info prev-btn mb-0">이전 페이지</button>
 										</div>
 									</div>
 									<!-- Step 3 content END -->
@@ -1128,3 +747,191 @@
 	<!-- **************** MAIN CONTENT END **************** -->
 	
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
+
+<script type="text/javascript">
+$(document).ready(function () {
+    $('#datePicker').on('input', function () {
+        var selectedDate = new Date($(this).val());
+        console.log('Selected date:', selectedDate);
+
+        var requestData = JSON.stringify({
+            "selectedDate": selectedDate,
+        });
+
+        $.ajax({
+            url: '${path}/conc-getScheduleList',
+            type: 'POST',
+            contentType: 'application/json',
+            data: requestData,
+            success: function (resp) {
+                console.log(resp);
+                var target = $('#selectSchedule');
+                var list = resp;
+                var html = '';
+
+                for (var i = 0; i < list.length; i++) {
+                    var time = new Date(list[i].startTime);
+                    var preStr = time.toLocaleDateString('ko-KR');
+                    preStr = preStr.replaceAll('.', '').replaceAll(' ', '-');
+                    var postStr = time.toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit', hour12: false });
+                    var fmtTime = preStr + ' ' + postStr;
+                    html += '<div class="card border mb-3">' +
+                                '<label class="card-label card area-card">' +
+                                    '<input class="form-check-input card-radio" type="radio" name="time-select" value="' + fmtTime + '">' +
+                                    '<div class="p-3 pb-0">' +
+                                        '<div class="h4 title text-center">' + fmtTime + '</div>' +
+                                        '<div class="row">' +
+                                            '<p class="col text-center">' +
+                                                '<span class="fs-6">R석 </span>' +
+                                                '<span class="h6">' + list[i].r + '석</span>' +
+                                            '</p>' +
+                                            '<p class="col text-center">' +
+                                                '<span class="fs-6">S석 </span>' +
+                                                '<span class="h6">' + list[i].s + '석</span>' +
+                                            '</p>' +
+                                            '<p class="col text-center">' +
+                                                '<span class="fs-6">A석 </span>' +
+                                                '<span class="h6">' + list[i].a + '석</span>' +
+                                            '</p>' +
+                                        '</div>' +
+                                    '</div>' +
+                                '</label>' +
+                            '</div>';
+                }
+
+                target.html(html);
+
+                var selectedRadioCount = $('input[type="radio"]:checked').length;
+        
+                if (selectedRadioCount === 0) {
+                    $('#seatsPage').prop('disabled', true);
+                } else {
+                    $('#seatsPage').prop('disabled', false);
+                }
+
+                $('input[type="radio"]').on('change', function () {
+                    var selectedRadioCount = $('input[type="radio"]:checked').length;
+            
+                    if (selectedRadioCount === 0) {
+                        $('#seatsPage').prop('disabled', true);
+                    } else {
+                        $('#seatsPage').prop('disabled', false);
+                    }
+                });
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+            	alert('error!');
+                console.log('jqXHR:', jqXHR);
+                console.log('textStatus:', textStatus);
+                console.log('errorThrown:', errorThrown);
+            }
+        });
+    });
+
+    $('#seatsPage').click(function () {
+        var selectedDateTime = $('input[name="time-select"]:checked').val();
+        var utcDate = new Date(selectedDateTime);
+        var date = utcDate.toLocaleDateString('ko-KR');
+        var time = utcDate.toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit', hour12: false });
+        console.log('Selected date:', date + ' ' + time);
+
+        var requestData = JSON.stringify({
+            "date": date,
+            "time": time
+        });
+
+        $.ajax({
+            url: '${path}/conc-bookedSeats',
+            type: 'POST',
+            contentType: 'application/json',
+            data: requestData,
+            success: function (resp) {
+                $('.select-seat').css('display', 'block');
+                for (var i = 0; i < resp.length; i++) {
+                    var id = '#' + resp[i];
+                    console.log(id);
+                    $(id).css('display', 'none');
+                }
+                $('#submitCardTime').html(date + ' ' + time);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                alert('error!');
+                console.log('jqXHR:', jqXHR);
+                console.log('textStatus:', textStatus);
+                console.log('errorThrown:', errorThrown);
+            }
+        });
+    });
+
+    var totalPrice = 0;
+    $('.seat-checkbox').change(function () {
+        var seatNo = $(this).data('seatno');
+        var seatType = $(this).data('seattype');
+        var price = $(this).data('price');
+        var targetId = '#' + seatNo + '-card';
+
+        if ($(this).is(':checked')) {
+            console.log('selected');
+
+            $.ajax({
+                success: function () {
+                    console.log('append');
+                    var target = $('#selected-seat');
+                    var card = '';
+                    card +=
+                    '<div class="card border mb-3 p-2" id="' + seatNo +'-card">' +
+                        '<li class="list-group-item d-flex justify-content-between align-items-center pt-0">' +
+                            '<span class="fs-6 fw-bold p-2">좌석등급</span>' +
+                            '<span class="h6 mb-0 fw-bold">' + seatType + '</span>' +
+                        '</li>' +
+                        '<li class="list-group-item d-flex justify-content-between align-items-center pt-0">' +
+                            '<span class="fs-6 fw-bold p-2">좌석번호</span>' +
+                            '<span class="h6 mb-0 fw-bold">' + seatNo + '</span>' +
+                        '</li>' +
+                    '</div>';
+                    target.append(card);
+
+                    totalPrice += price;
+                    $('#totalPrice').html('₩ ' + totalPrice.toLocaleString('ko-KR'));
+                    $('#submitCardPrice').html('₩ ' + totalPrice.toLocaleString('ko-KR'));
+
+                    var seatInfo = '';
+                    seatInfo +=
+                        '<div id ="' + seatType + seatNo + '">' +
+                            seatType + ' ' + seatNo +
+                        '</div>';
+                    $('#submitCardSeatInfo').append(seatInfo);
+                }
+            });
+        }
+        if (!$(this).is(':checked')) {
+            console.log('unselected');
+
+            $.ajax({
+                success: function () {
+                    var target = $(targetId);
+
+                    target.remove();
+
+                    totalPrice -= price;
+                    $('#totalPrice').html('₩ ' + totalPrice.toLocaleString('ko-KR'));
+
+                    var id = '#' + seatType + seatNo;
+                    $(id).remove();
+                }
+            });
+        }
+
+        var selectedCheckCount = $('input[type="checkbox"]:checked').length;
+        console.log(selectedCheckCount);
+        
+        if (selectedCheckCount == 0) {
+            $('#goto3').prop('disabled', true);
+            console.log('다음페이지 비활성화');
+        } else {
+            $('#goto3').prop('disabled', false);
+            console.log('다음페이지 활성화');
+        }
+    });
+});
+</script>

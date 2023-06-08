@@ -5,8 +5,8 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.multi.mvc.concert.model.vo.ConHall;
 import com.multi.mvc.concert.model.vo.ConcertVO;
+import com.multi.mvc.concert.model.vo.HallSeats;
 import com.multi.mvc.member.model.vo.ConcBookmark;
 
 
@@ -33,4 +33,12 @@ public interface ConcertMapper {
 	String getConhallId(String hallId);
 
 	void concViewsPlus(Map<String, Object> param);
+
+	List<HallSeats> whatTheFuckIsThis(Map<String, Object> param);
+
+	HallSeats getPrices(Map<String, Object> param);
+	
+	List<String> bookedSeats(Map<String, Object> param);
+
+	int reqBooking(Map<String, Object> param);
 }

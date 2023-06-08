@@ -1,5 +1,6 @@
 package com.multi.mvc.member.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -7,11 +8,13 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -23,6 +26,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.multi.mvc.concert.model.vo.ConcertVO;
 import com.multi.mvc.kakao.KaKaoService;
 import com.multi.mvc.member.model.service.MemberService;
+import com.multi.mvc.member.model.vo.ConcBooking;
 import com.multi.mvc.member.model.vo.Member;
 
 import lombok.extern.slf4j.Slf4j;
@@ -116,6 +120,11 @@ public class MemberController {
 	public String delete(Model model, 
 			@SessionAttribute(name="loginMember", required = false) Member loginMember // 세션값
 			) {
+		if (loginMember == null) {
+			model.addAttribute("msg", "잘못된 접근입니다.");
+			model.addAttribute("loation", "/sign-in");
+			return "/common/msg";
+		}
 		int result = service.delete(loginMember.getMno());
 		
 		if(result > 0) {
@@ -243,6 +252,11 @@ public class MemberController {
 	@RequestMapping(value = "/MyWishList", method = RequestMethod.GET)
 	public String wishList(Model model, HttpSession session) {
 		Member loginMember = (Member) session.getAttribute("loginMember");
+		if (loginMember == null) {
+			model.addAttribute("msg", "잘못된 접근입니다.");
+			model.addAttribute("loation", "/sign-in");
+			return "/common/msg";
+		}
 		int mno = loginMember.getMno();
 		log.info("@@@@@@@ wishList - mno>> " + mno);
 		
@@ -254,7 +268,25 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "/booking-info", method = RequestMethod.GET)
-	public String booking(Locale locale, Model model) {
+	public String booking(Model model, HttpSession session) {
+		Member loginMember = (Member) session.getAttribute("loginMember");
+		if (loginMember == null) {
+			model.addAttribute("msg", "잘못된 접근입니다.");
+			model.addAttribute("loation", "/sign-in");
+			return "/common/msg";
+		}
+		Map<String, Object> param = new HashMap<>();
+		param.put("mno", loginMember.getMno());
+		param.put("status", "Y");
+		List<ConcBooking> upcome = service.getConBookingList(param);
+		param.put("status", "N");
+		List<ConcBooking> cancle = service.getConBookingList(param);
+		param.put("status", "E");
+		List<ConcBooking> complete = service.getConBookingList(param);
+		
+		model.addAttribute("upcome", upcome);
+		model.addAttribute("cancle", cancle);
+		model.addAttribute("complete", complete);
 		
 		return "/account/account-bookings";
 	}
@@ -268,6 +300,11 @@ public class MemberController {
 	@RequestMapping("/deleteAllWishlist")
 	public String deleteAllWishlist(Model model, HttpSession session) {
 		Member loginMember = (Member) session.getAttribute("loginMember");
+		if (loginMember == null) {
+			model.addAttribute("msg", "잘못된 접근입니다.");
+			model.addAttribute("loation", "/sign-in");
+			return "/common/msg";
+		}
 		int mno = loginMember.getMno();
 		int result = service.deleteAllWishlist(mno);
 		
@@ -280,6 +317,13 @@ public class MemberController {
 		}
 		
 		return "common/msg";
+	}
+	
+	@PostMapping(value = "/cancel-booking", produces = "application/json; charset=utf-8")
+	public ResponseEntity<?> cancelBooking(@RequestBody Map<String, Object> param) {
+		log.info("@@@@@@@@ cancelBooking>>" + param.toString());
+		service.cancelBooking(param);
+	    return ResponseEntity.ok().build();
 	}
 	
 	// contoller에서 전체 Error 처리하는 핸들러 
