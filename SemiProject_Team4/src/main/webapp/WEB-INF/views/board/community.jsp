@@ -51,14 +51,21 @@
 		<div class="container">
 			<!-- Blog START -->
 			<div class="row g-4">
+			   <div class="container">
 				<!-- Card header -->
-				<div class="card-header bg-transparent border-bottom p-0 pb-3">
-					<h3 class="mb-0 title fs-2">이달의 Pick!</h3>
+				<div class="row">
+					<div class="col-6 card-header bg-transparent border-bottom p-0 pb-3">
+						<h3 class="mb-0 title fs-2">이달의 캠핑 Pick!</h3>
+					</div>
+					<div class="col-6 card-header bg-transparent border-bottom p-0 pb-3">
+						<h3 class="mb-0 title fs-2">이달의 공연 Pick!</h3>
+					</div>
 				</div>
+			   </div>
 				<!-- 이달의픽 카드 1 -->
 				<div class="col-6">
 					<!-- place item-->
-					<div class="w-100" style="height: 32rem;">
+					<div class="w-100 mb-4" style="height: 32rem;">
 						<div class="card card-img-scale h-100 border-0 shadow">
 							<div class="card-img-top overflow-hidden">
 								<img class="img-fluid" src="${path}/resources/assets/images/blog/blog01.jpeg" />
@@ -66,18 +73,18 @@
 							<div class="card-body d-flex align-items-center">
 								<div class="w-100">
 									<h5 class="card-title text-decoration-none text-dark">
-										<a href="${path}/board-detail" class="stretched-link title">
-											애견 캠퍼 분들 주목! 윈드스크린 추천
+										<a href="${path}/board-info?boardCat=info" class="stretched-link title">
+											이달의 캠핑 pick!
 										</a>
 									</h5>
-									애견 캠퍼의 내돈내산 캠핑템 찐 후기
-									<div class="d-flex align-items-center mt-2 mb-n2" href="${path}/profile.html">
+									정보 공유 내용!!!!!
+									<div class="d-flex align-items-center mt-2 mb-n2" href="${path}/board-info?boardCat=info">
 										<!-- Avatar -->
 										<div class="avatar me-3" style="width: 2rem; height: 2rem;">
 											<img class="avatar-img rounded-circle shadow" src="${path}/resources/assets/images/avatar/01.jpg" alt="avatar">
 										</div>
 										<div class="fw-bold text-black">
-											지석환
+											홍길동
 										</div>
 									</div>
 								</div>
@@ -86,48 +93,36 @@
 					</div>
 				</div>
 	
-			  <c:forEach var="item" items="${list}">
-				<!-- Blog list START -->
-				<div class="col-lg-6 ps-lg-5">
-					<div class="vstack gap-4">
-						<!-- 후기 아이템 시작 -->
-						<div class="card bg-transparent">
-							<div class="row g-3 g-sm-4 align-items-sm-center">
-								<!-- Image -->
-								<div class="col-4">
-									<img src="${path}/resources/assets/images/blog/01.jpg" class="card-img" alt="">
-									<div class="card-img-overlay-top">
-										<div class="d-flex justify-content-between">
-											<span class="badge text-bg-info" style="height: 1.5rem">${item.location}</span>
+			  <div class="col-6">
+					<!-- place item-->
+					<div class="w-100 mb-4" style="height: 32rem;">
+						<div class="card card-img-scale h-100 border-0 shadow">
+							<div class="card-img-top overflow-hidden">
+								<img class="img-fluid" src="${path}/resources/assets/images/blog/13.jpg" />
+							</div>
+							<div class="card-body d-flex align-items-center">
+								<div class="w-100">
+									<h5 class="card-title text-decoration-none text-dark">
+										<a href="${path}/board-detail?boardCat=info" class="stretched-link title">
+											이달의 공연 pick!
+										</a>
+									</h5>
+									정보 공유 내용!!!!!
+									<div class="d-flex align-items-center mt-2 mb-n2" href="${path}/board-info?boardCat=info">
+										<!-- Avatar -->
+										<div class="avatar me-3" style="width: 2rem; height: 2rem;">
+											<img class="avatar-img rounded-circle shadow" src="${path}/resources/assets/images/avatar/02.jpg" alt="avatar">
 										</div>
-									</div>
-								</div>
-								<div class="col-8">
-									<!-- card body -->
-									<div class="card-body p-0">
-										<h5 class="card-title">
-											<a href="${path}/board-detail" class="stretched-link title fs-4">${item.boardTitle}</a>
-										</h5>
-										<p class="flex-shrink-1 card-stars fs-6 mb-0 mt-n2" style="font-size: 0.7rem;">
-											<i class="fa fa-star text-warning"></i>
-											<i class="fa fa-star text-warning"></i>
-											<i class="fa fa-star text-warning"></i>
-											<i class="fa fa-star-half-alt text-warning"></i>
-											<i class="far fa-star text-warning"></i>
-											<a class="btn position-relative z-index-99 fw-normal h-75">
-												<i class="far fa-thumbs-up pe-1"></i>123
-											</a>
-										</p>
-										<div>
-											${item.boardContent}
+										<div class="fw-bold text-black">
+											최길동
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-						<!-- 후기 아이템 끝 -->
+					</div>
+				</div>
 						<hr class="my-0"> <!-- Divider -->
-				     </c:forEach>
 					</div>
 				</div>
 				<!-- Blog list END -->
@@ -153,16 +148,16 @@
 						</a>
 					</div>
 					<ul class="nav flex-column text-info">
-				   <c:forEach var="item" items="${list}">
-						<li class="nav-item">
-						  <div>
-							<a class="nav-link py-1" href="${path}/board-detail?bno=${item.bno}">${item.boardTitle}
-								<span class="ps-1 text-black-50" style="font-size: 0.9rem;">[1]</span>
-								<span class="ps-1 text-black-50" style="font-size: 0.9rem;">1분 전</span>
-							</a>
-						  </div>
-						</li>
-				   </c:forEach>
+					   <c:forEach var="item" items="${infoList}">
+							<li class="nav-item">
+							  <div>
+								<a class="nav-link py-1" href="${path}/board-detail?boardCat=info&bno=${item.bno}">${item.boardTitle}
+									<span class="ps-1 text-black-50" style="font-size: 0.9rem;">[1]</span>
+									<span class="ps-1 text-black-50" style="font-size: 0.9rem;">1분 전</span>
+								</a>
+							  </div>
+							</li>
+					   </c:forEach>
 					</ul>
 				</div>
 				<!-- 정보공유 끝 -->
@@ -175,10 +170,10 @@
 							<h3 class="mb-0 title fs-3">자유게시판</h3>
 						</a>
 					</div>
-				  <c:forEach var="item" items="${list}">
+				  <c:forEach var="item" items="${freeList}">
 					<ul class="nav flex-column text-info">
 						<li class="nav-item">
-							<a class="nav-link py-1" href="${path}/board-detail?bno=${item.bno}">${item.boardTitle}
+							<a class="nav-link py-1" href="${path}/board-detail?boardCat=free&bno=${item.bno}">${item.boardTitle}
 								<span class="ps-1 text-black-50" style="font-size: 0.9rem;">[1]</span>
 								<span class="ps-1 text-black-50" style="font-size: 0.9rem;">1분 전</span>
 							</a>
@@ -196,6 +191,7 @@
 							<h3 class="mb-0 title fs-2">후기</h3>
 						</a>
 					</div>
+					<c:forEach var="item" items="${reviewList}">
 					<div class="card card-body p-4 d-flex justify-content-center my-3">
 						<!-- 후기 아이템 시작 -->
 						<div class="card bg-transparent my-2">
@@ -213,7 +209,7 @@
 									<!-- card body -->
 									<div class="card-body p-0">
 										<h5 class="card-title">
-											<a href="${path}/board-detail" class="stretched-link title fs-4">[장수상회] 후기 제목</a>
+											<a href="${path}/board-review?bno=${bno}" class="stretched-link title fs-4">${item.boardTitle}</a>
 										</h5>
 										<p class="flex-shrink-1 card-stars fs-6" style="font-size: 0.7rem;">
 											<i class="fa fa-star text-warning"></i>
@@ -226,16 +222,16 @@
 											</a>
 										</p>
 										<div class="pb-3">
-											후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 
+											${item.boardContent}
 										</div>
 										<!-- Author name and button -->
 										<div class="d-flex justify-content-between align-items-center">
 											<span class="small">
 												<img src="${path}/resources/assets/images/avatar/02.jpg" class="avatar-sm" style="border-radius: 100%;"/>
-												<span class="text-black fs-5 fw-bold px-2">권수경</span>
-												2023-05-25
+												<span class="text-black fs-5 fw-bold px-2">${item.name}</span>
+												<fmt:formatDate value="${item.boardCreateDate}" pattern="MM.dd hh:mm:ss"/>
 											</span>
-											<a href="${path}/board-detail" class="btn btn-link p-0 mb-0">Read more <i class="bi bi-arrow-up-right"></i></a>
+											<a href="${path}/board-review?bno=${bno}" class="btn btn-link p-0 mb-0">Read more <i class="bi bi-arrow-up-right"></i></a>
 										</div>
 									</div>
 								</div>
@@ -243,6 +239,7 @@
 						</div>
 						<!-- 후기 아이템 끝 -->
 					</div>
+				  </c:forEach>
 				</div>
 			</div>
 		</div>

@@ -1,24 +1,19 @@
 package com.multi.mvc.board.controller;
 
-import java.net.URLEncoder;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -46,7 +41,34 @@ public class BoardController {
 	private ResourceLoader resourceLoader; // 파일 다운로드 기능시 활용하는 loader
 	
 	@RequestMapping(value = "/community", method = RequestMethod.GET)
-	public String comMainPage() {
+	public String comMainPage(Model model) {
+		Map<String, Object> param = null;
+		int page = 1;
+		
+		param = new HashMap<String, Object>();
+		param.put("boardCat", "free");
+		int boardCount = service.getBoardCount(param);
+		PageInfo pageInfo = new PageInfo(page, 5, boardCount, 5);
+		List<Board> freeList = service.selectInfoBoardList(pageInfo, param);
+		model.addAttribute("freeList", freeList);
+
+		param = new HashMap<String, Object>();
+		param.put("boardCat", "info");
+		boardCount = service.getBoardCount(param);
+		pageInfo = new PageInfo(page, 5, boardCount, 5);
+		List<Board> infoList = service.selectInfoBoardList(pageInfo, param);
+		model.addAttribute("infoList", infoList);
+		model.addAttribute("campBest", infoList.get(0));
+		model.addAttribute("concBest", infoList.get(0));
+		
+		param = new HashMap<String, Object>();
+		param.put("boardCat", "review");
+		boardCount = service.getBoardCount(param);
+		pageInfo = new PageInfo(page, 5, boardCount, 3);
+		List<Board> reviewList = service.selectInfoBoardList(pageInfo, param);
+		model.addAttribute("reviewList", reviewList);
+		
+		
 		
 		return "/board/community";
 	}
@@ -102,7 +124,7 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value = "/board-review", method = RequestMethod.GET)
-	public String boardReviewPage() {
+	public String boardReviewPage(Model model, @RequestParam Map<String, Object> param) {
 		
 		return "/board/community-review";
 	}
@@ -196,6 +218,7 @@ public class BoardController {
 		
 		return "/board/community-detail";
 	}
+	
 	
 }
 

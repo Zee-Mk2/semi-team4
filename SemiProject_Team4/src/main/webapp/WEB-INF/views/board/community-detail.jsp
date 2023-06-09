@@ -82,7 +82,7 @@
 								</div>
 							</li>
 							<li class="nav-item">
-								<fmt:formatDate value="${item.boardCreateDate}" pattern="yyyy.MM.dd"/>
+								작성일 : <fmt:formatDate value="${item.boardCreateDate}" pattern="yyyy.MM.dd"/>
 							</li>
 							<li class="nav-item">
 								조회수 ${item.boardViews}

@@ -124,7 +124,7 @@
 			</div>
 
 			<div class="row filter-container overflow-hidden" data-isotope='{"layoutMode": "masonry"}'>
-			  <c:forEach var="item" items="${list}"> 	
+			  <c:forEach var="item" items="${reviewList}"> 	
 				<!-- Card item START -->
 				<div class="col-sm-6 col-lg-4 grid-item">
 					<div class="card mb-4">

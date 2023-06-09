@@ -99,7 +99,7 @@
 							<!-- Button -->
 							<div class="col-2 text-center">
 								<div class="d-grid">
-									<a href="#"> <i
+									<a href="${path}/board-free"> <i
 										class="fa-solid fa-search fs-5 text-black-50"></i>
 									</a>
 								</div>
@@ -172,10 +172,10 @@
 								<!-- Card info -->
 								<ul class="nav nav-divider align-items-center text-uppercase small">
 									<li class="nav-item">
-										<a href="#" class="nav-link text-reset btn-link">${item.name}</a>
+										<a href="#" class="nav-link text-reset btn-link">작성자 : ${item.name}</a>
 									</li>
 									<li class="nav-item">
-										<fmt:formatDate value="${item.boardCreateDate}" pattern="MM.dd hh:mm:ss"/>
+										작성일 : <fmt:formatDate value="${item.boardCreateDate}" pattern="MM.dd hh:mm:ss"/>
 									</li>
 								</ul>
 							</div>

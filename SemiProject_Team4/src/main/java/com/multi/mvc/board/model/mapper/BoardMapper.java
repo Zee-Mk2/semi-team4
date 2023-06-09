@@ -28,4 +28,8 @@ public interface BoardMapper {
 
 	int deleteBoard(Map<String, String> param);
 	
+	int insertReply(Reply reply);
+
+	
+	
 }
