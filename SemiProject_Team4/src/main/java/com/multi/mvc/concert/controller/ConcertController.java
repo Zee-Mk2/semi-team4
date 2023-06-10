@@ -103,27 +103,27 @@ public class ConcertController {
 		return "/concert/concert-booking";
 	}
 	
-	@PostMapping(value = "/conc-booking")
-	public String concBooking(@RequestParam Map<String, Object> param, @RequestParam("seatNo") String[] seatNos, Model model,
-			@SessionAttribute(name="loginMember", required = false) Member loginMember) {
-		if (loginMember == null) {
-			model.addAttribute("msg", "잘못된 접근입니다.");
-			model.addAttribute("location", "/sign-in");
-			return "common/msg";
-		}
-		log.info("@@@@ concBooking>> " + param.toString());
-		log.info("@@@@ concBooking - seatNos>> " + Arrays.toString(seatNos));
-		int result = service.reqBooking(param, seatNos);
-		if (result == 0) {
-			model.addAttribute("msg", "예약에 실패했습니다.");
-			model.addAttribute("location", "/conc-detail?conId=" + param.get("conId"));
-		} else {
-			model.addAttribute("msg", "공연이 예매되었습니다.<br>마이페이지 나의 예약정보에서 확인할 수 있습니다.");
-			model.addAttribute("location", "/conc-detail?conId=" + param.get("conId"));
-		}
-		
-		return "common/msg";
-	}
+//	@PostMapping(value = "/conc-booking")
+//	public String concBooking(@RequestParam Map<String, Object> param, @RequestParam("seatNo") String[] seatNos, Model model,
+//			@SessionAttribute(name="loginMember", required = false) Member loginMember) {
+//		if (loginMember == null) {
+//			model.addAttribute("msg", "잘못된 접근입니다.");
+//			model.addAttribute("location", "/sign-in");
+//			return "common/msg";
+//		}
+//		log.info("@@@@ concBooking>> " + param.toString());
+//		log.info("@@@@ concBooking - seatNos>> " + Arrays.toString(seatNos));
+//		int result = service.reqBooking(param, seatNos);
+//		if (result == 0) {
+//			model.addAttribute("msg", "예약에 실패했습니다.");
+//			model.addAttribute("location", "/conc-detail?conId=" + param.get("conId"));
+//		} else {
+//			model.addAttribute("msg", "공연이 예매되었습니다.<br>마이페이지 나의 예약정보에서 확인할 수 있습니다.");
+//			model.addAttribute("location", "/conc-detail?conId=" + param.get("conId"));
+//		}
+//		
+//		return "common/msg";
+//	}
 	
 	@GetMapping(value = "/conc-search")
 	public String concSearchPage(Model model, @RequestParam Map<String, Object> param, HttpSession session) {

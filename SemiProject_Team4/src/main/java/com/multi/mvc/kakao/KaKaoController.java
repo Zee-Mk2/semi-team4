@@ -14,6 +14,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
+
+import com.multi.mvc.concert.model.service.ConcertService;
+import com.multi.mvc.member.model.vo.Member;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -21,6 +25,9 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Controller
 public class KaKaoController {
+	
+	@Autowired
+	private ConcertService concService;
 
 	@RequestMapping("/kakaoMap1")
 	String kakaoMap1(Model model) {
@@ -80,22 +87,33 @@ public class KaKaoController {
 	@Autowired
     private KakaoPayService kakaopay;
 	    
-    @PostMapping("/kakaoPay")
-    public String kakaoPay(@RequestParam Map<String, String> param, HttpSession session) {
-        log.info("kakaoPay post............................................");
-        session.setAttribute("param", param);
-        return "redirect:" + kakaopay.kakaoPayReady(param);
- 
+    @PostMapping("/kakaoPayConc")
+    public String kakaoPay(@RequestParam Map<String, Object> param, Model model,
+    		@SessionAttribute(name="loginMember", required = false) Member loginMember, @RequestParam("seatNo") String[] seatNos) {
+		if (loginMember == null) {
+			model.addAttribute("msg", "잘못된 접근입니다.");
+			model.addAttribute("location", "/sign-in");
+			return "common/msg";
+		}
+        log.info("kakaoPay post................. param>> " + param.toString());
+		int result = concService.reqBooking(param, seatNos);
+		if (result == 0) {
+			model.addAttribute("msg", "예약에 실패했습니다.");
+			model.addAttribute("location", "/conc-detail?conId=" + param.get("conId"));
+			return "common/msg";
+		}
+		
+		return "redirect:" + kakaopay.kakaoPayReady(param);
     }
     
     @GetMapping("/kakaoPaySuccess")
     public String kakaoPaySuccess(@RequestParam("pg_token") String pg_token, Model model, HttpSession session) {
         log.info("kakaoPaySuccess get............................................");
         log.info("kakaoPaySuccess pg_token : " + pg_token);
-        @SuppressWarnings("unchecked")
-		Map<String, String> param = (Map<String, String>) session.getAttribute("param");
-        model.addAttribute("info", kakaopay.kakaoPayInfo(pg_token, param));
-        return "kakao/kakaoPaySuccess";
+		model.addAttribute("msg", "공연이 예매되었습니다.<br>마이페이지 나의 예약정보에서 예매내역을 확인할 수 있습니다.");
+		model.addAttribute("location", "/");
+		
+        return "common/msg";
     }
 	
 }

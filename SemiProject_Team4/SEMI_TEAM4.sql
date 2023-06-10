@@ -634,8 +634,9 @@ SELECT * FROM conHall WHERE conHallId='FC001247';
 
 SELECT * FROM concReserve;
 -- 나의 예약정보 조회 / Y: 다가오는 예약, N: 취소된 예약, 'E': 완료된 예약
-SELECT cr.*, conc.posterImg, hall.conHallNm
+SELECT cr.*, conc.posterImg, conc.conNm, hall.conHallNm, st.seatPrice
 	FROM concReserve cr
 	JOIN concert conc ON (conc.conId = cr.conId)
-    JOIN conHall hall ON (cr.conHallId = cr.conHallId)
+    JOIN conHall hall ON (cr.conHallId = hall.conHallId)
+    JOIN seat st ON (cr.seatNo = st.seatNo)
     WHERE cr.mno = 1 AND cr.status = 'Y';

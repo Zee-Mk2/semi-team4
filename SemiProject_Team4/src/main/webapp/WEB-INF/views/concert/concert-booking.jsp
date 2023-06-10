@@ -77,7 +77,7 @@
 						<!-- Step 1 -->
 						<div class="step" data-target="#step-1">
 							<div class="text-center">
-								<button type="button" class="btn btn-link step-trigger mb-0" role="tab"
+								<button type="button" class="btn btn-link step-trigger mb-0" role="tab" disabled="true" style="opacity: 1 !important;"
 									id="steppertrigger1" aria-controls="step-1">
 									<span class="bs-stepper-circle">1</span>
 								</button>
@@ -89,7 +89,7 @@
 						<!-- Step 2 -->
 						<div class="step" data-target="#step-2">
 							<div class="text-center">
-								<button type="button" class="btn btn-link step-trigger mb-0" role="tab"
+								<button type="button" class="btn btn-link step-trigger mb-0" role="tab" disabled="true" style="opacity: 1 !important;"
 									id="steppertrigger2" aria-controls="step-2">
 									<span class="bs-stepper-circle">2</span>
 								</button>
@@ -101,7 +101,7 @@
 						<!-- Step 3 -->
 						<div class="step" data-target="#step-3">
 							<div class="text-center">
-								<button type="button" class="btn btn-link step-trigger mb-0" role="tab"
+								<button type="button" class="btn btn-link step-trigger mb-0" role="tab" disabled="true" style="opacity: 1 !important;"
 									id="steppertrigger3" aria-controls="step-3">
 									<span class="bs-stepper-circle">3</span>
 								</button>
@@ -118,7 +118,7 @@
 							<!-- Main content START -->
 							<div class="col-12">
 
-								<form action="${path}/conc-booking" method="post" enctype="multipart/form-data">
+								<form name="payForm" action="${path}/kakaoPayConc" method="post" >
 									<input type="hidden" value="${conc.conHallId}" name="conHallId">
 									<input type="hidden" value="${conc.conId}" name="conId">
 									<input type="hidden" value="${sessionScope.loginMember.mno}" name="mno">
@@ -598,7 +598,7 @@
 															<div id="selected-seat"></div>
 														</div>
 														
-														<div class="text-center title text-primary fs-3" id="totalPrice">₩ 0</div>
+														<div class="text-center title text-primary fs-3" id="totalPrice" val="">₩ 0</div>
 													</div>
 												</div>
 											</div>
@@ -628,19 +628,18 @@
 												<div class="card-body">
 													<!-- 이름 -->
 													<div>
-														<label class="form-label">이름</label>
+														<label class="form-label">이름</label><span class="text-danger">*</span>
 														<div class="position-relative form-control-bg-light">
 															<input type="text" class="form-control" maxlength="14" placeholder="" name="userName">
 														</div>
 													</div>
 													<br>
 													<!-- 전화번호 -->
-													<div class="row">
-														<label class="form-label">전화번호</label>
-														<div class="form-control-bg-light col-9">
+													<div>
+														<label class="form-label">전화번호</label><span class="text-danger">*</span>
+														<div class="form-control-bg-light">
 															<input type="text" class="form-control" maxlength="11" placeholder="- 없이 입력해주세요 ex. 01012341234" name="tel">
 														</div>
-														<div class="btn btn-outline-light col-3">인증번호 전송</div>
 													</div>
 												</div>
 											</div>
@@ -670,12 +669,34 @@
 														<div class="col-6 text-end" id="submitCardPrice">-</div>
 													</div>
 
-													<button type="submit" class="btn btn-primary col-11 align-self-center mb-3">결제하기</button>
+													<input type="hidden" name="item_name" value="${conc.conNm}"><br>
+													<input type="hidden" name="total_amount" value="">
+													<input type="hidden" name="quantity" value="1"><br>
+											
+													<button type="button" onclick="submitCheck();" class="btn btn-primary col-11 align-self-center mb-3">결제하기</button>
 												</div>
 											</div>
-
-											<form class="form-control-bg-light" >
-											</form>
+											<script type="text/javascript">
+											function submitCheck(){
+												var name = $('input[name="userName"]').val();
+												var tel = $('input[name="tel"]').val();
+												var isChecked = true;
+												$('input[type="checkbox"][name="permit"]').each(function () {
+													if (!$(this).is(':checked')) {
+														isChecked = false;
+														return;
+													}
+												});
+												if (name == '' || tel == '' || !isChecked) {
+													alert('필수입력사항을 확인해주세요.');
+													return;
+												}
+												console.log('submitCheck called');
+												payForm.total_amount.value = $('#totalPrice').val();
+												payForm.submit();
+												
+											}
+											</script>
 											
 											<div class="col-6 mt-4">
 												<div class="h4 title">결제수단 선택</div>
@@ -684,8 +705,6 @@
 													<form class="form-control-bg-light my-3">
 														<select class="form-select js-choice">
 															<option>카카오페이</option>
-															<option>네이버페이</option>
-															<option>카드결제</option>
 														</select>
 													</form>
 												</div>
@@ -693,7 +712,7 @@
 												<div class="form-check my-2">
 													<input class="form-check-input" type="checkbox" name="permit">
 													<a onclick="window.open('permit.html', '_blank', 'width=800,height=600')" class="text-black-50 text-decoration-underline">
-														숙소이용규칙 및 취소/환불규정 동의<span class="text-danger">*</span>
+														취소/환불규정 동의<span class="text-danger">*</span>
 													</a>
 												</div>
 
@@ -893,6 +912,9 @@ $(document).ready(function () {
 
                     totalPrice += price;
                     $('#totalPrice').html('₩ ' + totalPrice.toLocaleString('ko-KR'));
+                    $('#totalPrice').val(totalPrice);
+                    $('input[name="total_amount"]').val(totalPrice);
+                    console.log($('#totalPrice').val());
                     $('#submitCardPrice').html('₩ ' + totalPrice.toLocaleString('ko-KR'));
 
                     var seatInfo = '';
@@ -915,6 +937,9 @@ $(document).ready(function () {
 
                     totalPrice -= price;
                     $('#totalPrice').html('₩ ' + totalPrice.toLocaleString('ko-KR'));
+                    $('#totalPrice').val(totalPrice);
+                    $('input[name="total_amount"]').val(totalPrice);
+                    console.log($('#totalPrice').val());
 
                     var id = '#' + seatType + seatNo;
                     $(id).remove();
