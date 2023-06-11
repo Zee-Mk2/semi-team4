@@ -35,7 +35,7 @@
 
 	<insert id="posting" parameterType="Board">
 		INSERT INTO board
-		VALUES(DEFAULT, #{mno}, #{name}, #{boardCat}, #{boardTag}, #{boardTitle}, #{boardContent}, #{boardOriFileNm}, #{boardReFileNm}, DEFAULT, DEFAULT, DEFAULT)
+		VALUES(DEFAULT, #{mno}, #{contentId}, #{rating}, #{name}, #{boardCat}, #{boardTag}, #{boardTitle}, #{boardContent}, #{boardOriFileNm}, #{boardReFileNm}, DEFAULT, DEFAULT, DEFAULT)
 	</insert>
 	
 	<select id="selectBoardCount" parameterType="Map" resultType="int">
@@ -44,9 +44,17 @@
 	
 	<select id="selectInfoBoardList" parameterType="Map" resultType="Board">
 		SELECT 
-			B.bno, B.boardTitle, M.name, B.boardCreateDate, B.boardReFileNm, B.boardViews, B.boardContent, B.boardTag
+			B.bno, B.boardTitle, M.name, B.boardCreateDate, B.boardReFileNm, B.boardViews, B.boardContent, B.boardTag, B.rating
+			<if test="boardTag == 'conc' and boardCat == 'review'">, C.conNm</if>
+			<if test="boardTag == 'camp' and boardCat == 'review'">, C.campNm</if>
 		FROM board B 
 		JOIN member M ON(B.mno = M.mno)
+		<if test="boardTag == 'conc' and boardCat == 'review'">
+			JOIN concert C ON (B.contentId = C.conId) 
+		</if>
+		<if test="boardTag == 'camp' and boardCat == 'review'">
+			JOIN campsiteInfo C ON (B.contentId = C.contentID) 
+		</if>
 		WHERE B.boardStatus = 'Y' AND B.boardCat = #{boardCat}
 		<if test="boardTag != null">
 			AND B.boardTag = #{boardTag}
@@ -59,9 +67,6 @@
 		</if>
 		<if test="content != null">
 			AND B.content LIKE '%${content}%'
-		</if>
-		<if test="boardCat != null">
-		  AND B.boardCat = #{boardCat}
 		</if>
 		ORDER BY B.bno DESC LIMIT ${limit} OFFSET ${offset}
 	</select>
@@ -108,6 +113,29 @@
 		LEFT OUTER JOIN member M2 ON(R.mno = M2.mno)
 		WHERE B.boardStatus = 'Y' AND  B.bno= #{bno}
 	</select> -->
+	
+	<select id="getRivewsById" parameterType="Map" resultType="Board">
+		SELECT B.bno, B.boardTitle, B.boardContent, M.reFileNm, M.name, B.boardCreateDate, B.boardReFileNm, B.boardViews, B.boardContent, B.boardTag, B.rating
+			<if test="boardTag == 'conc'">, C.conNm</if>
+			<if test="boardTag == 'camp'">, C.campNm</if>
+			FROM board B
+			JOIN member M ON(B.mno = M.mno)
+			<if test="boardTag == 'conc'">
+				JOIN concert C ON (B.contentId = C.conId)
+			</if>
+			<if test="boardTag == 'camp'">
+				JOIN campsiteInfo C ON (B.contentId = C.contentID)
+			</if>
+			WHERE B.boardStatus = 'Y' AND B.contentId = #{contentID}
+		    ORDER BY B.boardCreateDate DESC;
+	</select>
+	
+	<select id="getReviewsByMno" parameterType="int" resultType="Board">
+		SELECT B.* FROM board B
+			JOIN member M ON (B.mno = M.mno)
+		    WHERE B.boardStatus = 'Y' AND B.boardCat = 'review' AND B.mno = #{mno}
+		    ORDER BY B.boardCreateDate DESC;
+	</select>
 	
 </mapper>
 

@@ -35,4 +35,6 @@ public class ConcertVO {
 	private int minPrice;
 	private String la;
 	private String lo;
+	private double avgRating;
+	private int numReviews;
 }

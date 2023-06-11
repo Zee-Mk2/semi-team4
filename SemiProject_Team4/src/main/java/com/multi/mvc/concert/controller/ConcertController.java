@@ -1,6 +1,5 @@
 package com.multi.mvc.concert.controller;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -12,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
+import com.multi.mvc.board.model.service.BoardService;
+import com.multi.mvc.board.model.vo.Board;
 import com.multi.mvc.common.util.PageInfo;
 import com.multi.mvc.concert.model.service.ConcertService;
 import com.multi.mvc.concert.model.vo.ConcertVO;
@@ -37,6 +37,9 @@ public class ConcertController {
 	
 	@Autowired
 	private ConcertService service;
+	
+	@Autowired
+	private BoardService boardService;
 	
 	@RequestMapping(value = "/conc-home", method = RequestMethod.GET)
 	public String concertHome(Locale locale, Model model, HttpSession session) {
@@ -63,6 +66,9 @@ public class ConcertController {
 		}
 		
 		ConcertVO item = service.concDetailById(param);
+		param.put("contentID", param.get("conId"));
+		log.info("@@@@@@@ concDetailPage param>> " + param.toString());
+		List<Board> reviews = boardService.getRivewsById(param);
 		item.setTicketPrice(item.getTicketPrice().replace("원,", "원<br>"));
 		String[] introImg = item.getIntroImg().replace(" ", "").split("\n");
 		for (String str : introImg) {
@@ -70,6 +76,7 @@ public class ConcertController {
 		}
 		model.addAttribute("item", item);
 		model.addAttribute("introImg", introImg);
+		model.addAttribute("reviews", reviews);
 		
 		return "/concert/concert-detail";
 	}

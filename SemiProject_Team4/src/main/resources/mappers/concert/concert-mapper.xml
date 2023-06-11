@@ -92,7 +92,7 @@
 	</select>
 	
 	<select id="concDetailById" parameterType="Map" resultType="concertVO">
-		SELECT Conc.*, Hall.la, Hall.lo, bookmarks.bookmarks
+		SELECT Conc.*, Hall.la, Hall.lo, bookmarks.bookmarks, rating.avgRating, rating.numReviews
 		FROM concert Conc
 		LEFT JOIN conHall Hall ON Conc.conHallId = Hall.conHallId
 		LEFT JOIN (
@@ -101,6 +101,12 @@
 			WHERE conId = #{conId}
 			GROUP BY conId
 		) bookmarks ON Conc.conId = bookmarks.conId
+		LEFT JOIN (
+		SELECT contentId, SUM(rating) / count(*) AS avgRating, count(*) AS numReviews
+			FROM board
+			WHERE contentId = #{conId}
+			GROUP BY contentId
+		) rating ON Conc.conId = rating.contentId
 		WHERE Conc.conId = #{conId}
 	</select>
 	

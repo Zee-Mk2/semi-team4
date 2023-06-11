@@ -97,26 +97,13 @@ public class BoardService {
 	public int deleteBoard(Map<String, String> param) {
 		return mapper.deleteBoard(param);
 	}
-	
-	@RequestMapping("/board/reply")
-	public String writeReply(Model model,
-			@SessionAttribute(name = "loginMember", required = false) Member loginMember,
-			@ModelAttribute Reply reply
-			) {
-		log.info("후기 작성, reply : "+ reply);
-		reply.setMno(loginMember.getMno());
-		int result = service.saveReply(reply);
-		
-		if(result > 0) {
-			model.addAttribute("msg","후기가 등록되었습니다.");
-		} else {
-			model.addAttribute("msg","후기 등록에 실패하였습니다.");
-		}
-		model.addAttribute("location", "/board/view?no="+reply.getBno());
-		return "/common/msg";
+
+	public List<Board> getRivewsById(Map<String, Object> param) {
+		return mapper.getRivewsById(param);
 	}
-	
-	
-	
+
+	public List<Board> getReviewsByMno(int mno) {
+		return mapper.getReviewsByMno(mno);
+	}
 
 }

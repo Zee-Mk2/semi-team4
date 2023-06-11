@@ -30,6 +30,8 @@ public interface BoardMapper {
 	
 	int insertReply(Reply reply);
 
-	
+	List<Board> getRivewsById(Map<String, Object> param);
+
+	List<Board> getReviewsByMno(int mno);
 	
 }

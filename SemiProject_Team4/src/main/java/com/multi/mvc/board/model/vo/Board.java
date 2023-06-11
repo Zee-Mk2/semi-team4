@@ -13,6 +13,8 @@ import lombok.NoArgsConstructor;
 public class Board {
 	private int bno;
 	private int mno;
+    private String contentId;
+    private int rating;
 	private String name;
 	private String boardCat;
 	private String boardTag;
@@ -24,4 +26,7 @@ public class Board {
 	private int boardViews;
 	private String boardStatus;
 	private List<Reply> replies;
+	private String conNm;
+	private String campNm;
+	private String reFileNm;
 }

@@ -12,17 +12,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.multi.mvc.board.model.service.BoardService;
 import com.multi.mvc.board.model.vo.Board;
-import com.multi.mvc.board.model.vo.Reply;
 import com.multi.mvc.common.util.PageInfo;
 import com.multi.mvc.member.model.vo.Member;
 
@@ -100,6 +100,9 @@ public class BoardController {
 	
 	@RequestMapping(value = "/board-info", method = RequestMethod.GET)
 	public String InfoPage(Model model, @RequestParam Map<String, Object> param) {
+		if (param.get("boardTag") == null) {
+			param.put("boardTag", "conc");
+		}
 		log.info("board list 요청, param : " + param);
 		
 		int page = 1;
@@ -125,6 +128,27 @@ public class BoardController {
 	
 	@RequestMapping(value = "/board-review", method = RequestMethod.GET)
 	public String boardReviewPage(Model model, @RequestParam Map<String, Object> param) {
+		int page = 1;
+		try {
+			if(param.get("searchType") != null) {
+				param.put((String) param.get("searchType"), param.get("searchValue"));
+			}
+			
+			page = Integer.parseInt((String) param.get("page"));
+		} catch (Exception e) {}
+		
+		if (param.get("boardTag") == null) {
+			param.put("boardTag", "conc");
+		}
+		int boardCount = service.getBoardCount(param);
+		PageInfo pageInfo = new PageInfo(page, 5, boardCount, 15);
+		List<Board> list = service.selectInfoBoardList(pageInfo, param);
+		
+		model.addAttribute("list", list);
+		log.info("@@@@@@@@@@@ list 요청, param : " + param);
+		model.addAttribute("param", param);
+		model.addAttribute("pageInfo", pageInfo);
+		model.addAttribute("numOfResult", boardCount);
 		
 		return "/board/community-review";
 	}

@@ -121,9 +121,12 @@
 				</div>
 			</div>
 			<ul class="nav nav-tabs nav-justified mb-3 fs-5 title">
-				<li class="nav-item"> <a class="nav-link active" data-bs-toggle="tab" href="#all"> 전체 </a> </li>
-				<li class="nav-item"> <a class="nav-link" data-bs-toggle="tab" href="#camp"> 캠핑 </a> </li>
-				<li class="nav-item"> <a class="nav-link" data-bs-toggle="tab" href="#conc"> 공연 </a> </li>
+				<li class="nav-item">
+					<a class="nav-link ${param.boardTag != 'camp' ? 'active' : ''}" href="${path}/board-info?boardCat=info&boardTag=conc"> 공연 </a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link ${param.boardTag == 'camp' ? 'active' : ''}" href="${path}/board-info?boardCat=info&boardTag=camp"> 캠핑 </a>
+				</li>
 			</ul>
 			
 			<c:if test="${empty list}">

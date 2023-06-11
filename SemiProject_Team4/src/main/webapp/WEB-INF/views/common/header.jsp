@@ -29,6 +29,8 @@
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 	<!-- 나눔스퀘어 -->
 	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@2.0/nanumsquare.css">
+	
+	<script src="http://code.jquery.com/jquery-latest.js"></script>
 </head>
 
 <body>
@@ -106,7 +108,7 @@
 								data-bs-auto-close="outside" data-bs-display="static" data-bs-toggle="dropdown"
 								aria-expanded="false">
 								<c:if test="${loginMember.reFileNm != null}">
-									<img class="avatar-img rounded-circle shadow" src="${path}/resources/assets/images/avatar/${loginMember.reFileNm}" alt="avatar">
+									<img class="avatar-img rounded-circle shadow" src="${path}/resources/upload/profile/${loginMember.reFileNm}" alt="avatar">
 								</c:if>
 								<c:if test="${loginMember.reFileNm == null}">
 									<i class="material-icons fs-3 avatar-img rounded-circle shadow text-black-50 pt-1">person</i>
@@ -121,7 +123,7 @@
 										<!-- Avatar -->
 										<div class="avatar me-3 text-center">
 											<c:if test="${loginMember.reFileNm != null}">
-												<img class="avatar-img rounded-circle shadow" src="${path}/resources/assets/images/avatar/${loginMember.reFileNm}" alt="avatar">
+												<img class="avatar-img rounded-circle shadow" src="${path}/resources/upload/profile/${loginMember.reFileNm}" alt="avatar">
 											</c:if>
 											<c:if test="${loginMember.reFileNm == null}">
 												<i class="material-icons fs-3 avatar-img rounded-circle shadow text-black-50 pt-1">person</i>

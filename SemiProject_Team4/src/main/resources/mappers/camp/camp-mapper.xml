@@ -81,9 +81,15 @@
 	</select>
 	
 	<select id="campDetailById" parameterType="Map" resultType="CampSiteVO">
-		SELECT contentID, campNm, lineIntro, intro, addr, tel, img, mapX, mapY, location, openSeason, openDay, addFclty, homepage, toiletCo, showerCo, sinkCo, fireExtCo, fireSensorCo
-		FROM campSiteInfo
-		WHERE contentID = #{contentId}
+		SELECT C.*, rating.avgRating, rating.numReviews
+			FROM campSiteInfo C
+			LEFT JOIN (
+			SELECT contentId, SUM(rating) / count(*) AS avgRating, count(*) AS numReviews
+				FROM board
+				WHERE contentId = #{contentId}
+				GROUP BY contentId
+			) rating ON C.contentID = rating.contentId
+			WHERE C.contentID = #{contentId}
 	</select>
 	
 </mapper>

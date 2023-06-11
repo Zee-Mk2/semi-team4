@@ -273,14 +273,36 @@
 								<div class="d-flex justify-content-between mb-4">
 									<!-- Rating -->
 									<ul class="list-inline mb-0">
-										<li class="list-inline-item me-0 small"><i class="fas fa-star text-warning"></i></li>
-										<li class="list-inline-item me-0 small"><i class="fas fa-star text-warning"></i></li>
-										<li class="list-inline-item me-0 small"><i class="fas fa-star text-warning"></i></li>
-										<li class="list-inline-item me-0 small"><i class="fas fa-star text-warning"></i></li>
-										<li class="list-inline-item me-4 small"><i class="fas fa-star-half-alt text-warning"></i></li>
+								        <div class="rating">
+								            <span class="star"><i class="far fa-star text-warning"></i></span>
+								            <span class="star"><i class="far fa-star text-warning"></i></span>
+								            <span class="star"><i class="far fa-star text-warning"></i></span>
+								            <span class="star"><i class="far fa-star text-warning"></i></span>
+								            <span class="star"><i class="far fa-star text-warning"></i></span>
+								        </div>
+								        <input type="hidden" id="average-rating" value="${item.avgRating}">
+							            <script>
+									        $(document).ready(function() {
+									            var intRating = parseInt($('#average-rating').val());
+									            var decRating = parseFloat($('#average-rating').val()) - intRating;
+									
+									            // 평균 별점에 맞춰 별 아이콘 표시
+									            var starIcons = $('.rating .star i');
+									            var i;
+									            for (i = 0; i < intRating; i++) {
+									                $(starIcons[i]).removeClass('far').addClass('fas');
+									            }
+								                if (decRating >= 0.3 && decRating < 0.7) {
+								                	$(starIcons[i]).removeClass('far').addClass('fas').removeClass('fa-star').addClass('fa-star-half-alt');
+								                }
+								                if (decRating >= 0.7) {
+								                	$(starIcons[i]).removeClass('far').addClass('fas');
+								                }
+									        });
+									    </script>
 										<li class="list-inline-item me-3 h6 mb-0 text-black-50"><i class="far fa-eye"></i> ${item.views}</li>
 										<li class="list-inline-item me-3 h6 mb-0 text-black-50"><i class="fas fa-heart"></i> ${item.bookmarks}</li>
-										<li class="list-inline-item me-0 h6 mb-0 text-black-50"><a href="#" class="mb-0 m-0 text-reset text-primary-hover">후기 365개</a></li>
+										<li class="list-inline-item me-0 h6 mb-0 text-black-50"><a href="#" class="mb-0 m-0 text-reset text-primary-hover">후기 ${item.numReviews}개</a></li>
 									</ul>
 								</div>
 								
@@ -371,132 +393,75 @@
 
 				<div class="card">
 					<div class="card-header bg-transparent border-bottom p-0 pb-3">
-						<a href="community-review-conc.html">
+						<a href="${path}/board-review?boardCat=review">
 							<h3 class="mb-0 title fs-2">후기</h3>
 						</a>
 					</div>
 					<div class="card card-body p-4 d-flex justify-content-center my-3">
-						<!-- 후기 아이템 시작 -->
-						<div class="card bg-transparent my-2">
-							<div class="row g-3 g-sm-4 align-items-sm-center">
-								<!-- Image -->
-								<div class="col-4">
-									<img src="${path}/resources/assets/images/blog/01.jpg" class="card-img" alt="">
-								</div>
-								<div class="col-8">
-									<!-- card body -->
-									<div class="card-body p-0">
-										<h5 class="card-title">
-											<a href="community-detail.html" class="stretched-link title fs-4">후기 제목</a>
-										</h5>
-										<p class="flex-shrink-1 card-stars fs-6" style="font-size: 0.7rem;">
-											<i class="fa fa-star text-warning"></i>
-											<i class="fa fa-star text-warning"></i>
-											<i class="fa fa-star text-warning"></i>
-											<i class="fa fa-star-half-alt text-warning"></i>
-											<i class="far fa-star text-warning"></i>
-											<a class="btn position-relative z-index-99 fw-normal">
-												<i class="far fa-thumbs-up pe-1"></i>123
-											</a>
-										</p>
-										<div class="pb-3">
-											후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 
-										</div>
-										<!-- Author name and button -->
-										<div class="d-flex justify-content-between align-items-center">
-											<span class="small">
-												<img src="${path}/resources/assets/images/avatar/02.jpg" class="avatar-sm" style="border-radius: 100%;"/>
-												<span class="text-black fs-5 fw-bold px-2">권수경</span>
-												2023-05-25
-											</span>
-											<a href="community-detail.html" class="btn btn-link p-0 mb-0">Read more <i class="bi bi-arrow-up-right"></i></a>
+						<c:if test="${empty reviews}">
+							<div class="fs-4 title text-center">아직 후기가 없습니다. 후기를 작성해보세요!</div>
+						</c:if>
+						<c:forEach var="item" items="${reviews}">
+							<!-- 후기 아이템 시작 -->
+							<div class="card bg-transparent my-2 py-3 shadow">
+								<div class="row g-3 g-sm-4 align-items-sm-center">
+									<!-- Image -->
+									<div class="col-4">
+										<img src="${path}/resources/upload/board/${item.boardReFileNm}" class="card-img mx-3 rounded-2" style="background-color: white;">
+									</div>
+									<div class="col-8">
+										<!-- card body -->
+										<div class="card-body p-0 ps-3">
+											<h5 class="card-title">
+												<a href="${path}/board-detail?bno=${item.bno}" class="stretched-link title fs-4">${item.boardTitle}</a>
+											</h5>
+											<p class="flex-shrink-1 card-stars fs-6" style="font-size: 0.7rem;">
+										        <div class="review-rating ${item.bno}">
+										            <span class="star"><i class="far fa-star text-warning"></i></span>
+										            <span class="star"><i class="far fa-star text-warning"></i></span>
+										            <span class="star"><i class="far fa-star text-warning"></i></span>
+										            <span class="star"><i class="far fa-star text-warning"></i></span>
+										            <span class="star"><i class="far fa-star text-warning"></i></span>
+											        <input type="hidden" name="rating" value="${item.rating}">
+										            <script>
+												        $(document).ready(function() {
+												            var intRating = parseInt($('.${item.bno} input[name="rating"]').val());
+												
+												            var starIcons = $('.review-rating.${item.bno} .star i');
+												            var i;
+												            for (i = 0; i < intRating; i++) {
+												                $(starIcons[i]).removeClass('far').addClass('fas');
+												            }
+												        });
+												    </script>
+													<i class="far fa-thumbs-up ms-2 me-1"></i>123
+										        </div>
+											</p>
+											<div class="pb-3">
+												${item.boardContent} 
+											</div>
+											<!-- Author name and button -->
+											<div class="d-flex justify-content-between align-items-center">
+												<span class="small">
+													<img src="${path}/resources/upload/profile/${item.reFileNm}" class="avatar-sm" style="border-radius: 100%;"/>
+													<span class="text-black fs-5 fw-bold px-2">${item.name}</span>
+													<fmt:formatDate value="${item.boardCreateDate}" pattern="MM월 dd일 hh:mm"/>
+												</span>
+												<a href="community-detail.html" class="btn btn-link p-0 mb-0 pe-3">Read more <i class="bi bi-arrow-up-right"></i></a>
+											</div>
 										</div>
 									</div>
 								</div>
 							</div>
-						</div>
-						<!-- 후기 아이템 끝 -->
-						<!-- 후기 아이템 시작 -->
-						<div class="card bg-transparent my-2">
-							<div class="row g-3 g-sm-4 align-items-sm-center">
-								<!-- Image -->
-								<div class="col-4">
-									<img src="${path}/resources/assets/images/blog/02.jpg" class="card-img" alt="">
-								</div>
-								<div class="col-8">
-									<!-- card body -->
-									<div class="card-body p-0">
-										<h5 class="card-title">
-											<a href="community-detail.html" class="stretched-link title fs-4">후기 제목</a>
-										</h5>
-										<p class="flex-shrink-1 card-stars fs-6" style="font-size: 0.7rem;">
-											<i class="fa fa-star text-warning"></i>
-											<i class="fa fa-star text-warning"></i>
-											<i class="fa fa-star text-warning"></i>
-											<i class="fa fa-star-half-alt text-warning"></i>
-											<i class="far fa-star text-warning"></i>
-											<a class="btn position-relative z-index-99 fw-normal">
-												<i class="far fa-thumbs-up pe-1"></i>123
-											</a>
-										</p>
-										<div class="pb-3">
-											후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 
-										</div>
-										<!-- Author name and button -->
-										<div class="d-flex justify-content-between align-items-center">
-											<span class="small">
-												<img src="${path}/resources/assets/images/avatar/03.jpg" class="avatar-sm" style="border-radius: 100%;"/>
-												<span class="text-black fs-5 fw-bold px-2">김대훈</span>
-												2023-05-25
-											</span>
-											<a href="community-detail.html" class="btn btn-link p-0 mb-0">Read more <i class="bi bi-arrow-up-right"></i></a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- 후기 아이템 끝 -->
-						<!-- 후기 아이템 시작 -->
-						<div class="card bg-transparent my-2">
-							<div class="row g-3 g-sm-4 align-items-sm-center">
-								<!-- Image -->
-								<div class="col-4">
-									<img src="${path}/resources/assets/images/blog/03.jpg" class="card-img" alt="">
-								</div>
-								<div class="col-8">
-									<!-- card body -->
-									<div class="card-body p-0">
-										<h5 class="card-title">
-											<a href="community-detail.html" class="stretched-link title fs-4">후기 제목</a>
-										</h5>
-										<p class="flex-shrink-1 card-stars fs-6" style="font-size: 0.7rem;">
-											<i class="fa fa-star text-warning"></i>
-											<i class="fa fa-star text-warning"></i>
-											<i class="fa fa-star text-warning"></i>
-											<i class="fa fa-star-half-alt text-warning"></i>
-											<i class="far fa-star text-warning"></i>
-											<a class="btn position-relative z-index-99 fw-normal">
-												<i class="far fa-thumbs-up pe-1"></i>123
-											</a>
-										</p>
-										<div class="pb-3">
-											후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 
-										</div>
-										<!-- Author name and button -->
-										<div class="d-flex justify-content-between align-items-center">
-											<span class="small">
-												<img src="${path}/resources/assets/images/avatar/04.jpg" class="avatar-sm" style="border-radius: 100%;"/>
-												<span class="text-black fs-5 fw-bold px-2">김상혁</span>
-												2023-05-25
-											</span>
-											<a href="community-detail.html" class="btn btn-link p-0 mb-0">Read more <i class="bi bi-arrow-up-right"></i></a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- 후기 아이템 끝 -->
-						<a href="community-post.html" class="btn btn-outline-primary mt-4 fs-4">후기 작성</a>
+							<!-- 후기 아이템 끝 -->
+						</c:forEach>
+						<form action="${path}/board-post" method="get">
+							<input type="hidden" value="${item.conNm}" name="conNm">
+							<input type="hidden" value="${item.conId}" name="contentId">
+							<input type="hidden" value="review" name="boardCat">
+							<input type="hidden" value="conc" name="boardTag">
+							<button type="submit" class="btn btn-outline-primary mt-4 fs-4 w-100">후기 작성</button>
+						</form>
 					</div>
 				</div>
 	

@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.multi.mvc.board.model.service.BoardService;
+import com.multi.mvc.board.model.vo.Board;
 import com.multi.mvc.camp.model.service.CampService;
 import com.multi.mvc.camp.model.vo.CampSiteVO;
 import com.multi.mvc.common.util.PageInfo;
@@ -26,6 +28,9 @@ public class CampController {
 	
 	@Autowired
 	private CampService service;
+	
+	@Autowired
+	private BoardService boardService;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String welcome(Locale locale, Model model) {
@@ -78,6 +83,14 @@ public class CampController {
 	public String campDetailPage(Model model, @RequestParam Map<String, Object> param) {
 		log.info("campDetailPage - param >> " + param.toString());
 		CampSiteVO item = service.campDetailById(param);
+		
+		param.put("boardTag", "camp");
+		param.put("contentID", param.get("contentId"));
+		log.info("@@@@@@@ campDetailPage param>> " + param.toString());
+		
+		List<Board> reviews = boardService.getRivewsById(param);
+		
+		model.addAttribute("reviews", reviews);
 		model.addAttribute("item", item);
 		
 		return "/camping/camping-detail";

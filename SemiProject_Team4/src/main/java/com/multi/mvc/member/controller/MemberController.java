@@ -23,6 +23,8 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.multi.mvc.board.model.service.BoardService;
+import com.multi.mvc.board.model.vo.Board;
 import com.multi.mvc.concert.model.vo.ConcertVO;
 import com.multi.mvc.kakao.KaKaoService;
 import com.multi.mvc.member.model.service.MemberService;
@@ -41,6 +43,9 @@ public class MemberController {
 	
 	@Autowired
 	private KaKaoService kakaoService;
+	
+	@Autowired
+	private BoardService boardService;
 
 
 	
@@ -292,7 +297,17 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "/myReview", method = RequestMethod.GET)
-	public String myReview(Locale locale, Model model) {
+	public String myReview(Model model, HttpSession session) {
+		Member loginMember = (Member) session.getAttribute("loginMember");
+		if (loginMember == null) {
+			model.addAttribute("msg", "잘못된 접근입니다.");
+			model.addAttribute("loation", "/sign-in");
+			return "/common/msg";
+		}
+		int mno = loginMember.getMno();
+		List<Board> reviews = boardService.getReviewsByMno(mno);
+		
+		model.addAttribute("reviews", reviews);
 		
 		return "/account/account-review";
 	}

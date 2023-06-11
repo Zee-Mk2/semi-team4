@@ -98,6 +98,7 @@ CREATE TABLE concert (
 );
 
 SELECT * FROM concert;
+SELECT viewAge FROM concert;
 
 SELECT * FROM concert ORDER BY startDate;
 
@@ -206,6 +207,8 @@ DROP TABLE board;
 CREATE TABLE board (
 	bno				INT PRIMARY KEY AUTO_INCREMENT,
     mno				INT,
+    contentId		VARCHAR(100),
+    rating			INT,
     name			VARCHAR(15),
     boardCat		VARCHAR(50),
     boardTag		VARCHAR(50),
@@ -595,16 +598,28 @@ ORDER BY bookmarks.bookmarks DESC;
 SELECT * FROM concert ORDER BY views DESC;
 
 -- 공연 상세
-SELECT Conc.*, Hall.la, Hall.lo, bookmarks.bookmarks
+SELECT Conc.*, Hall.la, Hall.lo, bookmarks.bookmarks, rating.avgRating
 FROM concert Conc
-JOIN conHall Hall ON Conc.conHallId = Hall.conHallId
-JOIN (
+LEFT JOIN conHall Hall ON Conc.conHallId = Hall.conHallId
+LEFT JOIN (
 	SELECT conId, count(*) AS bookmarks
 	FROM concBookmark
 	WHERE conId = 'PF218950'
 	GROUP BY conId
 ) bookmarks ON Conc.conId = bookmarks.conId
+LEFT JOIN (
+SELECT contentId, SUM(rating) / count(*) AS avgRating
+	FROM board
+	WHERE contentId = '37'
+	GROUP BY contentId
+) rating ON Conc.conId = rating.contentId
 WHERE Conc.conId = 'PF218950';
+
+SELECT * FROM board;
+SELECT contentId, SUM(rating) / count(*) AS avgRating
+FROM board
+WHERE contentId = '37'
+GROUP BY contentId;
 
 SELECT Conc.*, Hall.la, Hall.lo, bookmarks.bookmarks FROM concert Conc
 LEFT JOIN conHall Hall ON Conc.conHallId = Hall.conHallId
@@ -640,3 +655,37 @@ SELECT cr.*, conc.posterImg, conc.conNm, hall.conHallNm, st.seatPrice
     JOIN conHall hall ON (cr.conHallId = hall.conHallId)
     JOIN seat st ON (cr.seatNo = st.seatNo)
     WHERE cr.mno = 1 AND cr.status = 'Y';
+    
+-- 리뷰 리스트 조회
+SELECT B.*, C.conNm FROM board B
+	JOIN concert C ON (B.contentId = C.conId);
+    
+SELECT 
+	B.bno, B.boardTitle, M.name, B.boardCreateDate, B.boardReFileNm, B.boardViews, B.boardContent, B.boardTag, C.campNm
+FROM board B 
+JOIN member M ON(B.mno = M.mno)
+JOIN campsiteInfo C ON (B.contentId = C.contentID)
+WHERE B.boardStatus = 'Y';
+
+SELECT * FROM board;
+SELECT * FROM member;
+SELECT * FROM campsiteInfo;
+-- 상세페이지 리뷰 리스트
+SELECT
+	B.bno, B.boardTitle, B.boardContent, M.reFileNm, M.name, B.boardCreateDate, B.boardReFileNm, B.boardViews, B.boardContent, B.boardTag, C.conNm
+FROM board B
+JOIN member M ON(B.mno = M.mno)
+JOIN concert C ON (B.contentId = C.conId)
+WHERE B.boardStatus = 'Y' AND B.contentId = 'PF215902';
+
+SELECT B.bno, B.boardTitle, M.name, B.boardCreateDate, B.boardReFileNm, B.boardViews, B.boardContent, B.boardTag
+	FROM board B 
+	JOIN member M ON(B.mno = M.mno)
+	WHERE B.boardStatus = 'Y' AND B.boardCat = 'info' AND B.boardTag = 'conc'
+	ORDER BY B.bno DESC LIMIT 15 OFFSET 0;
+
+-- 내가 작성한 후기 조회
+SELECT B.* FROM board B
+	JOIN member M ON (B.mno = M.mno)
+    WHERE B.boardStatus = 'Y' AND B.boardCat = 'review' AND B.mno = 1
+    ORDER BY B.boardCreateDate DESC;
