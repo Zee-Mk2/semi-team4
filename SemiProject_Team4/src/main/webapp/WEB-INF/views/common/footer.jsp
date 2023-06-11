@@ -32,11 +32,10 @@ Footer START -->
 						<div class="col-4">
 							<h5 class="mb-2 mb-md-4">페이지</h5>
 							<ul class="nav flex-column">
-								<li class="nav-item"><a class="nav-link pt-0" href="${path}/sign-up.html">회원가입</a></li>
-								<li class="nav-item"><a class="nav-link" href="${path}/sign-in.html">로그인</a></li>
-								<li class="nav-item"><a class="nav-link" href="${path}/camping-search.html">캠핑장 검색</a></li>
-								<li class="nav-item"><a class="nav-link" href="${path}/#">캠핑장 추천</a></li>
-								<li class="nav-item"><a class="nav-link" href="${path}/#">캠핑몰</a></li>
+								<li class="nav-item"><a class="nav-link pt-0" href="${path}/sign-up">회원가입</a></li>
+								<li class="nav-item"><a class="nav-link" href="${path}/sign-in">로그인</a></li>
+								<li class="nav-item"><a class="nav-link" href="${path}/camp-search">캠핑장 검색</a></li>
+								<li class="nav-item"><a class="nav-link" href="${path}/conc-search">공연 검색</a></li>
 							</ul>
 						</div>
 
@@ -44,9 +43,9 @@ Footer START -->
 						<div class="col-4">
 							<h5 class="mb-2 mb-md-4">커뮤니티</h5>
 							<ul class="nav flex-column">
-								<li class="nav-item"><a class="nav-link pt-0" href="${path}/community-free.html">자유게시판</a></li>
-								<li class="nav-item"><a class="nav-link" href="${path}/community-info.html">정보공유</a></li>
-								<li class="nav-item"><a class="nav-link" href="${path}/community-review.html">후기</a></li>
+								<li class="nav-item"><a class="nav-link pt-0" href="${path}/board-free?boardCat=free">자유게시판</a></li>
+								<li class="nav-item"><a class="nav-link" href="${path}/board-info?boardCat=info">정보공유</a></li>
+								<li class="nav-item"><a class="nav-link" href="${path}/board-review?boardCat=review">후기</a></li>
 							</ul>
 						</div>
 
@@ -59,14 +58,10 @@ Footer START -->
 							</ul>
 							<ul class="nav">
 								<li class="mb-2 pe-3">김상혁</li>
-								<li class="mb-2">오정민</li>
-							</ul>
-							<ul class="nav">
 								<li class="mb-2 pe-3">전승민</li>
-								<li class="mb-2">지석환</li>
 							</ul>
 							<ul class="nav">
-								<li class="mb-2 pe-3">천보영</li>
+								<li class="mb-2">지석환</li>
 							</ul>
 						</div>
 					</div>

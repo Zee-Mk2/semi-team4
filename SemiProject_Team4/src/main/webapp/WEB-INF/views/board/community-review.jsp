@@ -73,11 +73,13 @@
 		<div class="container">
 
 			<ul class="nav nav-tabs nav-justified mb-3 fs-5 title">
-				<li class="nav-item">
-					<a class="nav-link ${param.boardTag != 'camp' ? 'active' : ''}" href="${path}/board-review?boardCat=review&boardTag=conc"> 공연 </a>
+				<li class="nav-item"><a
+					class="nav-link ${param.boardTag != 'camp' ? 'active' : ''}"
+					href="${path}/board-review?boardCat=review&boardTag=conc"> 공연 </a>
 				</li>
-				<li class="nav-item">
-					<a class="nav-link ${param.boardTag == 'camp' ? 'active' : ''}" href="${path}/board-review?boardCat=review&boardTag=camp"> 캠핑 </a>
+				<li class="nav-item"><a
+					class="nav-link ${param.boardTag == 'camp' ? 'active' : ''}"
+					href="${path}/board-review?boardCat=review&boardTag=camp"> 캠핑 </a>
 				</li>
 			</ul>
 			<div class="tab-content">
@@ -182,22 +184,53 @@
 										<a href="${path}/board-detail?bno=${item.bno}"
 											class="btn-link text-reset stretched-link title">${item.boardTitle}</a>
 									</h4>
-									<div class="fw-normal py-1">
-										<c:if test="${item.boardTag == 'conc'}">
-											<span class="me-3">${item.conNm}</span>
-										</c:if>
-										<c:if test="${item.boardTag == 'camp'}">
-											<span class="me-3">${item.campNm}</span>
-										</c:if>
-										<i class="far fa-thumbs-up pe-1"></i>123
+									<div class="fw-normal">
+										<p class="flex-shrink-1 card-stars fs-6"
+											style="font-size: 0.7rem;">
+											<c:if test="${item.boardTag == 'conc'}">
+												<span class="me-3">${item.conNm}</span>
+											</c:if>
+											<c:if test="${item.boardTag == 'camp'}">
+												<span class="me-3">${item.campNm}</span>
+											</c:if>
+										<div class="review-rating ${item.bno}">
+											<span class="star"><i class="far fa-star text-warning"></i></span>
+											<span class="star"><i class="far fa-star text-warning"></i></span>
+											<span class="star"><i class="far fa-star text-warning"></i></span>
+											<span class="star"><i class="far fa-star text-warning"></i></span>
+											<span class="star"><i class="far fa-star text-warning"></i></span>
+											<input type="hidden" name="rating" value="${item.rating}">
+											<script>
+												$(document)
+														.ready(
+																function() {
+																	var intRating = parseInt($(
+																			'.${item.bno} input[name="rating"]')
+																			.val());
+
+																	var starIcons = $('.review-rating.${item.bno} .star i');
+																	var i;
+																	for (i = 0; i < intRating; i++) {
+																		$(
+																				starIcons[i])
+																				.removeClass(
+																						'far')
+																				.addClass(
+																						'fas');
+																	}
+																});
+											</script>
+											<i class="far fa-thumbs-up ms-2 me-1"></i>123
+										</div>
+										</p>
 									</div>
 									<p class="card-text">${item.boardContent}</p>
 									<!-- Card info -->
 									<ul
 										class="nav nav-divider align-items-center text-uppercase small">
 										<li class="nav-item"><a href="#"
-											class="nav-link text-reset btn-link">작성자 : ${item.name}</a></li>
-										<li class="nav-item">작성일 : <fmt:formatDate
+											class="nav-link text-reset btn-link">${item.name}</a></li>
+										<li class="nav-item"><fmt:formatDate
 												value="${item.boardCreateDate}" pattern="MM.dd hh:mm:ss" />
 										</li>
 									</ul>

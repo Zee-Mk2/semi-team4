@@ -72,7 +72,9 @@
 	</select>
 	
 	<select id="selectBoardDetail" parameterType="int" resultType="Board">
-		SELECT * FROM board WHERE bno = #{bno};
+		SELECT B.*, M.reFileNm FROM board B
+			JOIN member M ON (M.mno = B.mno)
+			WHERE bno = #{bno};
 	</select>
 	
 	<update id="updateViews" parameterType="int">
@@ -95,9 +97,29 @@
 		UPDATE board SET boardStatus = 'N' WHERE bno=#{bno}
 	</update>
 	
-	<delete id="deleteReply" parameterType="int">
-		DELETE FROM reply WHERE rno=#{rno}
+	<delete id="deleteReply" parameterType="Map">
+		DELETE FROM reply WHERE replyNo=#{replyNo}
 	</delete>
+	
+	<select id="getBoardNno" resultType="Board">
+		SELECT bno FROM board where bno = #{bno}
+	</select>
+	
+	<insert id="insertReply" parameterType="Map">
+		INSERT INTO reply(
+			replyNo, bno, mno, 
+			replyContent, replycreateDate, replyStatus) 
+		VALUES(
+			DEFAULT, #{bno}, #{mno}, 
+			#{content}, DEFAULT, DEFAULT)
+	</insert>
+	
+	<select id="getReplyByBno" parameterType="int" resultType="Reply">
+		SELECT R.*, M.name, M.reFileNm FROM reply R
+			JOIN member M ON (M.mno = R.mno)
+			WHERE bno = #{bno};
+	</select>
+	
 	
 	<!-- <select id="selectBoardByNo" parameterType="int" resultMap="Board">
 		SELECT  B.bno, B.boardTitle, M.name, B.boardCreateDate, B.boardReFileNm, B.boardViews, B.boardContent, B.boardTag

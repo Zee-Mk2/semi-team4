@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import com.multi.mvc.camp.model.vo.CampSiteVO;
 import com.multi.mvc.concert.model.vo.ConcertVO;
 import com.multi.mvc.member.model.vo.ConcBooking;
 import com.multi.mvc.member.model.vo.Member;
@@ -49,6 +50,8 @@ public interface MemberMapper {
 	int duplID(String id);
 
 	List<ConcertVO> getConWishList(int mno);
+	
+	List<CampSiteVO> getCampWishList(int mno);
 
 	int deleteAllWishlist(int mno);
 

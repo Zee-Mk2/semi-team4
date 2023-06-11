@@ -269,7 +269,7 @@
 										${item.doNm} ${item.sigunguNm}
 										<div class="d-flex card-subtitle mb-n7 pt-2">
 											<p class="card-text col-7">
-												<span class="h5 text-secondary">₩ 150,000 ~</span>
+												<span class="h5 text-secondary">₩ 20,000 ~</span>
 											</p>
 											<p class="flex-shrink-1 mt-1 card-stars text-end col-5"
 												style="font-size: 0.7rem;">

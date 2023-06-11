@@ -9,17 +9,12 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.multi.mvc.board.model.mapper.BoardMapper;
 import com.multi.mvc.board.model.vo.Board;
 import com.multi.mvc.board.model.vo.Reply;
 import com.multi.mvc.common.util.PageInfo;
-import com.multi.mvc.member.model.vo.Member;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -83,7 +78,10 @@ public class BoardService {
 	
 	public Board selectBoardDetail(int bno) {
 		mapper.updateViews(bno);
-		return mapper.selectBoardDetail(bno);
+		Board result = mapper.selectBoardDetail(bno);
+		List<Reply> replyList = mapper.getReplyByBno(bno);
+		result.setReplies(replyList);
+		return result;
 	}
 	
 	public void deleteFile(String path) {
@@ -93,17 +91,27 @@ public class BoardService {
 		}
 	}
 	
-	@Transactional(rollbackFor = Exception.class)
-	public int deleteBoard(Map<String, String> param) {
-		return mapper.deleteBoard(param);
-	}
-
 	public List<Board> getRivewsById(Map<String, Object> param) {
 		return mapper.getRivewsById(param);
 	}
 
 	public List<Board> getReviewsByMno(int mno) {
 		return mapper.getReviewsByMno(mno);
+	}
+	
+	@Transactional(rollbackFor = Exception.class)
+	public int deleteBoard(Map<String, String> param) {
+		return mapper.deleteBoard(param);
+	}
+
+	@Transactional(rollbackFor = Exception.class)
+	public int saveReply(Map<String, Object> param) {
+		return mapper.insertReply(param);
+	}
+
+	@Transactional(rollbackFor = Exception.class)
+	public int deleteReply(Map<String, Object> param) {
+		return mapper.deleteReply(param);
 	}
 
 }

@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.multi.mvc.camp.model.vo.CampSiteVO;
 import com.multi.mvc.concert.model.vo.ConcertVO;
 import com.multi.mvc.member.model.mapper.MemberMapper;
 import com.multi.mvc.member.model.vo.ConcBooking;
@@ -164,6 +165,10 @@ public class MemberService {
 
 	public List<ConcertVO> getConWishList(int mno) {
 		return mapper.getConWishList(mno);
+	}
+	
+	public List<CampSiteVO> getCampWishList(int mno) {
+		return mapper.getCampWishList(mno);
 	}
 
 	public int deleteAllWishlist(int mno) {

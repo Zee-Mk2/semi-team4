@@ -56,10 +56,21 @@
 
 						<!-- Buttons -->
 						<ul class="list-inline text-end">
-							<!-- Heart icon -->
-							<li class="list-inline-item"><a href="#"
-								class="btn btn-sm btn-light px-2"><i
-									class="fa-solid fa-fw fa-heart"></i></a></li>
+							<c:if test="${sessionScope.loginMember != null}">
+								<!-- Heart icon -->
+								<li class="list-inline-item">
+									<a class="btn btn-sm btn-light px-2" data-contentid="${item.contentID}">
+										<c:if test="${sessionScope.loginMember != null}">
+											<c:if test="${bookmarks[item.contentID] != 1}">
+												<i class="far fa-heart heart-icon camp"></i>
+											</c:if>
+											<c:if test="${bookmarks[item.contentID] == 1}">
+												<i class="fas fa-heart heart-icon camp"></i>
+											</c:if>
+										</c:if>
+									</a>
+								</li>
+							</c:if>
 							<!-- Share icon -->
 							<li class="list-inline-item dropdown">
 								<!-- Share button --> <a href="#"
@@ -296,7 +307,7 @@
 
 								<div class="d-flex justify-content-between mb-4">
 									<!-- Rating -->
-									<ul class="list-inline mb-0">
+									<ul class="list-inline mb-0 mt-n1">
 								        <div class="rating">
 								            <span class="star"><i class="far fa-star text-warning"></i></span>
 								            <span class="star"><i class="far fa-star text-warning"></i></span>
@@ -325,8 +336,9 @@
 									        });
 									    </script>
 									</ul>
-									<a href="#" class="mb-0 m-0 text-reset text-primary-hover">후기
-										${item.numReviews}개</a>
+									<li class="list-inline-item me-1 h6 mb-0 text-black-50"><i class="far fa-eye"></i> ${item.views}</li>
+									<li class="list-inline-item me-1 h6 mb-0 text-black-50"><i class="fas fa-heart"></i> ${item.bookmarks}</li>
+									<li class="list-inline-item me-0 h6 mb-0 text-black-50"><a href="#" class="mb-0 m-0 text-reset text-primary-hover">후기 ${item.numReviews}개</a></li>
 								</div>
 
 								<!-- Button -->

@@ -77,7 +77,7 @@ Steps START -->
 					<div class="step" data-target="#step-1">
 						<div class="text-center">
 							<button type="button" class="btn btn-link step-trigger mb-0" role="tab"
-								id="steppertrigger1" aria-controls="step-1">
+								id="steppertrigger1" aria-controls="step-1" disabled style="opacity: 1;">
 								<span class="bs-stepper-circle">1</span>
 							</button>
 							<h6 class="bs-stepper-label d-none d-md-block">구역 선택</h6>
@@ -89,7 +89,7 @@ Steps START -->
 					<div class="step" data-target="#step-2">
 						<div class="text-center">
 							<button type="button" class="btn btn-link step-trigger mb-0" role="tab"
-								id="steppertrigger2" aria-controls="step-2">
+								id="steppertrigger2" aria-controls="step-2" disabled style="opacity: 1;">
 								<span class="bs-stepper-circle">2</span>
 							</button>
 							<h6 class="bs-stepper-label d-none d-md-block">사이트 선택</h6>
@@ -101,7 +101,7 @@ Steps START -->
 					<div class="step" data-target="#step-3">
 						<div class="text-center">
 							<button type="button" class="btn btn-link step-trigger mb-0" role="tab"
-								id="steppertrigger3" aria-controls="step-3">
+								id="steppertrigger3" aria-controls="step-3" disabled style="opacity: 1;">
 								<span class="bs-stepper-circle">3</span>
 							</button>
 							<h6 class="bs-stepper-label d-none d-md-block">결제하기</h6>
@@ -227,7 +227,7 @@ Steps START -->
 										<hr class="my-0"> <!-- Divider -->
 
 										<!-- AREA ITEM START -->
-										<label class="card-label card area-card">
+										<label class="card-label card area-card" id="hill">
 											<input class="form-check-input card-radio" type="radio" name="area-select">
 											
 											<div class="card shadow overflow-hidden">
@@ -247,8 +247,6 @@ Steps START -->
 																		class="nav-icon"></i>최대인원 6인</li>
 																<li class="nav-item mb-1"><i
 																		class="nav-icon"></i>전체객실수 1</li>
-																<li class="nav-item mb-1"><i
-																		class="nav-icon"></i>최소 1일 ~ 최대 7일</li>
 															</ul>
 															<div>
 																산중턱에 위치해 해여림빌리지의 풍광이 한눈에 내려다 보이는 전망과 함께 하루를 머무를
@@ -270,7 +268,7 @@ Steps START -->
 										<!-- AREA ITEM END -->
 
 										<!-- AREA ITEM START -->
-										<label class="card-label card area-card">
+										<label class="card-label card area-card" id="a-area">
 											<input class="form-check-input card-radio" type="radio" name="area-select">
 											
 											<div class="card shadow overflow-hidden">
@@ -289,9 +287,7 @@ Steps START -->
 																<li class="nav-item mb-1"><i
 																		class="nav-icon"></i>최대인원 2인</li>
 																<li class="nav-item mb-1"><i
-																		class="nav-icon"></i>전체객실수 10</li>
-																<li class="nav-item mb-1"><i
-																		class="nav-icon"></i>최소 1일 ~ 최대 15일</li>
+																		class="nav-icon"></i>전체객실수 5</li>
 															</ul>
 															<div>
 																해여림빌리지내에 있는 대형잔디 사이트입니다. <br>
@@ -314,13 +310,8 @@ Steps START -->
 
 
 									<!-- Step 1 button -->
-									<div class="row">
-										<div class="text-start col-6">
-											<button class="btn btn-info prev-btn mb-0">이전 페이지</button>
-										</div>
-										<div class="text-end col-6">
-											<button class="btn btn-primary next-btn mb-0">다음 페이지</button>
-										</div>
+									<div class="text-end">
+										<button class="btn btn-primary next-btn mb-0" disabled="true" id="goto2">다음 페이지</button>
 									</div>
 								</div>
 								<!-- Step 1 content END -->
@@ -423,7 +414,7 @@ Steps START -->
 												<!-- Card body END -->
 											</div>
 											<br>
-											<input type="text" class="form-control flatpickr py-2 btn btn-outline-light" data-mode="range" data-date-format="m-d" placeholder="일정 선택">
+											<input type="text" class="form-control flatpickr py-2 btn btn-outline-light" data-mode="range" data-date-format="m-d" placeholder="일정 선택" id="date-selector">
 										</aside>
 
 										<div class="row mt-4">
@@ -436,46 +427,7 @@ Steps START -->
 													</div>
 
 													<!-- Card body START -->
-													<div class="card-body row g-4">
-														<div class="col-4">
-															<label class="card-label card area-card border">
-																<input class="form-check-input card-radio" type="radio" name="site-select">
-																<div class="h4 text-center">A1</div>
-																<div class="text-center">8m X 8m</div>
-															</label>
-														</div>
-														
-														<div class="col-4">
-															<label class="card-label card area-card border">
-																<input class="form-check-input card-radio" type="radio" name="site-select">
-																<div class="h4 text-center">A2</div>
-																<div class="text-center">8m X 8m</div>
-															</label>
-														</div>
-
-														<div class="col-4">
-															<label class="card-label card area-card border">
-																<input class="form-check-input card-radio" type="radio" name="site-select">
-																<div class="h4 text-center">A3</div>
-																<div class="text-center">8m X 8m</div>
-															</label>
-														</div>
-
-														<div class="col-4">
-															<label class="card-label card area-card border">
-																<input class="form-check-input card-radio" type="radio" name="site-select">
-																<div class="h4 text-center">A4</div>
-																<div class="text-center">8m X 8m</div>
-															</label>
-														</div>
-
-														<div class="col-4">
-															<label class="card-label card area-card border">
-																<input class="form-check-input card-radio" type="radio" name="site-select">
-																<div class="h4 text-center">A5</div>
-																<div class="text-center">8m X 8m</div>
-															</label>
-														</div>
+													<div class="card-body row g-4" id="site-select">
 													</div>
 													<!-- Card body END -->
 												</div>
@@ -486,13 +438,13 @@ Steps START -->
 												<div class="card border">
 													<!-- Title -->
 													<div class="card-header border-bottom">
-														<div class="h4 title mb-0">A구역 - A1</div>
+														<div class="h4 title mb-0" id="selected-site">A구역 - A1</div>
 													</div>
 
 													<!-- Card body START -->
 													<div class="card-body row">
 														<div class="col-6">일정</div>
-														<div class="col-6 text-end">9.22 ~ 9.24</div>
+														<div class="col-6 text-end" id="selected-date">9.22 ~ 9.24</div>
 														<div class="col-6">숙박일</div>
 														<div class="col-6 text-end">2박 3일</div>
 													</div>
@@ -657,3 +609,67 @@ Steps END -->
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
+<script type="text/javascript">
+$(document).ready(function () {
+    $('#hill').on('click', function() {
+        $('#goto2').prop('disabled', false);
+        var sites = 
+        '<div class="col-4">' + 
+            '<label class="card-label card area-card border align-items-center py-1">' +
+                '<input class="form-check-input card-radio" type="radio" name="site-select" value="힐 펜션" data-price="190000">' +
+                '<div class="h4 text-center">힐 펜션</div>' +
+                '<div class="text-center">퀸 침대 2개<br>싱글 침대 2개</div>' +
+            '</label>' +
+        '</div>'
+        $('#site-select').html(sites);
+    });
+    $('#a-area').on('click', function() {
+        $('#goto2').prop('disabled', false);
+        var sites = 
+            '    <div class="col-4">' +
+            '        <label class="card-label card area-card border py-1">' +
+            '            <input class="form-check-input card-radio" type="radio" name="site-select" value="A구역 A-1" data-price="20000">' +
+            '            <div class="h4 text-center">A1</div>' +
+            '            <div class="text-center">8m X 8m</div>' +
+            '        </label>' +
+            '    </div>' +
+            '    <div class="col-4">' +
+            '        <label class="card-label card area-card border py-1">' +
+            '            <input class="form-check-input card-radio" type="radio" name="site-select" value="A구역 A-2" data-price="20000">' +
+            '            <div class="h4 text-center">A2</div>' +
+            '            <div class="text-center">8m X 8m</div>' +
+            '        </label>' +
+            '    </div>' +
+            '    <div class="col-4">' +
+            '        <label class="card-label card area-card border py-1">' +
+            '            <input class="form-check-input card-radio" type="radio" name="site-select" value="A구역 A-3" data-price="20000">' +
+            '            <div class="h4 text-center">A3</div>' +
+            '            <div class="text-center">8m X 8m</div>' +
+            '        </label>' +
+            '    </div>' +
+            '    <div class="col-4">' +
+            '        <label class="card-label card area-card border py-1">' +
+            '            <input class="form-check-input card-radio" type="radio" name="site-select" value="A구역 A-4" data-price="20000">' +
+            '            <div class="h4 text-center">A4</div>' +
+            '            <div class="text-center">8m X 8m</div>' +
+            '        </label>' +
+            '    </div>' +
+            '    <div class="col-4">' +
+            '        <label class="card-label card area-card border py-1">' +
+            '            <input class="form-check-input card-radio" type="radio" name="site-select" value="A구역 A-5" data-price="20000">' +
+            '            <div class="h4 text-center">A5</div>' +
+            '            <div class="text-center">8m X 8m</div>' +
+            '        </label>' +
+            '    </div>'
+        $('#site-select').html(sites);
+    });
+    $('#date-selector').on('input', function () {
+        var duration = $(this).val();
+        alert(duration);
+    });
+    $('input[name="site-select"]').click(function () {
+        var title = $(this).val();
+        var price = $(this).data('price');
+    });
+});
+</script>

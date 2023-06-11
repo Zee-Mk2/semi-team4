@@ -23,15 +23,18 @@ public interface BoardMapper {
 	void updateViews(int bno);
 
 	int updatePost(Board board);
-	
-	int deleteReply(int rno);
 
 	int deleteBoard(Map<String, String> param);
+
+	int insertReply(Map<String, Object> param);
 	
-	int insertReply(Reply reply);
+	int deleteReply(Map<String, Object> param);
+
+	List<Reply> getReplyByBno(int bno);
 
 	List<Board> getRivewsById(Map<String, Object> param);
 
 	List<Board> getReviewsByMno(int mno);
+
 	
 }

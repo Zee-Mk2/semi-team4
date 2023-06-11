@@ -25,7 +25,7 @@
 	<main>
 
 		<!-- =======================
-Content START -->
+		Content START -->
 		<section class="pt-3">
 			<div class="container">
 				<div class="row">
@@ -137,7 +137,7 @@ Content START -->
 									<a class="btn btn-danger-soft mb-0" href="${path}/deleteAllWishlist"><i class="fas fa-trash me-2"></i>전체 삭제</a>
 								</form>
 
-								<c:forEach var="item" items="${items}">
+								<c:forEach var="item" items="${concitems}">
 									<!-- Wishlist item START -->
 									<div class="card shadow p-2 position-relative">
 										<div class="row g-0">
@@ -227,6 +227,91 @@ Content START -->
 									</div>
 									<!-- Wishlist item END -->
 								</c:forEach>
+								
+								<c:forEach var="item" items="${campitems}">
+									<!-- Wishlist item START -->
+									<div class="card shadow p-2 position-relative">
+										<div class="row g-0">
+											<!-- Card img -->
+											<div class="col-md-3">
+												<img src="${item.img}"
+													class="card-img rounded-2" alt="Card image">
+											</div>
+	
+											<!-- Card body -->
+											<div class="col-md-9">
+												<div class="card-body py-md-2 d-flex flex-column h-100">
+	
+													<!-- Rating and buttons -->
+													<div class="d-flex justify-content-between align-items-center">
+														<ul class="list-inline small mb-2">
+															<li class="list-inline-item me-0"><i
+																	class="fa-solid fa-star text-warning"></i></li>
+															<li class="list-inline-item me-0"><i
+																	class="fa-solid fa-star text-warning"></i></li>
+															<li class="list-inline-item me-0"><i
+																	class="fa-solid fa-star text-warning"></i></li>
+															<li class="list-inline-item me-0"><i
+																	class="fa-solid fa-star text-warning"></i></li>
+															<li class="list-inline-item"><i
+																	class="fa-solid fa-star-half-alt text-warning"></i></li>
+														</ul>
+	
+														<ul class="list-inline mb-0">
+															<!-- Heart icon -->
+															<li class="list-inline-item">
+																<a class="btn btn-sm btn-round btn-danger mb-0" style="z-index: 99; position: absolute; top: 15px; right: 60px;" data-conid="${item.contentID}">
+																	<i class="fas fa-heart heart-icon concert fs-6 mt-2"></i>
+																</a>
+															</li>
+															<!-- Share icon -->
+															<li class="list-inline-item dropdown" style="z-index: 99; position: absolute; top: 15px; right: 20px;">
+																<!-- Share button -->
+																<a href="${path}/#" class="btn btn-sm btn-round btn-light mb-0" role="button" id="dropdownShare2" 
+																	data-bs-toggle="dropdown" aria-expanded="false">
+																	<i class="fa-solid fa-fw fa-share-alt fs-6 mt-2"></i>
+																</a>
+																<!-- dropdown button -->
+																<ul class="dropdown-menu dropdown-menu-end min-w-auto shadow rounded"
+																	aria-labelledby="dropdownShare2">
+																	<li><a class="dropdown-item" href="${path}/#"><i
+																				class="fab fa-twitter-square me-2"></i>트위터</a>
+																	</li>
+																	<li><a class="dropdown-item" href="${path}/#"><i
+																				class="fab fa-facebook-square me-2"></i>페이스북</a>
+																	</li>
+																	<li><a class="dropdown-item" href="${path}/#"><i
+																				class="fa-solid fa-copy me-2"></i>링크복사</a>
+																	</li>
+																</ul>
+															</li>
+														</ul>
+													</div>
+	
+													<!-- Title -->
+													<h5 class="card-title my-2 title">
+														<a href="${path}/conc-detail?contentID=${item.contentID}" class="stretched-link">
+															<span class="badge text-bg-warning title px-2" style="height: 1.5rem">${item.location}</span> ${item.campNm}
+														</a>
+													</h5>
+													<div class="row g-2 mt-1">
+														<div class="text-center px-0 col-1"><i class="bi bi-geo-alt"></i></div>
+														<div class="px-0 col-11">${item.addr}</div>
+													</div>
+	
+													<!-- Price and Button -->
+													<div class="d-sm-flex justify-content-sm-between align-items-center mt-3 mt-md-auto">
+														<!-- Button -->
+														<div class="d-flex align-items-center">
+															<div class="fw-bold mb-0 me-1 text-secondary title" style="font-size: 24px">₩20,000 ~</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<!-- Wishlist item END -->
+								</c:forEach>
 
 							</div>
 							<!-- Card body END -->
@@ -284,6 +369,9 @@ $(".heart-icon.concert").click(function () {
         });
     }
 });
+</script>
+
+<script type="text/javascript">
 </script>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>

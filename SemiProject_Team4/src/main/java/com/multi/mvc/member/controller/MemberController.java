@@ -25,6 +25,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.multi.mvc.board.model.service.BoardService;
 import com.multi.mvc.board.model.vo.Board;
+import com.multi.mvc.camp.model.vo.CampSiteVO;
 import com.multi.mvc.concert.model.vo.ConcertVO;
 import com.multi.mvc.kakao.KaKaoService;
 import com.multi.mvc.member.model.service.MemberService;
@@ -266,8 +267,10 @@ public class MemberController {
 		log.info("@@@@@@@ wishList - mno>> " + mno);
 		
 		List<ConcertVO> conList = service.getConWishList(mno);
+		List<CampSiteVO> campList = service.getCampWishList(mno);
 		
-		model.addAttribute("items", conList);
+		model.addAttribute("concitems", conList);
+		model.addAttribute("campitems", campList);
 		
 		return "/account/account-wishlist";
 	}

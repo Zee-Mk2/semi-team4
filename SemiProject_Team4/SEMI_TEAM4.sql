@@ -63,11 +63,11 @@ CREATE TABLE campsiteInfo (
 	img                 VARCHAR(1000),
     status				VARCHAR(1) DEFAULT 'Y',
     bookmarks			INT DEFAULT 0,
-    views				INT DEFAULT 0
+    views				INT DEFAULT 0,
+    minPrice			INT
 );
 
 SELECT * FROM campsiteInfo;
-
 
 -- 공연 테이블
 DROP TABLE concert;  
@@ -171,7 +171,7 @@ DROP TABLE campBookmark;
 CREATE TABLE campBookmark (
 	contentID			INT,
     mno					INT,
-    campBookmarkDate 	DATETIME,
+    campBookmarkDate 	DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (contentID) REFERENCES campsiteInfo(contentID) ON DELETE CASCADE,
     FOREIGN KEY (mno) REFERENCES memberInfo(mno) ON DELETE CASCADE
 );
@@ -598,7 +598,7 @@ ORDER BY bookmarks.bookmarks DESC;
 SELECT * FROM concert ORDER BY views DESC;
 
 -- 공연 상세
-SELECT Conc.*, Hall.la, Hall.lo, bookmarks.bookmarks, rating.avgRating
+SELECT Conc.*, Hall.la, Hall.lo, bookmarks.bookmarks, rating.avgRating, rating.numReviews
 FROM concert Conc
 LEFT JOIN conHall Hall ON Conc.conHallId = Hall.conHallId
 LEFT JOIN (
@@ -608,9 +608,9 @@ LEFT JOIN (
 	GROUP BY conId
 ) bookmarks ON Conc.conId = bookmarks.conId
 LEFT JOIN (
-SELECT contentId, SUM(rating) / count(*) AS avgRating
+SELECT contentId, SUM(rating) / count(*) AS avgRating, count(*) AS numReviews
 	FROM board
-	WHERE contentId = '37'
+	WHERE contentId = 'PF218950'
 	GROUP BY contentId
 ) rating ON Conc.conId = rating.contentId
 WHERE Conc.conId = 'PF218950';

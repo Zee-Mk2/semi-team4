@@ -81,8 +81,14 @@
 	</select>
 	
 	<select id="campDetailById" parameterType="Map" resultType="CampSiteVO">
-		SELECT C.*, rating.avgRating, rating.numReviews
+		SELECT C.*, rating.avgRating, rating.numReviews, bookmarks.bookmarks
 			FROM campSiteInfo C
+			LEFT JOIN (
+				SELECT contentID, count(*) AS bookmarks
+				FROM campBookmark
+				WHERE contentID = #{contentId}
+				GROUP BY contentID
+			) bookmarks ON C.contentID = bookmarks.contentID
 			LEFT JOIN (
 			SELECT contentId, SUM(rating) / count(*) AS avgRating, count(*) AS numReviews
 				FROM board
@@ -91,5 +97,21 @@
 			) rating ON C.contentID = rating.contentId
 			WHERE C.contentID = #{contentId}
 	</select>
+	
+	<select id="getCampBookmark" parameterType="int" resultType="CampBookmark">
+		SELECT * FROM campBookmark WHERE mno = ${mno}
+	</select>
+	
+	<insert id="campBookmark" parameterType="Map">
+		INSERT INTO campBookmark VALUES(#{contentId}, #{mno}, DEFAULT)
+	</insert>
+	
+	<delete id="campBookmarkRemove" parameterType="Map">
+		DELETE FROM campBookmark WHERE contentID = #{contentId} AND mno = #{mno}
+	</delete>
+	
+	<update id="campViewsPlus" parameterType="Map">
+		UPDATE campSiteInfo SET views = views + 1 WHERE contentID = #{contentId}
+	</update>
 	
 </mapper>

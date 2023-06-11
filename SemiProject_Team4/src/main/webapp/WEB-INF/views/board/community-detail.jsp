@@ -4,7 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 
-<jsp:include page="/WEB-INF/views/common/camping-header.jsp"/>
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 
 <!-- Plugins CSS -->
 <link rel="stylesheet" type="text/css" href="${path}/resources/assets/vendor/font-awesome/css/all.min.css">
@@ -72,7 +72,7 @@
 									<div class="d-flex align-items-center">
 										<!-- Avatar -->
 										<div class="avatar avatar-sm">
-											<img class="avatar-img rounded-circle" src="${path}/resources/assets/images/avatar/01.jpg" alt="avatar">
+											<img class="avatar-img rounded-circle" src="${path}/resources/upload/profile/${item.reFileNm}" alt="avatar">
 										</div>
 										<!-- Info -->
 										<div class="ms-2">
@@ -137,60 +137,69 @@
 		</div>
 	</section>
 
-	<!-- Comments section-->
+	<!-- Reply section-->
 	<section class="mb-5">
 		<div class="container card bg-light">
 			<div class="card-body">
-				<!-- Comment form-->
-				<form class="mb-4">
+				<!-- Reply form-->
+				<form class="mb-4" action="${path}/board-reply" method="post">
 					<div class="d-flex align-items-start">
-						<textarea class="form-control" rows="2" placeholder="댓글을 남겨보세요!"></textarea>
-						<button type="submit" class="btn btn-primary ms-3 align-self-center" style="height: auto; white-space: nowrap;">확인</button>
+						<input type="hidden" name="bno" value="${item.bno}" />
+    					<input type="hidden" name="writerId" value="${loginMember.id}" />
+						<textarea class="form-control" name="content" rows="2" placeholder="댓글을 남겨보세요!"></textarea>
+						<button type="submit" id="btn-insert" class="btn btn-primary ms-3 align-self-center" style="height: auto; white-space: nowrap;">등록</button>
 					</div>
 				</form>
-				<!-- Single comment-->
-				<div class="d-flex my-3">
-					<div class="flex-shrink-0"><img class="rounded-circle avatar-sm" src="${path}/resources/assets/images/avatar/05.jpg" alt="..." /></div>
-					<div class="ms-3">
-						<ul class="nav nav-divider align-items-center">
-							<li class="nav-item">
-								<div class="d-flex align-items-center">
-									<div class="fw-bold">오정민</div>
-								</div>
-							</li>
-							<li class="nav-item">1분 전</li>
-						</ul>
-						댓글 내용 댓글 내용 댓글 내용 댓글 내용 댓글 내용 댓글 내용 댓글 내용 댓글 내용 댓글 내용 댓글 내용 
-					</div>
-				</div>
-				<div class="d-flex my-3">
-					<div class="flex-shrink-0"><img class="rounded-circle avatar-sm" src="${path}/resources/assets/images/avatar/06.jpg" alt="..." /></div>
-					<div class="ms-3">
-						<ul class="nav nav-divider align-items-center">
-							<li class="nav-item">
-								<div class="d-flex align-items-center">
-									<div class="fw-bold">전승민</div>
-								</div>
-							</li>
-							<li class="nav-item">2분 전</li>
-						</ul>
-						댓글 내용 댓글 내용 댓글 내용 댓글 내용 댓글 내용 댓글 내용 댓글 내용 댓글 내용 댓글 내용 댓글 내용 댓글 내용 댓글 내용 댓글 내용 댓글 내용 댓글 내용 댓글 내용 댓글 내용 댓글 내용 댓글 내용 댓글 내용 댓글 내용 댓글 내용 댓글 내용 
-					</div>
-				</div>
-				<div class="d-flex my-3">
-					<div class="flex-shrink-0"><img class="rounded-circle avatar-sm" src="${path}/resources/assets/images/avatar/07.jpg" alt="..." /></div>
-					<div class="ms-3">
-						<ul class="nav nav-divider align-items-center">
-							<li class="nav-item">
-								<div class="d-flex align-items-center">
-									<div class="fw-bold">천보영</div>
-								</div>
-							</li>
-							<li class="nav-item">3분 전</li>
-						</ul>
-						댓글 내용 댓글 내용 댓글 내용 댓글 내용 댓글 내용 
-					</div>
-				</div>
+				<!-- Single Reply-->
+				<c:if test="${!empty replyList}">
+					<c:forEach var="reply" items="${replyList}">
+						<div class="d-flex my-3">
+							<div class="flex-shrink-0"><img class="rounded-circle avatar-sm" src="${path}/resources/upload/profile/${reply.reFileNm}" alt="..." /></div>
+							<div class="ms-3">
+								<ul class="nav nav-divider align-items-center">
+									<li class="nav-item">
+										<div class="d-flex align-items-center">
+											<div class="fw-bold">${reply.name}</div>
+										</div>
+									</li>
+									<li class="nav-item"><fmt:formatDate type="both" value="${reply.replycreateDate}"/></li>
+								</ul>
+								${reply.replyContent}
+								<c:if test="${!empty loginMember && (loginMember.id == reply.writerId || loginMember.role == 'ROLE_ADMIN')}">
+									<button type="submit" class="btn-delete" onclick="deleteReply(${reply.rno}, ${reply.bno})">삭제</button>
+								</c:if>
+							</div>
+						</div>
+					</c:forEach>
+				</c:if>
+				
+				<script>
+					function deleteReply(rno, bno) {
+						$('.btn-delete').click(function() {
+							var rno = $(this).data('rno');
+							var bno = $(this).data('bno');
+						
+						$.ajax({
+							url: '${path}/board-replyDel',
+							type: 'POST',
+							data: { rno: rno, bno: bno },
+							success: function(result) {
+								// 삭제된 댓글에 대한 UI 업데이트 작업 수행
+								// 예시: 삭제된 댓글을 숨기거나 제거하는 등의 작업
+								$(`div[data-rno="${rno}"]`).remove();
+							},
+							error: function(xhr, status, error) {
+								// 에러 처리
+							}
+						});
+					}
+				</script>
+				
+				<c:if test="${empty replyList}">
+				<tr>
+					<td colspan="3" style="text-align: center;">등록된 리플이 없습니다.</td>
+				</tr>
+				</c:if>
 			</div>
 		</div>
 	</section>

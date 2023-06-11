@@ -63,6 +63,8 @@ public class CampSiteVO {
 	private String animalEntry;
 	private String tourDate;
 	private String img;
+	private int bookmarks;
+	private int views;
 	private double avgRating;
 	private int numReviews;
 }

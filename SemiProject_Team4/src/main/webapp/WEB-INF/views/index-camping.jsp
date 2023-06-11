@@ -196,8 +196,15 @@ Packages START -->
 								</div>
 							</div>
 							<!-- 하트 -->
-							<a class="btn heart-btn mx-2 mt-n5">
-								<i class="fas fa-heart fs-5 ms-n2 heart-icon" style="color: red;"></i>
+							<a class="btn heart-btn mx-2 mt-n5" data-contentid="${item.contentID}">
+								<c:if test="${sessionScope.loginMember != null}">
+									<c:if test="${bookmarks[item.contentID] != 1}">
+										<i class="far fa-heart fs-5 ms-n2 heart-icon camp" style="color: red;"></i>
+									</c:if>
+									<c:if test="${bookmarks[item.contentID] == 1}">
+										<i class="fas fa-heart fs-5 ms-n2 heart-icon camp" style="color: red;"></i>
+									</c:if>
+								</c:if>
 							</a>
 							<div class="card-body d-flex align-items-center">
 								<div class="w-100">
@@ -209,7 +216,7 @@ Packages START -->
 									${item.doNm} ${item.sigunguNm}
 									<div class="d-flex card-subtitle mb-n4 pt-2">
 										<p class="card-text col-7">
-											<span class="h5 text-secondary">₩ 150,000 ~</span>
+											<span class="h5 text-secondary">₩ 20,000 ~</span>
 										</p>
 										<p class="flex-shrink-1 mt-1 card-stars text-end col-5" style="font-size: 0.7rem;">
 											<i class="fa fa-star text-warning"></i>
@@ -574,4 +581,4 @@ Packages END -->
 <!-- **************** MAIN CONTENT END **************** -->
 
 
-<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
+<jsp:include page="/WEB-INF/views/common/camping-footer.jsp"/>

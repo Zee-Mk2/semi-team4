@@ -13,11 +13,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -236,11 +234,53 @@ public class BoardController {
 			@SessionAttribute(name="loginMember", required = false) Member loginMember) {
 		int bno = Integer.valueOf((String) param.get("bno"));
 		Board result = service.selectBoardDetail(bno);
-		log.info("boardDetailPage>> " + result);
+		log.info("@@@@@@@@@ boardDetailPage>> " + result);
+		
 		model.addAttribute("item", result);
+		model.addAttribute("replyList", result.getReplies());
 		model.addAttribute("loginMember", loginMember);
 		
 		return "/board/community-detail";
+	}
+	
+	@RequestMapping("/board-reply")
+	public String writeReply(Model model,
+			@SessionAttribute(name = "loginMember", required = false) Member loginMember,
+			@RequestParam Map<String, Object> param
+			) {
+		if (loginMember == null) {
+			model.addAttribute("msg", "댓글을 작성하려면 로그인해야 합니다.");
+			model.addAttribute("location", "/board-detail?bno=" + param.get("bno"));
+			return "common/msg";
+		}
+		param.put("mno", loginMember.getMno());
+		log.info("@@@@@@@@@@@@@ 리플 작성, param : "+ param.toString());
+		int result = service.saveReply(param);
+		
+		if(result > 0) {
+			model.addAttribute("msg","리플이 등록되었습니다.");
+		} else {
+			model.addAttribute("msg","리플 등록에 실패하였습니다.");
+		}
+		model.addAttribute("location", "/board-detail?bno=" + param.get("bno"));
+		return "/common/msg";
+	}
+	
+	@RequestMapping("board-replyDel")
+	public String deleteReply(Model model, 
+			@SessionAttribute(name = "loginMember", required = false) Member loginMember,
+			@RequestParam Map<String, Object> param
+			){
+		log.info("리플 삭제 요청");
+		int result = service.deleteReply(param);
+		
+		if(result > 0) {
+			model.addAttribute("msg", "리플 삭제가 정상적으로 완료되었습니다.");
+		}else {
+			model.addAttribute("msg", "리플 삭제에 실패하였습니다.");
+		}
+		model.addAttribute("location", "/board-detail?replyNo=" + param.get("replyNo"));
+		return "/common/msg";
 	}
 	
 	

@@ -1,5 +1,6 @@
 package com.multi.mvc.camp.model.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.multi.mvc.camp.model.mapper.CampMapper;
 import com.multi.mvc.camp.model.vo.CampSiteVO;
 import com.multi.mvc.common.util.PageInfo;
+import com.multi.mvc.member.model.vo.CampBookmark;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -61,8 +63,31 @@ public class CampService {
 	}
 	
 	public CampSiteVO campDetailById(Map<String, Object> param) {
+		mapper.campViewsPlus(param);
+		
 		return mapper.campDetailById(param);
 	}
+	
+	public int campBookmark(Map<String, Object> param) {
+		return mapper.campBookmark(param);
+	}
+
+	public int campBookmarkRemove(Map<String, Object> param) {
+		return mapper.campBookmarkRemove(param);
+	}
+	
+	public Map<Integer, Integer> getCampBookmark(int mno) {
+		List<CampBookmark> list = mapper.getCampBookmark(mno);
+		Map<Integer, Integer> map = new HashMap<>();
+		for (CampBookmark obj : list) {
+			map.put(obj.getContentID(), 1);
+		}
+		
+		return map;
+	}
+	
+	
+	
 }
 
 

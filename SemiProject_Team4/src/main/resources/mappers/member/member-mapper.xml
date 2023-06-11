@@ -59,6 +59,12 @@
 			WHERE status = 'Y' AND B.mno = #{mno}
 	</select>
 	
+	<select id="getCampWishList" parameterType="int" resultType="CampSiteVO">
+		SELECT C.campNm, C.location, C.addr, C.img, C.contentID
+			FROM campsiteInfo C JOIN campBookmark B ON(C.contentID = B.contentID)
+			WHERE status = 'Y' AND B.mno = #{mno}
+	</select>
+	
 	<delete id="deleteAllWishlist" parameterType="int">
 		DELETE FROM concBookmark WHERE mno = #{mno};
 	</delete>
