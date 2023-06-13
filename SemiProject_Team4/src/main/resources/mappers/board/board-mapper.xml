@@ -120,6 +120,21 @@
 			WHERE bno = #{bno};
 	</select>
 	
+	<select id="pickInfo" parameterType="Map">
+		SELECT * FROM (
+		SELECT * FROM board
+		WHERE boardTag = 'camp'
+		ORDER BY boardViews DESC
+		LIMIT 1
+		) AS camp_result
+		UNION ALL
+		SELECT * FROM (
+		SELECT * FROM board
+		WHERE boardTag = 'conc'
+		ORDER BY boardViews DESC
+		LIMIT 1
+		) AS conc_result;
+	</select>
 	
 	<!-- <select id="selectBoardByNo" parameterType="int" resultMap="Board">
 		SELECT  B.bno, B.boardTitle, M.name, B.boardCreateDate, B.boardReFileNm, B.boardViews, B.boardContent, B.boardTag
