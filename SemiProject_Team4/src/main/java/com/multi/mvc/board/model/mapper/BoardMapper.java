@@ -36,5 +36,7 @@ public interface BoardMapper {
 
 	List<Board> getReviewsByMno(int mno);
 
+	int pickInfo(Map<String, Object> param);
+
 	
 }

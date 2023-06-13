@@ -77,7 +77,20 @@
 	<select id="campThemeTopTen" parameterType="Map" resultType="CampSiteVO">
 		SELECT contentID, campNm, lineIntro, addr, tel, img FROM campSiteInfo WHERE
 			location=#{location}
-		AND manStatus = '운영' ORDER BY bookmarks DESC LIMIT 10;
+		AND manStatus = '운영' 
+		LIMIT 10;
+	</select>
+	
+	<select id="getThemaCnt" resultType="ThemaCnt">
+		SELECT A.beach, B.island, C.mt, D.forest, E.valley, F.river, G.lake, H.city
+			FROM (SELECT count(*) AS beach FROM campsiteInfo WHERE location LIKE '%해변%') A,
+				 (SELECT count(*) AS island FROM campsiteInfo WHERE location LIKE '%섬%') B,
+		         (SELECT count(*) AS mt FROM campsiteInfo WHERE location LIKE '%산%') C,
+		         (SELECT count(*) AS forest FROM campsiteInfo WHERE location LIKE '%숲%') D,
+		         (SELECT count(*) AS valley FROM campsiteInfo WHERE location LIKE '%계곡%') E,
+		         (SELECT count(*) AS river FROM campsiteInfo WHERE location LIKE '%강%') F,
+		         (SELECT count(*) AS lake FROM campsiteInfo WHERE location LIKE '%호수%') G,
+		         (SELECT count(*) AS city FROM campsiteInfo WHERE location LIKE '%도심%') H;
 	</select>
 	
 	<select id="campDetailById" parameterType="Map" resultType="CampSiteVO">
@@ -113,5 +126,45 @@
 	<update id="campViewsPlus" parameterType="Map">
 		UPDATE campSiteInfo SET views = views + 1 WHERE contentID = #{contentId}
 	</update>
+	
+	<select id="selectBoardCount" parameterType="Map" resultType="int">
+		SELECT count(*) FROM board;
+	</select>
+	
+	<select id="selectInfoBoardList" parameterType="Map" resultType="Board">
+		SELECT 
+			B.bno, B.boardTitle, M.name, B.boardCreateDate, B.boardReFileNm, B.boardViews, B.boardContent, B.boardTag
+		FROM board B 
+		JOIN member M ON(B.mno = M.mno)
+		WHERE B.boardStatus = 'Y' AND B.boardCat = #{boardCat}
+		<if test="boardTag != null">
+			AND B.boardTag = #{boardTag}
+		</if>
+		<if test="id != null">
+			AND M.name LIKE '%${name}%'
+		</if>
+		<if test="title != null">
+			AND B.title LIKE '%${title}%'
+		</if>
+		<if test="content != null">
+			AND B.content LIKE '%${content}%'
+		</if>
+		ORDER BY B.bno DESC LIMIT ${limit} OFFSET ${offset}
+	</select>
+	
+	<select id="pickInfo" parameterType="Map" resultType="Board">
+		SELECT * FROM board
+		WHERE boardTag = 'camp' AND boardStatus = 'Y' AND boardCat = 'info'
+		ORDER BY boardViews DESC
+		LIMIT 2
+	</select>
+	
+	<select id="pickReview" parameterType="Map" resultType="Board">
+		SELECT b.*, camp.campNm, camp.doNm, camp.sigunguNm FROM board b
+		    JOIN campsiteInfo camp ON b.contentId = camp.contentID
+			WHERE b.boardTag = 'camp' AND b.boardStatus = 'Y' AND b.boardCat = 'review'
+			ORDER BY b.boardViews DESC
+			LIMIT 3;
+	</select>
 	
 </mapper>

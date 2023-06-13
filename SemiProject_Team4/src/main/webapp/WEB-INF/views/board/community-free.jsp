@@ -131,7 +131,6 @@
 		            <li class="nav-item row border-bottom h-40px align-items-center mx-1">
 		                <a class="nav-link col-7" href="${path}/board-detail?bno=${item.bno}">
 		                    ${item.boardTitle}
-		                    <span class="ps-1 text-black-50" style="font-size: 0.9rem;">[1]</span>
 		                </a>
 		                <div class="col-2" style="font-size: 0.9rem;">
 		                    <a class="text-black" href="${path}/board-detail?bno=${item.bno}">${item.name}</a>

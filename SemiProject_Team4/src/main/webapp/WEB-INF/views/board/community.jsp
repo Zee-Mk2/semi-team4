@@ -53,38 +53,47 @@
 			<div class="row g-4">
 			   <div class="container">
 				<!-- Card header -->
-				<div class="row">
-					<div class="col-6 card-header bg-transparent border-bottom p-0 pb-3">
-						<h3 class="mb-0 title fs-2">이달의 캠핑 Pick!</h3>
-					</div>
-					<div class="col-6 card-header bg-transparent border-bottom p-0 pb-3">
-						<h3 class="mb-0 title fs-2">이달의 공연 Pick!</h3>
-					</div>
+				<div class="col-12 card-header bg-transparent border-bottom p-0 pb-3">
+					<h3 class="mb-0 title fs-2">이달의 Pick!</h3>
 				</div>
 			   </div>
 				<!-- 이달의픽 카드 1 -->
+			<c:forEach var="item" items="${pickList}">
 				<div class="col-6">
 					<!-- place item-->
 					<div class="w-100 mb-4" style="height: 32rem;">
 						<div class="card card-img-scale h-100 border-0 shadow">
-							<div class="card-img-top overflow-hidden">
-								<img class="img-fluid" src="${path}/resources/assets/images/blog/blog01.jpeg" />
+							<div class="col-4 card-img-top overflow-hidden h-75">
+								<img src="${path}/resources/upload/board/${item.boardReFileNm}" class="card-img img-fluid" alt="Card image">
+								<div class="card-img-overlay-top">
+									<div class="d-flex justify-content-between">
+										<span class="badge ${item.boardTag eq 'camp' ? 'text-bg-info' : 'text-bg-warning'} text-light" style="height: 1.5rem">
+										<c:choose>
+											<c:when test="${item.boardTag eq 'camp'}">
+											캠핑
+											</c:when>
+											<c:when test="${item.boardTag eq 'conc'}">
+											공연
+											</c:when>
+										</c:choose>
+										</span>
+									</div>
+								</div>
 							</div>
 							<div class="card-body d-flex align-items-center">
 								<div class="w-100">
 									<h5 class="card-title text-decoration-none text-dark">
-										<a href="${path}/board-info?boardCat=info" class="stretched-link title">
-											이달의 캠핑 pick!
+										<a href="${path}/board-detail?boardCat=info&bno=${item.bno}" class="stretched-link title">
+											${item.boardTitle}
 										</a>
 									</h5>
-									정보 공유 내용!!!!!
+									${item.boardContent}
 									<div class="d-flex align-items-center mt-2 mb-n2" href="${path}/board-info?boardCat=info">
 										<!-- Avatar -->
 										<div class="avatar me-3" style="width: 2rem; height: 2rem;">
-											<img class="avatar-img rounded-circle shadow" src="${path}/resources/assets/images/avatar/01.jpg" alt="avatar">
 										</div>
 										<div class="fw-bold text-black">
-											홍길동
+											${item.name}
 										</div>
 									</div>
 								</div>
@@ -92,36 +101,7 @@
 						</div>
 					</div>
 				</div>
-	
-			  <div class="col-6">
-					<!-- place item-->
-					<div class="w-100 mb-4" style="height: 32rem;">
-						<div class="card card-img-scale h-100 border-0 shadow">
-							<div class="card-img-top overflow-hidden">
-								<img class="img-fluid" src="${path}/resources/assets/images/blog/13.jpg" />
-							</div>
-							<div class="card-body d-flex align-items-center">
-								<div class="w-100">
-									<h5 class="card-title text-decoration-none text-dark">
-										<a href="${path}/board-detail?boardCat=info" class="stretched-link title">
-											이달의 공연 pick!
-										</a>
-									</h5>
-									정보 공유 내용!!!!!
-									<div class="d-flex align-items-center mt-2 mb-n2" href="${path}/board-info?boardCat=info">
-										<!-- Avatar -->
-										<div class="avatar me-3" style="width: 2rem; height: 2rem;">
-											<img class="avatar-img rounded-circle shadow" src="${path}/resources/assets/images/avatar/02.jpg" alt="avatar">
-										</div>
-										<div class="fw-bold text-black">
-											최길동
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+				</c:forEach>
 						<hr class="my-0"> <!-- Divider -->
 					</div>
 				</div>
@@ -152,8 +132,7 @@
 							<li class="nav-item">
 							  <div>
 								<a class="nav-link py-1" href="${path}/board-detail?boardCat=info&bno=${item.bno}">${item.boardTitle}
-									<span class="ps-1 text-black-50" style="font-size: 0.9rem;">[1]</span>
-									<span class="ps-1 text-black-50" style="font-size: 0.9rem;">1분 전</span>
+									<span class="ps-1 text-black-50" style="font-size: 0.9rem;"><fmt:formatDate value="${item.boardCreateDate}" pattern="MM.dd hh:mm"/></span>
 								</a>
 							  </div>
 							</li>
@@ -174,8 +153,7 @@
 					<ul class="nav flex-column text-info">
 						<li class="nav-item">
 							<a class="nav-link py-1" href="${path}/board-detail?boardCat=free&bno=${item.bno}">${item.boardTitle}
-								<span class="ps-1 text-black-50" style="font-size: 0.9rem;">[1]</span>
-								<span class="ps-1 text-black-50" style="font-size: 0.9rem;">1분 전</span>
+								<span class="ps-1 text-black-50" style="font-size: 0.9rem;"><fmt:formatDate value="${item.boardCreateDate}" pattern="MM.dd hh:mm"/></span>
 							</a>
 						</li>
 					</ul>
@@ -198,7 +176,7 @@
 							<div class="row g-3 g-sm-4 align-items-sm-center">
 								<!-- Image -->
 								<div class="col-4">
-									<img src="${path}/resources/assets/images/blog/01.jpg" class="card-img" alt="">
+									<img src="${path}/resources/upload/board/${item.boardReFileNm}" class="card-img" alt="">
 									<div class="card-img-overlay-top">
 										<div class="d-flex justify-content-between">
 											<span class="badge text-bg-warning" style="height: 1.5rem">공연</span>
@@ -227,7 +205,6 @@
 										<!-- Author name and button -->
 										<div class="d-flex justify-content-between align-items-center">
 											<span class="small">
-												<img src="${path}/resources/assets/images/avatar/02.jpg" class="avatar-sm" style="border-radius: 100%;"/>
 												<span class="text-black fs-5 fw-bold px-2">${item.name}</span>
 												<fmt:formatDate value="${item.boardCreateDate}" pattern="MM.dd hh:mm:ss"/>
 											</span>

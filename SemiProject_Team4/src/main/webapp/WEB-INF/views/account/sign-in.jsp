@@ -104,9 +104,9 @@ Main Content START -->
 									</div>
 		
 									<!-- Social login -->
-									<div class="vstack gap-3 text-center">
-										<a href="#"><img src="${path}/resources/assets/images/social_login/kakao_login_medium_wide.png"></a>
-									</div>
+<!-- 									<div class="vstack gap-3 text-center"> -->
+<%-- 										<a href="#"><img src="${path}/resources/assets/images/social_login/kakao_login_medium_wide.png"></a> --%>
+<!-- 									</div> -->
 
 									<p class="mb-0 mt-3 text-center">
 										<a href="sign-up.html" class="px-3 text-black-50">회원가입</a>|<a href="forgot-password.html" class="px-3 text-black-50">비밀번호 찾기</a>

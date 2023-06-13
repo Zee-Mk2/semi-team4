@@ -102,7 +102,7 @@ Main Banner START -->
 		<!-- Search START -->
 		<div class="col-12 mt-n8 pb-5">
 				<!-- Booking from START -->
-				<form class="bg-mode shadow rounded-5 px-3 py-1">
+				<form class="bg-mode shadow rounded-5 px-3 py-1" action="${path}/conc-search" method="get">
 					<div class="row g-4 align-items-center">
 						<div class="col-xl-11">
 							<div class="row g-4">
@@ -110,16 +110,9 @@ Main Banner START -->
 								<div class="col-md-6 col-lg-3">
 									<!-- Input field -->
 									<div class="form-border-bottom form-control-transparent form-fs-lg" style="height: 85%;">
-										<select class="form-select js-choice" data-search-enabled="true">
-											<option value="">지역 선택</option>
-											<option>서울/인천/경기</option>
-											<option>부산/울산/경남</option>
-											<option>대구/경북</option>
-											<option>대전/충청</option>
-											<option>광주/전남</option>
-											<option>전북</option>
-											<option>강원</option>
-											<option>제주</option>
+										<select class="form-select js-choice" data-search-enabled="true" name="searchType">
+												<option value="concKeyword" ${param.searchType == 'concKeyword' || param.searchType == '' || param.searcyType == null ? 'selected' : ''}>공연 이름으로 검색</option>
+												<option value="hallKeyword" ${param.searchType == 'hallKeyword' ? 'selected' : ''}>공연장 이름으로 검색</option>
 										</select>
 									</div>
 								</div>
@@ -128,7 +121,7 @@ Main Banner START -->
 								<div class="col-md-6 col-lg-3">
 									<!-- Date input -->
 									<div class="form-border-bottom form-control-transparent form-fs-lg">
-										<input id="datePicker" type="text" class="form-control py-2" data-date-format="m-d" placeholder="예매 일정">
+										<input id="datePicker" type="text" class="form-control py-2" data-date-format="m-d" placeholder="예매 일정" name="reservDate">
 									</div>
 								    <script>
 								        flatpickr("#datePicker", {
@@ -141,7 +134,7 @@ Main Banner START -->
 								<div class="col-md-6 col-lg-6">
 									<!-- Input field -->
 									<div class="form-border-bottom form-control-transparent form-fs-lg">
-										<input class="form-control border-0 shadow-0" type="text" name="search" placeholder="키워드">
+										<input class="form-control border-0 shadow-0" type="text" name="keyword" placeholder="키워드">
 									</div>
 								</div>
 							</div>
@@ -150,9 +143,9 @@ Main Banner START -->
 						<!-- Button -->
 						<div class="col-lg-1">
 							<div class="d-grid">
-								<a href="${path}/#" class="btn btn-lg mb-n1">
+								<button type="submit" class="btn btn-lg mb-n1">
 									<i class="fa-solid fa-search fs-4"></i>
-								</a>
+								</button>
 							</div>
 						</div>
 					</div>
@@ -252,10 +245,10 @@ Packages END -->
 							<div class="w-100">
 								<h5 class="card-title text-decoration-none text-dark">
 									<a href="${path}/test.html" class="stretched-link title">
-										LG아트센터 서울
+										광양시문화예술회관
 									</a>
 								</h5>
-								서울 강서구 / 2022년 개관
+								전남 광양시 / 1996년 개관
 								<div class="fw-bold text-black text-end">
 									<a href="${path}/test.html"><i class="fas fa-paper-plane"></i> 홈페이지 바로가기</a>
 								</div>
@@ -277,10 +270,10 @@ Packages END -->
 							<div class="w-100">
 								<h5 class="card-title text-decoration-none text-dark">
 									<a href="${path}/test.html" class="stretched-link title">
-										SCC홀
+										광양커뮤니티센터
 									</a>
 								</h5>
-								서울 서초구 / 2005년 개관
+								전남 광양시 / 2001년 개관
 								<div class="fw-bold text-black text-end">
 									<a href="${path}/test.html"><i class="fas fa-paper-plane"></i> 홈페이지 바로가기</a>
 								</div>
@@ -302,10 +295,10 @@ Packages END -->
 							<div class="w-100">
 								<h5 class="card-title text-decoration-none text-dark">
 									<a href="${path}/test.html" class="stretched-link title">
-										세종문화회관
+										순천문화예술회관
 									</a>
 								</h5>
-								서울 종로구 / 1978년 개관
+								전남 순천시 / 1993년 개관
 								<div class="fw-bold text-end">
 									<a href="${path}/test.html"><i class="fas fa-paper-plane"></i> 홈페이지 바로가기</a>
 								</div>
@@ -323,7 +316,7 @@ Packages END -->
 <section>
 	<div class="container">
 		<!-- Title -->
-		<a href="${path}/test.html" style="z-index: 99; height: 5rem;">
+		<a href="${path}/board-review?boardCat=review&boardTag=conc" style="z-index: 99; height: 5rem;">
 			<div class="title mb-4">
 				<span class="text-secondary fs-2">공연 BEST 후기</span>
 				<span class="px-3 text-info fs-4">이 공연 어땠어요? 생생하고 솔직한 후기만 모아서!</span>
@@ -332,141 +325,67 @@ Packages END -->
 
 		<div class="row">
 
+			<c:forEach var="item" items="${reviewList}">
 			<div class="col-4">
-				<!-- place item-->
+				<!-- place item START -->
 				<div class="w-100 h-100" onmouseover="showOverlay(this)" onmouseout="hideOverlay(this)">
 					<div class="card card-img-scale h-100 border-0 shadow">
 						<div class="card-img-top overflow-hidden">
 							<div class="overlay overflow-hidden p-4 card">
 								<a href="${path}/board-detail" class="stretched-link">
 									<div class="overlay-content text-white">
-										<div class="h4 text-white title">공연제목</div>
-										<div>공연장 이름</div>
+										<div class="h4 text-white title">${item.conNm}</div>
+										<div>${item.conHallNm}</div>
 									</div>
 								</a>
 							</div>
-							<img class="img-fluid" src="${path}/resources/assets/images/review/01.jpg"/>
+							<img class="img-fluid" src="${path}/resources/upload/board/${item.boardReFileNm}"/>
 						</div>
 						<div class="card-body d-flex align-items-center">
 							<div class="w-100">
-								<h5 class="card-title text-decoration-none text-dark title">
-									감동 그 자체의 공연
+								<h5 class="card-title text-decoration-none text-dark">
+									${item.boardTitle}
 								</h5>
-								처음부터 끝까지 울다 웃다 했네요. 올해 상반기에 본 공연 중 가장 기억에 남는 공연이 될 것 같습니다. ...
+								${item.boardContent}
 								<div class="d-flex">
-									<span class="d-flex align-items-center mt-2 col-7" href="${path}/profile.html">
+									<span class="d-flex align-items-center mt-2 col-7" href="${path}/board-detail?boardCat=review&boardTag=camp&bno=${item.bno}">
 										<!-- Avatar -->
 										<div class="avatar me-3" style="width: 2rem; height: 2rem;">
-											<img class="avatar-img rounded-circle shadow" src="${path}/resources/assets/images/avatar/01.jpg" alt="avatar">
+											<img class="avatar-img rounded-circle shadow" src="${path}/resources/upload/profile/${item.reFileNm}" alt="avatar">
 										</div>
 										<div class="fw-bold text-black">
-										지석환
+										${item.name}
 									</div>
 									</span>
 									<span class="col-5 text-end mt-3">
-										<i class="fa fa-star text-warning"></i>
-										<i class="fa fa-star text-warning"></i>
-										<i class="fa fa-star text-warning"></i>
-										<i class="fa fa-star-half-alt text-warning"></i>
-										<i class="far fa-star text-warning"></i>
+								        <div class="review-rating ${item.bno}">
+								            <span class="star"><i class="far fa-star text-warning"></i></span>
+								            <span class="star"><i class="far fa-star text-warning"></i></span>
+								            <span class="star"><i class="far fa-star text-warning"></i></span>
+								            <span class="star"><i class="far fa-star text-warning"></i></span>
+								            <span class="star"><i class="far fa-star text-warning"></i></span>
+									        <input type="hidden" name="rating" value="${item.rating}">
+								            <script>
+										        $(document).ready(function() {
+										            var intRating = parseInt($('.${item.bno} input[name="rating"]').val());
+										
+										            var starIcons = $('.review-rating.${item.bno} .star i');
+										            var i;
+										            for (i = 0; i < intRating; i++) {
+										                $(starIcons[i]).removeClass('far').addClass('fas');
+										            }
+										        });
+										    </script>
+										</div>
 									</span>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
+				<!-- place item END -->
 			</div>
-
-			<div class="col-4">
-				<!-- place item-->
-				<div class="w-100 h-100" onmouseover="showOverlay(this)" onmouseout="hideOverlay(this)">
-					<div class="card card-img-scale h-100 border-0 shadow">
-						<div class="card-img-top overflow-hidden">
-							<div class="overlay overflow-hidden p-4 card">
-								<a href="${path}/board-detail" class="stretched-link">
-									<div class="overlay-content text-white">
-										<div class="h4 text-white title">공연제목</div>
-										<div>공연장 이름</div>
-									</div>
-								</a>
-							</div>
-							<img class="img-fluid" src="${path}/resources/assets/images/review/02.jpg"/>
-						</div>
-						<div class="card-body d-flex align-items-center">
-							<div class="w-100">
-								<h5 class="card-title text-decoration-none text-dark title">
-									아이들과 보기 좋아요
-								</h5>
-								말 그대로 피터팬! 아이들이 정말 좋아했어요. 아이들을 위해 보러간 공연이라 큰 기대는 없었는데 예상 ...
-								<div class="d-flex">
-									<span class="d-flex align-items-center mt-2 col-7" href="${path}/profile.html">
-										<!-- Avatar -->
-										<div class="avatar me-3" style="width: 2rem; height: 2rem;">
-											<img class="avatar-img rounded-circle shadow" src="${path}/resources/assets/images/avatar/01.jpg" alt="avatar">
-										</div>
-										<div class="fw-bold text-black">
-										지석환
-									</div>
-									</span>
-									<span class="col-5 text-end mt-3">
-										<i class="fa fa-star text-warning"></i>
-										<i class="fa fa-star text-warning"></i>
-										<i class="fa fa-star text-warning"></i>
-										<i class="fa fa-star-half-alt text-warning"></i>
-										<i class="far fa-star text-warning"></i>
-									</span>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-4">
-				<!-- place item-->
-				<div class="w-100 h-100" onmouseover="showOverlay(this)" onmouseout="hideOverlay(this)">
-					<div class="card card-img-scale h-100 border-0 shadow">
-						<div class="card-img-top overflow-hidden">
-							<div class="overlay overflow-hidden p-4 card">
-								<a href="${path}/board-detail" class="stretched-link">
-									<div class="overlay-content text-white">
-										<div class="h4 text-white title">공연제목</div>
-										<div>공연장 이름</div>
-									</div>
-								</a>
-							</div>
-							<img class="img-fluid" src="${path}/resources/assets/images/review/03.jpg"/>
-						</div>
-						<div class="card-body d-flex align-items-center">
-							<div class="w-100">
-								<h5 class="card-title text-decoration-none text-dark title">
-									색다른 시도가 돋보인 극
-								</h5>
-								산책로가 잘 조성된 캠핑장이었습니다! 차량을 타고 올라가는 구조이고 차는 별도주차, 캠핑장에는 텐트만 ...
-								<div class="d-flex">
-									<span class="d-flex align-items-center mt-2 col-7" href="${path}/profile.html">
-										<!-- Avatar -->
-										<div class="avatar me-3" style="width: 2rem; height: 2rem;">
-											<img class="avatar-img rounded-circle shadow" src="${path}/resources/assets/images/avatar/01.jpg" alt="avatar">
-										</div>
-										<div class="fw-bold text-black">
-										지석환
-									</div>
-									</span>
-									<span class="col-5 text-end mt-3">
-										<i class="fa fa-star text-warning"></i>
-										<i class="fa fa-star text-warning"></i>
-										<i class="fa fa-star text-warning"></i>
-										<i class="fa fa-star-half-alt text-warning"></i>
-										<i class="far fa-star text-warning"></i>
-									</span>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-
+			</c:forEach>
 
 		</div>
 	</div>
@@ -480,54 +399,21 @@ Packages END -->
 			<!-- 자유게시판 시작 -->
 			<span class="col-5">
 				<!-- Title -->
-				<a href="${path}/freeBoard">
+				<a href="${path}/board-free?boardCat=free&boardTag=conc">
 					<div class="title mb-1">
-						<span class="mb-0 text-secondary fs-2">공연자유게시판</span>
+						<span class="mb-0 text-secondary fs-2">자유게시판</span>
 					</div>
 				</a>
 
 				<!-- 자유게시판 게시글 목록 -->
 				<ul class="nav flex-column text-info">
+					<c:forEach var="item" items="${freeList}">
 					<li class="nav-item">
-						<a class="nav-link py-1" href="${path}/board-detail">요즘 서울에서 가장 핫한 공연장이 어디인가요?
-							<span class="ps-2 text-black-50" style="font-size: 0.9rem;">1분 전</span>
+						<a class="nav-link py-1" href="${path}/board-detail?boardCat=free&bno=${item.bno}">${item.boardTitle}
+							<span class="ps-2 text-black-50" style="font-size: 0.9rem;"><fmt:formatDate value="${item.boardCreateDate}" pattern="MM-dd hh:mm" /></span>
 						</a>
 					</li>
-					<li class="nav-item">
-						<a class="nav-link py-1" href="${path}/board-detail">장수상회 보고온 후기
-							<span class="ps-2 text-black-50" style="font-size: 0.9rem;">1분 전</span>
-						</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link py-1" href="${path}/board-detail">LG아트센터 서울 휴무일이 언제인가요?
-							<span class="ps-2 text-black-50" style="font-size: 0.9rem;">1분 전</span>
-						</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link py-1" href="${path}/board-detail">뮤지컬 관람 시 관객들이 지켜줬으면 하는 에티켓
-							<span class="ps-2 text-black-50" style="font-size: 0.9rem;">1분 전</span>
-						</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link py-1" href="${path}/board-detail">이은결 마술쇼 정말 재밌게 봤습니다
-							<span class="ps-2 text-black-50" style="font-size: 0.9rem;">1분 전</span>
-						</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link py-1" href="${path}/board-detail">개인적으로 올해 드콘은 강력 추천합니다
-							<span class="ps-2 text-black-50" style="font-size: 0.9rem;">1분 전</span>
-						</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link py-1" href="${path}/board-detail">이번 주에 부산에 가는데 공연 추천해주세요
-							<span class="ps-2 text-black-50" style="font-size: 0.9rem;">1분 전</span>
-						</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link py-1" href="${path}/board-detail">뮤지컬 관람 시 관객들이 지켜줬으면 하는 에티켓
-							<span class="ps-2 text-black-50" style="font-size: 0.9rem;">1분 전</span>
-						</a>
-					</li>
+					</c:forEach>
 				</ul>
 			</span>
 			<!-- 자유게시판 끝 -->

@@ -11,7 +11,7 @@ CREATE TABLE campsiteInfo (
 	lineIntro           VARCHAR(100), 
 	intro               VARCHAR(5000),
 	manStatus           VARCHAR(100), 
-	feature             VARCHAR(1000), 
+	featurea             VARCHAR(1000), 
 	induType            VARCHAR(100), 
 	location            VARCHAR(100), 
 	doNm                VARCHAR(100), 
@@ -62,7 +62,6 @@ CREATE TABLE campsiteInfo (
 	tourDate            VARCHAR(100),
 	img                 VARCHAR(1000),
     status				VARCHAR(1) DEFAULT 'Y',
-    bookmarks			INT DEFAULT 0,
     views				INT DEFAULT 0,
     minPrice			INT
 );
@@ -92,16 +91,11 @@ CREATE TABLE concert (
 	story		VARCHAR(5000),
 	startTime	VARCHAR(1000),
     status		VARCHAR(1) DEFAULT 'Y',
-    bookmarks	INT DEFAULT 0,
     views		INT DEFAULT 0,
     minPrice	INT	
 );
 
 SELECT * FROM concert;
-SELECT viewAge FROM concert;
-
-SELECT * FROM concert ORDER BY startDate;
-
 
 -- 공연장 테이블
 DROP TABLE conHall;
@@ -122,7 +116,6 @@ CREATE TABLE conHall (
 );
 
 SELECT * FROM conhall;
-
 
 -- 공연 순위 테이블
 DROP TABLE conRank;  
@@ -164,7 +157,6 @@ CREATE TABLE member (
 );
 
 SELECT * FROM member;
-DELETE FROM member WHERE mno = 13;
 
 -- 캠핑 북마크 테이블
 DROP TABLE campBookmark;
@@ -173,7 +165,7 @@ CREATE TABLE campBookmark (
     mno					INT,
     campBookmarkDate 	DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (contentID) REFERENCES campsiteInfo(contentID) ON DELETE CASCADE,
-    FOREIGN KEY (mno) REFERENCES memberInfo(mno) ON DELETE CASCADE
+    FOREIGN KEY (mno) REFERENCES member(mno) ON DELETE CASCADE
 );
 
 SELECT * FROM campBookmark;
@@ -189,18 +181,6 @@ CREATE TABLE concBookmark (
 );
 
 SELECT * FROM concBookmark;
-SELECT * FROM member;
-SELECT * FROM concert LIMIT 1;
-INSERT INTO concBookmark VALUES('PF217342', 7, DEFAULT);
-DELETE FROM concBookmark WHERE conId = 'PF217342' AND mno = 7;
--- 북마크 수 구하기
-SELECT conId, count(*) AS bookmarks FROM concBookmark WHERE conId = 'PF218950' GROUP BY conId;
-
-SELECT * FROM concert WHERE conId = 'PF217344';
-SELECT Conc.*, Hall.la, Hall.lo FROM concert Conc JOIN conHall Hall ON(Conc.conHallId = Hall.conHallId) WHERE Conc.conId = 'PF217344';
-SELECT * FROM conHall;
-
-SELECT * FROM campSiteInfo;
 
 -- 게시판 테이블
 DROP TABLE board;
@@ -224,16 +204,15 @@ CREATE TABLE board (
 
 SELECT * FROM board;
 
-
 -- 댓글 테이블
 DROP TABLE reply;
 CREATE TABLE reply(
-	replyNo			INT PRIMARY KEY AUTO_INCREMENT,
-    bno				INT,
-    mno				INT,
-    replyContent	VARCHAR(1000),
-    replycreateDate	DATETIME,
-    replyStatus		VARCHAR(1),
+    replyNo            INT PRIMARY KEY AUTO_INCREMENT,
+    bno                INT,
+    mno                INT,
+    replyContent    VARCHAR(1000),
+    replycreateDate    DATETIME DEFAULT CURRENT_TIMESTAMP,
+    replyStatus        VARCHAR(1) DEFAULT 'Y',
     FOREIGN KEY (bno) REFERENCES board(bno) ON DELETE SET NULL,
     FOREIGN KEY (mno) REFERENCES member(mno) ON DELETE SET NULL
 );
@@ -272,35 +251,6 @@ CREATE TABLE concReserve (
 );
 
 SELECT * FROM concReserve;
-INSERT INTO concReserve VALUES(DEFAULT, 1, 'FC003045', 'PF215902', 'A-1', 'R석', '지석환', '01011112222', '2023-06-10 15:00', DEFAULT);
-INSERT INTO concReserve VALUES(DEFAULT, 1, 'FC003045', 'PF215902', 'A-2', 'R석', '지석환', '01011112222', '2023-06-10 15:00', DEFAULT);
-INSERT INTO concReserve VALUES(DEFAULT, 1, 'FC003045', 'PF215902', 'D-1', 'S석', '지석환', '01011112222', '2023-06-10 15:00', DEFAULT);
-INSERT INTO concReserve VALUES(DEFAULT, 1, 'FC003045', 'PF215902', 'A-1', 'R석', '지석환', '01011112222', '2023-06-10 19:00', DEFAULT);
-SELECT * FROM member;
-SELECT * FROM concert WHERE conId = 'PF215902';
-SELECT * FROM seat;
-
-SELECT seatType, COUNT(*) AS count FROM concReserve WHERE conHallId = 'FC003045' AND resvTime = '2023-06-10 15:00:00' GROUP BY seatType;
-
-SELECT
-	IFNULL(MAX(CASE WHEN seatType = 'R석' THEN count END), 0) AS 'R',
-    IFNULL(MAX(CASE WHEN seatType = 'S석' THEN count END), 0) AS 'S',
-    IFNULL(MAX(CASE WHEN seatType = 'A석' THEN count END), 0) AS 'A'
-FROM
-	(SELECT resvTime, seatType, COUNT(*) AS count
-		FROM concReserve
-		WHERE conHallId = 'FC003045'
-		AND resvTime = '2023-06-10 15:00:00'
-		GROUP BY seatType) AS subquery;
-    
-SELECT resvTime, seatType, COUNT(*) AS count
-	FROM concReserve
-	WHERE conHallId = 'FC003045'
-	GROUP BY resvTime, seatType
-	ORDER BY resvTime;
-
-
-
 
 -- 공연 스케줄 테이블
 DROP TABLE concSchedule;
@@ -325,74 +275,6 @@ INSERT INTO concSchedule VALUES('2023-06-8 20:00:00', 'PF215902', 'FC003045');
 INSERT INTO concSchedule VALUES('2023-06-9 20:00:00', 'PF215902', 'FC003045');
 INSERT INTO concSchedule VALUES('2023-06-10 15:00:00', 'PF215902', 'FC003045');
 INSERT INTO concSchedule VALUES('2023-06-10 19:00:00', 'PF215902', 'FC003045');
-
-SELECT conTime FROM concSchedule WHERE conHallId = 'FC003045' AND conTime LIKE '2023-06-10%';
-
-SELECT S.* FROM concSchedule S;
-
-SELECT	count(CASE WHEN seatType='R석' THEN 1 END) AS R석,
-		count(CASE WHEN seatType='S석' THEN 1 END) AS S석,
-		count(CASE WHEN seatType='A석' THEN 1 END) AS A석 FROM seat;
-
-SELECT seatType, count(*) FROM seat WHERE conHallId = 'FC003045' GROUP BY seatType;
-
--- 선택한 일자의 회차별 잔여 좌석 조회 쿼리
-SELECT
-    cs.conTime AS startTime,
-    COALESCE(t.R - booked.R, t.R) AS R,
-    COALESCE(t.S - booked.S, t.S) AS S,
-    COALESCE(t.A - booked.A, t.A) AS A
-FROM
-    concSchedule cs
-    JOIN
-    (
-        SELECT
-            IFNULL(MAX(CASE WHEN seatType = 'R석' THEN count END), 0) AS 'R',
-            IFNULL(MAX(CASE WHEN seatType = 'S석' THEN count END), 0) AS 'S',
-            IFNULL(MAX(CASE WHEN seatType = 'A석' THEN count END), 0) AS 'A'
-        FROM
-            (
-                SELECT seatType, COUNT(*) AS count
-                FROM seat
-                WHERE conHallId = 'FC003045'
-                GROUP BY seatType
-            ) AS subquery
-    ) AS t
-    LEFT JOIN
-    (
-        SELECT
-            resvTime,
-            SUM(CASE WHEN seatType = 'R석' THEN count ELSE 0 END) AS R,
-            SUM(CASE WHEN seatType = 'S석' THEN count ELSE 0 END) AS S,
-            SUM(CASE WHEN seatType = 'A석' THEN count ELSE 0 END) AS A
-        FROM
-            (
-                SELECT resvTime, seatType,  COUNT(*) AS count
-                FROM concReserve
-                WHERE conHallId = 'FC003045'
-                AND status = 'Y'
-                GROUP BY resvTime, seatType
-            ) AS subquery
-        GROUP BY resvTime
-    ) booked ON (booked.resvTime = cs.conTime)
-WHERE conTime LIKE '2023-06-10%'
-ORDER BY conTime;
-
--- 좌석별 가격 조회 쿼리
-SELECT
-	  MAX(CASE WHEN seatType = 'R석' THEN seatPrice END) AS R,
-	  MAX(CASE WHEN seatType = 'S석' THEN seatPrice END) AS S,
-	  MAX(CASE WHEN seatType = 'A석' THEN seatPrice END) AS A
-FROM seat
-WHERE conHallId = 'FC003045'
-GROUP BY conHallId;
-
--- 이미 예약된 좌석 조회 쿼리
-SELECT S.seatNo FROM concReserve R
-JOIN (
-	SELECT * FROM seat
-) S ON (R.seatNo = S.seatNo)
-WHERE R.conHallId = 'FC003045' AND R.resvTime = '2023-06-10 15:00:00' AND R.status = 'Y';
 
 -- 좌석 테이블 초기화
 INSERT INTO seat VALUES(DEFAULT, 'FC003045', 'A-1', 'R석', 60000);
@@ -630,8 +512,6 @@ LEFT JOIN (
     GROUP BY conId
 ) bookmarks ON Conc.conId = bookmarks.conId WHERE Conc.conId = 'PF218968';
 
-
-
 SELECT Conc.*, Hall.la, Hall.lo FROM concert Conc
 JOIN conHall Hall ON(Conc.conHallId = Hall.conHallId)
 WHERE conNm = '%포항%';
@@ -689,3 +569,116 @@ SELECT B.* FROM board B
 	JOIN member M ON (B.mno = M.mno)
     WHERE B.boardStatus = 'Y' AND B.boardCat = 'review' AND B.mno = 1
     ORDER BY B.boardCreateDate DESC;
+    
+SELECT * FROM campBookmark;
+
+SELECT C.*, rating.avgRating, rating.numReviews, bookmarks.bookmarks
+	FROM campSiteInfo C
+	LEFT JOIN (
+		SELECT contentID, count(*) AS bookmarks
+		FROM campBookmark
+		WHERE contentID = 37
+		GROUP BY contentID
+	) bookmarks ON C.contentID = bookmarks.contentID
+	LEFT JOIN (
+	SELECT contentId, SUM(rating) / count(*) AS avgRating, count(*) AS numReviews
+		FROM board
+		WHERE contentId = 37
+		GROUP BY contentId
+	) rating ON C.contentID = rating.contentId
+	WHERE C.contentID = 37;
+    
+SELECT * FROM conHall WHERE conHallId = 'FC000743';
+SELECT * FROM conHall WHERE conHallId = 'FC001394';
+SELECT * FROM conHall WHERE conHallId = 'FC000493';
+
+SELECT b.*, camp.campNm, camp.doNm, camp.sigunguNm FROM board b
+    JOIN campsiteInfo camp ON b.contentId = camp.contentID
+	WHERE b.boardTag = 'camp' AND b.boardStatus = 'Y' AND b.boardCat = 'review'
+	ORDER BY b.boardViews DESC
+	LIMIT 3;
+    
+SELECT * FROM board;
+
+SELECT * FROM board WHERE boardCat = 'free' AND boardStatus = 'Y' ORDER BY boardCreateDate DESC LIMIT 8
+
+
+-- 선택한 일자의 회차별 잔여 좌석 조회 쿼리
+SELECT
+    cs.conTime AS startTime,
+    COALESCE(t.R - booked.R, t.R) AS R,
+    COALESCE(t.S - booked.S, t.S) AS S,
+    COALESCE(t.A - booked.A, t.A) AS A
+FROM
+    concSchedule cs
+    JOIN
+    (
+        SELECT
+            IFNULL(MAX(CASE WHEN seatType = 'R석' THEN count END), 0) AS 'R',
+            IFNULL(MAX(CASE WHEN seatType = 'S석' THEN count END), 0) AS 'S',
+            IFNULL(MAX(CASE WHEN seatType = 'A석' THEN count END), 0) AS 'A'
+        FROM
+            (
+                SELECT seatType, COUNT(*) AS count
+                FROM seat
+                WHERE conHallId = 'FC003045'
+                GROUP BY seatType
+            ) AS subquery
+    ) AS t
+    LEFT JOIN
+    (
+        SELECT
+            resvTime,
+            SUM(CASE WHEN seatType = 'R석' THEN count ELSE 0 END) AS R,
+            SUM(CASE WHEN seatType = 'S석' THEN count ELSE 0 END) AS S,
+            SUM(CASE WHEN seatType = 'A석' THEN count ELSE 0 END) AS A
+        FROM
+            (
+                SELECT resvTime, seatType,  COUNT(*) AS count
+                FROM concReserve
+                WHERE conHallId = 'FC003045'
+                AND status = 'Y'
+                GROUP BY resvTime, seatType
+            ) AS subquery
+        GROUP BY resvTime
+    ) booked ON (booked.resvTime = cs.conTime)
+WHERE conTime LIKE '2023-06-10%'
+ORDER BY conTime;
+
+-- 좌석별 가격 조회 쿼리
+SELECT
+	  MAX(CASE WHEN seatType = 'R석' THEN seatPrice END) AS R,
+	  MAX(CASE WHEN seatType = 'S석' THEN seatPrice END) AS S,
+	  MAX(CASE WHEN seatType = 'A석' THEN seatPrice END) AS A
+FROM seat
+WHERE conHallId = 'FC003045'
+GROUP BY conHallId;
+
+-- 이미 예약된 좌석 조회 쿼리
+SELECT S.seatNo FROM concReserve R
+JOIN (
+	SELECT * FROM seat
+) S ON (R.seatNo = S.seatNo)
+WHERE R.conHallId = 'FC003045' AND R.resvTime = '2023-06-10 15:00:00' AND R.status = 'Y';
+
+SELECT
+	IFNULL(MAX(CASE WHEN seatType = 'R석' THEN count END), 0) AS 'R',
+    IFNULL(MAX(CASE WHEN seatType = 'S석' THEN count END), 0) AS 'S',
+    IFNULL(MAX(CASE WHEN seatType = 'A석' THEN count END), 0) AS 'A'
+FROM
+	(SELECT resvTime, seatType, COUNT(*) AS count
+		FROM concReserve
+		WHERE conHallId = 'FC003045'
+		AND resvTime = '2023-06-10 15:00:00'
+		GROUP BY seatType) AS subquery;
+    
+SELECT resvTime, seatType, COUNT(*) AS count
+	FROM concReserve
+	WHERE conHallId = 'FC003045'
+	GROUP BY resvTime, seatType
+	ORDER BY resvTime;
+
+-- 북마크 수 구하기
+SELECT conId, count(*) AS bookmarks FROM concBookmark WHERE conId = 'PF218950' GROUP BY conId;
+
+SELECT Conc.*, Hall.la, Hall.lo FROM concert Conc JOIN conHall Hall ON(Conc.conHallId = Hall.conHallId) WHERE Conc.conId = 'PF217344';

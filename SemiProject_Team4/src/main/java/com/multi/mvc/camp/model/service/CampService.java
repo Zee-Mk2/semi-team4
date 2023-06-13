@@ -6,9 +6,12 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.multi.mvc.board.model.vo.Board;
 import com.multi.mvc.camp.model.mapper.CampMapper;
 import com.multi.mvc.camp.model.vo.CampSiteVO;
+import com.multi.mvc.camp.model.vo.ThemaCnt;
 import com.multi.mvc.common.util.PageInfo;
 import com.multi.mvc.member.model.vo.CampBookmark;
 
@@ -85,8 +88,29 @@ public class CampService {
 		
 		return map;
 	}
+
+	public int getBoardCount(Map<String, Object> param) {
+		return mapper.selectBoardCount(param);
+	}
+
+	public List<Board> selectInfoBoardList(PageInfo pageInfo, Map<String, Object> param) {
+		param.put("limit", pageInfo.getListLimit());
+		param.put("offset", (pageInfo.getStartList() - 1));
+		return mapper.selectInfoBoardList(param);
+	}
 	
+	@Transactional(rollbackFor = Exception.class)
+	public List<Board> pickInfo(Map<String, Object> param) {
+		return mapper.pickInfo(param);
+	}
 	
+	public ThemaCnt getThemaCnt() {
+		return mapper.getThemaCnt();
+	}
+
+	public List<Board> pickReview(Map<String, Object> param) {
+		return mapper.pickReview(param);
+	}
 	
 }
 

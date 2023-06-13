@@ -66,6 +66,13 @@ public class BoardController {
 		List<Board> reviewList = service.selectInfoBoardList(pageInfo, param);
 		model.addAttribute("reviewList", reviewList);
 		
+		param = new HashMap<String, Object>();
+		param.put("boardCat", "info");
+		boardCount = service.getBoardCount(param);
+		pageInfo = new PageInfo(page, 5, boardCount, 2);
+		List<Board> pickList = service.selectInfoBoardList(pageInfo, param);
+		model.addAttribute("pickList", pickList);
+		
 		
 		
 		return "/board/community";

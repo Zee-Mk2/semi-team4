@@ -113,5 +113,10 @@ public class BoardService {
 	public int deleteReply(Map<String, Object> param) {
 		return mapper.deleteReply(param);
 	}
+	
+	@Transactional(rollbackFor = Exception.class)
+	public int pickInfo(Map<String, Object> param) {
+		return mapper.pickInfo(param);
+	}
 
 }

@@ -382,7 +382,6 @@
 						</div>
 						<!-- Help item END -->
 
-						${item.mapX} ${item.mapY}
 						<!-- 날씨 위젯 -->
 						<div class="tomorrow card"
 							data-lat="Float.parseFloat(${item.mapX})"
@@ -435,7 +434,7 @@
 
 				<div class="card">
 					<div class="card-header bg-transparent border-bottom p-0 pb-3">
-						<a href="${path}/board-review">
+						<a href="${path}/board-review?boardCat=review&boardTag=camp">
 							<h3 class="mb-0 title fs-2">${item.campNm}이용후기</h3>
 						</a>
 					</div>

@@ -22,6 +22,7 @@ import com.multi.mvc.board.model.service.BoardService;
 import com.multi.mvc.board.model.vo.Board;
 import com.multi.mvc.common.util.PageInfo;
 import com.multi.mvc.concert.model.service.ConcertService;
+import com.multi.mvc.concert.model.vo.ConHall;
 import com.multi.mvc.concert.model.vo.ConcertVO;
 import com.multi.mvc.concert.model.vo.HallSeats;
 import com.multi.mvc.member.model.vo.Member;
@@ -50,6 +51,14 @@ public class ConcertController {
 			log.info("concertHome - 북마크>> " + bookmarks.toString());
 			model.addAttribute("bookmarks", bookmarks);
 		}
+		
+		List<Board> reviewList = service.pickReview();
+		log.info("@@@@@@@@@@@@ reviewList>> " + reviewList);
+		model.addAttribute("reviewList", reviewList);
+		
+		List<Board> freeList = service.pickFree();
+		log.info("@@@@@@@@@@@@ freeList>> " + freeList);
+		model.addAttribute("freeList", freeList);
 		
 		model.addAttribute("conBestList", service.concertBest());
 		return "/index-concert";
@@ -82,12 +91,21 @@ public class ConcertController {
 	}
 	
 	@RequestMapping(value = "/conc-recommend", method = RequestMethod.GET)
-	public String concrecommend() {
+	public String concrecommend(@RequestParam Map<String, Object> param, Model model) {
+		log.info("추천페이지>> " + param.toString());
+		List<ConcertVO> items = service.conThemeTopTen(param);
+		for (ConcertVO obj : items) {
+			log.info("item>> " + obj);
+		}
+		model.addAttribute("items", items);
+		
 		return "/concert/concert-recommend";
 	}
 	
 	@RequestMapping(value = "/conc-nearby", method = RequestMethod.GET)
-	public String concNearby() {
+	public String concNearby(Model model) {
+		List<ConHall> items = service.getNearByConHall();
+		model.addAttribute("items", items);
 		return "/concert/concert-nearby";
 	}
 	

@@ -29,4 +29,7 @@ public class Board {
 	private String conNm;
 	private String campNm;
 	private String reFileNm;
+	private String doNm;
+	private String sigunguNm;
+	private String conHallNm;
 }

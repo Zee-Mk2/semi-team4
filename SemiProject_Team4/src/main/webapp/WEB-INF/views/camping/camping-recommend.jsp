@@ -54,8 +54,8 @@
 							<div class="p-2 p-md-0">
 								<h5 class="mb-1">
 									<a href="${path}/camp-recommend?location=해변" class="stretched-link"> 해변 </a>
-								</h5>
-								<span>4,568 Places</span>
+								</h5> 
+								<span>${counts.beach} Places</span>
 							</div>
 						</div>
 					</div>
@@ -72,9 +72,9 @@
 						<div class="col-md-6">
 							<div class="p-2 p-md-0">
 								<h5 class="mb-1">
-									<a href="#" class="stretched-link"> 섬 </a>
+									<a href="${path}/camp-recommend?location=섬" class="stretched-link"> 섬 </a>
 								</h5>
-								<span>4,568 Places</span>
+								<span>${counts.island} Places</span>
 							</div>
 						</div>
 					</div>
@@ -91,9 +91,9 @@
 						<div class="col-md-6">
 							<div class="p-2 p-md-0">
 								<h5 class="mb-1">
-									<a href="#" class="stretched-link"> 산 </a>
+									<a href="${path}/camp-recommend?location=산" class="stretched-link"> 산 </a>
 								</h5>
-								<span>4,568 Places</span>
+								<span>${counts.mt} Places</span>
 							</div>
 						</div>
 					</div>
@@ -110,9 +110,9 @@
 						<div class="col-md-6">
 							<div class="p-2 p-md-0">
 								<h5 class="mb-1">
-									<a href="#" class="stretched-link"> 숲 </a>
+									<a href="${path}/camp-recommend?location=숲" class="stretched-link"> 숲 </a>
 								</h5>
-								<span>4,568 Places</span>
+								<span>${counts.forest} Places</span>
 							</div>
 						</div>
 					</div>
@@ -129,9 +129,9 @@
 						<div class="col-md-6">
 							<div class="p-2 p-md-0">
 								<h5 class="mb-1">
-									<a href="#" class="stretched-link"> 계곡 </a>
+									<a href="${path}/camp-recommend?location=계곡" class="stretched-link"> 계곡 </a>
 								</h5>
-								<span>4,568 Places</span>
+								<span>${counts.valley} Places</span>
 							</div>
 						</div>
 					</div>
@@ -148,9 +148,9 @@
 						<div class="col-md-6">
 							<div class="p-2 p-md-0">
 								<h5 class="mb-1">
-									<a href="#" class="stretched-link"> 강 </a>
+									<a href="${path}/camp-recommend?location=강" class="stretched-link"> 강 </a>
 								</h5>
-								<span>4,568 Places</span>
+								<span>${counts.river} Places</span>
 							</div>
 						</div>
 					</div>
@@ -167,9 +167,9 @@
 						<div class="col-md-6">
 							<div class="p-2 p-md-0">
 								<h5 class="mb-1">
-									<a href="#" class="stretched-link"> 호수 </a>
+									<a href="${path}/camp-recommend?location=호수" class="stretched-link"> 호수 </a>
 								</h5>
-								<span>4,568 Places</span>
+								<span>${counts.lake} Places</span>
 							</div>
 						</div>
 					</div>
@@ -186,9 +186,9 @@
 						<div class="col-md-6">
 							<div class="p-2 p-md-0">
 								<h5 class="mb-1">
-									<a href="#" class="stretched-link"> 도심 </a>
+									<a href="${path}/camp-recommend?location=도심" class="stretched-link"> 도심 </a>
 								</h5>
-								<span>4,568 Places</span>
+								<span>${counts.city} Places</span>
 							</div>
 						</div>
 					</div>
@@ -236,7 +236,7 @@
 										<div class="row mb-4">
 											<a href="#">
 												<div class="title">
-													<span class="mb-0 text-info fs-2">숲이 있는 캠핑장 <span
+													<span class="mb-0 text-info fs-2"><c:if test="${empty param.location}">해변</c:if>${param.location}이 있는 캠핑장 <span
 														class="text-secondary">TOP 10</span></span> <span
 														class="mb-0 px-3 text-info fs-4">해변, 섬, 산, 숲, 계곡...
 														당신이 원하는 곳 어디든!</span>
@@ -268,7 +268,7 @@
 																${item.addr}<br>
 																문의 ${item.tel}
 															</div>
-															<a href="${path}/camp-detail?contentID=${contentID}" class="stretched-link">
+															<a href="${path}/camp-detail?contentID=${item.contentID}" class="stretched-link">
 																<span class="h5 card-title mt-2 title text-primary">자세히 보러가기</span>
 															</a>
 														</div>
@@ -435,7 +435,7 @@
     Recommend Banner END -->
 
 	<!-- 지역별 BEST 캠핑장 시작 -->
-	<section class="pt-0 pt-md-5 bg-light" style="height: 550px;">
+	<section class="pt-0 pt-md-5" style="height: 550px;">
 
 		<div class="container position-relative">
 			<a href="test.html">
@@ -455,7 +455,7 @@
 							<div class="card-body d-flex align-items-center">
 								<div class="w-100">
 									<h5 class="card-title text-decoration-none text-dark">
-										<a href="test.html" class="stretched-link title"> 연포분교야영장
+										<a href="${path}/camp-detail?contentId=7390" class="stretched-link title"> 연포분교야영장
 										</a>
 									</h5>
 									강원 정선군 신동읍 연포길 544-6
@@ -481,7 +481,7 @@
 							<div class="card-body d-flex align-items-center">
 								<div class="w-100">
 									<h5 class="card-title text-decoration-none text-dark">
-										<a href="test.html" class="stretched-link title"> 전원일기마을
+										<a href="${path}/camp-detail?contentId=2685" class="stretched-link title"> 전원일기마을
 											오토캠핑장 </a>
 									</h5>
 									경기도 양주시 장흥면 삼하리 210-1
@@ -507,7 +507,7 @@
 							<div class="card-body d-flex align-items-center">
 								<div class="w-100">
 									<h5 class="card-title text-decoration-none text-dark">
-										<a href="test.html" class="stretched-link title"> 한강공원
+										<a href="${path}/camp-detail?contentId=3397" class="stretched-link title"> 한강공원
 											난지캠핑장 </a>
 									</h5>
 									서울특별시 마포구 한강난지로 28
@@ -528,5 +528,6 @@
 </main>
 <!-- **************** MAIN CONTENT END **************** -->
 
+<script src="${path}/resources/assets/js/camp.js"></script>
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />
 

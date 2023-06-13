@@ -341,7 +341,7 @@
 <script src="${path}/resources/assets/vendor/flatpickr/js/flatpickr.min.js"></script>
 <script src="${path}/resources/assets/vendor/nouislider/nouislider.min.js"></script>
 
-<jsp:include page="/WEB-INF/views/common/footer.jsp" />
+<jsp:include page="/WEB-INF/views/common/camping-footer.jsp" />
 
 <script type="text/javascript">
 	function movePage(page){

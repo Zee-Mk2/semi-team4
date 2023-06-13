@@ -1,5 +1,6 @@
 package com.multi.mvc.camp.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -18,6 +19,7 @@ import com.multi.mvc.board.model.service.BoardService;
 import com.multi.mvc.board.model.vo.Board;
 import com.multi.mvc.camp.model.service.CampService;
 import com.multi.mvc.camp.model.vo.CampSiteVO;
+import com.multi.mvc.camp.model.vo.ThemaCnt;
 import com.multi.mvc.common.util.PageInfo;
 import com.multi.mvc.member.model.vo.Member;
 
@@ -38,6 +40,9 @@ public class CampController {
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String welcome(Locale locale, Model model, HttpSession session) {
+		Map<String, Object> param = null;
+		int page = 1;
+		
 		Member loginMember = (Member) session.getAttribute("loginMember");
 		
 		if (loginMember != null) {
@@ -45,6 +50,24 @@ public class CampController {
 			log.info("campHome - 북마크>> " + bookmarks.toString());
 			model.addAttribute("bookmarks", bookmarks);
 		}
+		param = new HashMap<String, Object>();
+		param.put("boardCat", "free");
+		int boardCount = service.getBoardCount(param);
+		PageInfo pageInfo = new PageInfo(page, 8, boardCount, 8);
+		List<Board> freeList = service.selectInfoBoardList(pageInfo, param);
+		model.addAttribute("freeList", freeList);
+		
+		param = new HashMap<String, Object>();
+		param.put("boardCat", "info");
+		boardCount = service.getBoardCount(param);
+		pageInfo = new PageInfo(page, 5, boardCount, 2);
+		List<Board> pickList = service.pickInfo(param);
+		model.addAttribute("pickList", pickList);
+		
+		param = new HashMap<String, Object>();
+		param.put("boardCat", "review");
+		List<Board> reviewList = service.pickReview(param);
+		model.addAttribute("reviewList", reviewList);
 		
 		model.addAttribute("bestList", service.campThemeBest());
 		
@@ -53,6 +76,9 @@ public class CampController {
 	
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
 	public String home(Locale locale, Model model, HttpSession session) {
+		Map<String, Object> param = null;
+		int page = 1;
+		
 		Member loginMember = (Member) session.getAttribute("loginMember");
 		
 		if (loginMember != null) {
@@ -60,6 +86,24 @@ public class CampController {
 			log.info("campHome - 북마크>> " + bookmarks.toString());
 			model.addAttribute("bookmarks", bookmarks);
 		}
+		param = new HashMap<String, Object>();
+		param.put("boardCat", "free");
+		int boardCount = service.getBoardCount(param);
+		PageInfo pageInfo = new PageInfo(page, 5, boardCount, 5);
+		List<Board> freeList = service.selectInfoBoardList(pageInfo, param);
+		model.addAttribute("freeList", freeList);
+		
+		param = new HashMap<String, Object>();
+		param.put("boardCat", "info");
+		boardCount = service.getBoardCount(param);
+		pageInfo = new PageInfo(page, 5, boardCount, 2);
+		List<Board> pickList = service.pickInfo(param);
+		model.addAttribute("pickList", pickList);
+		
+		param = new HashMap<String, Object>();
+		param.put("boardCat", "review");
+		List<Board> reviewList = service.pickReview(param);
+		model.addAttribute("reviewList", reviewList);
 		
 		model.addAttribute("bestList", service.campThemeBest());
 		
@@ -88,12 +132,17 @@ public class CampController {
 	
 	@RequestMapping(value = "/camp-recommend", method = RequestMethod.GET)
 	public String campRecommendPage(@RequestParam Map<String, Object> param, Model model) {
+		param.put("location", "해변");
 		log.info("추천페이지>> " + param.toString());
 		List<CampSiteVO> items = service.campThemeTopTen(param);
 		for (CampSiteVO obj : items) {
 			log.info("item>> " + obj);
 		}
+		ThemaCnt counts = service.getThemaCnt();
+		log.info("@@@@@@@@@@ campRecommendPage>> " + counts.toString());
 		
+		model.addAttribute("param", param);
+		model.addAttribute("counts", counts);
 		model.addAttribute("items", items);
 		
 		return "/camping/camping-recommend";

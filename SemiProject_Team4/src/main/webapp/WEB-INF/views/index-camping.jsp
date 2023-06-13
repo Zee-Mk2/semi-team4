@@ -243,72 +243,58 @@ Packages END -->
 <section class="pt-0 pt-md-5 bg-light">
 	
 	<div class="container position-relative">
-		<a href="${path}/community-info.html">
+		<a href="${path}/board-info?boardCat=info&boardTag=camp">
 			<div class="text-center pb-3 title h2">캠핑정보 이달의 Pick!</div>
 		</a>
 
 		<div class="row g-4 mb-n8">
-			<!-- 이달의픽 카드 1 -->
-			<div class="col-6">
-				<!-- place item-->
-				<div class="w-100 h-75">
-					<div class="card card-img-scale h-100 border-0 shadow">
-						<div class="card-img-top overflow-hidden">
-							<img class="img-fluid" src="${path}/resources/assets/images/blog/blog01.jpeg" />
-						</div>
-						<div class="card-body d-flex align-items-center">
-							<div class="w-100">
-								<h5 class="card-title text-decoration-none text-dark">
-									<a href="${path}/camp-detail" class="stretched-link title">
-										애견 캠퍼 분들 주목! 윈드스크린 추천
-									</a>
-								</h5>
-								애견 캠퍼의 내돈내산 캠핑템 찐 후기
-								<div class="d-flex align-items-center mt-2 mb-n2" href="${path}/profile.html">
-									<!-- Avatar -->
-									<div class="avatar me-3" style="width: 2rem; height: 2rem;">
-										<img class="avatar-img rounded-circle shadow" src="${path}/resources/assets/images/avatar/01.jpg" alt="avatar">
-									</div>
-									<div class="fw-bold text-black">
-										지석환
-									</div>
-								</div>
+		<!-- 이달의픽 카드 1 -->
+			<c:forEach var="item" items="${pickList}">
+			 <div class="col-6">
+                <!-- place item-->
+                <div class="w-100 h-75">
+                    <div class="card card-img-scale h-100 border-0 shadow">
+                        <div class="card-img-top overflow-hidden">
+                            <img class="img-fluid card-img-scale-wrapper" src="${path}/resources/upload/board/${item.boardReFileNm}" />
+                            <div class="card-img-overlay-top">
+							<div class="d-flex justify-content-between">
+								<span class="badge ${item.boardTag eq 'camp' ? 'text-bg-info' : 'text-bg-warning'} text-light" style="height: 1.5rem">
+								<c:choose>
+									<c:when test="${item.boardTag eq 'camp'}">
+									캠핑
+									</c:when>
+									<c:when test="${item.boardTag eq 'conc'}">
+									공연
+									</c:when>
+								</c:choose>
+								</span>
 							</div>
 						</div>
-					</div>
-				</div>
-			</div>
+                        </div>
+                        <div class="card-body d-flex align-items-center">
+                            <div class="w-100">
+                                <h5 class="card-title text-decoration-none text-dark">
+                                    <a href="${path}/board-detail?boardCat=info&bno=${item.bno}" class="stretched-link title">
+                                        ${item.boardTitle}
+                                    </a>
+                                </h5>
+                                ${item.boardContent}
+                                <div class="d-flex align-items-center mt-2 mb-n2" href="${path}/profile.html">
+                                    <!-- Avatar -->
+                                    <div class="avatar me-3" style="width: 2rem; height: 2rem;">
+                                        <img class="avatar-img rounded-circle shadow" src="${path}/resources/upload/profile/${item.reFileNm}" alt="avatar">
+                                    </div>
+                                    <div class="fw-bold text-black">
+                                        ${item.name}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </c:forEach>
 			
-			<!-- 이달의픽 카드 2 -->
-			<div class="col-6">
-				<!-- place item-->
-				<div class="w-100 h-75">
-					<div class="card card-img-scale h-100 border-0 shadow">
-						<div class="card-img-top overflow-hidden">
-							<img class="img-fluid card-img-scale-wrapper" src="https://campingagains3.s3.ap-northeast-2.amazonaws.com/medium_tica1010005645_l_42b4f92e54.jpg" />
-						</div>
-						<div class="card-body d-flex align-items-center">
-							<div class="w-100">
-								<h5 class="card-title text-decoration-none text-dark">
-									<a href="${path}/board-detail" class="stretched-link title">
-										초보 캠퍼들의 오토캠핑 입문을 위한 가이드 2편
-									</a>
-								</h5>
-								캠핑을 시작하고 싶지만 방법을 몰라 망설이는 초보 캠퍼를 위한 노하우
-								<div class="d-flex align-items-center mt-2 mb-n2" href="${path}/profile.html">
-									<!-- Avatar -->
-									<div class="avatar me-3" style="width: 2rem; height: 2rem;">
-										<img class="avatar-img rounded-circle shadow" src="${path}/resources/assets/images/avatar/01.jpg" alt="avatar">
-									</div>
-									<div class="fw-bold text-black">
-										지석환
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
 		</div>
 	</div>
 </section>
@@ -318,7 +304,7 @@ Packages END -->
 <section>
 	<div class="container">
 		<!-- Title -->
-		<a href="${path}/board-review" style="z-index: 99; height: 5rem;">
+		<a href="${path}/board-review?boardCat=review&boardTag=camp" style="z-index: 99; height: 5rem;">
 			<div class="title mb-4">
 				<span class="text-secondary fs-2">캠핑장 BEST 후기</span>
 				<span class="px-3 text-info fs-4">이 캠핑장 어땠어요? 생생하고 솔직한 후기만 모아서!</span>
@@ -327,141 +313,67 @@ Packages END -->
 
 		<div class="row">
 
+			<c:forEach var="item" items="${reviewList}">
 			<div class="col-4">
-				<!-- place item-->
+				<!-- place item START -->
 				<div class="w-100 h-100" onmouseover="showOverlay(this)" onmouseout="hideOverlay(this)">
 					<div class="card card-img-scale h-100 border-0 shadow">
 						<div class="card-img-top overflow-hidden">
 							<div class="overlay overflow-hidden p-4 card">
 								<a href="${path}/board-detail" class="stretched-link">
 									<div class="overlay-content text-white">
-										<div class="h4 text-white title">엉클캠핑장</div>
-										<div>경기도 포천시</div>
+										<div class="h4 text-white title">${item.campNm}</div>
+										<div>${item.doNm} ${item.sigunguNm}</div>
 									</div>
 								</a>
 							</div>
-							<img class="img-fluid" src="${path}/resources/assets/images/review/01.jpg"/>
+							<img class="img-fluid" src="${path}/resources/upload/board/${item.boardReFileNm}"/>
 						</div>
 						<div class="card-body d-flex align-items-center">
 							<div class="w-100">
 								<h5 class="card-title text-decoration-none text-dark">
-									자연에 녹아든 캠핑장
+									${item.boardTitle}
 								</h5>
-								공기가 정말 맑은 느낌이었어요. 서비스도 좋고 환경이 쾌적해 정말 만족스러운 여행이 ...
+								${item.boardContent}
 								<div class="d-flex">
-									<span class="d-flex align-items-center mt-2 col-7" href="${path}/profile.html">
+									<span class="d-flex align-items-center mt-2 col-7" href="${path}/board-detail?boardCat=review&boardTag=camp&bno=${item.bno}">
 										<!-- Avatar -->
 										<div class="avatar me-3" style="width: 2rem; height: 2rem;">
-											<img class="avatar-img rounded-circle shadow" src="${path}/resources/assets/images/avatar/01.jpg" alt="avatar">
+											<img class="avatar-img rounded-circle shadow" src="${path}/resources/upload/profile/${item.reFileNm}" alt="avatar">
 										</div>
 										<div class="fw-bold text-black">
-										지석환
+										${item.name}
 									</div>
 									</span>
 									<span class="col-5 text-end mt-3">
-										<i class="fa fa-star text-warning"></i>
-										<i class="fa fa-star text-warning"></i>
-										<i class="fa fa-star text-warning"></i>
-										<i class="fa fa-star-half-alt text-warning"></i>
-										<i class="far fa-star text-warning"></i>
+								        <div class="review-rating ${item.bno}">
+								            <span class="star"><i class="far fa-star text-warning"></i></span>
+								            <span class="star"><i class="far fa-star text-warning"></i></span>
+								            <span class="star"><i class="far fa-star text-warning"></i></span>
+								            <span class="star"><i class="far fa-star text-warning"></i></span>
+								            <span class="star"><i class="far fa-star text-warning"></i></span>
+									        <input type="hidden" name="rating" value="${item.rating}">
+								            <script>
+										        $(document).ready(function() {
+										            var intRating = parseInt($('.${item.bno} input[name="rating"]').val());
+										
+										            var starIcons = $('.review-rating.${item.bno} .star i');
+										            var i;
+										            for (i = 0; i < intRating; i++) {
+										                $(starIcons[i]).removeClass('far').addClass('fas');
+										            }
+										        });
+										    </script>
+										</div>
 									</span>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
+				<!-- place item END -->
 			</div>
-
-			<div class="col-4">
-				<!-- place item-->
-				<div class="w-100 h-100" onmouseover="showOverlay(this)" onmouseout="hideOverlay(this)">
-					<div class="card card-img-scale h-100 border-0 shadow">
-						<div class="card-img-top overflow-hidden">
-							<div class="overlay overflow-hidden p-4 card">
-								<a href="${path}/board-detail" class="stretched-link">
-									<div class="overlay-content text-white">
-										<div class="h4 text-white title">엉클캠핑장</div>
-										<div>경기도 포천시</div>
-									</div>
-								</a>
-							</div>
-							<img class="img-fluid" src="${path}/resources/assets/images/review/02.jpg"/>
-						</div>
-						<div class="card-body d-flex align-items-center">
-							<div class="w-100">
-								<h5 class="card-title text-decoration-none text-dark">
-									자연에 녹아든 캠핑장
-								</h5>
-								공기가 정말 맑은 느낌이었어요. 서비스도 좋고 환경이 쾌적해 정말 만족스러운 여행이 ...
-								<div class="d-flex">
-									<span class="d-flex align-items-center mt-2 col-7" href="${path}/profile.html">
-										<!-- Avatar -->
-										<div class="avatar me-3" style="width: 2rem; height: 2rem;">
-											<img class="avatar-img rounded-circle shadow" src="${path}/resources/assets/images/avatar/01.jpg" alt="avatar">
-										</div>
-										<div class="fw-bold text-black">
-										지석환
-									</div>
-									</span>
-									<span class="col-5 text-end mt-3">
-										<i class="fa fa-star text-warning"></i>
-										<i class="fa fa-star text-warning"></i>
-										<i class="fa fa-star text-warning"></i>
-										<i class="fa fa-star-half-alt text-warning"></i>
-										<i class="far fa-star text-warning"></i>
-									</span>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-4">
-				<!-- place item-->
-				<div class="w-100 h-100" onmouseover="showOverlay(this)" onmouseout="hideOverlay(this)">
-					<div class="card card-img-scale h-100 border-0 shadow">
-						<div class="card-img-top overflow-hidden">
-							<div class="overlay overflow-hidden p-4 card">
-								<a href="${path}/board-detail" class="stretched-link">
-									<div class="overlay-content text-white">
-										<div class="h4 text-white title">엉클캠핑장</div>
-										<div>경기도 포천시</div>
-									</div>
-								</a>
-							</div>
-							<img class="img-fluid" src="${path}/resources/assets/images/review/03.jpg"/>
-						</div>
-						<div class="card-body d-flex align-items-center">
-							<div class="w-100">
-								<h5 class="card-title text-decoration-none text-dark">
-									자연에 녹아든 캠핑장
-								</h5>
-								공기가 정말 맑은 느낌이었어요. 서비스도 좋고 환경이 쾌적해 정말 만족스러운 여행이 ...
-								<div class="d-flex">
-									<span class="d-flex align-items-center mt-2 col-7" href="${path}/profile.html">
-										<!-- Avatar -->
-										<div class="avatar me-3" style="width: 2rem; height: 2rem;">
-											<img class="avatar-img rounded-circle shadow" src="${path}/resources/assets/images/avatar/01.jpg" alt="avatar">
-										</div>
-										<div class="fw-bold text-black">
-										지석환
-									</div>
-									</span>
-									<span class="col-5 text-end mt-3">
-										<i class="fa fa-star text-warning"></i>
-										<i class="fa fa-star text-warning"></i>
-										<i class="fa fa-star text-warning"></i>
-										<i class="fa fa-star-half-alt text-warning"></i>
-										<i class="far fa-star text-warning"></i>
-									</span>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-
+			</c:forEach>
 
 		</div>
 	</div>
@@ -475,60 +387,23 @@ Packages END -->
 			<!-- 자유게시판 시작 -->
 			<span class="col-6">
 				<!-- Title -->
-				<a href="${path}/board-main">
+				<a href="${path}/board-free?boardCat=free">
 					<div class="title mb-3">
 						<span class="mb-0 text-secondary fs-2">자유게시판</span>
 					</div>
 				</a>
 
 				<!-- 자유게시판 게시글 목록 -->
-				<ul class="nav flex-column text-info">
-					<li class="nav-item">
-						<a class="nav-link py-1" href="${path}/board-detail">애견 캠퍼 분들 주목! 윈드스크린 추천
-							<span class="ps-2 text-black-50" style="font-size: 0.9rem;">1분 전</span>
-						</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link py-1" href="${path}/board-detail">초보 캠퍼들의 오토캠핑 입문을 위한 가이드 2편
-							<span class="ps-2 text-black-50" style="font-size: 0.9rem;">1분 전</span>
-						</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link py-1" href="${path}/board-detail">애견 캠퍼 분들 주목! 윈드스크린 추천
-							<span class="ps-2 text-black-50" style="font-size: 0.9rem;">1분 전</span>
-						</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link py-1" href="${path}/board-detail">초보 캠퍼들의 오토캠핑 입문을 위한 가이드 2편
-							<span class="ps-2 text-black-50" style="font-size: 0.9rem;">1분 전</span>
-						</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link py-1" href="${path}/board-detail">애견 캠퍼 분들 주목! 윈드스크린 추천
-							<span class="ps-2 text-black-50" style="font-size: 0.9rem;">1분 전</span>
-						</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link py-1" href="${path}/board-detail">초보 캠퍼들의 오토캠핑 입문을 위한 가이드 2편
-							<span class="ps-2 text-black-50" style="font-size: 0.9rem;">1분 전</span>
-						</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link py-1" href="${path}/board-detail">애견 캠퍼 분들 주목! 윈드스크린 추천
-							<span class="ps-2 text-black-50" style="font-size: 0.9rem;">1분 전</span>
-						</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link py-1" href="${path}/board-detail">초보 캠퍼들의 오토캠핑 입문을 위한 가이드 2편
-							<span class="ps-2 text-black-50" style="font-size: 0.9rem;">1분 전</span>
-						</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link py-1" href="${path}/board-detail">애견 캠퍼 분들 주목! 윈드스크린 추천
-							<span class="ps-2 text-black-50" style="font-size: 0.9rem;">1분 전</span>
-						</a>
-					</li>
-				</ul>
+				<c:forEach var="item" items="${freeList}">
+					<ul class="nav flex-column text-info">
+						<li class="nav-item">
+							<a class="nav-link py-1" href="${path}/board-detail?boardCat=free&bno=${item.bno}">${item.boardTitle}
+								<span class="ps-1 text-black-50" style="font-size: 0.9rem;">
+									<fmt:formatDate value="${item.boardCreateDate}" pattern="MM-dd hh:mm" /></span>
+							</a>
+						</li>
+				   </ul>
+			    </c:forEach>
 			</span>
 			<!-- 자유게시판 끝 -->
 			

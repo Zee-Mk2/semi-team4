@@ -1,7 +1,6 @@
 package com.multi.mvc.concert.model.service;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,10 +8,13 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.multi.mvc.board.model.vo.Board;
 import com.multi.mvc.common.util.PageInfo;
 import com.multi.mvc.concert.model.mapper.ConcertMapper;
+import com.multi.mvc.concert.model.vo.ConHall;
 import com.multi.mvc.concert.model.vo.ConcertVO;
 import com.multi.mvc.concert.model.vo.HallSeats;
+import com.multi.mvc.concert.model.vo.ThemaCunt;
 import com.multi.mvc.member.model.vo.ConcBookmark;
 
 import lombok.extern.slf4j.Slf4j;
@@ -106,6 +108,32 @@ public class ConcertService {
 			if (result == 0) return 0;
 		}
 		return result;
+	}
+
+	public List<ConHall> getNearByConHall() {
+		List<ConHall> items = new ArrayList<ConHall>();
+		items.add(mapper.getNearConHall("FC000743"));
+		items.add(mapper.getNearConHall("FC001394"));
+		items.add(mapper.getNearConHall("FC000493"));
+		
+		return items; 
+	}
+
+	public List<ConcertVO> conThemeTopTen(Map<String, Object> param) {
+		System.out.println(mapper.conThemeTopTen(param));
+		return mapper.conThemeTopTen(param);
+	}
+
+	public ThemaCunt getThemaCunt() {
+		return mapper.getThemaCunt();
+	}
+
+	public List<Board> pickReview() {
+		return mapper.pickReview();
+	}
+
+	public List<Board> pickFree() {
+		return mapper.pickFree();
 	}
 	
 }

@@ -198,6 +198,43 @@
 	<insert id="reqBooking" parameterType="Map">
 		INSERT INTO concReserve VALUES(DEFAULT, #{mno}, #{conId}, #{conHallId}, #{seatNo}, #{seatType}, #{userName}, #{tel}, #{time-select}, DEFAULT);
 	</insert>
-	<!-- {tel=01012341234, conHallId=FC003045, seatNo=C-10, userName=지석환, time-select=Sat Jun 10 2023 15:00:00 GMT+0900 (한국 표준시), mno=, seatType=R석} -->
+	
+	<select id="getNearConHall" parameterType="String" resultType="ConHall">
+		SELECT * FROM conHall WHERE conHallId = #{conHallId}
+	</select>
+	
+	<select id="conThemeTopTen" parameterType="Map" resultType="ConcertVO">
+	SELECT conID, conNm, conHallNm, startTime, runtime , posterImg FROM concert WHERE
+		 genre=#{genre}
+	AND conState = '공연중' 
+	Limit 10;
+	</select>
+	
+	<select id="getThemaCunt" resultType="ThemaCunt">
+	SELECT A.classic, B.pm, C.musical, D.play, E.cm, F.tkm, G.dance, H.compound
+	FROM (SELECT count(*) AS classic FROM concert WHERE genre LIKE '%서양음악(클래식)%') A,
+		 (SELECT count(*) AS pm FROM concert WHERE genre LIKE '%대중음악%') B,
+         (SELECT count(*) AS musical FROM concert WHERE genre LIKE '%뮤지컬%') C,
+         (SELECT count(*) AS play FROM concert WHERE genre LIKE '%연극%') D,
+         (SELECT count(*) AS cm FROM concert WHERE genre LIKE '%서커스/마술%') E,
+         (SELECT count(*) AS tkm FROM concert WHERE genre LIKE '%한국음악(국악)%') F,
+         (SELECT count(*) AS dance FROM concert WHERE genre LIKE '%무용%') G,
+		 (SELECT count(*) AS compound FROM concert WHERE genre LIKE '%복합%') H;
+	</select>
+	
+	<select id="pickReview" resultType="Board">
+		SELECT b.*, conc.conNm FROM board b
+		    JOIN concert conc ON b.contentId = conc.conId
+			WHERE b.boardTag = 'conc' AND b.boardStatus = 'Y' AND b.boardCat = 'review'
+			ORDER BY b.boardViews DESC
+			LIMIT 3;
+	</select>
+	
+	<select id="pickFree" resultType="Board">
+		SELECT * FROM board
+			WHERE boardCat = 'free' AND boardStatus = 'Y'
+			ORDER BY boardCreateDate DESC
+			LIMIT 8
+	</select>
 </mapper>
 
